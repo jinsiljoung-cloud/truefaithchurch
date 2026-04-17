@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 사역자 소개 · About</title>
+<meta name="description" content="True Faith Church 비교단 독립 기독교 사역 소개. 사역자 Daniel Joung 목사 이력 및 사역 내용.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,.14);--fs:'Noto Serif KR',serif;--fc:'Cinzel',serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--navy);color:var(--cream);font-family:var(--fs);overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-cross{position:relative;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+.nav-cross::before{content:'';position:absolute;width:2.5px;height:18px;background:var(--gold);border-radius:2px}
+.nav-cross::after{content:'';position:absolute;width:12px;height:2.5px;background:var(--gold);border-radius:2px;margin-top:-4px}
+.nav-logo-text{font-family:var(--fc);font-size:12px;letter-spacing:2px;color:var(--gold)}
+.nav-back{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.45;text-decoration:none;transition:opacity .3s}
+.nav-back:hover{opacity:.9}
+
+/* HERO */
+.hero{min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:80px 20px 60px;background:radial-gradient(ellipse 100% 80% at 50% 30%,#0d2038 0%,#0B1622 70%)}
+.hero-cross-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);opacity:.025;pointer-events:none}
+.hero-cross-bg svg{width:min(400px,80vw)}
+.hero-content{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.hero-eye{font-family:var(--fc);font-size:8px;letter-spacing:5px;color:var(--gold);opacity:.6;margin-bottom:16px}
+.hero-title{font-family:var(--fs);font-size:clamp(26px,4vw,48px);font-weight:900;color:var(--cream);line-height:1.3;margin-bottom:12px}
+.hero-title .hl{color:var(--gold-l)}
+.hero-sub{font-size:13px;font-weight:300;color:var(--cream);opacity:.5;line-height:2}
+.h-rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:24px 0}
+.h-rl{height:1px;width:70px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.35))}
+.h-rl.r{background:linear-gradient(90deg,rgba(201,168,76,.35),transparent)}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.6}
+
+/* SECTIONS */
+.section{padding:80px 20px}
+.container{max-width:860px;margin:0 auto}
+.container-sm{max-width:680px;margin:0 auto}
+.s-eye{font-family:var(--fc);font-size:8px;letter-spacing:5px;color:var(--gold);opacity:.6;margin-bottom:12px}
+.s-title{font-size:clamp(22px,3.5vw,36px);font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:16px}
+.s-desc{font-size:13.5px;font-weight:300;color:var(--cream);opacity:.52;line-height:2.2;margin-bottom:16px}
+
+/* 프로필 카드 */
+.profile-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px;padding:44px 40px;position:relative;overflow:hidden;margin-bottom:32px}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.profile-header{display:flex;align-items:flex-start;gap:28px;margin-bottom:28px;flex-wrap:wrap}
+.profile-icon{width:72px;height:72px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.profile-info{}
+.profile-name{font-family:var(--fs);font-size:22px;font-weight:700;color:var(--cream);margin-bottom:5px}
+.profile-role{font-family:var(--fc);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;margin-bottom:8px}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--fc);font-size:7.5px;letter-spacing:2px;padding:4px 10px;border:1px solid rgba(201,168,76,.25);border-radius:12px;color:var(--cream);opacity:.5}
+.tag.gold{border-color:rgba(201,168,76,.5);color:var(--gold);opacity:.9}
+.profile-desc{font-size:13px;font-weight:300;color:var(--cream);opacity:.52;line-height:2.1}
+
+/* 자격증 카드 */
+.cert-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:24px 28px;display:flex;align-items:flex-start;gap:18px;margin-bottom:14px;transition:border-color .3s}
+.cert-card:hover{border-color:rgba(201,168,76,.3)}
+.cert-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.cert-body{}
+.cert-title{font-family:var(--fs);font-size:15px;font-weight:700;color:var(--gold-p);margin-bottom:5px}
+.cert-org{font-family:var(--fc);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.6;margin-bottom:6px}
+.cert-desc{font-size:12px;font-weight:300;color:var(--cream);opacity:.45;line-height:1.9}
+
+/* 교회 소개 그리드 */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+@media(max-width:600px){.about-grid{grid-template-columns:1fr}}
+.about-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:8px;padding:26px 22px;transition:border-color .3s}
+.about-card:hover{border-color:rgba(201,168,76,.3)}
+.about-card-ic{font-size:22px;margin-bottom:10px}
+.about-card-title{font-family:var(--fc);font-size:8.5px;letter-spacing:3px;color:var(--gold);opacity:.7;margin-bottom:6px}
+.about-card-val{font-size:13px;color:var(--cream);opacity:.55;font-weight:300;line-height:1.8}
+
+/* 면책 섹션 */
+.disclaimer-box{background:rgba(255,255,255,.015);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:28px 32px;margin-top:40px}
+.disclaimer-title{font-family:var(--fc);font-size:8.5px;letter-spacing:4px;color:var(--gold);opacity:.6;margin-bottom:14px}
+.disclaimer-text{font-size:12px;font-weight:300;color:var(--cream);opacity:.38;line-height:2.2}
+
+/* Five Ways */
+.ways-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:28px}
+@media(max-width:640px){.ways-grid{grid-template-columns:repeat(2,1fr)}}
+.way-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;padding:22px 12px;text-align:center;transition:all .3s}
+.way-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px)}
+.way-num{font-family:var(--fc);font-size:7.5px;letter-spacing:3px;color:var(--gold);opacity:.4;margin-bottom:8px}
+.way-eng{font-family:var(--fc);font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:600;margin-bottom:5px}
+.way-kor{font-size:11px;opacity:.4;margin-bottom:4px}
+.way-desc{font-size:10px;opacity:.3;line-height:1.6;font-weight:300}
+
+/* CTA */
+.cta-section{background:var(--navy2);padding:80px 20px;text-align:center}
+.cta-title{font-size:clamp(20px,3vw,32px);font-weight:700;color:var(--cream);margin-bottom:12px}
+.cta-sub{font-size:13px;font-weight:300;color:var(--cream);opacity:.45;line-height:2;margin-bottom:32px}
+.btn-main{display:inline-flex;align-items:center;gap:10px;font-family:var(--fc);font-size:10px;letter-spacing:3px;padding:15px 38px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;border-radius:3px;cursor:pointer;text-decoration:none;font-weight:700;transition:all .3s;box-shadow:0 6px 24px rgba(201,168,76,.2)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(201,168,76,.35)}
+.btn-sec{font-family:var(--fc);font-size:9px;letter-spacing:2px;color:var(--cream);opacity:.38;text-decoration:none;transition:opacity .3s;margin-left:20px}
+.btn-sec:hover{opacity:.75}
+
+/* footer */
+footer{background:#060d16;padding:40px;border-top:1px solid var(--border);text-align:center}
+.ft-copy{font-family:var(--fc);font-size:7.5px;letter-spacing:2px;color:var(--cream);opacity:.2}
+
+/* 애니메이션 */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/index.html" class="nav-logo">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">True Faith Church</span>
+  </a>
+  <a href="/index.html" class="nav-back">← 홈으로</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-cross-bg">
+    <svg viewBox="0 0 200 280" fill="none"><rect x="90" y="0" width="20" height="280" rx="10" fill="#C9A84C"/><rect x="0" y="85" width="200" height="20" rx="10" fill="#C9A84C"/></svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eye">About · 사역자 소개</div>
+    <h1 class="hero-title">
+      True Faith Church<br>
+      <span class="hl">비교단 독립 기독교 사역</span>
+    </h1>
+    <div class="h-rule"><div class="h-rl"></div><div class="h-dot"></div><div class="h-rl r"></div></div>
+    <p class="hero-sub">
+      Independent Christian Ministry · Non-Denominational<br>
+      디지털 세대를 향한 온라인 신앙 공동체
+    </p>
+  </div>
+</section>
+
+<!-- 사역자 소개 -->
+<section class="section" style="background:var(--navy2)">
+  <div class="container-sm">
+    <div class="reveal">
+      <div class="s-eye">Minister · 사역자</div>
+      <h2 class="s-title">Daniel Joung</h2>
+    </div>
+
+    <div class="profile-card reveal d1">
+      <div class="profile-header">
+        <div class="profile-icon">✝</div>
+        <div class="profile-info">
+          <div class="profile-name">Daniel Joung</div>
+          <div class="profile-role">Ordained Minister · 안수 목사</div>
+          <div class="profile-tags">
+            <span class="tag gold">Non-Denominational</span>
+            <span class="tag">Independent Ministry</span>
+            <span class="tag">Online Mission</span>
+            <span class="tag">비교단 독립 사역</span>
+          </div>
+        </div>
+      </div>
+      <p class="profile-desc">
+        스마트폰과 PC 화면 앞에 갇혀 진짜 세상을 보지 못하는 디지털 세대에게
+        하나님의 말씀과 느린 삶의 가치를 전합니다.<br><br>
+        바른믿음교회(True Faith Church)는 특정 교단에 소속되지 않은
+        독립 신앙 공동체로, 성경 말씀을 중심으로 일상 속 믿음과 삶의 방향을 나눕니다.
+        누구나 자유롭게 참여할 수 있으며, 모든 후원은 자율적입니다.
+      </p>
+    </div>
+
+    <!-- 안수 자격 -->
+    <div class="reveal d2">
+      <div class="s-eye" style="margin-bottom:20px">Credentials · 자격 및 이력</div>
+
+      <!-- 안수 1 -->
+      <div class="cert-card">
+        <div class="cert-icon">📜</div>
+        <div class="cert-body">
+          <div class="cert-title">Ordained Minister — 안수 목사</div>
+          <div class="cert-org">Universal Life Church Ministries (ULC) · 2026년 3월 23일</div>
+          <p class="cert-desc">
+            1962년 미국에서 설립된 비교단 독립 종교 기관으로, 전 세계 수백만 명의
+            독립 사역자를 배출한 공인 안수 기관입니다. 미국 다수 주(州) 및 여러 국가에서
+            법적 효력이 인정되며, 독립적인 신앙 공동체 설립 및 사역을 위한 자격입니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 안수 2 -->
+      <div class="cert-card">
+        <div class="cert-icon">✝</div>
+        <div class="cert-body">
+          <div class="cert-title">Ordained Minister — 안수 목사</div>
+          <div class="cert-org">Minister Now (ministernow.org) · 2026년</div>
+          <p class="cert-desc">
+            Minister Now는 비교단 독립 신앙 사역자를 위한 국제적 안수 기관입니다.
+            독립 사역자로서의 자격을 공인하며, 이중 안수를 통해 독립 기독교 사역의 공신력을 더욱 강화하였습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 교회 설립 -->
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <div class="cert-body">
+          <div class="cert-title">바른믿음교회 설립 — True Faith Church Founded</div>
+          <div class="cert-org">2026년 3월 · 비교단 독립 온라인 기독교 사역 · 고유번호증 등록</div>
+          <p class="cert-desc">
+            디지털 세대를 향한 온라인 선교 사역으로 바른믿음교회를 창립하고
+            대한민국 세무서에 종교단체 고유번호증을 등록하였습니다.
+            인터넷이 닿는 모든 곳에서 딱 10분 예배를 드릴 수 있는
+            디지털 신앙 공동체를 구축하여 운영 중입니다.
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- 교회 소개 -->
+<section class="section" style="background:var(--navy)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <div class="s-eye">About Our Ministry · 사역 소개</div>
+      <h2 class="s-title">True Faith Church</h2>
+      <p class="s-desc" style="text-align:center">바른믿음교회 (正民敎) · 비교단 독립 온라인 기독교 사역</p>
+    </div>
+
+    <div class="about-grid reveal d1">
+      <div class="about-card">
+        <div class="about-card-ic">📍</div>
+        <div class="about-card-title">성전 · Sanctuary</div>
+        <div class="about-card-val">인터넷이 닿는 모든 곳<br>Wherever the internet reaches</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-ic">⏱️</div>
+        <div class="about-card-title">예배 시간 · Worship</div>
+        <div class="about-card-val">딱 10분 온라인 예배<br>언제 어디서든 가능</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-ic">✝</div>
+        <div class="about-card-title">교단 · Denomination</div>
+        <div class="about-card-val">비교단 독립<br>Non-Denominational Independent</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-ic">📖</div>
+        <div class="about-card-title">말씀 · Scripture</div>
+        <div class="about-card-val">성경 66권 기반<br>매주 수요·주일 설교</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-ic">🌍</div>
+        <div class="about-card-title">선교 대상 · Mission</div>
+        <div class="about-card-val">디지털 세대<br>스마트폰 앞의 모든 세대</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-ic">💛</div>
+        <div class="about-card-title">후원 · Support</div>
+        <div class="about-card-val">모든 후원은 자율적<br>All support is voluntary</div>
+      </div>
+    </div>
+
+    <!-- 표어 -->
+    <div style="text-align:center;margin-top:40px" class="reveal d2">
+      <div style="font-family:var(--fc);font-size:14px;letter-spacing:6px;color:var(--gold);opacity:.6;margin-bottom:8px">
+        SLOWLY · RIGHTEOUSLY · TOGETHER
+      </div>
+      <div style="font-size:13px;color:var(--cream);opacity:.35;font-weight:300">
+        느리게 · 바르게 · 함께
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Five Ways of Life -->
+<section class="section" style="background:var(--navy2)">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="s-eye">What We Believe · 삶의 방식</div>
+      <h2 class="s-title">Five Ways of Life</h2>
+      <p style="font-size:13px;font-weight:300;color:var(--cream);opacity:.45;max-width:480px;margin:0 auto 0;line-height:2">
+        일상 속에서 실천하는 다섯 가지 신앙의 방식입니다.
+      </p>
+    </div>
+    <div class="ways-grid reveal d1">
+      <div class="way-card"><div class="way-num">01</div><div class="way-eng">THE RIGHT PATH</div><div class="way-kor">정도 (正道)</div><div class="way-desc">바른 길을 걸어라</div></div>
+      <div class="way-card"><div class="way-num">02</div><div class="way-eng">TRANSPARENCY</div><div class="way-kor">정직 (正直)</div><div class="way-desc">투명하게 살아라</div></div>
+      <div class="way-card"><div class="way-num">03</div><div class="way-eng">TAKE ROOT</div><div class="way-kor">정착 (定着)</div><div class="way-desc">뿌리를 내려라</div></div>
+      <div class="way-card"><div class="way-num">04</div><div class="way-eng">SERVE PEOPLE</div><div class="way-kor">정민 (正民)</div><div class="way-desc">이웃을 섬겨라</div></div>
+      <div class="way-card"><div class="way-num">05</div><div class="way-eng">STILLNESS</div><div class="way-kor">정지 (靜止)</div><div class="way-desc">멈추어야 들린다</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 면책 고지 -->
+<section class="section" style="background:var(--navy3)">
+  <div class="container-sm">
+    <div class="reveal">
+      <div class="s-eye">Legal Notice · 면책 고지</div>
+      <div class="disclaimer-box">
+        <div class="disclaimer-title">✝ 비교단 독립 사역 고지 · Independent Ministry Disclaimer</div>
+        <p class="disclaimer-text">
+          True Faith Church(바른믿음교회)는 특정 기독교 교단이나 종교 단체에 소속되지 않은
+          독립적인 온라인 신앙 공동체입니다. 본 사역은 Universal Life Church(ULC) 및 Minister Now(ministernow.org)를 통해
+          안수를 받은 독립 사역자가 운영하며, 대한민국 법령상 공인된 종교 법인이 아닙니다.<br><br>
+          모든 예배·말씀·콘텐츠는 신앙적 목적으로 제공되며, 특정 교단의 신학적 입장을
+          대표하지 않습니다. 가입·참여·후원은 전적으로 자유롭고 자율적이며 어떠한 강요도
+          없습니다. 언제든지 탈퇴 및 후원 중단이 가능합니다.<br><br>
+          This ministry is an independent, non-denominational online Christian community.
+          All support is completely voluntary and not required.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container-sm reveal">
+    <h2 class="cta-title">함께 예배드리세요</h2>
+    <p class="cta-sub">언제 어디서든, 딱 10분이면 충분합니다.<br>하나님은 지금 이 자리에서 당신을 만나십니다.</p>
+    <a href="/worship.html" class="btn-main">
+      <span>✝</span><span>10분 예배 시작하기</span>
+    </a>
+    <a href="/index.html" class="btn-sec">← 홈으로</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-copy">© 2026 TRUE FAITH CHURCH · INDEPENDENT CHRISTIAN MINISTRY · ALL RIGHTS RESERVED</div>
+</footer>
+
+<script>
+// reveal 스크롤 애니메이션
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add("on"); });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

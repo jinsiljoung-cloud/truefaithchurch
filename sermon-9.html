@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 엠마오로 가는 길</title>
+<meta name="description" content="바른믿음교회 주일 아침 예배 · 엠마오로 가는 길. 부활하신 예수님은 오늘도 우리의 길에 함께 걸어가십니다. 누가복음 24:32.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199;transition:width .1s}
+
+/* HERO */
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.55}
+
+/* TTS PLAYER */
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .25s;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-btn.play:hover{transform:scale(1.08)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%;transition:width .3s}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-range{-webkit-appearance:none;width:80px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer}
+.tts-range::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CONTENT */
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5}
+
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+
+/* SHARE */
+.share-bar{position:fixed;bottom:32px;right:32px;display:flex;flex-direction:column;gap:10px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .3s;backdrop-filter:blur(8px)}
+.share-btn:hover{background:rgba(201,168,76,.25);transform:scale(1.08)}
+
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}.share-bar{bottom:20px;right:16px}}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">엠마오로 가는 길 — 함께 걸으시는 예수</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀ 2026년 4월 19일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에<br>우리 속에서 마음이 뜨겁지 아니하더냐"</div>
+    <div class="verse-ref">— 누가복음 24:32 —</div>
+  </div>
+
+  <!-- TTS PLAYER -->
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()" title="처음부터">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()" title="정지">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 10:00</span>
+    </div>
+    <div class="tts-settings">
+      <span style="font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.6;text-transform:uppercase">속도</span>
+      <input class="tts-range" type="range" id="ttsRate" min="0.5" max="1.2" step="0.05" value="0.75" oninput="updateRate(this.value)">
+      <span class="tts-time" id="ttsRateVal">0.75x</span>
+      <div class="tts-status" id="ttsStatus">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>오늘은 <span class="bold">부활절 후 두 번째 주일</span>입니다.</p>
+      <p>부활절의 환호가 지나가고, 일상이 다시 돌아왔습니다.<br>
+      혹시 이런 마음이 드시지 않습니까?</p>
+      <p><span class="emphasis">"부활절은 좋았는데, 다시 평범한 한 주가 시작되네."</span></p>
+      <p>오늘 본문의 두 제자도 똑같았습니다. 그들은 <span class="bold">실망한 채로</span>, 예루살렘을 떠나 엠마오라는 작은 마을로 돌아가는 길이었습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에<br>우리 속에서 마음이 뜨겁지 아니하더냐"</div>
+        <div class="v-ref">— 누가복음 24:32 —</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">배경 · 두 제자가 걷던 그 길</div>
+    <div class="sermon-text">
+      <p>예수님이 십자가에서 돌아가신 지 사흘째 되는 날이었습니다.<br>두 제자가 예루살렘에서 엠마오라는 마을로 걸어가고 있었습니다.<br>거리는 약 <span class="bold">11킬로미터</span>. 걸어서 두 시간 반쯤 되는 길입니다.</p>
+      <p>그들은 무엇을 기대하며 예수님을 따랐습니까?<br>로마의 압제를 끝내실 메시아. 이스라엘을 회복시킬 왕.<br>그런데 그분이 십자가에 달려 죽으셨습니다.</p>
+      <p><span class="emphasis">모든 것이 끝난 것 같았습니다.</span></p>
+      <p>그 길에서 그들은 슬픔과 실망을 나누고 있었습니다.<br>그때, 한 낯선 사람이 다가와 함께 걷기 시작합니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"그들과 함께 가시되 그들의 눈이 가리어져서 그인 줄 알아보지 못하거늘"</div>
+        <div class="v-ref">— 누가복음 24:15-16 —</div>
+      </div>
+      <p>그 낯선 사람이 바로 <span class="bold">부활하신 예수님</span>이셨습니다.<br>그런데 제자들은 알아보지 못합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">1부 · 실망한 길에도 함께 걸으십니다</div>
+    <div class="sermon-text">
+      <p>오늘 이 본문이 우리에게 주는 첫 번째 메시지는 이것입니다.</p>
+      <p><span class="emphasis">예수님은 실망한 자들이 걷는 길에도 함께 걸으십니다.</span></p>
+      <p>두 제자는 예루살렘을 떠나는 길이었습니다.<br>예수님이 돌아가신 그 도시, 모든 희망이 사라진 그 자리에서 떠나가고 있었습니다.<br>일종의 <span class="bold">신앙의 후퇴</span>였습니다.</p>
+      <p>그런데 예수님은 그 후퇴의 길에 찾아오셨습니다.<br>그들이 잘 걷고 있을 때, 영광의 자리에 있을 때가 아니라,<br>지치고, 실망하고, 떠나는 그 길에 함께 걸으셨습니다.</p>
+      <p>혹시 오늘 당신도 엠마오로 가는 길 위에 있지 않으십니까?</p>
+      <p>기대했던 일이 무너진 길.<br>기도했던 것이 응답되지 않은 길.<br>믿음이 식어가는 것 같은 길.<br>교회에서 멀어지는 것 같은 길.</p>
+      <p><span class="bold">바로 그 길에, 예수님이 함께 걸으십니다.</span><br>당신이 알아보지 못해도, 그분은 이미 옆에 계십니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">2부 · 왜 알아보지 못했는가</div>
+    <div class="sermon-text">
+      <p>두 제자는 왜 예수님을 알아보지 못했을까요?<br>본문은 이렇게 말합니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"그들의 눈이 가리어져서 그인 줄 알아보지 못하거늘"</div>
+        <div class="v-ref">— 누가복음 24:16 —</div>
+      </div>
+      <p><span class="bold">눈이 가리어져 있었기 때문입니다.</span></p>
+      <p>무엇이 그들의 눈을 가렸습니까?</p>
+      <p><span class="bold">첫째, 자기 생각.</span><br>그들은 예수님이 어떤 분이실지 자기 생각으로 정해 놓았습니다.<br>로마를 무찌르는 정치적 메시아.<br>그 틀에 맞지 않는 예수님은 보이지 않았습니다.</p>
+      <p><span class="bold">둘째, 슬픔.</span><br>슬픔이 너무 깊으면 옆에 있는 사람도 보이지 않습니다.<br>두 제자는 자기들의 실망에 사로잡혀 있었습니다.</p>
+      <p><span class="bold">셋째, 익숙한 풍경.</span><br>11킬로미터를 함께 걸었습니다. 두 시간 넘게 대화했습니다.<br>그런데도 알아보지 못했습니다. <span class="emphasis">너무 가까이 계셔서, 오히려 알아보지 못했는지도 모릅니다.</span></p>
+      <p>오늘 우리도 마찬가지입니다.<br>하나님은 멀리 계신 것이 아닙니다.<br>오늘 아침의 햇살 속에, 가족의 한 마디 속에, 일상의 작은 평안 속에 함께 계십니다.<br>그런데 우리의 눈이 가려져 있어서 알아보지 못합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">3부 · 마음이 뜨거워지는 순간</div>
+    <div class="sermon-text">
+      <p>그 길 위에서, 예수님은 두 제자에게 무엇을 하셨습니까?</p>
+      <div class="verse-box">
+        <div class="v-text">"이에 모세와 모든 선지자의 글로 시작하여 모든 성경에<br>쓴 바 자기에 관한 것을 자세히 설명하시니라"</div>
+        <div class="v-ref">— 누가복음 24:27 —</div>
+      </div>
+      <p>예수님은 자기를 <span class="bold">증명</span>하려 하지 않으셨습니다.<br>나를 보라, 내가 부활했다, 라고 외치지 않으셨습니다.</p>
+      <p>그저 함께 걸으면서, 성경을 풀어 주셨습니다.</p>
+      <p>그리고 그 길의 끝에서 두 제자는 고백합니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에<br>우리 속에서 마음이 뜨겁지 아니하더냐"</div>
+        <div class="v-ref">— 누가복음 24:32 —</div>
+      </div>
+      <p><span class="emphasis">마음이 뜨거워졌습니다.</span></p>
+      <p>이것이 예수님의 방식입니다.<br>큰 기적, 강한 음성으로 압도하지 않으십니다.<br>조용히, 함께 걸으면서, 말씀으로 마음을 데우십니다.</p>
+      <p>여러분, 오늘 이 주일 아침,<br>마음이 뜨거워지는 시간이 되시기를 바랍니다.<br>큰 감격이 아니어도 좋습니다. 작은 따뜻함, 작은 깨달음, 작은 위로,<br><span class="bold">그 작은 뜨거움이 부활의 증거입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">4부 · 떡을 떼실 때 눈이 열렸다</div>
+    <div class="sermon-text">
+      <p>엠마오에 도착했을 때, 예수님은 더 가실 것처럼 하셨습니다.<br>그러나 두 제자가 강권합니다. <span class="emphasis">"우리와 함께 유하사이다."</span></p>
+      <p>예수님은 그 청을 받아 함께 들어가십니다.<br>그리고 식탁에 앉으셔서 떡을 가지고 축사하시고 떼어 주셨습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"그들의 눈이 밝아져 그인 줄 알아보매<br>예수는 그들에게 보이지 아니하시는지라"</div>
+        <div class="v-ref">— 누가복음 24:31 —</div>
+      </div>
+      <p><span class="bold">떡을 떼실 때, 비로소 눈이 열렸습니다.</span></p>
+      <p>이 장면은 우리에게 두 가지를 가르쳐 줍니다.</p>
+      <p><span class="bold">첫째, 함께 머물기를 청해야 합니다.</span><br>예수님은 그냥 지나가실 수도 있었습니다.<br>그러나 제자들이 "우리와 함께 머물러 주십시오"라고 청했을 때, 들어오셨습니다.<br>예수님은 강제로 들어오시지 않습니다. 우리가 청해야 합니다.</p>
+      <p><span class="bold">둘째, 일상의 식탁 속에 계십니다.</span><br>거창한 성전이 아니었습니다. 그저 평범한 저녁 식탁.<br>그 식탁에서 떡을 나눌 때, 예수님이 보이셨습니다.</p>
+      <p>오늘 당신의 식탁, 당신의 일상, 당신의 평범한 시간 속에<br>예수님이 함께 계시기를 청하십시오.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">5부 · 바른믿음교회가 말하는 함께</div>
+    <div class="sermon-text">
+      <p>바른믿음교회의 슬로건은 <span class="bold">느리게, 바르게, 함께</span>입니다.</p>
+      <p>오늘 본문의 핵심도 <span class="emphasis">"함께"</span>입니다.</p>
+      <p>예수님은 두 제자와 <span class="bold">함께 걸으셨습니다.</span><br>예수님은 두 제자와 <span class="bold">함께 머무르셨습니다.</span><br>예수님은 두 제자와 <span class="bold">함께 떡을 나누셨습니다.</span></p>
+      <p>부활의 능력은 혼자 있는 골방에서만 임하지 않습니다.<br>함께 걷는 길, 함께 나누는 식탁, 함께 듣는 말씀 속에 임합니다.</p>
+      <p>온라인교회라고 해서 혼자가 아닙니다.<br>당신이 이 화면 앞에서 말씀을 듣고 있는 지금, 어딘가의 다른 성도도 같은 말씀 앞에 앉아 있습니다.<br>그리고 그 모든 자리 위에, <span class="bold">부활하신 예수님이 함께 걸으십니다.</span></p>
+      <p>두 제자는 그 자리에서 즉시 일어났습니다.<br>밤이었습니다. 11킬로미터를 다시 걸어 예루살렘으로 돌아갔습니다.<br>왜요? <span class="emphasis">증언하기 위해서입니다.</span></p>
+      <p>예수님을 만난 사람은 가만히 있을 수 없습니다.<br>받은 뜨거움을 누군가에게 나누고 싶어집니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 · 오늘의 엠마오 길</div>
+    <div class="sermon-text">
+      <p>오늘 이 주일 아침, 한 가지를 결단하십시오.</p>
+      <p>이번 한 주, 당신이 걷는 길이 곧 엠마오로 가는 길입니다.<br>출근길, 등굣길, 산책길, 장 보러 가는 길.<br>그 모든 길에 예수님이 함께 걸으신다는 것을 기억하십시오.</p>
+      <p>그리고 청하십시오.<br><span class="emphasis">"주님, 저와 함께 머물러 주십시오."</span></p>
+      <div class="verse-box">
+        <div class="v-text">"주님, 저는 오늘 엠마오로 가는 길 위에 있습니다.<br>제 눈을 열어 주십시오. 제 마음을 데워 주십시오.<br>저와 함께 머물러 주십시오."</div>
+        <div class="v-ref">— 아멘 —</div>
+      </div>
+      <p><span class="bold">부활하신 예수님은 멀리 계시지 않습니다.</span><br>당신의 길 위에, 이미 함께 걸어가고 계십니다.</p>
+      <p>마음이 뜨겁지 아니하더냐.<br><span class="emphasis">오늘 그 뜨거움을 회복하십시오.</span></p>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.7;text-align:center;margin-top:24px">
+        느리게 · 바르게 · 함께 · 아멘
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- SHARE -->
+<div class="share-bar">
+  <button class="share-btn" onclick="shareSermon()" title="공유">📤</button>
+  <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+</div>
+
+<script>
+const SERMON_TEXT = `엠마오로 가는 길. 함께 걸으시는 예수.
+
+오늘은 부활절 후 두 번째 주일입니다.
+
+부활절의 환호가 지나가고, 일상이 다시 돌아왔습니다. 혹시 이런 마음이 드시지 않습니까?
+
+부활절은 좋았는데, 다시 평범한 한 주가 시작되네.
+
+오늘 본문의 두 제자도 똑같았습니다. 그들은 실망한 채로, 예루살렘을 떠나 엠마오라는 작은 마을로 돌아가는 길이었습니다.
+
+길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에 우리 속에서 마음이 뜨겁지 아니하더냐. 누가복음 24장 32절.
+
+배경. 두 제자가 걷던 그 길.
+
+예수님이 십자가에서 돌아가신 지 사흘째 되는 날이었습니다. 두 제자가 예루살렘에서 엠마오라는 마을로 걸어가고 있었습니다. 거리는 약 11킬로미터. 걸어서 두 시간 반쯤 되는 길입니다.
+
+그들은 무엇을 기대하며 예수님을 따랐습니까? 로마의 압제를 끝내실 메시아. 이스라엘을 회복시킬 왕. 그런데 그분이 십자가에 달려 죽으셨습니다.
+
+모든 것이 끝난 것 같았습니다.
+
+그 길에서 그들은 슬픔과 실망을 나누고 있었습니다. 그때, 한 낯선 사람이 다가와 함께 걷기 시작합니다.
+
+그들과 함께 가시되 그들의 눈이 가리어져서 그인 줄 알아보지 못하거늘. 누가복음 24장 15절과 16절.
+
+그 낯선 사람이 바로 부활하신 예수님이셨습니다. 그런데 제자들은 알아보지 못합니다.
+
+1부. 실망한 길에도 함께 걸으십니다.
+
+오늘 이 본문이 우리에게 주는 첫 번째 메시지는 이것입니다.
+
+예수님은 실망한 자들이 걷는 길에도 함께 걸으십니다.
+
+두 제자는 예루살렘을 떠나는 길이었습니다. 예수님이 돌아가신 그 도시, 모든 희망이 사라진 그 자리에서 떠나가고 있었습니다. 일종의 신앙의 후퇴였습니다.
+
+그런데 예수님은 그 후퇴의 길에 찾아오셨습니다. 그들이 잘 걷고 있을 때, 영광의 자리에 있을 때가 아니라, 지치고, 실망하고, 떠나는 그 길에 함께 걸으셨습니다.
+
+혹시 오늘 당신도 엠마오로 가는 길 위에 있지 않으십니까? 기대했던 일이 무너진 길. 기도했던 것이 응답되지 않은 길. 믿음이 식어가는 것 같은 길. 교회에서 멀어지는 것 같은 길.
+
+바로 그 길에, 예수님이 함께 걸으십니다. 당신이 알아보지 못해도, 그분은 이미 옆에 계십니다.
+
+2부. 왜 알아보지 못했는가.
+
+두 제자는 왜 예수님을 알아보지 못했을까요? 본문은 이렇게 말합니다.
+
+그들의 눈이 가리어져서 그인 줄 알아보지 못하거늘. 누가복음 24장 16절.
+
+눈이 가리어져 있었기 때문입니다.
+
+무엇이 그들의 눈을 가렸습니까?
+
+첫째, 자기 생각. 그들은 예수님이 어떤 분이실지 자기 생각으로 정해 놓았습니다. 로마를 무찌르는 정치적 메시아. 그 틀에 맞지 않는 예수님은 보이지 않았습니다.
+
+둘째, 슬픔. 슬픔이 너무 깊으면 옆에 있는 사람도 보이지 않습니다. 두 제자는 자기들의 실망에 사로잡혀 있었습니다.
+
+셋째, 익숙한 풍경. 11킬로미터를 함께 걸었습니다. 두 시간 넘게 대화했습니다. 그런데도 알아보지 못했습니다. 너무 가까이 계셔서, 오히려 알아보지 못했는지도 모릅니다.
+
+오늘 우리도 마찬가지입니다. 하나님은 멀리 계신 것이 아닙니다. 오늘 아침의 햇살 속에, 가족의 한 마디 속에, 일상의 작은 평안 속에 함께 계십니다. 그런데 우리의 눈이 가려져 있어서 알아보지 못합니다.
+
+3부. 마음이 뜨거워지는 순간.
+
+그 길 위에서, 예수님은 두 제자에게 무엇을 하셨습니까?
+
+이에 모세와 모든 선지자의 글로 시작하여 모든 성경에 쓴 바 자기에 관한 것을 자세히 설명하시니라. 누가복음 24장 27절.
+
+예수님은 자기를 증명하려 하지 않으셨습니다. 나를 보라, 내가 부활했다, 라고 외치지 않으셨습니다.
+
+그저 함께 걸으면서, 성경을 풀어 주셨습니다.
+
+그리고 그 길의 끝에서 두 제자는 고백합니다.
+
+길에서 우리에게 말씀하시고 우리에게 성경을 풀어 주실 때에 우리 속에서 마음이 뜨겁지 아니하더냐.
+
+마음이 뜨거워졌습니다.
+
+이것이 예수님의 방식입니다. 큰 기적, 강한 음성으로 압도하지 않으십니다. 조용히, 함께 걸으면서, 말씀으로 마음을 데우십니다.
+
+여러분, 오늘 이 주일 아침, 마음이 뜨거워지는 시간이 되시기를 바랍니다. 큰 감격이 아니어도 좋습니다. 작은 따뜻함, 작은 깨달음, 작은 위로, 그 작은 뜨거움이 부활의 증거입니다.
+
+4부. 떡을 떼실 때 눈이 열렸다.
+
+엠마오에 도착했을 때, 예수님은 더 가실 것처럼 하셨습니다. 그러나 두 제자가 강권합니다. 우리와 함께 유하사이다.
+
+예수님은 그 청을 받아 함께 들어가십니다. 그리고 식탁에 앉으셔서 떡을 가지고 축사하시고 떼어 주셨습니다.
+
+그들의 눈이 밝아져 그인 줄 알아보매 예수는 그들에게 보이지 아니하시는지라. 누가복음 24장 31절.
+
+떡을 떼실 때, 비로소 눈이 열렸습니다.
+
+이 장면은 우리에게 두 가지를 가르쳐 줍니다.
+
+첫째, 함께 머물기를 청해야 합니다. 예수님은 그냥 지나가실 수도 있었습니다. 그러나 제자들이 우리와 함께 머물러 주십시오, 라고 청했을 때, 들어오셨습니다. 예수님은 강제로 들어오시지 않습니다. 우리가 청해야 합니다.
+
+둘째, 일상의 식탁 속에 계십니다. 거창한 성전이 아니었습니다. 그저 평범한 저녁 식탁. 그 식탁에서 떡을 나눌 때, 예수님이 보이셨습니다.
+
+오늘 당신의 식탁, 당신의 일상, 당신의 평범한 시간 속에 예수님이 함께 계시기를 청하십시오.
+
+5부. 바른믿음교회가 말하는 함께.
+
+바른믿음교회의 슬로건은 느리게, 바르게, 함께입니다.
+
+오늘 본문의 핵심도 함께입니다.
+
+예수님은 두 제자와 함께 걸으셨습니다. 예수님은 두 제자와 함께 머무르셨습니다. 예수님은 두 제자와 함께 떡을 나누셨습니다.
+
+부활의 능력은 혼자 있는 골방에서만 임하지 않습니다. 함께 걷는 길, 함께 나누는 식탁, 함께 듣는 말씀 속에 임합니다.
+
+온라인교회라고 해서 혼자가 아닙니다. 당신이 이 화면 앞에서 말씀을 듣고 있는 지금, 어딘가의 다른 성도도 같은 말씀 앞에 앉아 있습니다. 그리고 그 모든 자리 위에, 부활하신 예수님이 함께 걸으십니다.
+
+두 제자는 그 자리에서 즉시 일어났습니다. 밤이었습니다. 11킬로미터를 다시 걸어 예루살렘으로 돌아갔습니다. 왜요? 증언하기 위해서입니다.
+
+예수님을 만난 사람은 가만히 있을 수 없습니다. 받은 뜨거움을 누군가에게 나누고 싶어집니다.
+
+마무리. 오늘의 엠마오 길.
+
+오늘 이 주일 아침, 한 가지를 결단하십시오.
+
+이번 한 주, 당신이 걷는 길이 곧 엠마오로 가는 길입니다. 출근길, 등굣길, 산책길, 장 보러 가는 길. 그 모든 길에 예수님이 함께 걸으신다는 것을 기억하십시오.
+
+그리고 청하십시오. 주님, 저와 함께 머물러 주십시오.
+
+부활하신 예수님은 멀리 계시지 않습니다. 당신의 길 위에, 이미 함께 걸어가고 계십니다.
+
+마음이 뜨겁지 아니하더냐. 오늘 그 뜨거움을 회복하십시오.
+
+느리게, 바르게, 함께. 아멘.`;
+
+let synth = window.speechSynthesis;
+let utterance = null;
+let isPlaying = false;
+let isPaused = false;
+let elapsedTime = 0;
+let startTime = 0;
+let timerInterval = null;
+let currentRate = 0.75;
+const TOTAL_SECS = 600;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollHeight > 0) document.getElementById('progressBar').style.width = (scrollTop / scrollHeight * 100) + '%';
+});
+
+async function loadVoices() {
+  return new Promise(resolve => {
+    let voices = synth.getVoices();
+    if (voices.length > 0) { resolve(voices); return; }
+    let tries = 0;
+    const iv = setInterval(() => {
+      voices = synth.getVoices(); tries++;
+      if (voices.length > 0 || tries > 30) { clearInterval(iv); resolve(voices); }
+    }, 100);
+  });
+}
+function getBestVoice(voices) {
+  return voices.find(v => v.lang === 'ko-KR' && v.name.includes('Google 한국의'))
+      || voices.find(v => v.lang === 'ko-KR' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'ko-KR' && v.name.includes('Yuna'))
+      || voices.find(v => v.lang === 'ko-KR' && v.name.includes('미래'))
+      || voices.find(v => v.lang === 'ko-KR' && !v.name.includes('Male') && !v.name.includes('남성'))
+      || voices.find(v => v.lang === 'ko-KR')
+      || voices.find(v => v.lang.startsWith('ko'))
+      || voices[0] || null;
+}
+window.addEventListener('load', async () => {
+  const voices = await loadVoices();
+  const voice = getBestVoice(voices);
+  document.getElementById('ttsStatusText').textContent = voice ? '재생 준비 ✅' : '브라우저 미지원';
+});
+
+async function ttsToggle() {
+  if (!isPlaying && !isPaused) { await ttsPlay(); }
+  else if (isPlaying) { ttsPause(); }
+  else if (isPaused) { ttsResume(); }
+}
+async function ttsPlay() {
+  synth.cancel();
+  await new Promise(r => setTimeout(r, 150));
+  const voices = await loadVoices();
+  const voice = getBestVoice(voices);
+  utterance = new SpeechSynthesisUtterance(SERMON_TEXT);
+  if (voice) utterance.voice = voice;
+  utterance.lang = 'ko-KR';
+  utterance.rate = currentRate;
+  utterance.pitch = 0.85;
+  utterance.volume = 0.95;
+  utterance.onstart = () => {
+    isPlaying = true; isPaused = false;
+    document.getElementById('playBtn').textContent = '⏸';
+    document.getElementById('ttsDot').classList.add('on');
+    document.getElementById('ttsStatusText').textContent = '낭독 중 ✝';
+    startTimer();
+    startKeepAlive();
+  };
+  utterance.onend = () => {
+    isPlaying = false; isPaused = false;
+    document.getElementById('playBtn').textContent = '▶';
+    document.getElementById('ttsDot').classList.remove('on');
+    document.getElementById('ttsStatusText').textContent = '낭독 완료 🙏';
+    document.getElementById('ttsProgressFill').style.width = '100%';
+    stopTimer(); stopKeepAlive();
+  };
+  utterance.onerror = (e) => {
+    if (e.error === 'interrupted') return;
+    isPlaying = false; isPaused = false;
+    document.getElementById('playBtn').textContent = '▶';
+    document.getElementById('ttsDot').classList.remove('on');
+    document.getElementById('ttsStatusText').textContent = '다시 시도해 주세요';
+    stopTimer();
+  };
+  synth.speak(utterance);
+}
+function ttsPause() { synth.pause(); isPlaying=false; isPaused=true; document.getElementById('playBtn').textContent='▶'; document.getElementById('ttsDot').classList.remove('on'); document.getElementById('ttsStatusText').textContent='일시정지'; stopTimer(); }
+function ttsResume() { synth.resume(); isPlaying=true; isPaused=false; document.getElementById('playBtn').textContent='⏸'; document.getElementById('ttsDot').classList.add('on'); document.getElementById('ttsStatusText').textContent='낭독 중 ✝'; startTimer(); }
+let keepAliveInterval = null;
+function startKeepAlive() {
+  stopKeepAlive();
+  keepAliveInterval = setInterval(() => { if (isPlaying) synth.resume(); }, 8000);
+}
+function stopKeepAlive() { if (keepAliveInterval) { clearInterval(keepAliveInterval); keepAliveInterval = null; } }
+function ttsStop() { synth.cancel(); isPlaying=false; isPaused=false; elapsedTime=0; document.getElementById('playBtn').textContent='▶'; document.getElementById('ttsDot').classList.remove('on'); document.getElementById('ttsStatusText').textContent='재생 준비 ✅'; document.getElementById('ttsProgressFill').style.width='0%'; document.getElementById('ttsCurrentTime').textContent='0:00'; stopTimer(); }
+function ttsRestart() { ttsStop(); setTimeout(()=>ttsPlay(),300); }
+function startTimer() {
+  startTime = Date.now() - (elapsedTime * 1000);
+  timerInterval = setInterval(() => {
+    elapsedTime = (Date.now() - startTime) / 1000;
+    const pct = Math.min((elapsedTime / TOTAL_SECS) * 100, 100);
+    document.getElementById('ttsProgressFill').style.width = pct + '%';
+    const m = Math.floor(elapsedTime / 60);
+    const s = Math.floor(elapsedTime % 60);
+    document.getElementById('ttsCurrentTime').textContent = m + ':' + String(s).padStart(2,'0');
+  }, 500);
+}
+function stopTimer() { clearInterval(timerInterval); }
+function updateRate(val) { currentRate = parseFloat(val); document.getElementById('ttsRateVal').textContent = currentRate.toFixed(2)+'x'; }
+function ttsSeek(e) { const pct = e.offsetX / e.currentTarget.offsetWidth; elapsedTime = pct * TOTAL_SECS; }
+function shareSermon() {
+  if (navigator.share) { navigator.share({title:'엠마오로 가는 길',text:'True Faith Church 말씀 — 엠마오로 가는 길',url:window.location.href}); }
+  else { navigator.clipboard.writeText(window.location.href); alert('링크가 복사되었습니다!'); }
+}
+window.addEventListener('beforeunload', () => synth.cancel());
+</script>
+</body>
+</html>

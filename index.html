@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ko" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── 기본 SEO ── -->
+<title>바른믿음교회 — 언제 어디서든 딱 10분, 온라인 예배 | True Faith Church</title>
+<meta name="description" content="바른믿음교회는 믿음은 있지만 교회 가기 힘드신 분들을 위한 온라인교회입니다. 스마트폰·PC로 어디서든 10분 예배, 말씀, 찬양을 드릴 수 있습니다. 느리게·바르게·함께.">
+<meta name="keywords" content="바른믿음교회, 온라인교회, 온라인예배, 10분예배, 기독교, 비교단교회, True Faith Church, 인터넷교회, MZ세대교회, 스마트폰예배, 디지털교회">
+<meta name="author" content="Daniel Joung 목사 | 바른믿음교회">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://truefaithchurch.co.kr/">
+
+<!-- ── 네이버 SEO ── -->
+<meta name="naver-site-verification" content="ded505590ceafb6c2eaea279646f43c3d16fbad4">
+<meta name="google-site-verification" content="googlefbc5532eea9bf386">
+
+<!-- ── Open Graph (SNS 공유 + 네이버 미리보기) ── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="바른믿음교회">
+<meta property="og:title" content="바른믿음교회 — 언제 어디서든 딱 10분 온라인 예배">
+<meta property="og:description" content="믿음은 있지만 교회 가기 힘드신가요? 스마트폰으로 10분 예배를 드리세요. 느리게·바르게·함께.">
+<meta property="og:image" content="https://truefaithchurch.co.kr/og-image.jpg">
+<meta property="og:url" content="https://truefaithchurch.co.kr/">
+<meta property="og:locale" content="ko_KR">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="바른믿음교회 — 온라인 예배">
+<meta name="twitter:description" content="언제 어디서든 딱 10분, 하나님께 예배드릴 수 있습니다.">
+<meta name="twitter:image" content="https://truefaithchurch.co.kr/og-image.jpg">
+
+<!-- ── 구조화 데이터 (JSON-LD) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "name": "바른믿음교회",
+  "alternateName": "True Faith Church",
+  "url": "https://truefaithchurch.co.kr",
+  "description": "믿음은 있지만 교회 가기 힘드신 분들을 위한 온라인교회. 언제 어디서든 10분 예배.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "KR"
+  },
+  "sameAs": [
+    "https://www.youtube.com/@truefaithchurchonline"
+  ],
+  "slogan": "느리게, 바르게, 함께",
+  "founder": {
+    "@type": "Person",
+    "name": "Daniel Joung"
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,.14);--border-h:rgba(201,168,76,.38);--fs:'Noto Serif KR',serif;--fc:'Cinzel',serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--navy);color:var(--cream);font-family:var(--fs);overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav.scrolled{height:54px;background:rgba(11,22,34,.98)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-cross{position:relative;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+.nav-cross::before{content:'';position:absolute;width:3px;height:20px;background:var(--gold);border-radius:2px}
+.nav-cross::after{content:'';position:absolute;width:13px;height:3px;background:var(--gold);border-radius:2px;margin-top:-5px}
+.nav-logo-text{font-family:var(--fc);font-size:13px;letter-spacing:2px;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:22px;list-style:none}
+.nav-links a{font-family:var(--fc);font-size:8px;letter-spacing:3px;color:var(--cream);opacity:.5;text-decoration:none;transition:opacity .3s;text-transform:uppercase}
+.nav-links a:hover{opacity:1}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-lang{font-family:var(--fc);font-size:8px;letter-spacing:2px;padding:6px 12px;border:1px solid rgba(201,168,76,.3);background:transparent;color:var(--gold);border-radius:2px;cursor:pointer;transition:all .3s}
+.btn-lang:hover{background:rgba(201,168,76,.1)}
+.btn-nav-cta{font-family:var(--fc);font-size:8.5px;letter-spacing:2px;padding:9px 20px;background:var(--gold);color:var(--navy);border:none;border-radius:2px;cursor:pointer;text-decoration:none;font-weight:700;transition:all .3s}
+.btn-nav-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+@media(max-width:768px){.nav{padding:0 20px}.nav-links{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:80px 20px 60px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 30%,#0f2440 0%,#0B1622 70%)}
+.hero-gl{position:absolute;left:-10%;top:20%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none}
+.hero-gr{position:absolute;right:-10%;bottom:10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(122,158,126,.05) 0%,transparent 70%);pointer-events:none}
+.hero-cross-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);opacity:.03;pointer-events:none}
+.hero-cross-bg svg{width:min(600px,90vw)}
+.hero-pts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pt{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--gold);animation:ptFloat linear infinite}
+@keyframes ptFloat{0%{transform:translateY(110vh);opacity:0}5%{opacity:.7}90%{opacity:.2}100%{transform:translateY(-10vh);opacity:0}}
+.hero-content{position:relative;z-index:2;max-width:780px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fc);font-size:8.5px;letter-spacing:4px;color:var(--gold);opacity:.75;margin-bottom:36px;padding:7px 18px;border:1px solid rgba(201,168,76,.2);border-radius:20px;animation:fadeUp .6s var(--ease) .1s both}
+.hero-timer{display:inline-flex;align-items:center;gap:0;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:14px 28px;margin-bottom:36px;animation:fadeUp .6s var(--ease) .2s both}
+.timer-n{font-family:var(--fc);font-size:52px;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-2px;text-align:center}
+.timer-l{font-family:var(--fc);font-size:8px;letter-spacing:3px;color:var(--cream);opacity:.45;margin-top:3px;text-align:center}
+.timer-div{width:1px;height:48px;background:rgba(201,168,76,.2);margin:0 18px}
+.timer-info{text-align:left}
+.timer-title-t{font-family:var(--fc);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.7;margin-bottom:6px}
+.timer-steps-t{font-size:11px;color:var(--cream);opacity:.45;line-height:1.7;font-weight:300}
+.hero-title{font-family:var(--fs);font-size:clamp(28px,5.5vw,58px);font-weight:900;color:var(--cream);line-height:1.3;letter-spacing:-1px;margin-bottom:20px;animation:fadeUp .7s var(--ease) .3s both}
+.hero-title .hl{color:var(--gold-l)}
+.h-rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:24px 0}
+.h-rl{height:1px;width:80px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.35))}
+.h-rl.r{background:linear-gradient(90deg,rgba(201,168,76,.35),transparent)}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.6}
+.hero-sub{font-size:clamp(13px,1.8vw,16px);font-weight:300;color:var(--cream);opacity:.55;line-height:2;margin-bottom:40px;animation:fadeUp .7s var(--ease) .4s both}
+.hero-sub strong{color:var(--gold-p);font-weight:500;opacity:1}
+.hero-cta{display:flex;flex-direction:column;align-items:center;gap:14px;animation:fadeUp .7s var(--ease) .5s both}
+.btn-main{display:inline-flex;align-items:center;gap:10px;font-family:var(--fc);font-size:10px;letter-spacing:3px;padding:17px 44px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;border-radius:3px;cursor:pointer;text-decoration:none;font-weight:700;transition:all .3s;box-shadow:0 8px 32px rgba(201,168,76,.2)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(201,168,76,.35)}
+.btn-sec{font-family:var(--fc);font-size:8.5px;letter-spacing:2px;color:var(--cream);opacity:.4;text-decoration:none;transition:opacity .3s;padding:8px 0}
+.btn-sec:hover{opacity:.8}
+.hero-note{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.28;margin-top:4px}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;animation:fadeUp .6s var(--ease) 1s both}
+.scroll-hint span{font-family:var(--fc);font-size:7px;letter-spacing:4px;color:var(--cream);opacity:.3}
+.scroll-line{width:1px;height:36px;background:linear-gradient(180deg,rgba(201,168,76,.5),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:.9;transform:scaleY(1)}}
+
+/* SECTIONS */
+.section{padding:100px 20px}
+.container{max-width:960px;margin:0 auto}
+.container-sm{max-width:700px;margin:0 auto}
+.tc{text-align:center}
+.s-eye{font-family:var(--fc);font-size:8.5px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:14px}
+.s-title{font-size:clamp(26px,4vw,44px);font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:16px}
+.s-sub{font-size:13.5px;font-weight:300;color:var(--cream);opacity:.5;line-height:2;max-width:540px;margin:0 auto 52px}
+
+/* 예배 순서 */
+.steps-flow{display:flex;align-items:stretch;gap:0;margin-bottom:52px;flex-wrap:wrap;justify-content:center}
+.step{flex:1;min-width:130px;max-width:188px;padding:32px 14px 28px;background:rgba(255,255,255,.02);border:1px solid var(--border);position:relative;text-align:center;transition:all .35s}
+.step:not(:last-child)::after{content:'›';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--fc);font-size:14px;color:var(--gold);opacity:.35;z-index:1}
+.step:hover{background:rgba(201,168,76,.06);border-color:var(--border-h);transform:translateY(-4px)}
+.step-num{font-family:var(--fc);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.4;margin-bottom:10px}
+.step-ic{font-size:26px;margin-bottom:10px;display:block}
+.step-nm{font-family:var(--fs);font-size:14px;font-weight:700;color:var(--cream);margin-bottom:5px}
+.step-tm{font-family:var(--fc);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.65;margin-bottom:6px}
+.step-ds{font-size:10.5px;font-weight:300;color:var(--cream);opacity:.38;line-height:1.7}
+@media(max-width:640px){.steps-flow{flex-direction:column;align-items:center}.step::after{display:none}.step{min-width:260px;max-width:100%;width:100%}}
+
+/* 왜 온라인 */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:52px}
+@media(max-width:768px){.why-grid{grid-template-columns:1fr}}
+.why-card{padding:40px 28px;border-left:2px solid rgba(201,168,76,.1);transition:all .35s}
+.why-card:hover{border-left-color:var(--gold);background:rgba(201,168,76,.03)}
+.why-ic{font-size:32px;margin-bottom:18px;display:block}
+.why-t{font-family:var(--fs);font-size:16px;font-weight:700;color:var(--gold-p);margin-bottom:12px;line-height:1.4}
+.why-d{font-size:13px;font-weight:300;color:var(--cream);opacity:.5;line-height:2.1}
+.why-d strong{color:var(--gold-p);font-weight:500;opacity:.9}
+
+/* 말씀 카드 */
+.word-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;padding:40px 44px;max-width:640px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.word-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.word-label{font-family:var(--fc);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.55;margin-bottom:20px}
+.word-text{font-family:var(--fs);font-size:clamp(16px,2.5vw,22px);font-weight:300;color:var(--cream);opacity:.85;font-style:italic;line-height:1.85;margin-bottom:14px}
+.word-ref{font-family:var(--fc);font-size:9.5px;letter-spacing:3px;color:var(--gold);opacity:.55}
+
+/* 소개 */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.about-desc{font-size:13.5px;font-weight:300;color:var(--cream);opacity:.5;line-height:2.2;margin-bottom:14px}
+.about-links{display:flex;flex-direction:column;gap:0;margin-top:28px}
+.about-link{display:flex;align-items:center;justify-content:space-between;font-family:var(--fc);font-size:9px;letter-spacing:2px;color:var(--cream);opacity:.45;text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);transition:all .3s}
+.about-link:hover{opacity:1;color:var(--gold);padding-left:6px}
+.ab-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ab-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:6px;padding:22px 18px;transition:border-color .3s}
+.ab-card:hover{border-color:var(--border-h)}
+.ab-ic{font-size:20px;margin-bottom:8px}
+.ab-lb{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.6;margin-bottom:4px}
+.ab-vl{font-size:12px;color:var(--cream);opacity:.45;font-weight:300;line-height:1.7}
+
+/* Values */
+.d-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px}
+@media(max-width:768px){.d-grid{grid-template-columns:repeat(2,1fr)}}
+.d-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:6px;padding:26px 12px;text-align:center;transition:all .35s;position:relative;overflow:hidden}
+.d-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .4s}
+.d-card:hover{border-color:var(--border-h);transform:translateY(-4px)}.d-card:hover::after{transform:scaleX(1)}
+.d-num{font-family:var(--fc);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.4;margin-bottom:8px}
+.d-eng{font-family:var(--fc);font-size:clamp(9px,1.1vw,11px);letter-spacing:2px;color:var(--gold);font-weight:600;margin-bottom:5px}
+.d-kor{font-size:11px;opacity:.4;margin-bottom:5px}
+.d-desc{font-size:10px;opacity:.32;line-height:1.6;font-weight:300}
+.d-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:768px){.d-row{grid-template-columns:repeat(2,1fr)}}
+.d-verse{background:rgba(255,255,255,.015);border:1px solid var(--border);border-radius:5px;padding:16px 12px;text-align:center}
+.dv-t{font-size:10px;font-style:italic;color:var(--cream);opacity:.5;line-height:1.7;margin-bottom:4px}
+.dv-r{font-family:var(--fc);font-size:7.5px;letter-spacing:2px;color:var(--gold);opacity:.4}
+.dv-d{font-size:10px;opacity:.33;margin-top:5px;line-height:1.6;font-weight:300}
+
+/* 신앙고백 */
+.creed-box{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:56px 40px;max-width:640px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
+.creed-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.creed-label{font-family:var(--fc);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.55;margin-bottom:32px}
+.creed-lines{font-family:var(--fs);font-size:clamp(14px,2.2vw,18px);font-weight:400;color:var(--cream);line-height:3;letter-spacing:.3px}
+.creed-accent{color:var(--gold-l);font-weight:700}
+.creed-amen{font-family:var(--fc);font-size:14px;letter-spacing:8px;color:var(--gold);opacity:.65;margin-top:28px}
+
+/* 사역 페이지 카드 */
+.pages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+@media(max-width:768px){.pages-grid{grid-template-columns:1fr}}
+.pg-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:8px;padding:32px 26px;text-decoration:none;transition:all .35s;display:block;position:relative;overflow:hidden}
+.pg-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .4s}
+.pg-card:hover{border-color:var(--border-h);transform:translateY(-5px)}.pg-card:hover::before{transform:scaleX(1)}
+.pg-ic{font-size:28px;margin-bottom:14px;display:block}
+.pg-t{font-family:var(--fs);font-size:17px;font-weight:700;color:var(--gold-p);margin-bottom:8px}
+.pg-d{font-size:12.5px;font-weight:300;color:var(--cream);opacity:.42;line-height:1.9}
+.pg-l{font-family:var(--fc);font-size:8.5px;letter-spacing:2px;color:var(--gold);opacity:.55;margin-top:14px;display:block}
+
+/* 후원 */
+.donate-inner{max-width:560px;margin:0 auto;text-align:center}
+.donate-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;padding:44px 36px;position:relative;overflow:hidden;margin-top:44px}
+.donate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.donate-card-title{font-family:var(--fc);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.6;margin-bottom:14px}
+.donate-card-desc{font-size:13px;font-weight:300;color:var(--cream);opacity:.48;line-height:2;margin-bottom:26px}
+.donate-vol{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.38;margin-top:16px}
+
+/* 공동체 */
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px}
+@media(max-width:600px){.cf-grid{grid-template-columns:1fr}}
+.cf-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:7px;padding:26px 22px;transition:all .35s;text-decoration:none;display:block;color:inherit;cursor:pointer}
+.cf-card:hover{border-color:var(--border-h);transform:translateY(-3px)}
+.cf-ic{font-size:22px;margin-bottom:10px;display:block}
+.cf-t{font-size:13.5px;font-weight:700;color:var(--gold-p);margin-bottom:6px}
+.cf-d{font-size:11.5px;font-weight:300;color:var(--cream);opacity:.38;line-height:1.8}
+.cf-s{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-top:8px;display:block}
+
+/* 함께하기 */
+.join-section{padding:120px 20px;background:var(--navy);text-align:center;position:relative;overflow:hidden}
+.join-section::before{content:'✝';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:500px;color:var(--gold);opacity:.018;font-family:var(--fc);pointer-events:none}
+.join-title{font-size:clamp(28px,5vw,52px);font-weight:900;color:var(--cream);line-height:1.3;margin-bottom:14px}
+.join-sub{font-size:14px;font-weight:300;color:var(--cream);opacity:.42;line-height:2;margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto}
+.join-note{font-family:var(--fc);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.28;margin-top:12px}
+.join-privacy{font-size:10px;color:var(--cream);opacity:.22;margin-top:8px}
+
+/* 푸터 */
+footer{background:#060d16;padding:64px 40px 36px;border-top:1px solid var(--border)}
+.ft-inner{max-width:960px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:auto 1fr;gap:60px;margin-bottom:44px;align-items:start}
+@media(max-width:768px){.ft-top{grid-template-columns:1fr;gap:32px}}
+.ft-brand-name{font-family:var(--fc);font-size:16px;color:var(--gold);letter-spacing:2px;margin-bottom:5px}
+.ft-tagline{font-family:var(--fc);font-size:7.5px;letter-spacing:4px;color:var(--gold);opacity:.4;margin-bottom:10px}
+.ft-brand-desc{font-size:11px;color:var(--cream);opacity:.26;line-height:2;max-width:220px}
+.ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:480px){.ft-cols{grid-template-columns:1fr 1fr}}
+.ft-col-title{font-family:var(--fc);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.5;margin-bottom:12px}
+.ft-col a{display:block;font-size:11px;color:var(--cream);opacity:.3;text-decoration:none;margin-bottom:8px;transition:opacity .3s}
+.ft-col a:hover{opacity:.65}
+.ft-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ft-copy{font-family:var(--fc);font-size:7.5px;letter-spacing:2px;color:var(--cream);opacity:.2}
+.ft-disc{font-size:9px;color:var(--cream);opacity:.16;text-align:right;line-height:1.8}
+.ft-counter{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(201,168,76,.06);justify-content:center}
+.ft-counter-dot{width:5px;height:5px;border-radius:50%;background:var(--sage);opacity:.4;animation:counterPulse 2.5s ease-in-out infinite}
+@keyframes counterPulse{0%,100%{opacity:.3}50%{opacity:.7}}
+.ft-counter-text{font-family:var(--fc);font-size:7px;letter-spacing:2.5px;color:var(--cream);opacity:.22}
+.ft-counter-num{font-family:var(--fc);font-size:8px;letter-spacing:1px;color:var(--sage);opacity:.55;font-weight:600}
+
+/* 공통 */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+</style>
+
+<!-- ── 인앱 브라우저 감지 ── -->
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  var isInApp =
+    /NAVER/.test(ua) || /NaverSearch/.test(ua) ||
+    /Instagram/.test(ua) || /KAKAOTALK/.test(ua) ||
+    /FB_IAB/.test(ua) || /Line\//.test(ua) ||
+    (!/Safari/.test(ua) && /iPhone|iPad/.test(ua) && !/Chrome/.test(ua) && /AppleWebKit/.test(ua));
+  if(isInApp){
+    document.addEventListener('DOMContentLoaded', function(){
+      var banner = document.createElement('div');
+      banner.id = 'inapp-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#C9A84C;color:#0B1622;padding:14px 16px;text-align:center;font-size:13px;font-weight:700;line-height:1.6;box-shadow:0 2px 12px rgba(0,0,0,.4)';
+      var isIOS = /iPhone|iPad|iPod/.test(ua);
+      var icon = isIOS ? '🧭' : '🌐';
+      var browserName = isIOS ? 'Safari' : 'Chrome';
+      banner.innerHTML = '<div style="margin-bottom:6px">⚠️ 앱 내부 브라우저에서는 예배 음성이 지원되지 않습니다</div><div style="font-weight:400;font-size:12px;margin-bottom:10px">' + icon + ' ' + browserName + ' 브라우저로 열어주세요</div><button onclick="copyAndOpen()" style="background:#0B1622;color:#C9A84C;border:none;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;margin-right:8px">🔗 링크 복사하기</button><button onclick="document.getElementById(\'inapp-banner\').style.display=\'none\'" style="background:rgba(0,0,0,.2);color:#0B1622;border:none;padding:8px 16px;border-radius:20px;font-size:12px;cursor:pointer">닫기</button>';
+      document.body.insertBefore(banner, document.body.firstChild);
+      document.body.style.paddingTop = '90px';
+    });
+  }
+  window.copyAndOpen = function(){
+    var url = window.location.href;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏');
+    }
+  };
+})();
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">True Faith Church</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#worship-steps" data-key="navSteps">10분 예배</a></li>
+    <li><a href="#about" data-key="navAbout">소개</a></li>
+    <li><a href="#values" data-key="navValues">삶의 방식</a></li>
+    <li><a href="/sermons.html" data-key="navSermons">말씀</a></li>
+    <li><a href="#donate" data-key="navDonate">후원</a></li>
+    <li><a href="#community" data-key="navCommunity">공동체</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-lang" id="langBtn" onclick="window.toggleLang()">KO | EN</button>
+    <a href="/worship.html" class="btn-nav-cta" id="navCta">✝ 예배 시작</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-gl"></div><div class="hero-gr"></div>
+  <div class="hero-cross-bg">
+    <svg viewBox="0 0 200 280" fill="none"><rect x="90" y="0" width="20" height="280" rx="10" fill="#C9A84C"/><rect x="0" y="85" width="200" height="20" rx="10" fill="#C9A84C"/></svg>
+  </div>
+  <div class="hero-pts" id="heroPts"></div>
+  <div class="hero-content">
+    <div class="hero-badge" id="heroBadge">✝ &nbsp; TRUE FAITH CHURCH · 온라인 예배</div>
+    <div class="hero-timer">
+      <div><div class="timer-n">10</div><div class="timer-l" id="timerLabel">분</div></div>
+      <div class="timer-div"></div>
+      <div class="timer-info">
+        <div class="timer-title-t" id="timerTitle">완전한 예배</div>
+        <div class="timer-steps-t" id="timerSteps">찬양 · 말씀 · 기도 · 신앙고백 · 축도</div>
+      </div>
+    </div>
+    <h1 class="hero-title">
+      <span id="heroLine1">믿음은 있는데, 교회는 못 가시나요?</span><br>
+      <span class="hl" id="heroLine2">딱 10분이면 충분합니다 ✝</span>
+    </h1>
+    <div class="h-rule"><div class="h-rl"></div><div class="h-dot"></div><div class="h-rl r"></div></div>
+    <p class="hero-sub" id="heroSub">믿음은 있지만 교회 가기 힘드신가요?<br><strong>인터넷만 있으면 어디서든</strong> — 출근길, 집에서, 점심시간 —<br>하나님께 예배드릴 수 있습니다.</p>
+    <div class="hero-cta">
+      <a href="/worship.html" class="btn-main"><span>✝</span><span id="heroBtnMain">지금 예배 시작하기</span></a>
+      <a href="#worship-steps" class="btn-sec" id="heroBtnSub">예배 순서 보기 ↓</a>
+      <span class="hero-note" id="heroNote">소요시간 약 10분 · 인터넷만 있으면 가능</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- 10분 예배 순서 -->
+<section class="section" id="worship-steps" style="background:var(--navy2)">
+  <div class="container">
+    <div class="tc reveal">
+      <div class="s-eye" id="stepsEye">10분 예배 순서 · Worship Order</div>
+      <h2 class="s-title" id="stepsTitle">짧지만, 은혜가 있는 예배입니다</h2>
+      <p class="s-sub" id="stepsSub">형식이 없어도 하나님은 만납니다. 찬양부터 축도까지, 10분 안에 완전한 예배를 드릴 수 있습니다.</p>
+    </div>
+    <div class="steps-flow reveal d1">
+      <a class="step" href="/praise.html" style="cursor:pointer;text-decoration:none"><div class="step-num">01</div><span class="step-ic">🎵</span><div class="step-nm" id="sn1">찬양</div><div class="step-tm">2분</div><div class="step-ds" id="sd1">자연 소리와 함께<br>찬송가 한 곡</div></a>
+      <a class="step" href="/sermons.html" style="cursor:pointer;text-decoration:none"><div class="step-num">02</div><span class="step-ic">📖</span><div class="step-nm" id="sn2">말씀</div><div class="step-tm">5분</div><div class="step-ds" id="sd2">오늘의 성경 한 구절<br>짧은 묵상</div></a>
+      <a class="step" href="/worship.html?step=1" style="cursor:pointer;text-decoration:none"><div class="step-num">03</div><span class="step-ic">🙏</span><div class="step-nm" id="sn3">기도</div><div class="step-tm">1분</div><div class="step-ds" id="sd3">대표기도<br>오늘 하루를 드림</div></a>
+      <a class="step" href="/worship.html?step=3" style="cursor:pointer;text-decoration:none"><div class="step-num">04</div><span class="step-ic">✝</span><div class="step-nm" id="sn4">신앙고백</div><div class="step-tm">1분</div><div class="step-ds" id="sd4">믿음을 고백하고<br>다짐하는 시간</div></a>
+      <a class="step" href="/worship.html?step=5" style="cursor:pointer;text-decoration:none"><div class="step-num">05</div><span class="step-ic">🕊️</span><div class="step-nm" id="sn5">축도</div><div class="step-tm">1분</div><div class="step-ds" id="sd5">하나님의 은혜로<br>하루를 시작</div></a>
+    </div>
+    <div class="tc reveal d2">
+      <a href="https://www.youtube.com/@truefaithchurchonline" target="_blank" class="btn-main" style="background:linear-gradient(135deg,#c4302b,#ff4e45);box-shadow:0 8px 32px rgba(196,48,43,.35)">
+  <svg width="22" height="16" viewBox="0 0 22 16" fill="none" style="flex-shrink:0">
+    <rect width="22" height="16" rx="4" fill="white" fill-opacity="0.2"/>
+    <path d="M8.5 4.5L15.5 8L8.5 11.5V4.5Z" fill="white"/>
+  </svg>
+  <span id="stepsBtnText">유튜브 채널에서 말씀보기</span>
+</a>
+    </div>
+  </div>
+</section>
+
+<!-- 왜 온라인 예배 -->
+<section class="section" id="why" style="background:var(--navy3)">
+  <div class="container">
+    <div class="tc reveal">
+      <div class="s-eye" id="whyEye">Why Online Worship · 온라인 예배</div>
+      <h2 class="s-title" id="whyTitle">교회는 건물이 아닙니다</h2>
+      <p class="s-sub" id="whySub">성전은 하나님을 향해 마음을 여는 그 자리입니다.<br>인터넷이 닿는 곳, 그곳이 성전입니다.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><span class="why-ic">📱</span><div class="why-t" id="why1t">코로나 이후 혼자가 된 당신에게</div><p class="why-d" id="why1d">화면 앞에서 하루를 시작하는 디지털 세대에게 — 같은 화면으로 하나님을 만날 수 있습니다. 기술을 피하지 않고, <strong>기술 안에서 예배드립니다.</strong></p></div>
+      <div class="why-card reveal d1"><span class="why-ic">⏰</span><div class="why-t" id="why2t">주일에 못 가도 괜찮습니다</div><p class="why-d" id="why2d">출근길 지하철, 점심시간, 잠들기 전 침대에서. <strong>언제 어디서든</strong> 장소와 시간의 제약 없이 하나님께 예배드릴 수 있습니다.</p></div>
+      <div class="why-card reveal d2"><span class="why-ic">💛</span><div class="why-t" id="why3t">마음의 불안함을 평안과 은혜로</div><p class="why-d" id="why3d">그 불안함이 사라지지 않는 건, 아직 믿음이 살아있기 때문입니다. 딱 10분, <strong>그 불편함을 평안과 은혜로</strong> 바꿔드립니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 오늘의 말씀 -->
+<section class="section" id="word" style="background:var(--navy2)">
+  <div class="container-sm">
+    <div class="tc reveal"><div class="s-eye" id="wordEye">오늘의 말씀 · Word of the Day</div><h2 class="s-title" id="wordTitle">말씀이 힘이 됩니다</h2></div>
+    <div class="word-card reveal d1">
+      <div class="word-label" id="wordLabel">✝ 오늘의 말씀</div>
+      <p class="word-text" id="wordText">"너희는 가만히 있어 내가 하나님 됨을 알지어다"</p>
+      <div class="word-ref" id="wordRef">— 시편 46:10 —</div>
+    </div>
+    <div class="tc" style="margin-top:32px"><a href="/sermons.html" class="btn-sec" id="wordBtn">모든 말씀 보기 →</a></div>
+  </div>
+</section>
+
+<!-- 소개 -->
+<section class="section" id="about" style="background:var(--navy)">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="s-eye" id="aboutEye">About · True Faith Church</div>
+        <h2 class="s-title" id="aboutTitle">True Faith Church란<br>어떤 교회인가요?</h2>
+        <p class="about-desc" id="aboutDesc1">어려서부터 교회를 다녔지만 직장·코로나 이후 신앙을 잃어가는 모든 이들을 위한 온라인교회입니다. 언제 어디서든 쉽고 편하게 예배드릴 수 있습니다.</p>
+        <p class="about-desc" id="aboutDesc2"><a href="/about.html" style="color:var(--gold-p);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);transition:all .3s" onmouseover="this.style.color='var(--gold-l)';this.style.borderColor='var(--gold)'" onmouseout="this.style.color='var(--gold-p)';this.style.borderColor='rgba(201,168,76,.3)'">비교단 독립 온라인 기독교 사역 →</a> · Independent Christian Ministry<br>모든 후원은 자율적이며 강요되지 않습니다.</p>
+        <div class="about-links">
+          <a href="/worship.html" class="about-link"><span id="al1">✝ 10분 예배 바로가기</span><span>→</span></a>
+          <a href="/sermons.html" class="about-link"><span id="al2">📖 말씀 · Sermons</span><span>→</span></a>
+          <a href="/praise.html" class="about-link"><span id="al3">🎵 찬양 · Praise</span><span>→</span></a>
+          <a href="/community.html" class="about-link"><span id="al4">🤝 공동체 · Community</span><span>→</span></a>
+        </div>
+      </div>
+      <div class="ab-cards reveal d2">
+        <div class="ab-card"><div class="ab-ic">📍</div><div class="ab-lb" id="ab1l">성전</div><div class="ab-vl" id="ab1v">인터넷이 닿는<br>모든 곳</div></div>
+        <div class="ab-card"><div class="ab-ic">⏱️</div><div class="ab-lb" id="ab2l">예배 시간</div><div class="ab-vl" id="ab2v">딱 10분<br>언제 어디서든</div></div>
+        <div class="ab-card"><div class="ab-ic">🌍</div><div class="ab-lb" id="ab3l">선교 대상</div><div class="ab-vl" id="ab3v">디지털 세대<br>모든 믿는 자</div></div>
+        <div class="ab-card"><div class="ab-ic">✝</div><div class="ab-lb" id="ab4l">교단</div><div class="ab-vl" id="ab4v"><a href="/about.html" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid rgba(201,168,76,.2)">비교단 독립 →</a><br>Non-Denominational</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Five Ways of Life -->
+<section class="section" id="values" style="background:var(--navy2)">
+  <div class="container">
+    <div class="tc reveal">
+      <div class="s-eye" id="valuesEye">What We Believe · 우리의 믿음</div>
+      <h2 class="s-title" id="valuesTitle">Five Ways of Life</h2>
+      <p class="s-sub" id="valuesSub">일상 속에서 실천하는 다섯 가지 삶의 방식입니다.</p>
+    </div>
+    <div class="d-grid reveal d1">
+      <div class="d-card"><div class="d-num">01</div><div class="d-eng">THE RIGHT PATH</div><div class="d-kor">정도 (正道)</div><div class="d-desc">바른 길을 걸어라</div></div>
+      <div class="d-card"><div class="d-num">02</div><div class="d-eng">TRANSPARENCY</div><div class="d-kor">정직 (正直)</div><div class="d-desc">투명하게 살아라</div></div>
+      <div class="d-card"><div class="d-num">03</div><div class="d-eng">TAKE ROOT</div><div class="d-kor">정착 (定着)</div><div class="d-desc">뿌리를 내려라</div></div>
+      <div class="d-card"><div class="d-num">04</div><div class="d-eng">SERVE PEOPLE</div><div class="d-kor">정민 (正民)</div><div class="d-desc">이웃을 섬겨라</div></div>
+      <div class="d-card"><div class="d-num">05</div><div class="d-eng">STILLNESS</div><div class="d-kor">정지 (靜止)</div><div class="d-desc">멈추어야 들린다</div></div>
+    </div>
+    <div class="d-row reveal d2">
+      <div class="d-verse"><div class="dv-t">"좁은 문으로 들어가라"</div><div class="dv-r">마태복음 7:13</div><div class="dv-d">성공보다 성실, 속도보다 방향.</div></div>
+      <div class="d-verse"><div class="dv-t">"진리가 너희를 자유롭게 하리라"</div><div class="dv-r">요한복음 8:32</div><div class="dv-d">온라인과 오프라인이 같은 사람.</div></div>
+      <div class="d-verse"><div class="dv-t">"어느 형편에든 자족하기를"</div><div class="dv-r">빌립보서 4:11</div><div class="dv-d">어디에 있든 그 곳이 성전.</div></div>
+      <div class="d-verse"><div class="dv-t">"이웃을 네 자신 같이 사랑하라"</div><div class="dv-r">마가복음 12:31</div><div class="dv-d">댓글 하나도 사랑의 언어로.</div></div>
+      <div class="d-verse"><div class="dv-t">"가만히 있어 내가 하나님임을"</div><div class="dv-r">시편 46:10</div><div class="dv-d">느린 삶이 곧 영성입니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 신앙고백 -->
+<section class="section" id="creed" style="background:var(--navy3)">
+  <div class="container-sm">
+    <div class="tc reveal"><div class="s-eye" id="creedEye">Confession of Faith · 신앙 고백</div></div>
+    <div class="creed-box reveal d1">
+      <div class="creed-label" id="creedLabel">✝ &nbsp; True Faith Church 신앙고백 &nbsp; ✝</div>
+      <div class="creed-lines" id="creedLines">나는 <span class="creed-accent">바른 길</span>을 걷는 바른믿음 성도이다.<br><span class="creed-accent">빠름</span>보다 깊음을,<br><span class="creed-accent">소유</span>보다 존재를,<br><span class="creed-accent">성공</span>보다 성품을 추구한다.<br><br>나는 디지털 세계에서도<br><span class="creed-accent">하나님의 사람</span>으로 살며,<br>느린 삶 안에서 <span class="creed-accent">영원</span>을 만난다.</div>
+      <div class="creed-amen" id="creedAmen">— Amen · 아멘 —</div>
+    </div>
+  </div>
+</section>
+
+<!-- 사역 페이지 -->
+<section class="section" id="pages" style="background:var(--navy)">
+  <div class="container">
+    <div class="tc reveal"><div class="s-eye" id="pagesEye">Our Ministry · 사역</div><h2 class="s-title" id="pagesTitle">함께 드리는 예배</h2></div>
+    <div class="pages-grid">
+      <a href="/worship.html" class="pg-card reveal"><span class="pg-ic">🕊️</span><div class="pg-t" id="pg1t">10분 예배</div><p class="pg-d" id="pg1d">찬양 · 말씀 · 기도 · 신앙고백 · 축도<br>언제 어디서든 완전한 예배</p><span class="pg-l" id="pg1l">예배 시작하기 →</span></a>
+      <a href="/sermons.html" class="pg-card reveal d1"><span class="pg-ic">📖</span><div class="pg-t" id="pg2t">말씀</div><p class="pg-d" id="pg2d">매주 수요일 저녁 · 주일 아침<br>디지털 세대를 위한 성경 메시지</p><span class="pg-l" id="pg2l">말씀 보기 →</span></a>
+      <a href="/praise.html" class="pg-card reveal d2"><span class="pg-ic">🎵</span><div class="pg-t" id="pg3t">찬양</div><p class="pg-d" id="pg3d">True Faith Church 창작 찬송<br>자연 묵상음악 · 찬송 모음</p><span class="pg-l" id="pg3l">찬양 듣기 →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 후원 -->
+<section class="section" id="donate" style="background:var(--navy2)">
+  <div class="donate-inner">
+    <div class="tc reveal"><div class="s-eye" id="donateEye">Support · 후원</div><h2 class="s-title" id="donateTitle">이 예배가 계속되려면<br>당신이 필요합니다</h2><p class="s-sub" id="donateSub">매달 커피 한 잔 값으로 디지털 세대에게 복음을 전할 수 있습니다.<br>후원이 없으면 사역은 멈춥니다.</p></div>
+    <div class="donate-card reveal d1">
+      <div class="donate-card-title" id="donateCardTitle">후원 신청</div>
+      <p class="donate-card-desc" id="donateCardDesc">믿음을 잃어가는 젊은 세대를 위한 사역을 함께 이어가 주세요.<br>신청 후 안내드린 계좌로 입금해 주시면 됩니다.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcBwzyAmeG9F26h7-H9HvhMSdNrz1tfODdMasjcVSdQMa2oQ/viewform" class="btn-main" target="_blank"><span>✝</span><span id="donateBtnText">후원 신청하기</span></a>
+      <div class="donate-vol" id="donateVol">모든 후원은 자율적이며 강요되지 않습니다 · All support is voluntary</div>
+    </div>
+  </div>
+</section>
+
+<!-- 공동체 -->
+<section class="section" id="community" style="background:var(--navy3)">
+  <div class="container">
+    <div class="tc reveal"><div class="s-eye" id="communityEye">Community · 공동체</div><h2 class="s-title" id="communityTitle">혼자 믿지 마세요.<br>함께 걸어가요.</h2><p class="s-sub" id="communitySub">코로나 이후 교회를 잃은 당신, True Faith Church가 기다립니다.<br>온라인이지만 진짜 신앙의 연결입니다.</p></div>
+    <div class="cf-grid">
+      <a class="cf-card reveal" href="/community.html" onclick="localStorage.setItem('jm_tab','meditation')"><span class="cf-ic">📿</span><div class="cf-t" id="cf1t">매일 묵상 나눔 →</div><p class="cf-d" id="cf1d">하루 한 구절 말씀을 함께 나눕니다.</p><span class="cf-s" id="cf1s">묵상 나누러 가기 ✝</span></a>
+      <a class="cf-card reveal d1" href="/community.html" onclick="localStorage.setItem('jm_tab','letter')"><span class="cf-ic">✉️</span><div class="cf-t" id="cf2t">True Faith Church 위클리 레터 →</div><p class="cf-d" id="cf2d">매주 느린 삶과 신앙 이야기를 담은 뉴스레터.</p><span class="cf-s" id="cf2s">레터 읽으러 가기 ✝</span></a>
+      <a class="cf-card reveal d2" href="/community.html" onclick="localStorage.setItem('jm_tab','meditation')"><span class="cf-ic">🌐</span><div class="cf-t" id="cf3t">온라인 소그룹</div><p class="cf-d" id="cf3d">전국 어디서든 참여 가능한 소그룹 모임.</p></a>
+      <a class="cf-card reveal d3" href="/community.html" onclick="localStorage.setItem('jm_tab','writing')"><span class="cf-ic">🙏</span><div class="cf-t" id="cf4t">기도제목 · 감사일기 →</div><p class="cf-d" id="cf4d">기도제목을 나누고 감사한 일을 함께 기록합니다.</p><span class="cf-s" id="cf4s">기도 나누러 가기 ✝</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 함께하기 -->
+<section class="join-section" id="join">
+  <div class="container-sm reveal">
+    <div class="s-eye" id="joinEye" style="margin-bottom:16px">Join Us · 함께하기</div>
+    <h2 class="join-title" id="joinTitle">오늘부터 True Faith Church<br>성도가 되어주세요</h2>
+    <p class="join-sub" id="joinSub">가입은 1분, 예배는 10분. 부담 없이 시작할 수 있습니다.<br>직장 때문에, 코로나 때문에 교회를 떠났다면 — 지금 다시 시작하세요.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_6EnRTjCQSO68Eyy3QP80OuU_3cqADuuHN91UtzeQEAU7ug/viewform" class="btn-main" target="_blank"><span>✝</span><span id="joinBtnText">✝ 지금 성도 등록하기</span></a>
+    <div class="join-note" id="joinNote">✝ 구글 폼으로 안전하게 가입됩니다</div>
+    <div class="join-privacy" id="joinPrivacy">가입 정보는 True Faith Church 운영에만 사용됩니다</div>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div><div class="ft-brand-name">✝ True Faith Church</div><div class="ft-tagline">SLOWLY · RIGHTEOUSLY · TOGETHER</div><p class="ft-brand-desc">Independent Christian Ministry<br>Non-Denominational · Online<br>All support is voluntary</p></div>
+      <div class="ft-cols">
+        <div class="ft-col"><div class="ft-col-title" id="ftCol1">예배</div><a href="/worship.html" id="ftL1">10분 예배</a><a href="/sermons.html" id="ftL2">말씀</a><a href="/praise.html" id="ftL3">찬양</a></div>
+        <div class="ft-col"><div class="ft-col-title" id="ftCol2">함께하기</div><a href="#join" id="ftL4">공동체 가입</a><a href="#donate" id="ftL5">후원하기</a><a href="#community" id="ftL6">위클리 레터</a></div>
+        <div class="ft-col"><div class="ft-col-title" id="ftCol3">채널</div><a href="https://blog.naver.com/sacred_minimalism" target="_blank" id="ftL7">네이버 블로그</a><a href="https://www.youtube.com/@truefaithchurchonline" target="_blank" id="ftL8"><svg width="14" height="10" viewBox="0 0 22 16" fill="none" style="vertical-align:middle;margin-right:5px"><rect width="22" height="16" rx="4" fill="#c4302b"/><path d="M8.5 4.5L15.5 8L8.5 11.5V4.5Z" fill="white"/></svg>유튜브</a><a href="#" id="ftL9">인스타그램</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2026 TRUE FAITH CHURCH · ALL RIGHTS RESERVED</span>
+      <span class="ft-disc">비교단 독립 사역 · 모든 후원은 자율적입니다<br>Independent Christian Ministry · Non-Denominational</span>
+      <!-- 방문자 카운터 -->
+      <div class="ft-counter">
+        <div class="ft-counter-dot"></div>
+        <span class="ft-counter-text">TODAY</span>
+        <span class="ft-counter-num" id="cntToday">—</span>
+        <span class="ft-counter-text" style="opacity:.15">·</span>
+        <span class="ft-counter-text">TOTAL</span>
+        <span class="ft-counter-num" id="cntTotal">—</span>
+        <span class="ft-counter-text" style="opacity:.15">·</span>
+        <span class="ft-counter-text">VISITORS</span>
+        <div class="ft-counter-dot" style="animation-delay:.8s"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var c=document.getElementById("heroPts");if(!c)return;
+  for(var i=0;i<22;i++){var d=document.createElement("div");d.className="pt";d.style.cssText="left:"+Math.random()*100+"%;animation-delay:"+(Math.random()*20)+"s;animation-duration:"+(14+Math.random()*16)+"s";c.appendChild(d);}
+})();
+(function(){
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("on");});},{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+})();
+window.addEventListener("scroll",function(){var n=document.getElementById("mainNav");if(n)n.classList.toggle("scrolled",window.scrollY>60);});
+
+var LANG={
+  ko:{
+    langBtn:"KO | EN",navCta:"✝ 예배 시작",
+    navSteps:"10분 예배",navAbout:"소개",navValues:"삶의 방식",navSermons:"말씀",navDonate:"후원",navCommunity:"공동체",
+    heroBadge:"✝ &nbsp; TRUE FAITH CHURCH · 온라인 예배",
+    timerLabel:"분",timerTitle:"완전한 예배",timerSteps:"찬양 · 말씀 · 기도 · 신앙고백 · 축도",
+    heroLine1:"믿음은 있는데, 교회는 못 가시나요?",heroLine2:"딱 10분이면 충분합니다 ✝",
+    heroSub:"직장 때문에, 코로나 이후 혼자가 되어서, 사람들과 멀어져서 —<br>그래도 <strong>믿음만은 남아있는 당신</strong>을 위해<br>True Faith Church가 여기 있습니다.",
+    heroBtnMain:"지금 예배 시작하기",heroBtnSub:"예배 순서 보기 ↓",heroNote:"소요시간 약 10분 · 인터넷만 있으면 가능",
+    stepsEye:"10분 예배 순서 · Worship Order",stepsTitle:"짧지만, 은혜가 있는 예배입니다",
+    stepsSub:"형식이 없어도 하나님은 만납니다. 찬양부터 축도까지, 10분 안에 완전한 예배를 드릴 수 있습니다.",
+    sn1:"찬양",sd1:"자연 소리와 함께<br>찬송가 한 곡",sn2:"말씀",sd2:"오늘의 성경 한 구절<br>짧은 묵상",
+    sn3:"기도",sd3:"대표기도<br>오늘 하루를 드림",sn4:"신앙고백",sd4:"믿음을 고백하고<br>다짐하는 시간",sn5:"축도",sd5:"하나님의 은혜로<br>하루를 시작",
+    stepsBtnText:"유튜브 채널에서 말씀보기",
+    whyEye:"Why Online Worship · 온라인 예배",whyTitle:"교회는 건물이 아닙니다",
+    whySub:"성전은 하나님을 향해 마음을 여는 그 자리입니다.<br>인터넷이 닿는 곳, 그곳이 성전입니다.",
+    why1t:"코로나 이후 혼자가 된 당신에게",why1d:"교회는 멀어졌지만 믿음은 남아있는 당신. 스마트폰으로 유튜브 보는 그 자리에서, <strong>지금 바로 하나님을 만날 수 있습니다.</strong>",
+    why2t:"주일에 못 가도 괜찮습니다",why2d:"출근길 지하철, 점심시간 10분, 잠들기 전 침대에서. <strong>오늘 이 자리가 성전입니다.</strong> 장소와 시간의 제약이 없습니다.",
+    why3t:"마음의 불안함을 평안과 은혜로",why3d:"그 불안함이 사라지지 않는 건, 아직 믿음이 살아있기 때문입니다. 딱 10분, <strong>그 불안함을 평안과 은혜로</strong> 바꿔드립니다.",
+    wordEye:"오늘의 말씀 · Word of the Day",wordTitle:"말씀이 힘이 됩니다",wordLabel:"✝ 오늘의 말씀",
+    wordText:"&quot;너희는 가만히 있어 내가 하나님 됨을 알지어다&quot;",wordRef:"— 시편 46:10 —",wordBtn:"모든 말씀 보기 →",
+    aboutEye:"About · True Faith Church",aboutTitle:"True Faith Church란<br>어떤 교회인가요?",
+    aboutDesc1:"어려서부터 교회를 다녔지만 직장·코로나 이후 신앙을 잃어가는 모든 이들을 위한 온라인교회입니다. 언제 어디서든 쉽고 편하게 예배드릴 수 있습니다.",
+    aboutDesc2:"비교단 독립 온라인 기독교 사역 · 모든 후원은 자율적입니다.",
+    al1:"✝ 10분 예배 바로가기",al2:"📖 말씀 · Sermons",al3:"🎵 찬양 · Praise",al4:"🤝 공동체 · Community",
+    ab1l:"성전",ab1v:"인터넷이 닿는<br>모든 곳",ab2l:"예배 시간",ab2v:"딱 10분<br>언제 어디서든",
+    ab3l:"선교 대상",ab3v:"디지털 세대<br>모든 믿는 자",ab4l:"교단",ab4v:"비교단 독립<br>Non-Denominational",
+    valuesEye:"What We Believe · 우리의 믿음",valuesTitle:"Five Ways of Life",valuesSub:"일상 속에서 실천하는 다섯 가지 삶의 방식입니다.",
+    creedEye:"Confession of Faith · 신앙 고백",creedLabel:"✝ &nbsp; True Faith Church 신앙고백 &nbsp; ✝",creedAmen:"— Amen · 아멘 —",
+    pagesEye:"Our Ministry · 사역",pagesTitle:"함께 드리는 예배",
+    pg1t:"10분 예배",pg1d:"찬양 · 말씀 · 기도 · 신앙고백 · 축도<br>언제 어디서든 완전한 예배",pg1l:"예배 시작하기 →",
+    pg2t:"말씀",pg2d:"매주 수요일 저녁 · 주일 아침<br>디지털 세대를 위한 성경 메시지",pg2l:"말씀 목록 보기 →",
+    pg3t:"찬양",pg3d:"True Faith Church 창작 찬송<br>자연 묵상음악 · 찬송 모음",pg3l:"찬양 듣기 →",
+    donateEye:"Support · 후원",donateTitle:"이 예배가 계속되려면<br>당신이 필요합니다",donateSub:"매달 커피 한 잔 값으로 디지털 세대에게 복음을 전할 수 있습니다.<br>후원이 없으면 사역은 멈춥니다.",
+    donateCardTitle:"후원 신청",donateCardDesc:"믿음을 잃어가는 젊은 세대를 위한 사역을 함께 이어가 주세요.<br>신청 후 안내드린 계좌로 입금해 주시면 됩니다.",donateBtnText:"후원 신청하기",
+    donateVol:"모든 후원은 자율적이며 강요되지 않습니다 · All support is voluntary",
+    communityEye:"Community · 공동체",communityTitle:"혼자 믿지 마세요.<br>함께 걸어가요.",communitySub:"코로나 이후 교회를 잃은 당신, True Faith Church 공동체가 기다립니다. 온라인이지만 진짜 신앙의 연결입니다.",
+    cf1t:"매일 묵상 나눔 →",cf1d:"하루 한 구절 말씀을 함께 나눕니다.",cf1s:"묵상 나누러 가기 ✝",
+    cf2t:"True Faith Church 위클리 레터 →",cf2d:"매주 느린 삶과 신앙 이야기를 담은 뉴스레터.",cf2s:"레터 읽으러 가기 ✝",
+    cf3t:"온라인 소그룹",cf3d:"전국 어디서든 참여 가능한 소그룹 모임.",
+    cf4t:"기도제목 · 감사일기 →",cf4d:"기도제목을 나누고 감사한 일을 함께 기록합니다.",cf4s:"기도 나누러 가기 ✝",
+    joinEye:"Join Us · 함께하기",joinTitle:"오늘부터 True Faith Church<br>성도가 되어주세요",
+    joinSub:"가입은 1분, 예배는 10분. 부담 없이 시작할 수 있습니다.<br>직장 때문에, 코로나 때문에 교회를 떠났다면 — 지금 다시 시작하세요.",
+    joinBtnText:"✝ 지금 성도 등록하기",joinNote:"✝ 구글 폼으로 안전하게 가입됩니다",joinPrivacy:"가입 정보는 True Faith Church 운영에만 사용됩니다",
+    ftCol1:"예배",ftCol2:"함께하기",ftCol3:"채널",
+    ftL1:"10분 예배",ftL2:"말씀",ftL3:"찬양",ftL4:"공동체 가입",ftL5:"후원하기",ftL6:"위클리 레터",ftL7:"네이버 블로그",ftL8:"유튜브",ftL9:"인스타그램"
+  },
+  en:{
+    langBtn:"EN | KO",navCta:"✝ Start Worship",
+    navSteps:"10-Min Worship",navAbout:"About",navValues:"Our Values",navSermons:"Sermons",navDonate:"Support",navCommunity:"Community",
+    heroBadge:"✝ &nbsp; TRUE FAITH CHURCH · ONLINE WORSHIP",
+    timerLabel:"min",timerTitle:"Complete Worship",timerSteps:"Praise · Word · Prayer · Creed · Benediction",
+    heroLine1:"Faith is still there, but church feels far?",heroLine2:"Just 10 minutes is enough ✝",
+    heroSub:"Busy with work, isolated after COVID, drifted from the church —<br>but <strong>your faith is still alive.</strong><br>True Faith Church is here for you.",
+    heroBtnMain:"Start Worship Now",heroBtnSub:"See Worship Order ↓",heroNote:"About 10 minutes · Works anywhere with internet",
+    stepsEye:"10-Min Worship Order",stepsTitle:"Brief, but Full of Grace",
+    stepsSub:"No formality required — God is present. From praise to benediction, complete worship in 10 minutes.",
+    sn1:"Praise",sd1:"Nature sounds +<br>One hymn",sn2:"Word",sd2:"One verse today<br>Short reflection",
+    sn3:"Prayer",sd3:"Representative prayer<br>Offering the day",sn4:"Confession",sd4:"Confessing faith<br>Making a commitment",sn5:"Benediction",sd5:"Beginning the day<br>with grace",
+    stepsBtnText:"Watch Sermons on YouTube",
+    whyEye:"Why Online Worship",whyTitle:"The Church is Not a Building",
+    whySub:"The sanctuary is wherever you open your heart to God.<br>Where the internet reaches, that place is holy ground.",
+    why1t:"For those who became alone after COVID",why1d:"Church feels far, but faith is still there. Right where you watch YouTube on your phone — <strong>you can meet God right now.</strong>",
+    why2t:"Missing Sunday service is okay",why2d:"On the subway, during lunch, or in bed before sleep. <strong>Wherever you are is holy ground.</strong> No limits on place or time.",
+    why3t:"Anxiety into Peace and Grace",why3d:"That anxiety means your faith is still alive. Just 10 minutes — let us turn that <strong>anxiety into peace and grace.</strong>",
+    wordEye:"Word of the Day",wordTitle:"The Word Gives Strength",wordLabel:"✝ Word of the Day",
+    wordText:"&quot;Be still, and know that I am God&quot;",wordRef:"— Psalm 46:10 —",wordBtn:"All Sermons →",
+    aboutEye:"About · True Faith Church",aboutTitle:"What kind of church is<br>True Faith Church?",
+    aboutDesc1:"An online church for everyone who grew up in church but drifted away due to work or COVID. Worship anytime, anywhere — simple and accessible.",
+    aboutDesc2:"Independent Christian Ministry · Non-Denominational · All support is voluntary.",
+    al1:"✝ Start 10-Min Worship",al2:"📖 Sermons",al3:"🎵 Praise",al4:"🤝 Community",
+
+    ab1l:"Sanctuary",ab1v:"Wherever the<br>internet reaches",ab2l:"Worship Time",ab2v:"Just 10 minutes<br>Anywhere, anytime",
+    ab3l:"Mission",ab3v:"Digital Generation<br>All believers",ab4l:"Denomination",ab4v:"Independent<br>Non-Denominational",
+    valuesEye:"What We Believe · Our Values",valuesTitle:"Five Ways of Life",valuesSub:"Five simple principles for living a meaningful, faith-centered life.",
+    creedEye:"Confession of Faith · Our Creed",creedLabel:"✝ &nbsp; True Faith Church Creed &nbsp; ✝",creedAmen:"— Amen —",
+    pagesEye:"Our Ministry",pagesTitle:"Worship Together",
+    pg1t:"10-Min Worship",pg1d:"Praise · Word · Prayer · Creed · Benediction<br>Complete worship, anywhere",pg1l:"Start Worship →",
+    pg2t:"Sermons",pg2d:"Every Wednesday evening · Sunday morning<br>Biblical messages for the digital generation",pg2l:"View Sermons →",
+    pg3t:"Praise",pg3d:"True Faith Church original hymns<br>Nature meditation music · Hymn collection",pg3l:"Listen →",
+    donateEye:"Support · Our Ministry",donateTitle:"This ministry continues<br>because of you",donateSub:"The price of one coffee a month can bring the Gospel to the digital generation.<br>Without support, this ministry stops.",
+    donateCardTitle:"Support Request",donateCardDesc:"Help us reach young people losing their faith.<br>Transfer to the provided account after submission.",donateBtnText:"Support Now",
+    donateVol:"All support is completely voluntary and not required",
+    communityEye:"Community · Connect",communityTitle:"Don't believe alone.<br>Let's walk together.",communitySub:"If COVID took you away from church, True Faith Church community is waiting for you. Online — but a real connection of faith.",
+    cf1t:"Daily Meditation →",cf1d:"Share one verse together each day.",cf1s:"Share Meditation ✝",
+    cf2t:"Weekly Letter →",cf2d:"A weekly newsletter on slow living and faith.",cf2s:"Read Letter ✝",
+    cf3t:"Online Small Groups",cf3d:"Small groups you can join from anywhere.",
+    cf4t:"Prayer & Gratitude →",cf4d:"Share prayer requests and record gratitude together.",cf4s:"Share Prayer ✝",
+    joinEye:"Join Us · Get Started",joinTitle:"Become a member of<br>True Faith Church today",
+    joinSub:"Sign up in 1 minute, worship in 10 minutes. No pressure, no burden.<br>If work or COVID took you from church — start again today.",
+    joinBtnText:"✝ Register as a Member",joinNote:"✝ Secure sign-up via Google Forms",joinPrivacy:"Your information is used solely for True Faith Church community purposes",
+    ftCol1:"Worship",ftCol2:"Get Involved",ftCol3:"Channels",
+    ftL1:"10-Min Worship",ftL2:"Sermons",ftL3:"Praise",ftL4:"Join Community",ftL5:"Support Us",ftL6:"Weekly Letter",ftL7:"Naver Blog",ftL8:"YouTube",ftL9:"Instagram"
+  }
+};
+
+var currentLang=localStorage.getItem("jm_lang")||"ko";
+function toggleLang(){currentLang=currentLang==="ko"?"en":"ko";applyLang(currentLang);localStorage.setItem("jm_lang",currentLang);}
+window.toggleLang=toggleLang;
+function ST(id,val){var el=document.getElementById(id);if(el&&val!==undefined)el.innerHTML=val;}
+function applyLang(lang){
+  var t=LANG[lang];if(!t)return;
+  document.getElementById("htmlRoot").setAttribute("lang",lang);
+  var lb=document.getElementById("langBtn");if(lb)lb.textContent=t.langBtn;
+  var cta=document.getElementById("navCta");if(cta)cta.textContent=t.navCta;
+  document.querySelectorAll("[data-key]").forEach(function(el){var k=el.getAttribute("data-key");if(t[k])el.textContent=t[k];});
+  if(lang==="en"){ST("creedLines",'I am one who walks <span class="creed-accent">the right path</span>.<br>I choose <span class="creed-accent">depth</span> over speed,<br><span class="creed-accent">being</span> over having,<br><span class="creed-accent">character</span> over success.<br><br>Even in the digital world,<br>I live as <span class="creed-accent">God\'s person</span>,<br>finding <span class="creed-accent">eternity</span> in a slower life.');}
+  else{ST("creedLines",'나는 <span class="creed-accent">바른 길</span>을 걷는 바른믿음 성도이다.<br><span class="creed-accent">빠름</span>보다 깊음을,<br><span class="creed-accent">소유</span>보다 존재를,<br><span class="creed-accent">성공</span>보다 성품을 추구한다.<br><br>나는 디지털 세계에서도<br><span class="creed-accent">하나님의 사람</span>으로 살며,<br>느린 삶 안에서 <span class="creed-accent">영원</span>을 만난다.');}
+  Object.keys(t).forEach(function(k){if(k==="langBtn"||k==="navCta"||k==="creedLines")return;ST(k,t[k]);});
+}
+if(currentLang==="en")applyLang("en");
+
+/* visitor counter */
+(function(){
+  var today=new Date().toISOString().slice(0,10);
+  var total=parseInt(localStorage.getItem("jm_vt")||"0");
+  var tc=parseInt(localStorage.getItem("jm_vd")||"0");
+  var ld=localStorage.getItem("jm_vdate")||"";
+  if(ld!==today){tc=0;localStorage.setItem("jm_vdate",today);}
+  total++;tc++;
+  localStorage.setItem("jm_vt",total);
+  localStorage.setItem("jm_vd",tc);
+  function fmt(n){var s=String(n),r="";for(var i=0;i<s.length;i++){if(i&&(s.length-i)%3===0)r+=",";r+=s[i];}return r;}
+  var eT=document.getElementById("cntToday");
+  var eA=document.getElementById("cntTotal");
+  if(eT)eT.textContent=fmt(tc);
+  if(eA)eA.textContent=fmt(total);
+})();
+</script>
+</body>
+</html>

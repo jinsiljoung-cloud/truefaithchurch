@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 신도 관리 대시보드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #0B1622;
+  --navy2:  #0F1D2E;
+  --navy3:  #162638;
+  --gold:   #C9A84C;
+  --gold-l: #E8C96A;
+  --sage:   #7A9E7E;
+  --cream:  #F5EDD6;
+  --border: rgba(201,168,76,0.15);
+  --red:    #E05555;
+  --font-s: 'Noto Serif KR', serif;
+  --font-c: 'Cinzel', serif;
+  --font-n: 'Noto Sans KR', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;font-family:inherit}
+input{font-family:inherit}
+
+/* ── LOGIN SCREEN ── */
+.login-screen {
+  position:fixed;inset:0;z-index:999;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-box {
+  background:linear-gradient(145deg,rgba(201,168,76,.07),rgba(15,29,46,.95));
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:12px;padding:60px 50px;
+  width:min(420px,90vw);text-align:center;
+}
+.login-cross {font-size:32px;color:var(--gold);margin-bottom:16px;opacity:.7}
+.login-title {
+  font-family:var(--font-s);font-size:24px;font-weight:700;
+  color:var(--cream);margin-bottom:6px;letter-spacing:4px;
+}
+.login-sub {
+  font-family:var(--font-c);font-size:9px;letter-spacing:4px;
+  color:var(--gold);opacity:.6;margin-bottom:36px;text-transform:uppercase;
+}
+.login-input {
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:14px 18px;color:var(--cream);font-size:15px;
+  text-align:center;letter-spacing:4px;
+  transition:border-color .3s;margin-bottom:16px;
+}
+.login-input:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.login-input::placeholder{letter-spacing:1px;opacity:.3;font-size:13px}
+.login-btn {
+  width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  color:var(--navy);font-family:var(--font-c);font-size:11px;
+  letter-spacing:5px;padding:15px;border-radius:6px;text-transform:uppercase;
+  font-weight:700;transition:all .3s;
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.25)}
+.login-error {
+  font-size:12px;color:var(--red);margin-top:10px;
+  opacity:0;transition:opacity .3s;
+}
+.login-error.show{opacity:1}
+
+/* ── MAIN LAYOUT ── */
+.dashboard{display:none}
+.dashboard.show{display:block}
+
+/* ── TOP NAV ── */
+.top-nav {
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,22,34,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand {
+  display:flex;align-items:center;gap:12px;
+}
+.nav-brand-text {
+  font-family:var(--font-s);font-size:18px;font-weight:700;
+  letter-spacing:4px;color:var(--cream);
+}
+.nav-brand-sub {
+  font-family:var(--font-c);font-size:8px;letter-spacing:3px;
+  color:var(--gold);opacity:.55;display:block;margin-top:-3px;
+}
+.nav-right {display:flex;align-items:center;gap:16px}
+.nav-logout {
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  color:var(--cream);opacity:.4;padding:7px 16px;
+  border:1px solid var(--border);border-radius:2px;
+  text-transform:uppercase;transition:all .3s;
+}
+.nav-logout:hover{opacity:.8;border-color:rgba(201,168,76,.4)}
+
+/* ── CONTENT ── */
+.content{max-width:1200px;margin:0 auto;padding:40px 32px}
+
+/* ── STATS ROW ── */
+.stats-row {
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-bottom:40px;
+}
+.stat-card {
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--border);border-radius:8px;
+  padding:28px 24px;
+  transition:border-color .3s,transform .3s;
+}
+.stat-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px)}
+.stat-label {
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:10px;
+}
+.stat-num {
+  font-family:var(--font-s);font-size:36px;font-weight:900;
+  color:var(--gold-l);line-height:1;
+  text-shadow:0 0 30px rgba(201,168,76,.2);
+}
+.stat-desc {
+  font-family:var(--font-n);font-size:11px;
+  color:var(--cream);opacity:.35;margin-top:6px;
+}
+
+/* ── SECTION TITLE ── */
+.sec-header {
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.sec-title {
+  font-family:var(--font-s);font-size:18px;font-weight:700;
+  color:var(--cream);letter-spacing:2px;
+}
+.sec-eyebrow {
+  font-family:var(--font-c);font-size:9px;letter-spacing:4px;
+  color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:6px;
+}
+
+/* ── SEARCH & FILTER ── */
+.toolbar {
+  display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;
+}
+.search-wrap {position:relative;flex:1;min-width:200px}
+.search-wrap::before {
+  content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  font-size:13px;pointer-events:none;
+}
+.search-input {
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:11px 14px 11px 38px;color:var(--cream);
+  font-family:var(--font-n);font-size:13px;
+  transition:border-color .3s;
+}
+.search-input:focus{outline:none;border-color:rgba(201,168,76,.4)}
+.search-input::placeholder{color:var(--cream);opacity:.3}
+.filter-btn {
+  font-family:var(--font-c);font-size:9px;letter-spacing:2px;
+  padding:11px 18px;border:1px solid var(--border);
+  border-radius:6px;color:var(--cream);opacity:.5;
+  text-transform:uppercase;transition:all .3s;background:rgba(255,255,255,.03);
+}
+.filter-btn:hover,.filter-btn.active{opacity:1;border-color:var(--gold);color:var(--gold)}
+.export-btn {
+  font-family:var(--font-c);font-size:9px;letter-spacing:2px;
+  padding:11px 20px;background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.35);border-radius:6px;
+  color:var(--gold);text-transform:uppercase;transition:all .3s;
+}
+.export-btn:hover{background:rgba(201,168,76,.22)}
+
+/* ── TABLE ── */
+.table-wrap {
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  margin-bottom:40px;
+}
+.member-table {width:100%;border-collapse:collapse}
+.member-table thead tr {
+  background:rgba(201,168,76,.06);
+  border-bottom:1px solid var(--border);
+}
+.member-table th {
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  color:var(--gold);opacity:.7;text-transform:uppercase;
+  padding:16px 20px;text-align:left;
+}
+.member-table tbody tr {
+  border-bottom:1px solid rgba(255,255,255,.04);
+  transition:background .2s;
+}
+.member-table tbody tr:last-child{border-bottom:none}
+.member-table tbody tr:hover{background:rgba(201,168,76,.03)}
+.member-table td {
+  padding:16px 20px;font-size:13px;
+  font-weight:300;color:var(--cream);
+}
+.member-avatar {
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--navy3),rgba(201,168,76,.2));
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-s);font-size:13px;font-weight:700;
+  color:var(--gold);flex-shrink:0;
+}
+.member-info {display:flex;align-items:center;gap:12px}
+.member-name {font-weight:500;color:var(--cream);margin-bottom:2px}
+.member-email {font-size:11px;color:var(--cream);opacity:.4}
+.badge {
+  display:inline-flex;align-items:center;
+  font-family:var(--font-c);font-size:8px;letter-spacing:2px;
+  padding:3px 10px;border-radius:20px;text-transform:uppercase;
+}
+.badge-new {
+  background:rgba(122,158,126,.15);
+  border:1px solid rgba(122,158,126,.3);color:var(--sage);
+}
+.badge-active {
+  background:rgba(201,168,76,.1);
+  border:1px solid rgba(201,168,76,.25);color:var(--gold);
+}
+.action-btn {
+  font-family:var(--font-c);font-size:8px;letter-spacing:1px;
+  padding:5px 12px;border-radius:4px;text-transform:uppercase;
+  transition:all .2s;
+}
+.action-send {
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);
+  color:var(--gold);margin-right:6px;
+}
+.action-send:hover{background:rgba(201,168,76,.22)}
+.action-del {
+  background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.2);
+  color:var(--red);opacity:.6;
+}
+.action-del:hover{opacity:1;background:rgba(224,85,85,.15)}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align:center;padding:80px 40px;
+}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.4}
+.empty-text {
+  font-family:var(--font-s);font-size:16px;font-weight:300;
+  color:var(--cream);opacity:.4;line-height:2;
+}
+
+/* ── LOADING ── */
+.loading-row td {
+  text-align:center;padding:60px!important;
+}
+.loading-spinner {
+  display:inline-block;width:28px;height:28px;
+  border:2px solid rgba(201,168,76,.2);
+  border-top-color:var(--gold);border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SEND MODAL ── */
+.modal-overlay {
+  position:fixed;inset:0;z-index:500;
+  background:rgba(5,12,22,.85);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal {
+  background:var(--navy2);border:1px solid rgba(201,168,76,.2);
+  border-radius:10px;width:min(600px,94vw);
+  max-height:85vh;overflow-y:auto;
+  transform:scale(.97);transition:transform .3s;
+}
+.modal-overlay.open .modal{transform:scale(1)}
+.modal-header {
+  padding:24px 28px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.modal-title {
+  font-family:var(--font-s);font-size:17px;font-weight:700;
+  color:var(--cream);letter-spacing:2px;
+}
+.modal-close {
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--cream);opacity:.4;
+  cursor:pointer;background:rgba(255,255,255,.05);transition:opacity .2s;
+}
+.modal-close:hover{opacity:.9}
+.modal-body{padding:28px}
+.modal-field{margin-bottom:20px}
+.modal-label {
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:8px;display:block;
+}
+.modal-input,.modal-textarea {
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:12px 16px;color:var(--cream);
+  font-family:var(--font-s);font-size:13px;
+  transition:border-color .3s;
+}
+.modal-input:focus,.modal-textarea:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.modal-textarea{min-height:160px;resize:vertical;line-height:2}
+.modal-send-btn {
+  width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  color:var(--navy);font-family:var(--font-c);font-size:11px;
+  letter-spacing:5px;padding:15px;border-radius:6px;
+  font-weight:700;transition:all .3s;text-transform:uppercase;
+}
+.modal-send-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.25)}
+
+/* ── NETLIFY API NOTICE ── */
+.api-notice {
+  background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);
+  border-radius:8px;padding:20px 24px;margin-bottom:28px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.api-notice-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.api-notice-text{font-size:13px;font-weight:300;color:var(--cream);opacity:.7;line-height:2}
+.api-notice-text strong{color:var(--gold-l);opacity:1}
+.api-key-input-row{display:flex;gap:10px;margin-top:12px}
+.api-key-input {
+  flex:1;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:10px 14px;color:var(--cream);font-size:12px;
+  font-family:var(--font-n);
+}
+.api-key-input:focus{outline:none;border-color:rgba(201,168,76,.4)}
+.api-key-input::placeholder{opacity:.35}
+.api-connect-btn {
+  background:var(--gold);color:var(--navy);
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  padding:10px 20px;border-radius:6px;text-transform:uppercase;
+  font-weight:700;white-space:nowrap;transition:background .2s;
+}
+.api-connect-btn:hover{background:var(--gold-l)}
+
+/* ── PAGINATION ── */
+.pagination {
+  display:flex;gap:8px;justify-content:center;margin-top:24px;
+}
+.page-btn {
+  width:36px;height:36px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-c);font-size:11px;
+  border:1px solid var(--border);color:var(--cream);
+  opacity:.5;transition:all .2s;background:rgba(255,255,255,.02);
+}
+.page-btn:hover,.page-btn.active{opacity:1;border-color:var(--gold);color:var(--gold)}
+
+/* ── SCRIPTURE CARD ── */
+.scripture-card {
+  background:linear-gradient(160deg,rgba(201,168,76,.06),rgba(201,168,76,.02));
+  border:1px solid rgba(201,168,76,.18);border-radius:8px;
+  padding:28px 32px;margin-bottom:32px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.scripture-card::before {
+  content:'✝';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:120px;color:rgba(201,168,76,.04);pointer-events:none;
+}
+.scripture-text {
+  font-family:var(--font-s);font-size:15px;font-style:italic;
+  color:var(--gold-l);opacity:.85;line-height:2.2;margin-bottom:8px;
+}
+.scripture-ref {
+  font-family:var(--font-c);font-size:9px;letter-spacing:3px;
+  color:var(--gold);opacity:.55;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .member-table th:nth-child(4),
+  .member-table td:nth-child(4){display:none}
+  .content{padding:24px 16px}
+  .top-nav{padding:0 16px}
+}
+@media(max-width:500px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .member-table th:nth-child(3),
+  .member-table td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-cross">✝</div>
+    <div class="login-title">True Faith Church</div>
+    <div class="login-sub">Admin · 관리자 로그인</div>
+    <input class="login-input" type="password" id="pwInput"
+      placeholder="비밀번호를 입력하세요"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">로그인 ✝</button>
+    <div class="login-error" id="loginError">비밀번호가 틀렸습니다</div>
+    <p style="font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.2;margin-top:20px;text-transform:uppercase">
+      Slowly · Righteously · Together
+    </p>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div class="dashboard" id="dashboard">
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <svg width="28" height="32" viewBox="0 0 88 100" fill="none">
+        <rect x="41" y="8" width="6" height="70" rx="3" fill="#C9A84C"/>
+        <rect x="14" y="26" width="60" height="6" rx="3" fill="#C9A84C"/>
+        <rect x="38" y="22" width="12" height="14" fill="#0B1622"/>
+        <text x="44" y="33" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="900">正</text>
+      </svg>
+      <div>
+        <div class="nav-brand-text">True Faith Church</div>
+        <span class="nav-brand-sub">신도 관리 대시보드</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.5" id="lastUpdated"></span>
+      <button class="filter-btn" onclick="loadMembers()" style="padding:8px 16px">↻ 새로고침</button>
+      <button class="nav-logout" onclick="doLogout()">로그아웃</button>
+    </div>
+  </nav>
+
+  <div class="content">
+
+    <!-- SCRIPTURE -->
+    <div class="scripture-card">
+      <div class="scripture-text" id="dailyScripture">"여호와는 나의 목자시니 내게 부족함이 없으리로다"</div>
+      <div class="scripture-ref" id="dailyRef">— 시편 23:1 —</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">전체 신도</div>
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-desc">등록된 바른믿음 성도</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">이번 달 가입</div>
+        <div class="stat-num" id="statMonth">0</div>
+        <div class="stat-desc">신규 바른믿음 성도</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">이번 주 가입</div>
+        <div class="stat-num" id="statWeek">0</div>
+        <div class="stat-desc">새 신도</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">오늘 가입</div>
+        <div class="stat-num" id="statToday">0</div>
+        <div class="stat-desc">오늘의 바른믿음 성도</div>
+      </div>
+    </div>
+
+    <!-- API NOTICE -->
+    <div class="api-notice" id="apiNotice">
+      <div class="api-notice-icon">🔑</div>
+      <div>
+        <div class="api-notice-text">
+          <strong>Netlify Personal Access Token</strong> 을 입력하면 신도 목록이 자동으로 불러와집니다.<br>
+          <strong>app.netlify.com → User Settings → Applications → New access token</strong> 에서 발급하세요.
+        </div>
+        <div class="api-key-input-row">
+          <input class="api-key-input" type="password" id="netlifyToken"
+            placeholder="nfp_xxxxxxxxxxxxxxxxxxxx">
+          <button class="api-connect-btn" onclick="connectNetlify()">연결하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN TABS -->
+    <div style="display:flex;gap:0;border-bottom:1px solid rgba(201,168,76,.14);margin-bottom:28px;overflow-x:auto;scrollbar-width:none">
+      <button id="tab-member-btn" onclick="switchAdminTab('member')" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;padding:16px 24px;border:none;border-bottom:2px solid var(--gold);color:var(--gold);background:none;cursor:pointer;white-space:nowrap;text-transform:uppercase">👥 신도 명단</button>
+      <button id="tab-donate-btn" onclick="switchAdminTab('donate')" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;padding:16px 24px;border:none;border-bottom:2px solid transparent;color:var(--cream);opacity:.45;background:none;cursor:pointer;white-space:nowrap;text-transform:uppercase">💛 후원 집계</button>
+    </div>
+
+    <!-- 신도 명단 탭 -->
+    <div id="tab-member">
+    <!-- MEMBER TABLE -->
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow">Member List · 신도 명단</div>
+        <div class="sec-title">✝ True Faith Church 신도 목록</div>
+      </div>
+      <button class="export-btn" onclick="exportCSV()">📥 CSV 내보내기</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input class="search-input" type="text" id="searchInput"
+          placeholder="이름 또는 이메일로 검색..."
+          oninput="filterMembers()">
+      </div>
+      <button class="filter-btn active" id="filterAll" onclick="setFilter('all',this)">전체</button>
+      <button class="filter-btn" id="filterNew" onclick="setFilter('new',this)">신규 (7일)</button>
+      <button class="filter-btn" id="filterMonth" onclick="setFilter('month',this)">이번 달</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="member-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>신도</th>
+            <th>이메일</th>
+            <th>가입일</th>
+            <th>상태</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+        <tbody id="memberTbody">
+          <tr class="loading-row">
+            <td colspan="6">
+              <div class="loading-spinner"></div>
+              <p style="margin-top:12px;font-size:12px;opacity:.4">신도 목록 불러오는 중...</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+    </div><!-- /tab-member -->
+
+    <!-- ══ 후원 집계 탭 ══ -->
+    <div id="tab-donate" style="display:none">
+
+      <div class="stats-row" style="margin-bottom:28px">
+        <div class="stat-card"><div class="stat-label">총 후원 건수</div><div class="stat-num" id="donateTotal">0</div><div class="stat-desc">누적 후원 신청</div></div>
+        <div class="stat-card"><div class="stat-label">이번 달</div><div class="stat-num" id="donateMonth">0</div><div class="stat-desc">이번 달 후원</div></div>
+        <div class="stat-card"><div class="stat-label">총 후원 금액</div><div class="stat-num" id="donateAmount">0</div><div class="stat-desc">원 (입력 기준)</div></div>
+        <div class="stat-card"><div class="stat-label">오늘 후원</div><div class="stat-num" id="donateToday">0</div><div class="stat-desc">오늘 신청</div></div>
+      </div>
+
+      <!-- 구글 시트 연동 -->
+      <div style="background:linear-gradient(145deg,rgba(201,168,76,.07),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:22px;margin-bottom:22px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.65;text-transform:uppercase;margin-bottom:8px">🔗 구글 시트 연동</div>
+        <div style="font-size:13px;font-weight:700;color:var(--cream);margin-bottom:6px">실시간 후원 내역 확인</div>
+        <div style="font-size:12px;font-weight:300;color:var(--cream);opacity:.55;line-height:2;margin-bottom:14px">구글폼 응답 탭 → 스프레드시트 아이콘 클릭 → URL 복사 후 저장하세요</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <input id="sheetUrl" type="text" placeholder="https://docs.google.com/spreadsheets/d/..."
+            style="flex:1;min-width:200px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:9px 14px;color:var(--cream);font-size:12px;font-family:inherit"
+            oninput="">
+          <button onclick="saveSheetUrl()" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;padding:9px 16px;background:var(--gold);color:var(--navy);border:none;border-radius:6px;cursor:pointer;font-weight:700;text-transform:uppercase">저장</button>
+          <button onclick="openDonateSheet()" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;padding:9px 16px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:6px;cursor:pointer;color:var(--gold);text-transform:uppercase">📊 시트 열기</button>
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcBwzyAmeG9F26h7-H9HvhMSdNrz1tfODdMasjcVSdQMa2oQ/viewform?usp=sharing&ouid=103364882900686111237" target="_blank" rel="noopener"
+          style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;padding:9px 18px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:4px;color:var(--gold);text-transform:uppercase;text-decoration:none;display:inline-block">
+          📋 후원 신청 폼 보기
+        </a>
+      </div>
+
+      <!-- 수동 입력 -->
+      <div class="sec-header">
+        <div><div class="sec-eyebrow">Donation Record · 후원 내역</div><div class="sec-title">💛 후원 내역 관리</div></div>
+        <button class="export-btn" onclick="exportDonateCSV()">📥 CSV 내보내기</button>
+      </div>
+
+      <div style="background:rgba(255,255,255,.025);border:1px solid rgba(201,168,76,.14);border-radius:8px;padding:18px;margin-bottom:18px">
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:12px">✝ 후원 내역 직접 입력</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
+          <div><div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-bottom:4px;text-transform:uppercase">이름</div><input id="d-name" placeholder="후원자 이름" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:8px 12px;color:var(--cream);font-size:12px;font-family:inherit"></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-bottom:4px;text-transform:uppercase">금액 (원)</div><input id="d-amount" placeholder="예) 30000" type="number" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:8px 12px;color:var(--cream);font-size:12px;font-family:inherit"></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-bottom:4px;text-transform:uppercase">날짜</div><input id="d-date" type="date" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:8px 12px;color:var(--cream);font-size:12px;font-family:inherit"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div><div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-bottom:4px;text-transform:uppercase">이메일</div><input id="d-email" placeholder="이메일 (선택)" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:8px 12px;color:var(--cream);font-size:12px;font-family:inherit"></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5;margin-bottom:4px;text-transform:uppercase">메모</div><input id="d-memo" placeholder="예) 씨앗 후원, 정기 후원" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:8px 12px;color:var(--cream);font-size:12px;font-family:inherit"></div>
+        </div>
+        <button onclick="addDonate()" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;padding:10px 22px;background:var(--gold);color:var(--navy);border:none;border-radius:4px;cursor:pointer;font-weight:700;text-transform:uppercase">✝ 추가</button>
+      </div>
+
+      <div class="members-table-wrap">
+        <table class="members-table">
+          <thead><tr><th>#</th><th>후원자</th><th>이메일</th><th>금액</th><th>날짜</th><th>메모</th><th>관리</th></tr></thead>
+          <tbody id="donate-tbody"></tbody>
+        </table>
+      </div>
+
+    </div><!-- /tab-donate -->
+
+  </div><!-- /content -->
+</div><!-- /dashboard -->
+
+<!-- ══ EMAIL MODAL ══ -->
+<div class="modal-overlay" id="emailModal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✝ 이메일 보내기</div>
+      <div class="modal-close" onclick="closeEmailModal()">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-field">
+        <label class="modal-label">받는 사람</label>
+        <input class="modal-input" id="sendTo" readonly>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">제목</label>
+        <input class="modal-input" id="sendSubject"
+          value="✝ True Faith Church로부터 드리는 말씀">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">내용</label>
+        <textarea class="modal-textarea" id="sendBody"></textarea>
+      </div>
+      <button class="modal-send-btn" onclick="sendEmail()">✝ 보내기</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ── CONFIG ──
+const ADMIN_PW       = 'joungmin2025';   // ← 비밀번호 (원하시면 변경하세요)
+const SITE_ID        = 'jeongminchurch';   // Netlify site name
+const EMAILJS_SVC    = 'service_rfhl58b';
+const EMAILJS_PUBKEY = 'xhvEEyReSUGatSOh3';
+
+emailjs.init(EMAILJS_PUBKEY);
+
+// ── DAILY SCRIPTURES ──
+const scriptures = [
+  { text: '"여호와는 나의 목자시니 내게 부족함이 없으리로다"', ref: '시편 23:1' },
+  { text: '"너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라"', ref: '잠언 3:5' },
+  { text: '"내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올꼬"', ref: '시편 121:1' },
+  { text: '"여호와께서 너를 지키시되 이스라엘을 지키는 이는 졸지도 아니하시고"', ref: '시편 121:4' },
+  { text: '"하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니"', ref: '요한복음 3:16' },
+  { text: '"두려워하지 말라 내가 너와 함께 함이라 놀라지 말라 나는 네 하나님이 됨이라"', ref: '이사야 41:10' },
+  { text: '"내 영혼아 잠잠히 하나님만 바라라 무릇 나의 소망이 그로부터 나오는도다"', ref: '시편 62:5' },
+  { text: '"우리가 알거니와 하나님을 사랑하는 자 곧 그의 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라"', ref: '로마서 8:28' },
+  { text: '"여호와는 마음이 상한 자를 가까이 하시고 충심으로 통회하는 자를 구원하시는도다"', ref: '시편 34:18' },
+  { text: '"나를 강하게 하시는 자 안에서 내가 모든 것을 할 수 있느니라"', ref: '빌립보서 4:13' },
+];
+
+// Set daily scripture
+const todayIdx = new Date().getDay();
+const sc = scriptures[todayIdx % scriptures.length];
+document.getElementById('dailyScripture').textContent = sc.text;
+document.getElementById('dailyRef').textContent = '— ' + sc.ref + ' —';
+
+// ── LOGIN ──
+function doLogin() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === ADMIN_PW) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('show');
+    sessionStorage.setItem('jm_admin', '1');
+    loadMembers();
+  } else {
+    document.getElementById('loginError').classList.add('show');
+    document.getElementById('pwInput').value = '';
+    setTimeout(() => document.getElementById('loginError').classList.remove('show'), 2000);
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem('jm_admin');
+  location.reload();
+}
+
+// Auto-login if session exists
+if (sessionStorage.getItem('jm_admin')) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashboard').classList.add('show');
+  loadMembers();
+}
+
+// ── STATE ──
+let allMembers = [];
+let filtered = [];
+let currentFilter = 'all';
+let netlifyToken = localStorage.getItem('jm_netlify_token') || '';
+let currentPage = 1;
+const PER_PAGE = 15;
+
+if (netlifyToken) {
+  document.getElementById('netlifyToken').value = netlifyToken;
+  document.getElementById('apiNotice').style.display = 'none';
+}
+
+// ── CONNECT NETLIFY ──
+function connectNetlify() {
+  const token = document.getElementById('netlifyToken').value.trim();
+  if (!token) { alert('토큰을 입력해 주세요'); return; }
+  netlifyToken = token;
+  localStorage.setItem('jm_netlify_token', token);
+  document.getElementById('apiNotice').style.display = 'none';
+  loadMembers();
+}
+
+// ── LOAD MEMBERS FROM NETLIFY FORMS API ──
+async function loadMembers() {
+  document.getElementById('lastUpdated').textContent =
+    '업데이트: ' + new Date().toLocaleTimeString('ko-KR');
+
+  if (!netlifyToken) {
+    renderDemoData();
+    return;
+  }
+
+  document.getElementById('memberTbody').innerHTML = `
+    <tr class="loading-row">
+      <td colspan="6">
+        <div class="loading-spinner"></div>
+        <p style="margin-top:12px;font-size:12px;opacity:.4">불러오는 중...</p>
+      </td>
+    </tr>`;
+
+  try {
+    // Get site info first
+    const siteRes = await fetch(
+      `https://api.netlify.com/api/v1/sites?filter=all`,
+      { headers: { Authorization: `Bearer ${netlifyToken}` } }
+    );
+    const sites = await siteRes.json();
+    const site = sites.find(s => s.name === SITE_ID || s.subdomain === SITE_ID);
+
+    if (!site) throw new Error('사이트를 찾을 수 없습니다');
+
+    // Get form submissions
+    const formRes = await fetch(
+      `https://api.netlify.com/api/v1/sites/${site.id}/submissions?form_name=jeongmin-join&per_page=100`,
+      { headers: { Authorization: `Bearer ${netlifyToken}` } }
+    );
+    const submissions = await formRes.json();
+
+    if (!Array.isArray(submissions)) throw new Error('데이터 오류');
+
+    allMembers = submissions.map((s, i) => ({
+      id: i + 1,
+      name: s.data['이름'] || s.data.name || '이름없음',
+      email: s.data['이메일'] || s.data.email || '',
+      date: new Date(s.created_at),
+      raw: s
+    }));
+
+    updateStats();
+    filterMembers();
+
+  } catch (err) {
+    console.error(err);
+    renderDemoData();
+    alert('Netlify API 연결 실패: ' + err.message + '\n\n데모 데이터를 표시합니다.');
+  }
+}
+
+// ── DEMO DATA (토큰 없을 때) ──
+function renderDemoData() {
+  const now = new Date();
+  allMembers = [
+    { id:1, name:'김정민', email:'jungmin@email.com', date: new Date(now - 86400000*0) },
+    { id:2, name:'이사랑', email:'sarang@email.com',  date: new Date(now - 86400000*1) },
+    { id:3, name:'박은혜', email:'grace@email.com',   date: new Date(now - 86400000*3) },
+    { id:4, name:'최믿음', email:'faith@email.com',   date: new Date(now - 86400000*7) },
+    { id:5, name:'정소망', email:'hope@email.com',    date: new Date(now - 86400000*14) },
+    { id:6, name:'한사랑', email:'love@email.com',    date: new Date(now - 86400000*20) },
+    { id:7, name:'윤평화', email:'peace@email.com',   date: new Date(now - 86400000*25) },
+  ];
+  updateStats();
+  filterMembers();
+}
+
+// ── STATS ──
+function updateStats() {
+  const now = new Date();
+  const today   = allMembers.filter(m => isSameDay(m.date, now)).length;
+  const week    = allMembers.filter(m => daysDiff(m.date, now) <= 7).length;
+  const month   = allMembers.filter(m => m.date.getMonth() === now.getMonth() &&
+                                          m.date.getFullYear() === now.getFullYear()).length;
+  document.getElementById('statTotal').textContent = allMembers.length;
+  document.getElementById('statMonth').textContent = month;
+  document.getElementById('statWeek').textContent  = week;
+  document.getElementById('statToday').textContent = today;
+}
+
+function isSameDay(a, b) {
+  return a.getFullYear()===b.getFullYear() &&
+         a.getMonth()===b.getMonth() &&
+         a.getDate()===b.getDate();
+}
+function daysDiff(a, b) {
+  return Math.floor((b - a) / 86400000);
+}
+
+// ── FILTER ──
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentPage = 1;
+  filterMembers();
+}
+
+function filterMembers() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const now = new Date();
+  filtered = allMembers.filter(m => {
+    const matchQ = !q || m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q);
+    let matchF = true;
+    if (currentFilter === 'new')   matchF = daysDiff(m.date, now) <= 7;
+    if (currentFilter === 'month') matchF = m.date.getMonth()===now.getMonth() &&
+                                            m.date.getFullYear()===now.getFullYear();
+    return matchQ && matchF;
+  });
+  renderTable();
+  renderPagination();
+}
+
+// ── RENDER TABLE ──
+function renderTable() {
+  const tbody = document.getElementById('memberTbody');
+  const start = (currentPage - 1) * PER_PAGE;
+  const page  = filtered.slice(start, start + PER_PAGE);
+
+  if (!page.length) {
+    tbody.innerHTML = `<tr><td colspan="6">
+      <div class="empty-state">
+        <div class="empty-icon">🕊️</div>
+        <div class="empty-text">아직 가입한 신도가 없습니다<br>첫 번째 바른믿음 성도을 기다립니다 🙏</div>
+      </div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = page.map((m, i) => {
+    const dayAgo = daysDiff(m.date, new Date());
+    const isNew = dayAgo <= 7;
+    const badge = isNew
+      ? `<span class="badge badge-new">신규</span>`
+      : `<span class="badge badge-active">바른믿음 성도</span>`;
+    const dateStr = m.date.toLocaleDateString('ko-KR', {year:'numeric',month:'long',day:'numeric'});
+    const initial = m.name.charAt(0);
+    return `<tr>
+      <td style="opacity:.35;font-family:var(--font-c);font-size:11px">${start+i+1}</td>
+      <td>
+        <div class="member-info">
+          <div class="member-avatar">${initial}</div>
+          <div>
+            <div class="member-name">${m.name}</div>
+          </div>
+        </div>
+      </td>
+      <td style="opacity:.55;font-size:12px">${m.email}</td>
+      <td style="opacity:.45;font-size:12px;font-family:var(--font-c);letter-spacing:1px">${dateStr}</td>
+      <td>${badge}</td>
+      <td>
+        <button class="action-btn action-send" onclick="openEmailModal('${m.name}','${m.email}')">✉ 메일</button>
+        <button class="action-btn action-del" onclick="deleteMember(${m.id})">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ── PAGINATION ──
+function renderPagination() {
+  const total = Math.ceil(filtered.length / PER_PAGE);
+  const pg = document.getElementById('pagination');
+  if (total <= 1) { pg.innerHTML = ''; return; }
+  pg.innerHTML = Array.from({length:total}, (_,i) =>
+    `<button class="page-btn ${i+1===currentPage?'active':''}"
+      onclick="goPage(${i+1})">${i+1}</button>`
+  ).join('');
+}
+function goPage(n) { currentPage = n; renderTable(); renderPagination(); }
+
+// ── DELETE MEMBER ──
+function deleteMember(id) {
+  if (!confirm('이 신도를 목록에서 삭제하시겠습니까?')) return;
+  allMembers = allMembers.filter(m => m.id !== id);
+  updateStats();
+  filterMembers();
+}
+
+// ── EMAIL MODAL ──
+function openEmailModal(name, email) {
+  const sc = scriptures[Math.floor(Math.random() * scriptures.length)];
+  document.getElementById('sendTo').value = `${name} <${email}>`;
+  document.getElementById('sendBody').value =
+`${name} 님, 안녕하세요.
+
+True Faith Church로부터 오늘의 말씀을 전합니다.
+
+✝ 오늘의 말씀
+${sc.text}
+${sc.ref}
+
+하나님의 말씀이 오늘 하루 ${name} 님의 발걸음을 인도하시기를 기도합니다.
+
+Slowly · Righteously · Together 🙏
+True Faith Church`;
+
+  document.getElementById('emailModal').classList.add('open');
+  document.getElementById('emailModal').dataset.email = email;
+  document.getElementById('emailModal').dataset.name = name;
+}
+
+function closeEmailModal() {
+  document.getElementById('emailModal').classList.remove('open');
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('emailModal')) closeEmailModal();
+}
+
+function sendEmail() {
+  const toEmail  = document.getElementById('emailModal').dataset.email;
+  const toName   = document.getElementById('emailModal').dataset.name;
+  const subject  = document.getElementById('sendSubject').value;
+  const body     = document.getElementById('sendBody').value;
+  const btn      = document.querySelector('.modal-send-btn');
+
+  btn.textContent = '전송 중... 🙏'; btn.disabled = true;
+
+  emailjs.send(EMAILJS_SVC, 'template_y9l6zdd', {
+    to_name:    toName,
+    to_email:   toEmail,
+    amount:     '',
+    pay_method: '',
+    date:       new Date().toLocaleString('ko-KR'),
+    reply_to:   'jinsiljoung@gmail.com',
+    // Extra fields picked up if template supports them
+    subject:    subject,
+    message:    body
+  })
+  .then(() => {
+    alert(`✝ ${toName} 님께 이메일을 발송했습니다!`);
+    closeEmailModal();
+  })
+  .catch(err => {
+    alert('발송 실패: ' + (err.text || JSON.stringify(err)));
+  })
+  .finally(() => {
+    btn.textContent = '✝ 보내기'; btn.disabled = false;
+  });
+}
+
+// ── EXPORT CSV ──
+function exportCSV() {
+  if (!filtered.length) { alert('내보낼 데이터가 없습니다'); return; }
+  const header = '번호,이름,이메일,가입일\n';
+  const rows = filtered.map((m,i) =>
+    `${i+1},"${m.name}","${m.email}","${m.date.toLocaleDateString('ko-KR')}"`
+  ).join('\n');
+  const blob = new Blob(['\uFEFF'+header+rows], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `TrueFaithChurch_신도명단_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEmailModal();
+});
+
+/* ══ 관리자 탭 전환 ══ */
+function switchAdminTab(tab) {
+  document.getElementById('tab-member').style.display = tab==='member'?'block':'none';
+  document.getElementById('tab-donate').style.display = tab==='donate'?'block':'none';
+  const mb=document.getElementById('tab-member-btn'), db=document.getElementById('tab-donate-btn');
+  if(tab==='member'){mb.style.cssText+='border-bottom:2px solid var(--gold);color:var(--gold);opacity:1';db.style.cssText+='border-bottom:2px solid transparent;color:var(--cream);opacity:.45';}
+  else{db.style.cssText+='border-bottom:2px solid var(--gold);color:var(--gold);opacity:1';mb.style.cssText+='border-bottom:2px solid transparent;color:var(--cream);opacity:.45';renderDonations();}
+}
+
+/* ══ 후원 내역 ══ */
+const DONATE_KEY='jm_donations';
+function getDonations(){try{return JSON.parse(localStorage.getItem(DONATE_KEY)||'[]');}catch{return[];}}
+function saveDonations(d){localStorage.setItem(DONATE_KEY,JSON.stringify(d));}
+
+function addDonate(){
+  const name=document.getElementById('d-name').value.trim();
+  const amount=parseInt(document.getElementById('d-amount').value)||0;
+  const date=document.getElementById('d-date').value||new Date().toISOString().split('T')[0];
+  const email=document.getElementById('d-email').value.trim();
+  const memo=document.getElementById('d-memo').value.trim();
+  if(!name){alert('이름을 입력해 주세요');return;}
+  const d=getDonations(); d.unshift({id:Date.now(),name,amount,date,email,memo});
+  saveDonations(d);
+  ['d-name','d-amount','d-email','d-memo'].forEach(id=>document.getElementById(id).value='');
+  renderDonations(); alert('✅ 후원 내역이 추가되었습니다!');
+}
+
+function deleteDonate(id){
+  if(!confirm('삭제하시겠습니까?'))return;
+  saveDonations(getDonations().filter(d=>d.id!==id)); renderDonations();
+}
+
+function renderDonations(){
+  const d=getDonations();
+  const today=new Date().toISOString().split('T')[0], thisMonth=today.slice(0,7);
+  document.getElementById('donateTotal').textContent=d.length;
+  document.getElementById('donateMonth').textContent=d.filter(x=>x.date&&x.date.startsWith(thisMonth)).length;
+  document.getElementById('donateAmount').textContent=d.reduce((s,x)=>s+(x.amount||0),0).toLocaleString();
+  document.getElementById('donateToday').textContent=d.filter(x=>x.date===today).length;
+  const tbody=document.getElementById('donate-tbody');
+  if(!d.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:40px;opacity:.4">후원 내역이 없습니다<br>구글폼 응답을 직접 입력하거나 아래 양식을 사용하세요</td></tr>';return;}
+  tbody.innerHTML=d.map((x,i)=>`<tr>
+    <td>${i+1}</td>
+    <td><strong>${x.name}</strong></td>
+    <td style="opacity:.6">${x.email||'-'}</td>
+    <td><span style="color:var(--gold);font-weight:700">${x.amount?x.amount.toLocaleString()+'원':'-'}</span></td>
+    <td>${x.date||'-'}</td>
+    <td style="opacity:.6">${x.memo||'-'}</td>
+    <td><button onclick="deleteDonate(${x.id})" style="background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.15);border-radius:4px;padding:3px 8px;color:#E05555;font-size:11px;cursor:pointer">✕</button></td>
+  </tr>`).join('');
+}
+
+function saveSheetUrl(){
+  const url=document.getElementById('sheetUrl').value.trim();
+  if(!url){alert('URL을 입력해 주세요');return;}
+  localStorage.setItem('jm_sheet_url',url); alert('✅ 구글 시트 URL이 저장되었습니다!');
+}
+function openDonateSheet(){
+  const url=localStorage.getItem('jm_sheet_url');
+  if(!url){alert('먼저 구글 시트 URL을 저장해 주세요');return;}
+  window.open(url,'_blank');
+}
+function exportDonateCSV(){
+  const d=getDonations(); if(!d.length){alert('후원 내역이 없습니다');return;}
+  const rows=[['#','이름','이메일','금액','날짜','메모']];
+  d.forEach((x,i)=>rows.push([i+1,x.name,x.email||'',x.amount||0,x.date||'',x.memo||'']));
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='TrueFaithChurch_후원내역_'+new Date().toISOString().split('T')[0]+'.csv'; a.click();
+}
+
+// 저장된 시트 URL 불러오기
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('jm_sheet_url');
+  if(saved&&document.getElementById('sheetUrl')) document.getElementById('sheetUrl').value=saved;
+});
+</script>
+</body>
+</html>

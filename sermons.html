@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 말씀 목록</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9}
+
+.hero{padding:70px 32px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+
+.content{max-width:860px;margin:0 auto;padding:0 32px 80px}
+
+/* 필터 탭 */
+.filter-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;overflow-x:auto;scrollbar-width:none}
+.filter-tabs::-webkit-scrollbar{display:none}
+.ftab{font-family:var(--font-c);font-size:10px;letter-spacing:3px;color:var(--cream);opacity:.45;padding:14px 20px;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:all .3s;background:none;border-left:none;border-right:none;border-top:none}
+.ftab.active{opacity:1;color:var(--gold);border-bottom-color:var(--gold)}
+
+/* 설교 카드 */
+.sermons-grid{display:flex;flex-direction:column;gap:16px}
+.sermon-card{display:flex;gap:0;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s;position:relative}
+.sermon-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.sermon-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;transition:background .3s}
+.sermon-card.wednesday::before{background:linear-gradient(180deg,var(--sage),rgba(122,158,126,.3))}
+.sermon-card.sunday::before{background:linear-gradient(180deg,var(--gold),rgba(201,168,76,.3))}
+.sermon-card.first::before{background:linear-gradient(180deg,#C9A84C,#E8C96A)}
+
+.sc-left{padding:24px 24px 24px 28px;flex:1;min-width:0}
+.sc-badges{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.sc-badge{font-family:var(--font-c);font-size:8px;letter-spacing:2px;padding:3px 10px;border-radius:10px;text-transform:uppercase}
+.badge-wed{background:rgba(122,158,126,.12);border:1px solid rgba(122,158,126,.25);color:var(--sage)}
+.badge-sun{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:var(--gold)}
+.badge-first{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold-l)}
+.sc-date{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.35;text-transform:uppercase}
+.sc-title{font-family:var(--font-s);font-size:18px;font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1.5}
+.sc-verse{font-style:italic;font-size:13px;color:var(--gold-p);opacity:.75;margin-bottom:10px;line-height:1.8}
+.sc-summary{font-size:13px;font-weight:300;color:var(--cream);opacity:.5;line-height:2;margin-bottom:14px}
+.sc-read-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:9px 20px;border:1px solid rgba(201,168,76,.3);border-radius:4px;color:var(--gold);text-transform:uppercase;transition:all .3s;display:inline-block}
+.sc-read-btn:hover{background:rgba(201,168,76,.1)}
+.sc-right{width:120px;background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(15,29,46,.8));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;flex-shrink:0;border-left:1px solid var(--border)}
+.sc-num{font-family:var(--font-c);font-size:28px;font-weight:700;color:var(--gold);opacity:.3;line-height:1}
+.sc-schedule{font-family:var(--font-c);font-size:7px;letter-spacing:2px;color:var(--cream);opacity:.3;text-transform:uppercase;text-align:center}
+.sc-icon{font-size:28px;opacity:.5}
+
+/* 공지 */
+.notice-box{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:flex-start;gap:14px}
+.notice-text{font-size:13px;font-weight:300;color:var(--cream);opacity:.65;line-height:2}
+
+@media(max-width:600px){
+  .nav{padding:0 16px}.content{padding:0 16px 60px}
+  .sc-right{display:none}
+  .sermon-card{margin:0}
+}
+</style>
+
+<!-- ── 인앱 브라우저 감지 ── -->
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  var isInApp =
+    /NAVER/.test(ua) || /NaverSearch/.test(ua) ||
+    /Instagram/.test(ua) || /KAKAOTALK/.test(ua) ||
+    /FB_IAB/.test(ua) || /Line\//.test(ua) ||
+    (!/Safari/.test(ua) && /iPhone|iPad/.test(ua) && !/Chrome/.test(ua) && /AppleWebKit/.test(ua));
+  if(isInApp){
+    document.addEventListener('DOMContentLoaded', function(){
+      var banner = document.createElement('div');
+      banner.id = 'inapp-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#C9A84C;color:#0B1622;padding:14px 16px;text-align:center;font-size:13px;font-weight:700;line-height:1.6;box-shadow:0 2px 12px rgba(0,0,0,.4)';
+      var isIOS = /iPhone|iPad|iPod/.test(ua);
+      var icon = isIOS ? '🧭' : '🌐';
+      var browserName = isIOS ? 'Safari' : 'Chrome';
+      banner.innerHTML = '<div style="margin-bottom:6px">⚠️ 앱 내부 브라우저에서는 예배 음성이 지원되지 않습니다</div><div style="font-weight:400;font-size:12px;margin-bottom:10px">' + icon + ' ' + browserName + ' 브라우저로 열어주세요</div><button onclick="copyAndOpen()" style="background:#0B1622;color:#C9A84C;border:none;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;margin-right:8px">🔗 링크 복사하기</button><button onclick="document.getElementById(\'inapp-banner\').style.display=\'none\'" style="background:rgba(0,0,0,.2);color:#0B1622;border:none;padding:8px 16px;border-radius:20px;font-size:12px;cursor:pointer">닫기</button>';
+      document.body.insertBefore(banner, document.body.firstChild);
+      document.body.style.paddingTop = '90px';
+    });
+  }
+  window.copyAndOpen = function(){
+    var url = window.location.href;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏');
+    }
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/index.html" class="nav-back">← 홈</a>
+</nav>
+
+<div class="hero">
+  <div style="font-family:var(--font-c);font-size:10px;letter-spacing:6px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:14px">Sermons · 말씀 목록</div>
+  <h1 style="font-family:var(--font-s);font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:12px">✝ True Faith Church 말씀</h1>
+  <p style="font-size:14px;font-weight:300;opacity:.5;line-height:2">매주 수요일 저녁, 주일 아침<br>하나님의 말씀을 함께 묵상합니다</p>
+</div>
+
+<div class="content">
+
+  <!-- 공지 -->
+  <div class="notice-box">
+    <span style="font-size:20px">📅</span>
+    <div class="notice-text">
+      <strong style="color:var(--gold-p)">True Faith Church 정기 말씀 일정</strong><br>
+      🌙 수요 저녁 예배 — 매주 수요일 저녁 발행 · 일상과 위로의 말씀<br>
+      ☀️ 주일 아침 예배 — 매주 일요일 아침 발행 · 선포와 결단의 말씀
+    </div>
+  </div>
+
+  <!-- 필터 탭 -->
+  <div class="filter-tabs">
+    <button class="ftab active" onclick="filterSermons('all', this)">전체</button>
+    <button class="ftab" onclick="filterSermons('wednesday', this)">🌙 수요 저녁</button>
+    <button class="ftab" onclick="filterSermons('sunday', this)">☀️ 주일 아침</button>
+  </div>
+
+  <!-- 설교 목록 -->
+  <div class="sermons-grid" id="sermonsGrid">
+
+    
+    <!-- 창립 설교 -->
+    <div class="sermon-card first" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-first">✝ 창립 설교</span>
+          <span class="sc-badge badge-sun">주일 아침</span>
+          <span class="sc-date">2026 · 01 · 01</span>
+        </div>
+        <div class="sc-title">제1강 — Why True Faith Church?</div>
+        <div class="sc-verse">"너희는 가만히 있어 내가 하나님 됨을 알지어다" — 시편 46:10</div>
+        <div class="sc-summary">True Faith Church의 탄생 이유. Five Ways of Life와 디지털 시대의 신앙에 대한 첫 번째 선포.</div>
+        <a href="/sermon.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">✝</div>
+        <div class="sc-num">01</div>
+        <div class="sc-schedule">창립 설교</div>
+      </div>
+    </div>
+
+    <!-- 수요일 설교 -->
+    <div class="sermon-card wednesday" data-type="wednesday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-wed">🌙 수요 저녁</span>
+          <span class="sc-date">2026 · 03 · 26</span>
+        </div>
+        <div class="sc-title">지쳐있는 당신에게 — 멈춤이 은혜다</div>
+        <div class="sc-verse">"수고하고 무거운 짐 진 자들아 다 내게로 오라" — 마태복음 11:28</div>
+        <div class="sc-summary">달리다 지친 오늘, 멈추는 것이 게으름이 아닌 하나님의 속도를 배우는 훈련임을 말씀드립니다.</div>
+        <a href="/sermon-2.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">🌙</div>
+        <div class="sc-num">02</div>
+        <div class="sc-schedule">수요 저녁</div>
+      </div>
+    </div>
+
+    <!-- 주일 설교 -->
+    <div class="sermon-card sunday" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-sun">☀️ 주일 아침</span>
+          <span class="sc-date">2026 · 03 · 30</span>
+        </div>
+        <div class="sc-title">뿌리 깊은 나무 — 정착의 신앙</div>
+        <div class="sc-verse">"그는 시냇가에 심은 나무가 철을 따라 열매를 맺으며" — 시편 1:3</div>
+        <div class="sc-summary">디지털 유목민의 시대에 장소가 아닌 말씀에 뿌리를 내리는 법. 정착 교리의 신앙적 근거를 시편에서 찾습니다.</div>
+        <a href="/sermon-3.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">☀️</div>
+        <div class="sc-num">03</div>
+        <div class="sc-schedule">주일 아침</div>
+      </div>
+    </div>
+
+    <!-- sermon-4: 수요 저녁 2026.04.01 -->
+    <div class="sermon-card wednesday" data-type="wednesday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-wed">🌙 수요 저녁</span>
+          <span class="sc-date">2026 · 04 · 01</span>
+        </div>
+        <div class="sc-title">혼자가 아닙니다</div>
+        <div class="sc-verse">"여호와는 나의 목자시니 내게 부족함이 없으리로다" — 시편 23:1</div>
+        <div class="sc-summary">코로나 이후 혼자가 된 당신에게. 어디에 있든 목자는 당신 곁에 계십니다. 당신은 혼자가 아닙니다.</div>
+        <a href="/sermon-4.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">🌙</div>
+        <div class="sc-num">04</div>
+        <div class="sc-schedule">수요 저녁</div>
+      </div>
+    </div>
+
+    <!-- sermon-5: 주일 아침 2026.04.05 -->
+    <div class="sermon-card sunday" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-sun">☀️ 주일 아침</span>
+          <span class="sc-date">2026 · 04 · 05</span>
+        </div>
+        <div class="sc-title">새벽을 깨우라</div>
+        <div class="sc-verse">"내 영광아 깰지어다 내가 새벽을 깨우리로다" — 시편 57:8</div>
+        <div class="sc-summary">굴 속에서도 찬양한 다윗처럼. 오늘 주일 아침, 모든 것보다 먼저 하나님을 선택하는 것이 새벽을 깨우는 것입니다.</div>
+        <a href="/sermon-5.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">☀️</div>
+        <div class="sc-num">05</div>
+        <div class="sc-schedule">주일 아침</div>
+      </div>
+    </div>
+
+
+    <!-- sermon-5: 주일 아침 2026.04.05 -->
+    <div class="sermon-card sunday" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-sun">☀️ 주일 아침</span>
+          <span class="sc-date">2026 · 04 · 05</span>
+        </div>
+        <div class="sc-title">새벽을 깨우라</div>
+        <div class="sc-verse">"내 영광아 깰지어다 내가 새벽을 깨우리로다" — 시편 57:8</div>
+        <div class="sc-summary">굴속에서도 찬양한 다윗처럼. 오늘 주일 아침, 모든 것보다 먼저 하나님을 선택하는 것이 새벽을 깨우는 것입니다.</div>
+        <a href="/sermon-5.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">☀️</div>
+        <div class="sc-num">05</div>
+        <div class="sc-schedule">주일 아침</div>
+      </div>
+    </div>
+
+
+    <!-- sermon-6: 수요 저녁 고난주간 2026.04.08 -->
+    <div class="sermon-card wednesday" data-type="wednesday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-wed">🌙 수요 저녁</span>
+          <span class="sc-badge" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold)">✝ 고난주간</span>
+          <span class="sc-date">2026 · 04 · 08</span>
+        </div>
+        <div class="sc-title">그가 찔림은 우리의 허물 때문이라</div>
+        <div class="sc-verse">"그가 찔림은 우리의 허물 때문이요 그가 상함은 우리의 죄악 때문이라" — 이사야 53:5</div>
+        <div class="sc-summary">고난주간 수요 저녁. 예수님이 십자가에서 당하신 고난의 의미를 묵상합니다. 그 찔림이 우리를 살렸습니다.</div>
+        <a href="/sermon-6.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">✝</div>
+        <div class="sc-num">06</div>
+        <div class="sc-schedule">수요 저녁</div>
+      </div>
+    </div>
+
+
+    <!-- sermon-7: 주일 아침 2026.04.12 -->
+    <div class="sermon-card sunday" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-sun">☀️ 주일 아침</span>
+          <span class="sc-badge" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold)">✝ 부활절 후</span>
+          <span class="sc-date">2026 · 04 · 12</span>
+        </div>
+        <div class="sc-title">부활 이후, 어떻게 살 것인가</div>
+        <div class="sc-verse">"아버지께서 나를 보내신 것 같이 나도 너희를 보내노라" — 요한복음 20:21</div>
+        <div class="sc-summary">부활절 다음 주일. 문을 잠근 제자들에게 찾아오신 예수님. 받은 평강을 품고 이웃에게 나가는 것이 부활 이후의 삶입니다.</div>
+        <a href="/sermon-7.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">✝</div>
+        <div class="sc-num">07</div>
+        <div class="sc-schedule">주일 아침</div>
+      </div>
+    </div>
+
+
+    <!-- sermon-8: 수요 저녁 2026.04.15 -->
+    <div class="sermon-card wednesday" data-type="wednesday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-wed">🌙 수요 저녁</span>
+          <span class="sc-date">2026 · 04 · 15</span>
+        </div>
+        <div class="sc-title">끝까지 믿음을 지키라</div>
+        <div class="sc-verse">"끝까지 견디는 자는 구원을 얻으리라" — 마태복음 10:22</div>
+        <div class="sc-summary">믿음이 흔들릴 때, 바쁠 때, 지칠 때. 끝까지 하나님 앞에 머무는 것이 구원입니다.</div>
+        <a href="/sermon-8.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">✝</div>
+        <div class="sc-num">08</div>
+        <div class="sc-schedule">수요 저녁</div>
+      </div>
+    </div>
+
+
+    <!-- sermon-9: 주일 아침 2026.04.19 -->
+    <div class="sermon-card sunday" data-type="sunday">
+      <div class="sc-left">
+        <div class="sc-badges">
+          <span class="sc-badge badge-sun">☀️ 주일 아침</span>
+          <span class="sc-date">2026 · 04 · 19</span>
+        </div>
+        <div class="sc-title">엠마오로 가는 길 — 함께 걸으시는 예수</div>
+        <div class="sc-verse">"우리 속에서 마음이 뜨겁지 아니하더냐" — 누가복음 24:32</div>
+        <div class="sc-summary">부활 후 두 번째 주일. 실망한 길에 함께 걸으시는 예수님. 오늘 당신의 길 위에서도 마음이 뜨거워지시기를.</div>
+        <a href="/sermon-9.html" class="sc-read-btn">말씀 읽기 →</a>
+      </div>
+      <div class="sc-right">
+        <div class="sc-icon">☀️</div>
+        <div class="sc-num">09</div>
+        <div class="sc-schedule">주일 아침</div>
+      </div>
+    </div>
+
+  </div><!-- /sermons-grid -->
+
+  <div style="text-align:center;margin-top:40px;font-family:var(--font-c);font-size:9px;letter-spacing:4px;color:var(--cream);opacity:.25;text-transform:uppercase">
+    느리게 · 바르게 · 함께 ✝
+  </div>
+
+</div>
+
+<script>
+function filterSermons(type, btn) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('sermonsGrid');
+  const cards = Array.from(document.querySelectorAll('.sermon-card'));
+  cards.forEach(card => {
+    if (type === 'all' || card.dataset.type === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// 최신순 정렬 — 카드를 역순으로 재배치
+function sortNewestFirst() {
+  const grid = document.getElementById('sermonsGrid');
+  const cards = Array.from(grid.querySelectorAll('.sermon-card'));
+  // 역순으로 다시 붙이기
+  cards.reverse().forEach(card => grid.appendChild(card));
+}
+
+/* ══ 뱃지 — 설교 목록 방문 시 읽음 처리 ══ */
+const BADGE_KEY = 'jm_sermon_badge';
+
+window.addEventListener('load', () => {
+  // 최신 설교 먼저 정렬
+  sortNewestFirst();
+
+  // 현재 올라온 설교 수 (카드 개수로 자동 계산)
+  const totalSermons = document.querySelectorAll('.sermon-card').length;
+
+  const data = JSON.parse(localStorage.getItem(BADGE_KEY) || '{"count":0,"seen":0}');
+
+  // 새 설교가 올라왔으면 count 업데이트
+  if (totalSermons > data.count) {
+    data.count = totalSermons;
+    localStorage.setItem(BADGE_KEY, JSON.stringify(data));
+  }
+
+  // 이 페이지 방문 = 다 읽음 처리
+  data.seen = data.count;
+  localStorage.setItem(BADGE_KEY, JSON.stringify(data));
+});
+</script>
+</body>
+</html>

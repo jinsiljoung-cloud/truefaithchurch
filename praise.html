@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 찬양과 묵상음악</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--border-h:rgba(201,168,76,0.35);--red:#E05555;--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);line-height:1.8;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;font-family:inherit}
+input{font-family:inherit}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo-text{font-family:var(--font-s);font-size:18px;font-weight:700;letter-spacing:4px}
+.nav-logo-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;display:block;margin-top:-3px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9;border-color:rgba(201,168,76,.4)}
+.hero{padding:70px 32px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 32px;overflow-x:auto;scrollbar-width:none;position:sticky;top:64px;z-index:100;background:rgba(11,22,34,.95);backdrop-filter:blur(12px)}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{font-family:var(--font-c);font-size:10px;letter-spacing:3px;color:var(--cream);opacity:.45;padding:18px 24px;text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;transition:all .3s;background:none}
+.tab-btn.active{opacity:1;color:var(--gold);border-bottom-color:var(--gold)}
+.content{max-width:900px;margin:0 auto;padding:36px 32px 80px}
+
+/* HYMN */
+.hymn-banner{background:linear-gradient(145deg,rgba(201,168,76,.09),rgba(15,29,46,.97));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:32px;margin-bottom:24px;text-align:center;position:relative;overflow:hidden}
+.hymn-banner::after{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.audio-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:14px;transition:all .3s;position:relative;overflow:hidden}
+.audio-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--sage));opacity:0;transition:opacity .3s}
+.audio-card:hover{border-color:var(--border-h)}
+.audio-card.playing{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.audio-card.playing::before{opacity:1}
+.audio-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.audio-play-btn{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-l));display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);flex-shrink:0;transition:all .3s;box-shadow:0 4px 16px rgba(201,168,76,.25)}
+.audio-play-btn:hover{transform:scale(1.08)}
+.audio-card.playing .audio-play-btn{animation:pg .8s ease-in-out infinite alternate}
+@keyframes pg{from{box-shadow:0 4px 16px rgba(201,168,76,.25)}to{box-shadow:0 4px 30px rgba(201,168,76,.6)}}
+.audio-progress-bar{width:100%;height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;cursor:pointer}
+.audio-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--gold));border-radius:2px;width:0%;transition:width .1s linear}
+.audio-time-row{display:flex;justify-content:space-between;margin-top:6px}
+.audio-time{font-family:var(--font-c);font-size:9px;letter-spacing:1px;color:var(--cream);opacity:.4}
+.audio-vol{width:90px;-webkit-appearance:none;height:3px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer;margin-left:8px}
+.audio-vol::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer}
+.lyrics-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;cursor:pointer;text-transform:uppercase;padding:10px 0 0;display:block;border-top:1px solid var(--border);margin-top:12px;width:100%;text-align:left;background:none;transition:opacity .2s}
+.lyrics-btn:hover{opacity:1}
+.lyrics-wrap{display:none;padding-top:14px}
+.lyrics-wrap.open{display:block}
+.lyrics-text{font-size:13px;font-weight:300;color:var(--cream);opacity:.65;line-height:2.8;white-space:pre-line}
+.lyrics-chorus{color:var(--gold-p);font-weight:500}
+
+/* NATURE */
+.nature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.nature-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .3s}
+.nature-card:hover{border-color:var(--border-h);transform:translateY(-3px)}
+.nature-card.playing{border-color:var(--gold);background:rgba(201,168,76,.07)}
+.nature-ind{width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:12px;margin:10px auto 0;transition:all .3s;color:var(--gold)}
+.nature-card.playing .nature-ind{background:var(--gold);color:var(--navy);animation:pg .8s ease-in-out infinite alternate}
+.nature-vol{width:80%;margin-top:8px;-webkit-appearance:none;height:3px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer;display:none}
+.nature-card.playing .nature-vol{display:block}
+.nature-vol::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer}
+.nature-now{display:none;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:14px 18px;margin-top:6px;align-items:center;gap:12px}
+.nature-now.show{display:flex}
+
+/* YOUTUBE */
+.yt-embed{position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:8px 8px 0 0;overflow:hidden}
+.yt-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.yt-item{display:flex;gap:12px;align-items:center;padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .3s;margin-bottom:10px}
+.yt-item:hover{border-color:var(--border-h)}
+.yt-item.active{border-color:var(--gold);background:rgba(201,168,76,.07)}
+.yt-ph{width:68px;height:46px;border-radius:4px;background:linear-gradient(135deg,var(--navy3),rgba(201,168,76,.1));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.yt-play{width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .2s;color:var(--gold)}
+.yt-item:hover .yt-play,.yt-item.active .yt-play{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.admin-box{background:linear-gradient(145deg,rgba(201,168,76,.06),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:24px;margin-top:24px;display:none}
+.admin-box.show{display:block}
+.admin-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.admin-f label{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;display:block;margin-bottom:5px}
+.ai{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:10px 14px;color:var(--cream);font-size:13px;transition:border-color .3s}
+.ai:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.ai::placeholder{color:var(--cream);opacity:.25}
+.add-btn{background:var(--gold);color:var(--navy);font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:11px 22px;border-radius:4px;text-transform:uppercase;font-weight:700;transition:all .2s;margin-top:6px}
+.add-btn:hover{background:var(--gold-l);transform:translateY(-2px)}
+.mgr-t{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.15;cursor:pointer;text-transform:uppercase;display:block;text-align:center;margin-top:20px;transition:opacity .3s}
+.mgr-t:hover{opacity:.4}
+.empty{text-align:center;padding:50px;opacity:.4}
+@media(max-width:700px){.nature-grid{grid-template-columns:repeat(2,1fr)}.admin-row{grid-template-columns:1fr}.nav,.content,.tabs{padding-left:16px;padding-right:16px}}
+</style>
+
+<!-- ── 인앱 브라우저 감지 ── -->
+<script>
+(function(){
+  var ua = navigator.userAgent || '';
+  var isInApp =
+    /NAVER/.test(ua) || /NaverSearch/.test(ua) ||
+    /Instagram/.test(ua) || /KAKAOTALK/.test(ua) ||
+    /FB_IAB/.test(ua) || /Line\//.test(ua) ||
+    (!/Safari/.test(ua) && /iPhone|iPad/.test(ua) && !/Chrome/.test(ua) && /AppleWebKit/.test(ua));
+  if(isInApp){
+    document.addEventListener('DOMContentLoaded', function(){
+      var banner = document.createElement('div');
+      banner.id = 'inapp-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#C9A84C;color:#0B1622;padding:14px 16px;text-align:center;font-size:13px;font-weight:700;line-height:1.6;box-shadow:0 2px 12px rgba(0,0,0,.4)';
+      var isIOS = /iPhone|iPad|iPod/.test(ua);
+      var icon = isIOS ? '🧭' : '🌐';
+      var browserName = isIOS ? 'Safari' : 'Chrome';
+      banner.innerHTML = '<div style="margin-bottom:6px">⚠️ 앱 내부 브라우저에서는 예배 음성이 지원되지 않습니다</div><div style="font-weight:400;font-size:12px;margin-bottom:10px">' + icon + ' ' + browserName + ' 브라우저로 열어주세요</div><button onclick="copyAndOpen()" style="background:#0B1622;color:#C9A84C;border:none;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;margin-right:8px">🔗 링크 복사하기</button><button onclick="document.getElementById(\'inapp-banner\').style.display=\'none\'" style="background:rgba(0,0,0,.2);color:#0B1622;border:none;padding:8px 16px;border-radius:20px;font-size:12px;cursor:pointer">닫기</button>';
+      document.body.insertBefore(banner, document.body.firstChild);
+      document.body.style.paddingTop = '90px';
+    });
+  }
+  window.copyAndOpen = function(){
+    var url = window.location.href;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      alert('링크가 복사되었습니다!\n브라우저를 열고 주소창에 붙여넣기 해주세요 🙏');
+    }
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/index.html" style="display:flex;align-items:center;gap:10px">
+    <svg width="24" height="28" viewBox="0 0 88 100" fill="none"><rect x="41" y="8" width="6" height="70" rx="3" fill="#C9A84C"/><rect x="14" y="26" width="60" height="6" rx="3" fill="#C9A84C"/><rect x="38" y="22" width="12" height="14" fill="#0B1622"/><text x="44" y="33" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="900">正</text></svg>
+    <div><div class="nav-logo-text">True Faith Church</div><span class="nav-logo-sub">찬양 · PRAISE</span></div>
+  </a>
+  <a href="/index.html" class="nav-back">← 홈</a>
+</nav>
+
+<div class="hero">
+  <div style="font-family:var(--font-c);font-size:10px;letter-spacing:6px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:14px">Praise & Worship · 찬양과 묵상</div>
+  <h1 style="font-family:var(--font-s);font-size:clamp(26px,5vw,44px);font-weight:900;margin-bottom:12px">🎵 바른믿음교회 찬양</h1>
+  <p style="font-size:14px;font-weight:300;opacity:.5;line-height:2">자연의 소리로 마음을 열고<br>말씀과 찬양으로 하나님께 나아갑니다</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('hymn',this)">✝ 바른믿음교회 찬송</button>
+  <button class="tab-btn" onclick="switchTab('nature',this)">🌿 자연 묵상음악</button>
+  <button class="tab-btn" onclick="switchTab('youtube',this)">📺 찬송 모음</button>
+</div>
+
+<div class="content">
+
+<!-- ✝ 바른믿음교회 찬송 탭 -->
+<div id="tab-hymn">
+  <div class="hymn-banner">
+    <div style="font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:10px">✝ 바른믿음교회 창작 찬송가 제1장</div>
+    <div style="font-family:var(--font-s);font-size:clamp(18px,4vw,26px);font-weight:900;margin-bottom:8px">"느리게, 바르게, 함께"</div>
+    <div style="font-size:13px;font-weight:300;opacity:.5;line-height:2;margin-bottom:12px">바른믿음교회 Five Ways of Life를 담은 디지털 시대의 신앙 찬송가<br>여자 버전 → 남자 버전 순으로 자동 재생됩니다</div>
+  </div>
+
+  <!-- 여자 버전 -->
+  <div class="audio-card" id="card-f">
+    <div class="audio-header">
+      <span style="font-size:30px">👩</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">느리게, 바르게, 함께 — 여자 버전</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">바른믿음교회 창작 찬송가 · Soprano</div>
+      </div>
+      <button class="audio-play-btn" id="btn-f" onclick="toggleAudio('f')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-f" onclick="seekAudio('f',event)"><div class="audio-progress-fill" id="pf-f"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-f">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('f',this.value)">
+          <span class="audio-time" id="td-f">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-f" onclick="toggleLyrics('f')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-f">
+      <div class="lyrics-text">빠른 세상 내려놓고
+알림 끄고 멈추어서
+가만히 주 앞에 서니
+하나님의 음성 들려
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+더 깊게 더 깊게 주의 맘을 구하며
+더 뜨겁게 뜨겁게 십자가를 붙들고
+함께 함께 이웃의 손 잡고서
+바른믿음교회 주 안에 하나 되네</span></div>
+    </div>
+  </div>
+
+  <!-- 남자 버전 -->
+  <div class="audio-card" id="card-m">
+    <div class="audio-header">
+      <span style="font-size:30px">👨</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">빠른 세상 내려놓고 — 남자 버전</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">바른믿음교회 창작 찬송가 · Bass</div>
+      </div>
+      <button class="audio-play-btn" id="btn-m" onclick="toggleAudio('m')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-m" onclick="seekAudio('m',event)"><div class="audio-progress-fill" id="pf-m"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-m">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('m',this.value)">
+          <span class="audio-time" id="td-m">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-m" onclick="toggleLyrics('m')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-m">
+      <div class="lyrics-text">빠른 세상 내려놓고
+알림 끄고 멈추어서
+가만히 주 앞에 서니
+하나님의 음성 들려
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+느리게 느리게 느리게 느리게
+하나님의 속도로 바르게 바르게
+좁은 길을 걸어서 함께 함께
+이웃의 손 잡고서
+바른믿음 온라인교회 주 안에 하나 되네</span></div>
+    </div>
+  </div>
+
+  <!-- 알림을 끄고 — 합창버전 -->
+  <div class="audio-card" id="card-m2">
+    <div class="audio-header">
+      <span style="font-size:30px">🎶</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">알림을 끄고 — 합창버전</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">바른믿음교회 창작 찬송가 제2장 · Choir</div>
+      </div>
+      <button class="audio-play-btn" id="btn-m2" onclick="toggleAudio('m2')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-m2" onclick="seekAudio('m2',event)"><div class="audio-progress-fill" id="pf-m2"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-m2">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('m2',this.value)">
+          <span class="audio-time" id="td-m2">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-m2" onclick="toggleLyrics('m2')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-m2">
+      <div class="lyrics-text">하루를 달려왔습니다
+지치고 무거운 발걸음으로
+아무도 몰라주는 이 자리에서
+주님 앞에 서 있습니다
+
+알림을 끄고 멈추어서
+그분의 음성에 귀 기울이니
+빠른 세상 저 너머에
+하나님이 기다리십니다
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+내려놓고 오라 내려놓고 오라
+수고하고 짐진 자여 내게로 오라
+느리게 느리게 바르게 바르게
+함께 함께 이웃의 손 잡고서
+바른믿음 온라인교회 주 안에 하나 되네</span></div>
+    </div>
+  </div>
+
+  <!-- 돌아오라 — 창작 찬송가 제4장 -->
+  <div class="audio-card" id="card-d">
+    <div style="font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.5;margin-bottom:14px;text-transform:uppercase">✝ 바른믿음교회 창작 찬송가 제4장</div>
+    <div class="audio-header">
+      <span style="font-size:30px">🕊️</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">돌아오라</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">바른믿음교회 창작 찬송가 · MZ세대에게</div>
+      </div>
+      <button class="audio-play-btn" id="btn-d" onclick="toggleAudio('d')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-d" onclick="seekAudio('d',event)"><div class="audio-progress-fill" id="pf-d"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-d">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('d',this.value)">
+          <span class="audio-time" id="td-d">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-d" onclick="toggleLyrics('d')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-d">
+      <div class="lyrics-text">스마트폰 불빛 속에 하루를 살다가
+수많은 알림들에 지쳐버린 당신
+한때는 드렸던 그 예배의 자리
+어느새 멀어진 하나님의 품
+
+빠른 세상 따라가다 잃어버린 것들
+화면 너머 찾을 수 없는 평안
+지금도 기다리는 아버지의 마음
+그분의 문은 아직 열려 있네
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+돌아오라 돌아오라
+지쳐있는 그대여 돌아오라
+바른믿음교회 주 안에서
+참된 쉼을 찾으리
+
+돌아오라 돌아오라
+화면 너머 주님이 부르시네
+느리게 느리게 바르게 바르게
+함께 함께 이웃의 손 잡고서
+바른믿음 온라인교회 주 안에 하나 되네</span>
+
+혼자서 버텨왔던 긴 시간들 속에
+아무도 몰라줬던 그 외로움까지
+하나님은 알고 계셨네 다 보셨네
+단 한 순간도 떠난 적 없으셨네
+
+코로나 이후로 멀어진 그 자리
+이제는 돌아갈 곳 없다 했던 너
+괜찮아 괜찮아 그대로 오면 돼
+주님은 그 모습 그대로 받으시네</div>
+    </div>
+  </div>
+
+  <audio id="audio-f" preload="auto"><source src="느리게__바르게__함께_여성보컬_.mp3" type="audio/mpeg"></audio>
+  <audio id="audio-m" preload="auto"><source src="빠른_세상_내려놓고__남자보컬_.mp3" type="audio/mpeg"></audio>
+  <audio id="audio-m2" preload="auto"><source src="알림을_끄고_합창버전.mp3" type="audio/mpeg"></audio>
+  <audio id="audio-d" preload="auto"><source src="돌아오라.mp3" type="audio/mpeg"></audio>
+</div>
+
+<!-- 🌿 자연 묵상 탭 -->
+<div id="tab-nature" style="display:none">
+  <div style="margin-bottom:22px">
+    <div style="font-family:var(--font-c);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:8px">Nature Sounds · 자연의 소리</div>
+    <div style="font-family:var(--font-s);font-size:20px;font-weight:700;margin-bottom:6px">🌿 자연 소리 & 묵상 음악</div>
+    <div style="font-size:13px;font-weight:300;opacity:.5">원하는 소리를 선택하면 자동 재생됩니다</div>
+  </div>
+  <div class="nature-grid">
+    <div class="nature-card" onclick="playN('rain')" id="nc-rain"><span style="font-size:34px;display:block;margin-bottom:8px">🌧️</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">빗소리 묵상</div><div style="font-size:11px;opacity:.45">잔잔한 빗소리</div><div class="nature-ind" id="ni-rain">▶</div><input type="range" class="nature-vol" id="nv-rain" min="0" max="100" value="70"></div>
+    <div class="nature-card" onclick="playN('forest')" id="nc-forest"><span style="font-size:34px;display:block;margin-bottom:8px">🌲</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">숲속 새소리</div><div style="font-size:11px;opacity:.45">창조주 묵상</div><div class="nature-ind" id="ni-forest">▶</div><input type="range" class="nature-vol" id="nv-forest" min="0" max="100" value="70"></div>
+    <div class="nature-card" onclick="playN('ocean')" id="nc-ocean"><span style="font-size:34px;display:block;margin-bottom:8px">🌊</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">파도 소리</div><div style="font-size:11px;opacity:.45">하나님의 품</div><div class="nature-ind" id="ni-ocean">▶</div><input type="range" class="nature-vol" id="nv-ocean" min="0" max="100" value="70"></div>
+    <div class="nature-card" onclick="playN('piano')" id="nc-piano"><span style="font-size:34px;display:block;margin-bottom:8px">🎹</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">묵상 피아노</div><div style="font-size:11px;opacity:.45">고요한 선율</div><div class="nature-ind" id="ni-piano">▶</div><input type="range" class="nature-vol" id="nv-piano" min="0" max="100" value="70"></div>
+    <div class="nature-card" onclick="playN('fire')" id="nc-fire"><span style="font-size:34px;display:block;margin-bottom:8px">🔥</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">장작불 소리</div><div style="font-size:11px;opacity:.45">따뜻한 사랑</div><div class="nature-ind" id="ni-fire">▶</div><input type="range" class="nature-vol" id="nv-fire" min="0" max="100" value="70"></div>
+    <div class="nature-card" onclick="playN('stream')" id="nc-stream"><span style="font-size:34px;display:block;margin-bottom:8px">💧</span><div style="font-family:var(--font-s);font-size:13px;font-weight:700;margin-bottom:4px">시냇물 소리</div><div style="font-size:11px;opacity:.45">시편 23편</div><div class="nature-ind" id="ni-stream">▶</div><input type="range" class="nature-vol" id="nv-stream" min="0" max="100" value="70"></div>
+  </div>
+  <div class="nature-now" id="nature-now">
+    <span style="font-size:22px" id="n-icon">🌧️</span>
+    <div><div style="font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:3px">NOW PLAYING</div><div style="font-family:var(--font-s);font-size:14px;font-weight:700" id="n-title">빗소리 묵상</div></div>
+    <button onclick="stopN()" style="margin-left:auto;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.18);border-radius:4px;padding:6px 14px;color:var(--red);font-family:var(--font-c);font-size:8px;letter-spacing:2px;text-transform:uppercase">■ 정지</button>
+  </div>
+  <iframe id="n-yt" width="1" height="1" style="position:fixed;opacity:0;pointer-events:none;top:0;left:0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+</div>
+
+<!-- 📺 찬송 모음 탭 -->
+<div id="tab-youtube" style="display:none">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-family:var(--font-c);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:6px">Youtube Hymn Collection</div>
+      <div style="font-family:var(--font-s);font-size:20px;font-weight:700;margin-bottom:4px">📺 찬송 모음집</div>
+      <div style="font-size:13px;font-weight:300;opacity:.5">바른믿음교회 채널의 찬양 영상을 모았습니다</div>
+    </div>
+    <a href="https://www.youtube.com/@truefaithchurchonline" target="_blank" rel="noopener" style="font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:10px 18px;border:1px solid rgba(201,168,76,.3);border-radius:4px;color:var(--gold);text-transform:uppercase;white-space:nowrap">채널 바로가기 →</a>
+  </div>
+  <div id="yt-player-wrap" style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px">
+    <div class="yt-embed"><iframe id="yt-player" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div style="padding:16px 20px;border-top:1px solid var(--border)">
+      <div style="font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:4px">🎵 Now Playing</div>
+      <div style="font-family:var(--font-s);font-size:15px;font-weight:700" id="yt-title">찬양을 선택해 주세요</div>
+    </div>
+  </div>
+  <div id="yt-list"></div>
+  <div id="yt-empty" class="empty" style="display:none"><div style="font-size:36px;margin-bottom:12px">📺</div><div style="font-size:13px;font-weight:300;line-height:2">등록된 찬송 영상이 없습니다<br>관리자가 추가하면 표시됩니다 🙏</div></div>
+  <div class="admin-box" id="admin-box">
+    <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:4px">✝ 찬송 영상 추가</div>
+    <div style="font-size:12px;font-weight:300;opacity:.5;margin-bottom:14px">유튜브 영상 ID를 입력하세요</div>
+    <div class="admin-row">
+      <div class="admin-f"><label>영상 제목</label><input class="ai" id="yt-new-title" placeholder="예) 주 하나님 독생자 예수"></div>
+      <div class="admin-f"><label>유튜브 영상 ID</label><input class="ai" id="yt-new-id" placeholder="예) dQw4w9WgXcQ"></div>
+    </div>
+    <div class="admin-row">
+      <div class="admin-f"><label>날짜</label><input class="ai" id="yt-new-date" type="date"></div>
+      <div class="admin-f"><label>설명</label><input class="ai" id="yt-new-desc" placeholder="예) 이번 주 찬양"></div>
+    </div>
+    <button class="add-btn" onclick="addYt()">✝ 추가하기</button>
+  </div>
+  <div id="mgr-area">
+    <span class="mgr-t" onclick="toggleMgr()">⚙ 관리자</span>
+    <div id="mgr-pw" style="display:none;max-width:320px;margin:10px auto 0">
+      <div style="display:flex;gap:8px">
+        <input style="flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:9px 14px;color:var(--cream);font-size:13px;text-align:center;letter-spacing:3px" type="password" id="pw-input" placeholder="관리자 비밀번호" onkeydown="if(event.key==='Enter')checkPw()">
+        <button style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:9px 16px;color:var(--gold);font-family:var(--font-c);font-size:9px;letter-spacing:2px;text-transform:uppercase" onclick="checkPw()">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+const ADMIN_PW='joungmin2025', YT_KEY='jm_yt_praise';
+let isAdmin=false, curNature=null;
+
+/* TABS */
+function switchTab(t,btn){
+  ['hymn','nature','youtube'].forEach(id=>document.getElementById('tab-'+id).style.display=id===t?'block':'none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(t==='youtube')renderYt();
+  if(t!=='nature')stopN();
+}
+
+/* ✝ 오디오 플레이어 */
+const AF=document.getElementById('audio-f'), AM=document.getElementById('audio-m'), AM2=document.getElementById('audio-m2'), AD=document.getElementById('audio-d');
+const audios={f:AF,m:AM,m2:AM2,d:AD};
+
+AF.addEventListener('loadedmetadata',()=>{ document.getElementById('td-f').textContent=fmt(AF.duration); });
+AM.addEventListener('loadedmetadata',()=>{ document.getElementById('td-m').textContent=fmt(AM.duration); });
+AF.addEventListener('timeupdate',()=>updProg('f'));
+AM.addEventListener('timeupdate',()=>updProg('m'));
+AM2.addEventListener('timeupdate',()=>updProg('m2'));
+AF.addEventListener('ended',()=>{ stopUI('f'); setTimeout(()=>playAudio('m'),500); });
+AM.addEventListener('ended',()=>stopUI('m'));
+AM2.addEventListener('ended',()=>stopUI('m2'));
+AD.addEventListener('loadedmetadata',()=>{ document.getElementById('td-d').textContent=fmt(AD.duration); });
+AD.addEventListener('timeupdate',()=>updProg('d'));
+AD.addEventListener('ended',()=>stopUI('d'));
+
+/* 페이지 로드 시 여자 버전 자동 재생 */
+// 자동재생 제거 - 사용자 클릭 후 재생
+window.addEventListener('load',()=>{
+  // 오디오 파일 미리 로드만
+  audios.f.load();
+  audios.m.load();
+  audios.m2.load();
+  audios.d.load();
+});
+
+function toggleAudio(k){
+  const a=audios[k];
+  if(!a.paused){ a.pause(); stopUI(k); }
+  else{ Object.keys(audios).forEach(x=>{ if(x!==k){audios[x].pause();stopUI(x);} }); playAudio(k); }
+}
+function playAudio(k){
+  audios[k].play().catch(e=>console.log('autoplay blocked',e));
+  document.getElementById('btn-'+k).textContent='⏸';
+  document.getElementById('card-'+k).classList.add('playing');
+}
+function stopUI(k){
+  document.getElementById('btn-'+k).textContent='▶';
+  document.getElementById('card-'+k).classList.remove('playing');
+}
+function updProg(k){
+  const a=audios[k]; if(!a.duration)return;
+  const p=(a.currentTime/a.duration)*100;
+  document.getElementById('pf-'+k).style.width=p+'%';
+  document.getElementById('tc-'+k).textContent=fmt(a.currentTime);
+}
+function seekAudio(k,e){
+  const a=audios[k]; if(!a.duration)return;
+  const b=document.getElementById('pb-'+k);
+  const r=b.getBoundingClientRect();
+  a.currentTime=((e.clientX-r.left)/r.width)*a.duration;
+}
+function setVol(k,v){ audios[k].volume=parseFloat(v); }
+function fmt(s){ if(isNaN(s))return'--:--'; return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0'); }
+function toggleLyrics(k){
+  const w=document.getElementById('lw-'+k); w.classList.toggle('open');
+  document.getElementById('lbtn-'+k).textContent=w.classList.contains('open')?'♪ 가사 닫기':'♪ 가사 보기';
+}
+
+/* 🌿 자연 소리 */
+const NV={rain:{id:'nMfPqeaykAc',title:'빗소리 묵상',icon:'🌧️'},forest:{id:'q76bMs-tMkI',title:'숲속 새소리',icon:'🌲'},ocean:{id:'bn9F19ZWlGU',title:'파도 소리',icon:'🌊'},piano:{id:'1ZYbU82uUws',title:'묵상 피아노',icon:'🎹'},fire:{id:'L_LUpnjgPso',title:'장작불 소리',icon:'🔥'},stream:{id:'HfwL8VsXuDo',title:'시냇물 소리',icon:'💧'}};
+function playN(t){
+  if(curNature===t){stopN();return;}
+  Object.keys(NV).forEach(k=>{document.getElementById('nc-'+k)?.classList.remove('playing');document.getElementById('ni-'+k).textContent='▶';});
+  curNature=t; const v=NV[t];
+  document.getElementById('nc-'+t).classList.add('playing');
+  document.getElementById('ni-'+t).textContent='■';
+  // embed 자동재생 차단 우회 - nocookie 도메인 + 파라미터
+  document.getElementById('n-yt').src=`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&loop=1&playlist=${v.id}&controls=1&rel=0&modestbranding=1`;
+  const n=document.getElementById('nature-now'); n.classList.add('show');
+  document.getElementById('n-icon').textContent=v.icon;
+  document.getElementById('n-title').textContent=v.title;
+}
+function stopN(){
+  curNature=null;
+  Object.keys(NV).forEach(k=>{document.getElementById('nc-'+k)?.classList.remove('playing');const ni=document.getElementById('ni-'+k);if(ni)ni.textContent='▶';});
+  document.getElementById('n-yt').src='about:blank';
+  document.getElementById('nature-now').classList.remove('show');
+}
+
+/* 📺 유튜브 찬송 모음 — Google Sheets 연동 */
+// ⬇ Apps Script 배포 URL (아래 설정 후 교체)
+const GS_URL = 'https://script.google.com/macros/s/AKfycbyNeCjhhtA_3GshrZq-PUoAb0-R66jJ7215CXCaVGAinE7g1I4E5hlxxf-joYdOPwxXUA/exec';
+let ytCache = [];
+
+async function getYt() {
+  try {
+    const res = await fetch(GS_URL + '?action=getPraise');
+    const data = await res.json();
+    ytCache = data;
+    return data;
+  } catch(e) { console.error('찬송 목록 불러오기 실패', e); return []; }
+}
+
+async function renderYt() {
+  const list = document.getElementById('yt-list');
+  const empty = document.getElementById('yt-empty');
+  const wrap = document.getElementById('yt-player-wrap');
+  list.innerHTML = '<div style="text-align:center;padding:20px;opacity:.4;font-size:13px">불러오는 중...</div>';
+  const vids = await getYt();
+  if (!vids.length) { list.innerHTML=''; empty.style.display='block'; wrap.style.display='none'; return; }
+  empty.style.display = 'none'; wrap.style.display = 'block';
+  if (document.getElementById('yt-player').src === 'about:blank') playYt(vids[0], 0);
+  list.innerHTML = vids.map((v, i) => `<div class="yt-item" id="yi-${i}" onclick="playYt(${JSON.stringify(v).replace(/"/g,'&quot;')},${i})"><div class="yt-ph">🎵</div><div style="flex:1;min-width:0"><div style="font-family:var(--font-s);font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px">${v.title}</div><div style="font-family:var(--font-c);font-size:8px;letter-spacing:2px;opacity:.3;text-transform:uppercase">${v.date?new Date(v.date).toLocaleDateString('ko-KR',{month:'long',day:'numeric'}):''}</div></div><div class="yt-play">▶</div>${isAdmin?`<button onclick="event.preventDefault();event.stopPropagation();delYt('${v.rowId}')" style="background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.15);border-radius:4px;padding:4px 8px;color:var(--red);font-size:11px;margin-left:4px">✕</button>`:''}</div>`).join('');
+}
+
+function playYt(v, idx) {
+  document.getElementById('yt-player').src = `https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`;
+  document.getElementById('yt-title').textContent = v.title;
+  document.querySelectorAll('.yt-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('yi-' + idx)?.classList.add('active');
+}
+
+async function addYt() {
+  let title = document.getElementById('yt-new-title').value.trim();
+  let id = document.getElementById('yt-new-id').value.trim();
+  const date = document.getElementById('yt-new-date').value;
+  const desc = document.getElementById('yt-new-desc').value.trim();
+  if (!title || !id) { alert('제목과 영상 ID를 입력해 주세요'); return; }
+  const m = id.match(/(?:v=|youtu\.be\/|shorts\/)([^&\n?#]+)/); if (m) id = m[1];
+  try {
+    const res = await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'addPraise', title, id, date, desc })
+    });
+    const result = await res.json();
+    if (result.ok) {
+      ['yt-new-title','yt-new-id','yt-new-date','yt-new-desc'].forEach(x => document.getElementById(x).value = '');
+      renderYt();
+      alert('✝ 찬송 영상이 추가되었습니다!');
+    } else { alert('추가 실패: ' + (result.error || '다시 시도해 주세요')); }
+  } catch(e) { alert('저장 중 오류가 발생했습니다'); }
+}
+
+async function delYt(rowId) {
+  if (!confirm('삭제하시겠습니까?')) return;
+  try {
+    await fetch(GS_URL, { method: 'POST', body: JSON.stringify({ action: 'deletePraise', rowId }) });
+    renderYt();
+  } catch(e) { alert('삭제 중 오류가 발생했습니다'); }
+}
+
+function toggleMgr() { const a=document.getElementById('mgr-pw'); a.style.display=a.style.display==='none'?'block':'none'; }
+function checkPw() {
+  if (document.getElementById('pw-input').value === ADMIN_PW) {
+    isAdmin=true; document.getElementById('admin-box').classList.add('show');
+    document.getElementById('mgr-area').style.display='none'; renderYt();
+  } else { alert('비밀번호가 틀렸습니다'); document.getElementById('pw-input').value=''; }
+}
+window.addEventListener('beforeunload', () => stopN());
+</script>
+</body>
+</html>

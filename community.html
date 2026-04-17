@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 공동체 광장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #0B1622;
+  --navy2:  #0F1D2E;
+  --navy3:  #162638;
+  --gold:   #C9A84C;
+  --gold-l: #E8C96A;
+  --gold-p: #F0DFAA;
+  --sage:   #7A9E7E;
+  --cream:  #F5EDD6;
+  --border: rgba(201,168,76,0.14);
+  --border-h: rgba(201,168,76,0.35);
+  --red:    #E05555;
+  --font-s: 'Noto Serif KR', serif;
+  --font-c: 'Cinzel', serif;
+  --font-n: 'Noto Sans KR', sans-serif;
+  --ease:   cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);line-height:1.8;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;font-family:inherit}
+input,textarea{font-family:inherit}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-text{font-family:var(--font-s);font-size:18px;font-weight:700;letter-spacing:4px}
+.nav-logo-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;display:block;margin-top:-3px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9;border-color:rgba(201,168,76,.4)}
+
+/* ── LOGIN MODAL ── */
+.login-overlay{position:fixed;inset:0;z-index:500;background:rgba(5,12,22,.9);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.login-overlay.open{opacity:1;pointer-events:all}
+.login-box{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:44px 40px;width:min(420px,90vw);text-align:center;transform:scale(.97);transition:transform .3s}
+.login-overlay.open .login-box{transform:scale(1)}
+.login-cross{font-size:28px;color:var(--gold);opacity:.7;margin-bottom:14px}
+.login-title{font-family:var(--font-s);font-size:20px;font-weight:700;letter-spacing:3px;margin-bottom:6px}
+.login-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;margin-bottom:28px;text-transform:uppercase}
+.login-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:12px 16px;color:var(--cream);font-size:14px;margin-bottom:12px;transition:border-color .3s;text-align:center;letter-spacing:2px}
+.login-input:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.login-input::placeholder{opacity:.3;letter-spacing:1px;font-size:12px}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);font-family:var(--font-c);font-size:10px;letter-spacing:4px;padding:14px;border-radius:6px;font-weight:700;transition:all .3s;text-transform:uppercase;margin-bottom:12px}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+.login-err{font-size:11px;color:var(--red);opacity:0;transition:opacity .3s;margin-top:4px}
+.login-err.show{opacity:1}
+.login-close{font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--cream);opacity:.3;cursor:pointer;text-transform:uppercase;margin-top:8px;display:inline-block}
+.login-close:hover{opacity:.7}
+
+/* ── HERO ── */
+.page-hero{padding:60px 32px 50px;text-align:center;border-bottom:1px solid var(--border)}
+.page-eyebrow{font-family:var(--font-c);font-size:10px;letter-spacing:6px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:14px}
+.page-title{font-family:var(--font-s);font-size:clamp(26px,4vw,40px);font-weight:900;color:var(--cream);margin-bottom:10px}
+.page-sub{font-size:14px;font-weight:300;color:var(--cream);opacity:.5;line-height:2}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 32px;overflow-x:auto;scrollbar-width:none;position:sticky;top:64px;z-index:100;background:var(--navy);}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{font-family:var(--font-c);font-size:10px;letter-spacing:3px;color:var(--cream);opacity:.45;padding:18px 24px;text-transform:uppercase;border:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .3s;background:none;cursor:pointer;-webkit-tap-highlight-color:rgba(201,168,76,.2)}
+.tab-btn:hover{opacity:.8}
+.tab-btn.active{opacity:1;color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── CONTENT ── */
+.content{max-width:860px;margin:0 auto;padding:40px 32px 80px}
+
+/* ── BOARD SECTION ── */
+.board-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+.board-title-wrap{}
+.board-eyebrow{font-family:var(--font-c);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:6px}
+.board-title{font-family:var(--font-s);font-size:22px;font-weight:700;color:var(--cream)}
+.board-desc{font-size:13px;font-weight:300;color:var(--cream);opacity:.5;margin-top:4px}
+.write-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:11px 22px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:4px;color:var(--gold);text-transform:uppercase;transition:all .3s}
+.write-btn:hover{background:rgba(201,168,76,.2)}
+.write-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* ── WRITE FORM ── */
+.write-form{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:8px;padding:28px;margin-bottom:28px;display:none}
+.write-form.show{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-label{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase}
+.form-input{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:11px 14px;color:var(--cream);font-size:13px;transition:border-color .3s}
+.form-input:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.form-input::placeholder{color:var(--cream);opacity:.25}
+.form-textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:14px;color:var(--cream);font-size:14px;line-height:2;resize:vertical;min-height:120px;width:100%;margin-bottom:14px;transition:border-color .3s}
+.form-textarea:focus{outline:none;border-color:rgba(201,168,76,.5)}
+.form-textarea::placeholder{color:var(--cream);opacity:.25}
+.form-actions{display:flex;gap:10px;justify-content:flex-end}
+.submit-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:11px 24px;background:var(--gold);color:var(--navy);border-radius:4px;text-transform:uppercase;font-weight:700;transition:all .3s}
+.submit-btn:hover{background:var(--gold-l);transform:translateY(-2px)}
+.cancel-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:11px 20px;border:1px solid var(--border);color:var(--cream);opacity:.5;border-radius:4px;text-transform:uppercase;transition:all .3s}
+.cancel-btn:hover{opacity:.8}
+
+/* ── VERSE OF DAY ── */
+.verse-of-day{background:linear-gradient(160deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:24px 28px;margin-bottom:28px;text-align:center}
+.vod-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:10px}
+.vod-text{font-family:var(--font-s);font-size:15px;font-style:italic;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.vod-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.5}
+
+/* ── POST CARDS ── */
+.posts-list{display:flex;flex-direction:column;gap:14px}
+.post-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:8px;padding:24px 26px;transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+.post-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.post-card:hover{border-color:var(--border-h);transform:translateY(-2px)}
+.post-card:hover::before{opacity:1}
+.post-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.post-author{display:flex;align-items:center;gap:8px}
+.post-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--navy3),rgba(201,168,76,.2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0}
+.post-name{font-family:var(--font-s);font-size:13px;font-weight:500;color:var(--cream)}
+.post-date{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.35;text-transform:uppercase}
+.post-admin-badge{font-family:var(--font-c);font-size:7px;letter-spacing:2px;padding:2px 8px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:10px;color:var(--gold);text-transform:uppercase}
+.post-title{font-family:var(--font-s);font-size:16px;font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1.5}
+.post-body{font-size:13.5px;font-weight:300;color:var(--cream);opacity:.6;line-height:2;margin-bottom:12px}
+.post-body.collapsed{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.post-tag{font-family:var(--font-c);font-size:8px;letter-spacing:2px;padding:3px 10px;border-radius:12px;text-transform:uppercase}
+.tag-meditation{background:rgba(122,158,126,.12);border:1px solid rgba(122,158,126,.25);color:var(--sage)}
+.tag-writing{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:var(--gold)}
+.tag-letter{background:rgba(122,158,126,.15);border:1px solid rgba(122,158,126,.3);color:var(--sage)}
+.post-actions{display:flex;gap:8px}
+.like-btn{font-size:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--cream);opacity:.5;transition:all .2s;display:flex;align-items:center;gap:4px}
+.like-btn:hover,.like-btn.liked{opacity:1;border-color:rgba(201,168,76,.4);color:var(--gold)}
+.more-btn{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.6;cursor:pointer;transition:all .2s;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:4px 10px;text-transform:uppercase}
+.more-btn:hover{opacity:1;background:rgba(201,168,76,.12)}
+.del-btn{font-size:11px;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.15);border-radius:4px;padding:4px 8px;color:var(--red);opacity:.5;transition:all .2s}
+.del-btn:hover{opacity:1}
+
+/* ── EMPTY STATE ── */
+.empty{text-align:center;padding:60px 20px}
+.empty-icon{font-size:40px;margin-bottom:14px;opacity:.35}
+.empty-text{font-size:14px;font-weight:300;color:var(--cream);opacity:.4;line-height:2}
+
+/* ── WEEKLY LETTER SPECIAL ── */
+.letter-card{background:linear-gradient(145deg,rgba(201,168,76,.06),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:32px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.letter-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px)}
+.letter-card::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.letter-num{font-family:var(--font-c);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:8px}
+.letter-title{font-family:var(--font-s);font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px}
+.letter-preview{font-size:13px;font-weight:300;color:var(--cream);opacity:.55;line-height:2;margin-bottom:14px}
+.letter-meta{display:flex;align-items:center;gap:14px}
+.letter-date{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.35;text-transform:uppercase}
+.letter-read{font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.7;text-transform:uppercase;border:1px solid rgba(201,168,76,.3);padding:5px 14px;border-radius:2px;transition:all .3s}
+.letter-read:hover{background:rgba(201,168,76,.12)}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:30px}
+.page-btn{width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-c);font-size:10px;border:1px solid var(--border);color:var(--cream);opacity:.45;transition:all .2s;background:rgba(255,255,255,.02)}
+.page-btn:hover,.page-btn.active{opacity:1;border-color:var(--gold);color:var(--gold)}
+
+/* ── LETTER FULL VIEW ── */
+.letter-overlay{position:fixed;inset:0;z-index:400;background:rgba(5,12,22,.92);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:24px}
+.letter-overlay.open{opacity:1;pointer-events:all}
+.letter-modal{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;width:min(720px,94vw);max-height:85vh;overflow-y:auto;transform:scale(.97);transition:transform .3s}
+.letter-overlay.open .letter-modal{transform:scale(1)}
+.letter-modal-header{padding:24px 28px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.letter-modal-title{font-family:var(--font-s);font-size:20px;font-weight:700;color:var(--cream);line-height:1.4}
+.modal-close{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--cream);opacity:.4;cursor:pointer;flex-shrink:0;transition:opacity .2s}
+.modal-close:hover{opacity:.9}
+.letter-modal-body{padding:28px;font-size:15px;font-weight:300;color:var(--cream);opacity:.75;line-height:2.4;white-space:pre-wrap}
+
+@media(max-width:600px){
+  .nav{padding:0 16px}
+  .content{padding:24px 16px 60px}
+  .tabs{padding:0 16px}
+  .form-row{grid-template-columns:1fr}
+  .board-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN MODAL ── -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-cross">✝</div>
+    <div class="login-title">True Faith Church 로그인</div>
+    <div class="login-sub">신도 확인 후 글을 쓸 수 있습니다</div>
+    <input class="login-input" type="text" id="loginName" placeholder="가입하신 이름">
+    <input class="login-input" type="email" id="loginEmail" placeholder="가입하신 이메일">
+    <button class="login-btn" onclick="doLogin()">✝ 로그인</button>
+    <div class="login-err" id="loginErr">이름 또는 이메일이 맞지 않습니다</div>
+    <span class="login-close" onclick="closeLogin()">취소</span>
+  </div>
+</div>
+
+<!-- ── LETTER MODAL ── -->
+<div class="letter-overlay" id="letterOverlay" onclick="closeLetterModal(event)">
+  <div class="letter-modal" id="letterModal">
+    <div class="letter-modal-header">
+      <div class="letter-modal-title" id="letterModalTitle"></div>
+      <div class="modal-close" onclick="closeLetterFull()">✕</div>
+    </div>
+    <div class="letter-modal-body" id="letterModalBody"></div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="/index.html" class="nav-logo">
+    <svg width="24" height="28" viewBox="0 0 88 100" fill="none">
+      <rect x="41" y="8" width="6" height="70" rx="3" fill="#C9A84C"/>
+      <rect x="14" y="26" width="60" height="6" rx="3" fill="#C9A84C"/>
+      <rect x="38" y="22" width="12" height="14" fill="#0B1622"/>
+      <text x="44" y="33" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="900">正</text>
+    </svg>
+    <div>
+      <div class="nav-logo-text">True Faith Church</div>
+      <span class="nav-logo-sub">共同體 廣場</span>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span id="userGreet" style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.7;display:none"></span>
+    <button id="loginNavBtn" onclick="openLogin()" style="font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:8px 16px;border:1px solid var(--border);border-radius:2px;color:var(--cream);opacity:.55;text-transform:uppercase;transition:all .3s;background:none">로그인</button>
+    <button id="logoutNavBtn" onclick="doLogout()" style="font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:8px 16px;border:1px solid var(--border);border-radius:2px;color:var(--cream);opacity:.4;text-transform:uppercase;transition:all .3s;background:none;display:none">로그아웃</button>
+    <a href="/index.html" class="nav-back">← 홈</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── */
+<div class="page-hero">
+  <div class="page-eyebrow">Community · 공동체 광장</div>
+  <h1 class="page-title">✝ True Faith Church 공동체 광장</h1>
+  <p class="page-sub">말씀을 나누고, 글을 쓰고, 함께 걷는 곳입니다<br>가입 신도는 누구나 글을 쓸 수 있습니다</p>
+</div>
+
+<!-- ── TABS ── -->
+<div class="tabs" id="tabsContainer">
+  <button class="tab-btn active" data-tab="meditation">📿 매일 묵상</button>
+  <button class="tab-btn" data-tab="writing">🙏 기도제목·감사일기</button>
+  <button class="tab-btn" data-tab="letter">✉️ 위클리 레터</button>
+</div>
+
+<!-- ══════════════════════════════
+   CONTENT AREA
+══════════════════════════════ -->
+<div class="content">
+
+  <!-- ── 매일 묵상 ── -->
+  <div id="tab-meditation" style="display:block">
+    <div class="verse-of-day">
+      <div class="vod-label">✝ 오늘의 말씀</div>
+      <div class="vod-text" id="todayVerse">"여호와는 나의 목자시니 내게 부족함이 없으리로다"</div>
+      <div class="vod-ref" id="todayRef">— 시편 23:1 —</div>
+    </div>
+
+    <div class="board-header">
+      <!-- 오늘의 말씀 박스 -->
+      <div id="today-verse-box" style="display:none;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:24px 28px;margin-bottom:24px;position:relative">
+        <div style="font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.6;margin-bottom:12px">✝ TODAY'S VERSE · 오늘의 말씀</div>
+        <div id="today-verse-text" style="font-family:var(--font-s);font-size:16px;font-style:italic;color:var(--cream);opacity:.85;line-height:2;margin-bottom:8px"></div>
+        <div id="today-verse-ref" style="font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6"></div>
+        <button id="verse-edit-btn" onclick="openVerseEdit()" style="display:none;position:absolute;top:16px;right:16px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:5px 12px;color:var(--gold);font-family:var(--font-c);font-size:8px;letter-spacing:2px;cursor:pointer">✏ 수정</button>
+        <div id="verse-edit-form" class="write-form" style="margin-top:16px">
+          <input class="form-input" id="verse-input" placeholder="오늘의 말씀 입력" style="margin-bottom:8px">
+          <input class="form-input" id="verse-ref-input" placeholder="출처 (예: 히브리서 12:2)" style="margin-bottom:12px">
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="cancel-btn" onclick="openVerseEdit()">취소</button>
+            <button class="submit-btn" onclick="saveVerseEdit()">✝ 저장</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-title-wrap">
+        <div class="board-eyebrow">Daily Meditation · 매일 묵상</div>
+        <div class="board-title">📿 매일 묵상 나눔</div>
+        <div class="board-desc">오늘의 말씀을 묵상하고 마음을 나눠주세요</div>
+      </div>
+      <button class="write-btn" id="writeMedBtn" onclick="toggleForm('meditation')">✝ 묵상 나누기</button>
+    </div>
+
+    <!-- Write Form -->
+    <div class="write-form" id="form-meditation">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">제목</label>
+          <input class="form-input" id="med-title" placeholder="오늘의 묵상 제목">
+        </div>
+        <div class="form-field">
+          <label class="form-label">관련 성경구절 (선택)</label>
+          <input class="form-input" id="med-verse" placeholder="예) 시편 23:1">
+        </div>
+      </div>
+      <textarea class="form-textarea" id="med-body" placeholder="오늘 말씀을 묵상하며 느낀 것을 자유롭게 나눠주세요..." rows="5"></textarea>
+      <div class="form-field" style="margin-bottom:14px">
+        <label class="form-label">작성자 이름 <span style="opacity:.45;font-size:11px">(비워두면 자동 설정)</span></label>
+        <input class="form-input" id="med-author" placeholder="예) 새벽이슬 / 은혜나눔이 / 바른믿음 성도">
+      </div>
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="toggleForm('meditation')">취소</button>
+        <button class="submit-btn" onclick="submitPost('meditation')">✝ 나누기</button>
+      </div>
+    </div>
+
+    <div class="posts-list" id="posts-meditation"></div>
+    <div class="pagination" id="page-meditation"></div>
+  </div>
+
+  <!-- ── 기도제목·감사일기 ── -->
+  <div id="tab-writing" style="display:none">
+    <div class="board-header">
+      <div class="board-title-wrap">
+        <div class="board-eyebrow">Prayer · 기도제목 & 감사일기</div>
+        <div class="board-title">🙏 기도제목·감사일기 모임</div>
+        <div class="board-desc">기도 제목을 나누고 감사한 일을 함께 기록합니다</div>
+      </div>
+      <button class="write-btn" id="writeWritingBtn" onclick="toggleForm('writing')">✝ 글쓰기</button>
+    </div>
+
+    <div class="write-form" id="form-writing">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">제목</label>
+          <input class="form-input" id="wri-title" placeholder="에세이 또는 일기 제목">
+        </div>
+        <div class="form-field">
+          <label class="form-label">분류</label>
+          <input class="form-input" id="wri-tag" placeholder="예) 기도제목 / 감사일기 / 간증">
+        </div>
+      </div>
+      <textarea class="form-textarea" id="wri-body" placeholder="느리게, 깊이 써주세요. 짧아도 괜찮습니다..." rows="7"></textarea>
+      <div class="form-field" style="margin-bottom:14px">
+        <label class="form-label">작성자 이름 <span style="opacity:.45;font-size:11px">(비워두면 자동 설정)</span></label>
+        <input class="form-input" id="wri-author" placeholder="예) 새벽이슬 / 은혜나눔이 / 바른믿음 성도">
+      </div>
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="toggleForm('writing')">취소</button>
+        <button class="submit-btn" onclick="submitPost('writing')">✝ 올리기</button>
+      </div>
+    </div>
+
+    <div class="posts-list" id="posts-writing"></div>
+    <div class="pagination" id="page-writing"></div>
+  </div>
+
+  <!-- ── 위클리 레터 ── -->
+  <div id="tab-letter" style="display:none">
+    <div class="board-header">
+      <div class="board-title-wrap">
+        <div class="board-eyebrow">Weekly Letter · 위클리 레터</div>
+        <div class="board-title">✉️ True Faith Church 위클리 레터</div>
+        <div class="board-desc">매주 True Faith Church 목사님의 말씀과 소식을 전합니다</div>
+      </div>
+      <button class="write-btn" id="writeLetterBtn" onclick="toggleForm('letter')" style="display:none">✝ 레터 작성</button>
+    </div>
+
+    <div class="write-form" id="form-letter">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">제목</label>
+          <input class="form-input" id="let-title" placeholder="위클리 레터 제목">
+        </div>
+        <div class="form-field">
+          <label class="form-label">발행 날짜</label>
+          <input class="form-input" id="let-date" type="date">
+        </div>
+      </div>
+      <textarea class="form-textarea" id="let-body" placeholder="이번 주 레터 내용을 작성해 주세요..." rows="10"></textarea>
+      <div class="form-field" style="margin-bottom:14px">
+        <label class="form-label">작성자 이름 <span style="opacity:.45;font-size:11px">(비워두면 Daniel Joung 목사)</span></label>
+        <input class="form-input" id="let-author" placeholder="Daniel Joung 목사">
+      </div>
+      <div class="form-actions">
+        <button class="cancel-btn" onclick="toggleForm('letter')">취소</button>
+        <button class="submit-btn" onclick="submitPost('letter')">✝ 발행하기</button>
+      </div>
+    </div>
+
+    <div id="posts-letter"></div>
+    <div class="pagination" id="page-letter"></div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+/* ══════════════════════
+   CONFIG
+══════════════════════ */
+const ADMIN_EMAIL = 'jinsiljoung@gmail.com';
+const ADMIN_PW    = 'joungmin2025';
+const USER_KEY    = 'jm_user';
+const GS_URL      = 'https://script.google.com/macros/s/AKfycbyrVvTToA12EsXS-jNFiVgTZNO2NH6awwtX_4Hk_VuFWrEu1xGwFvITlxUU3pIFz6Xi7w/exec';
+
+/* ══════════════════════
+   DAILY VERSE
+══════════════════════ */
+const VERSES = [
+  { text:'"여호와는 나의 목자시니 내게 부족함이 없으리로다"', ref:'시편 23:1' },
+  { text:'"너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라"', ref:'잠언 3:5' },
+  { text:'"두려워하지 말라 내가 너와 함께 함이라"', ref:'이사야 41:10' },
+  { text:'"내 영혼아 잠잠히 하나님만 바라라"', ref:'시편 62:5' },
+  { text:'"모든 것이 합력하여 선을 이루느니라"', ref:'로마서 8:28' },
+  { text:'"나를 강하게 하시는 자 안에서 내가 모든 것을 할 수 있느니라"', ref:'빌립보서 4:13' },
+  { text:'"너희는 가만히 있어 내가 하나님 됨을 알지어다"', ref:'시편 46:10' },
+];
+const dv = VERSES[new Date().getDay() % VERSES.length];
+document.getElementById('todayVerse').textContent = dv.text;
+document.getElementById('todayRef').textContent   = '— ' + dv.ref + ' —';
+
+/* ══════════════════════
+   AUTH
+══════════════════════ */
+let currentUser = JSON.parse(sessionStorage.getItem(USER_KEY) || 'null');
+
+function openLogin()  { document.getElementById('loginOverlay').classList.add('open'); }
+function closeLogin() { document.getElementById('loginOverlay').classList.remove('open'); }
+
+function doLogin() {
+  const name  = document.getElementById('loginName').value.trim();
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!name || !email) { showErr('이름과 이메일을 입력해 주세요'); return; }
+
+  // 관리자 체크
+  const isAdmin = email === ADMIN_EMAIL;
+
+  // 신도 체크 (Netlify Forms에 가입된 신도 — 로컬에서는 이메일 형식만 확인)
+  if (!email.includes('@')) { showErr('올바른 이메일을 입력해 주세요'); return; }
+
+  currentUser = { name, email, isAdmin };
+  sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
+  closeLogin();
+  updateUI();
+}
+
+function doLogout() {
+  currentUser = null;
+  sessionStorage.removeItem(USER_KEY);
+  updateUI();
+}
+
+function showErr(msg) {
+  const el = document.getElementById('loginErr');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+function updateUI() {
+  const greet   = document.getElementById('userGreet');
+  const loginBtn  = document.getElementById('loginNavBtn');
+  const logoutBtn = document.getElementById('logoutNavBtn');
+  const letterBtn = document.getElementById('writeLetterBtn');
+
+  if (currentUser) {
+    greet.textContent = currentUser.name + ' 바른믿음 성도';
+    greet.style.display = 'block';
+    loginBtn.style.display  = 'none';
+    logoutBtn.style.display = 'block';
+    // 위클리 레터 작성 버튼은 관리자만
+    if (letterBtn) letterBtn.style.display = currentUser.isAdmin ? 'block' : 'none';
+    const editBtn = document.getElementById('verse-edit-btn');
+    if (editBtn) editBtn.style.display = currentUser.isAdmin ? 'inline-block' : 'none';
+  } else {
+    greet.style.display = 'none';
+    loginBtn.style.display  = 'block';
+    logoutBtn.style.display = 'none';
+    if (letterBtn) letterBtn.style.display = 'none';
+  }
+  renderAll();
+}
+
+/* ══════════════════════
+   DATA STORAGE (Google Sheets)
+══════════════════════ */
+let postsCache = [];
+
+async function getPosts() {
+  try {
+    const res = await fetch(GS_URL + '?action=getPosts');
+    postsCache = await res.json();
+    return postsCache;
+  } catch(e) { console.error('글 불러오기 실패', e); return postsCache; }
+}
+
+async function savePosts_add(post) {
+  try {
+    const res = await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'addPost', post })
+    });
+    return await res.json();
+  } catch(e) { console.error('글 저장 실패', e); return { ok: false }; }
+}
+
+async function savePosts_delete(id) {
+  try {
+    await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'deletePost', id })
+    });
+  } catch(e) { console.error('글 삭제 실패', e); }
+}
+
+async function savePosts_like(id, email, action) {
+  try {
+    await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'likePost', id, email, likeAction: action })
+    });
+  } catch(e) { console.error('좋아요 실패', e); }
+}
+
+// 오늘의 말씀 관련
+async function getTodayVerse() {
+  try {
+    const res = await fetch(GS_URL + '?action=getTodayVerse');
+    return await res.json();
+  } catch(e) { return null; }
+}
+
+async function setTodayVerse(verse, ref) {
+  try {
+    await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'setTodayVerse', verse, ref })
+    });
+  } catch(e) { console.error('말씀 저장 실패', e); }
+}
+
+/* ══════════════════════
+   TABS
+══════════════════════ */
+window.switchTab = function switchTab(tab, btn) {
+  ['meditation','writing','letter'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+/* ══════════════════════
+   WRITE FORM
+══════════════════════ */
+window.toggleForm = function toggleForm(type) {
+  if (!currentUser) { openLogin(); return; }
+  if (type === 'letter' && !currentUser.isAdmin) {
+    alert('위클리 레터는 관리자만 작성할 수 있습니다 🙏');
+    return;
+  }
+  const form = document.getElementById('form-'+type);
+  form.classList.toggle('show');
+}
+
+window.submitPost = async function submitPost(type) {
+  if (!currentUser) { openLogin(); return; }
+
+  const titles  = { meditation:'med-title', writing:'wri-title', letter:'let-title' };
+  const bodies  = { meditation:'med-body',  writing:'wri-body',  letter:'let-body'  };
+  const extras  = { meditation:'med-verse', writing:'wri-tag',   letter:'let-date'  };
+  const authors = { meditation:'med-author', writing:'wri-author', letter:'let-author' };
+
+  const title = document.getElementById(titles[type]).value.trim();
+  const body  = document.getElementById(bodies[type]).value.trim();
+  const extra = document.getElementById(extras[type])?.value.trim() || '';
+  const authorInput = document.getElementById(authors[type])?.value.trim() || '';
+
+  if (!title) { alert('제목을 입력해 주세요'); return; }
+  if (!body)  { alert('내용을 입력해 주세요'); return; }
+
+  // 작성자: 입력란에 값이 있으면 그 이름 사용, 없으면 로그인 이름 사용
+  const authorName = authorInput || currentUser.name;
+
+  const post = {
+    id:      Date.now(),
+    type,
+    title,
+    body,
+    extra,
+    author:  authorName,
+    email:   currentUser.email,
+    isAdmin: authorInput ? false : currentUser.isAdmin,
+    date:    new Date().toISOString(),
+    likes:   0,
+    likedBy: []
+  };
+
+  const btn = document.querySelector('#form-'+type+' .submit-btn');
+  if (btn) { btn.textContent = '저장 중...'; btn.disabled = true; }
+
+  const result = await savePosts_add(post);
+
+  if (btn) { btn.textContent = '✝ 나누기'; btn.disabled = false; }
+
+  if (result.ok) {
+    document.getElementById(titles[type]).value = '';
+    document.getElementById(bodies[type]).value = '';
+    if (document.getElementById(extras[type])) document.getElementById(extras[type]).value = '';
+    if (document.getElementById(authors[type])) document.getElementById(authors[type]).value = '';
+    document.getElementById('form-'+type).classList.remove('show');
+    await renderAll();
+    alert('✝ 글이 등록되었습니다!');
+  } else {
+    alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+  }
+}
+
+/* ══════════════════════
+   RENDER
+══════════════════════ */
+async function renderAll() {
+  const posts = await getPosts();
+  renderPosts('meditation', posts);
+  renderPosts('writing', posts);
+  renderLetters(posts);
+  loadTodayVerse();
+}
+
+function renderPosts(type, posts) {
+  const all = (posts || postsCache).filter(p => p.type === type);
+  const container = document.getElementById('posts-'+type);
+  if (!container) return;
+
+  if (!all.length) {
+    container.innerHTML = `<div class="empty">
+      <div class="empty-icon">${type==='meditation'?'📿':'🙏'}</div>
+      <div class="empty-text">아직 글이 없습니다<br>첫 번째 ${type==='meditation'?'묵상':type==='writing'?'기도제목':'글'}을 나눠주세요 🙏</div>
+    </div>`;
+    return;
+  }
+
+  container.innerHTML = all.map(p => {
+    const date = new Date(p.date).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+    const initial = p.author.charAt(0);
+    const adminBadge = p.isAdmin ? `<span class="post-admin-badge">✝ 목사</span>` : '';
+    const tagClass = type === 'meditation' ? 'tag-meditation' : 'tag-writing';
+    const tagText  = p.extra || (type==='meditation' ? '묵상' : type==='writing' ? '기도·감사' : '레터');
+    const canDel   = currentUser && (currentUser.email === p.email || currentUser.isAdmin);
+    const canEdit  = currentUser && currentUser.email === p.email;
+    return `
+    <div class="post-card" id="post-${p.id}">
+      <div class="post-meta">
+        <div class="post-author">
+          <div class="post-avatar">${initial}</div>
+          <div class="post-name">${p.author}</div>
+          ${adminBadge}
+        </div>
+        <div class="post-date">${date}</div>
+      </div>
+      <div class="post-title" id="title-${p.id}">${p.title}</div>
+      <div class="post-body collapsed" id="body-${p.id}">${p.body.replace(/\n/g,'<br>')}</div>
+      <div id="edit-form-${p.id}" style="display:none;margin-top:12px">
+        <input class="form-input" id="edit-title-${p.id}" value="${p.title.replace(/"/g,'&quot;')}" style="margin-bottom:8px">
+        <textarea class="form-textarea" id="edit-body-${p.id}" rows="4" style="margin-bottom:8px">${p.body}</textarea>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="cancel-btn" onclick="cancelEdit(${p.id})">취소</button>
+          <button class="submit-btn" onclick="saveEdit(${p.id})">✝ 수정완료</button>
+        </div>
+      </div>
+      <div class="post-footer">
+        <span class="post-tag ${tagClass}">${tagText}</span>
+        <div class="post-actions">
+          <button class="more-btn" onclick="toggleMore(${p.id})">더보기</button>
+          <button class="like-btn ${p.likedBy&&p.likedBy.includes(currentUser?.email)?'liked':''}" onclick="toggleLike(${p.id})">
+            🙏 ${p.likes||0}
+          </button>
+          ${canEdit ? `<button class="more-btn" onclick="openEdit(${p.id})">✏ 수정</button>` : ''}
+          ${canDel ? `<button class="del-btn" onclick="deletePost(${p.id})">삭제</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderLetters(posts) {
+  const all = (posts || postsCache).filter(p => p.type === 'letter');
+  const container = document.getElementById('posts-letter');
+  if (!container) return;
+
+  if (!all.length) {
+    container.innerHTML = `<div class="empty">
+      <div class="empty-icon">✉️</div>
+      <div class="empty-text">아직 발행된 레터가 없습니다<br>첫 번째 위클리 레터를 기다립니다 🙏</div>
+    </div>`;
+    return;
+  }
+
+  container.innerHTML = all.map((p, i) => {
+    const date = p.extra || new Date(p.date).toLocaleDateString('ko-KR');
+    const preview = p.body.substring(0, 120) + (p.body.length > 120 ? '...' : '');
+    const canDel = currentUser?.isAdmin;
+    return `
+    <div class="letter-card">
+      <div class="letter-num">Vol.${all.length - i} · ${date}</div>
+      <div class="letter-title">${p.title}</div>
+      <div class="letter-preview">${preview}</div>
+      <div class="letter-meta">
+        <span class="letter-date">✝ Daniel Joung 목사</span>
+        <button class="letter-read" onclick="openLetter(${p.id})">전문 읽기 →</button>
+        ${canDel ? `<button class="del-btn" onclick="deletePost(${p.id})">삭제</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleMore(id) {
+  const el = document.getElementById('body-'+id);
+  const btn = el.parentElement.querySelector('.more-btn');
+  el.classList.toggle('collapsed');
+  btn.textContent = el.classList.contains('collapsed') ? '더보기' : '접기';
+}
+
+async function toggleLike(id) {
+  if (!currentUser) { openLogin(); return; }
+  const post = postsCache.find(p => p.id === id);
+  if (!post) return;
+  post.likedBy = post.likedBy || [];
+  const liked = post.likedBy.includes(currentUser.email);
+  if (liked) {
+    post.likedBy = post.likedBy.filter(e => e !== currentUser.email);
+    post.likes = Math.max(0, (post.likes||1) - 1);
+  } else {
+    post.likedBy.push(currentUser.email);
+    post.likes = (post.likes||0) + 1;
+  }
+  await savePosts_like(id, currentUser.email, liked ? 'unlike' : 'like');
+  renderPosts('meditation', postsCache);
+  renderPosts('writing', postsCache);
+  renderLetters(postsCache);
+}
+
+function openEdit(id) {
+  document.getElementById('edit-form-'+id).style.display = 'block';
+  document.getElementById('body-'+id).style.display = 'none';
+}
+
+function cancelEdit(id) {
+  document.getElementById('edit-form-'+id).style.display = 'none';
+  document.getElementById('body-'+id).style.display = '';
+}
+
+async function saveEdit(id) {
+  const newTitle = document.getElementById('edit-title-'+id).value.trim();
+  const newBody  = document.getElementById('edit-body-'+id).value.trim();
+  if (!newTitle) { alert('제목을 입력해 주세요'); return; }
+  if (!newBody)  { alert('내용을 입력해 주세요'); return; }
+  try {
+    const res = await fetch(GS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'editPost', id, title: newTitle, body: newBody })
+    });
+    const result = await res.json();
+    if (result.ok) {
+      await renderAll();
+      alert('✝ 수정되었습니다!');
+    } else { alert('수정 실패. 다시 시도해 주세요'); }
+  } catch(e) { alert('오류가 발생했습니다'); }
+}
+
+async function deletePost(id) {
+  if (!confirm('이 글을 삭제하시겠습니까?')) return;
+  await savePosts_delete(id);
+  postsCache = postsCache.filter(p => p.id !== id);
+  renderPosts('meditation', postsCache);
+  renderPosts('writing', postsCache);
+  renderLetters(postsCache);
+}
+
+function openLetter(id) {
+  const post = postsCache.find(p => p.id === id);
+  if (!post) return;
+  document.getElementById('letterModalTitle').textContent = post.title;
+  document.getElementById('letterModalBody').innerHTML = post.body.replace(/\n/g,'<br>');
+  document.getElementById('letterOverlay').classList.add('open');
+}
+window.closeLetterFull = function closeLetterFull()  { document.getElementById('letterOverlay').classList.remove('open'); }
+function closeLetterModal(e){ if(e.target===document.getElementById('letterOverlay')) closeLetterFull(); }
+
+/* ══════════════════════
+   오늘의 말씀
+══════════════════════ */
+async function loadTodayVerse() {
+  const v = await getTodayVerse();
+  const box = document.getElementById('today-verse-box');
+  if (!box) return;
+  if (v && v.verse) {
+    document.getElementById('today-verse-text').textContent = v.verse;
+    document.getElementById('today-verse-ref').textContent = '— ' + v.ref + ' —';
+    box.style.display = 'block';
+  }
+  // 관리자면 수정 버튼 표시
+  // 수정 버튼은 updateUI에서 처리
+}
+
+window.openVerseEdit = function() {
+  document.getElementById('verse-edit-form').classList.toggle('show');
+}
+
+window.saveVerseEdit = async function() {
+  const verse = document.getElementById('verse-input').value.trim();
+  const ref   = document.getElementById('verse-ref-input').value.trim();
+  if (!verse || !ref) { alert('말씀과 출처를 입력해 주세요'); return; }
+  await setTodayVerse(verse, ref);
+  document.getElementById('verse-edit-form').classList.remove('show');
+  loadTodayVerse();
+  alert('✝ 오늘의 말씀이 업데이트되었습니다!');
+}
+
+// Init
+document.addEventListener('keydown', e => { if(e.key==='Escape') { closeLogin(); closeLetterFull(); } });
+
+// 탭 클릭 이벤트 - 안정적인 이벤트리스너 방식
+document.addEventListener('DOMContentLoaded', function() {
+  var tabBtns = document.querySelectorAll('.tab-btn');
+
+  function activateTab(tab) {
+    ['meditation','writing','letter'].forEach(function(t) {
+      var el = document.getElementById('tab-'+t);
+      if (el) el.style.display = t === tab ? 'block' : 'none';
+    });
+    tabBtns.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+    });
+    renderAll();
+  }
+
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = this.getAttribute('data-tab');
+      if (tab) activateTab(tab);
+    });
+  });
+
+  // 홈페이지에서 넘어올 때 해당 탭 자동 열기
+  var savedTab = localStorage.getItem('jm_tab');
+  if (savedTab && ['meditation','writing','letter'].indexOf(savedTab) !== -1) {
+    activateTab(savedTab);
+    localStorage.removeItem('jm_tab'); // 한 번 쓰고 삭제
+    // 탭 위치로 스크롤
+    setTimeout(function() {
+      var tabsEl = document.getElementById('tabsContainer');
+      if (tabsEl) tabsEl.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 300);
+  }
+});
+
+updateUI();
+renderAll();
+</script>
+</body>
+</html>

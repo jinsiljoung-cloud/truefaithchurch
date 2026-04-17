@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# 관리자 페이지 제외
+Disallow: /admin.html
+
+# 사이트맵
+Sitemap: https://truefaithchurch.co.kr/sitemap.xml

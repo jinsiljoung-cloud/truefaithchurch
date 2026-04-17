@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 홈페이지 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 10분 예배 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/worship.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 말씀 목록 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermons.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 찬양 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/praise.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 공동체 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/community.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 사역자 소개 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/about.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 설교 개별 페이지 -->
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-2.html</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-3.html</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-4.html</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-5.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-6.html</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-7.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://truefaithchurch.co.kr/sermon-8.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

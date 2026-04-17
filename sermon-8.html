@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 끝까지 믿음을 지키라</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199;transition:width .1s}
+
+/* HERO */
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.55}
+
+/* TTS PLAYER */
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .25s;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-btn.play:hover{transform:scale(1.08)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%;transition:width .3s}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-range{-webkit-appearance:none;width:80px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer}
+.tts-range::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CONTENT */
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5}
+
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+
+/* CREED */
+.creed-box{background:linear-gradient(160deg,rgba(201,168,76,.08),rgba(201,168,76,.02));border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:clamp(28px,5vw,48px);text-align:center;margin:40px 0;position:relative;overflow:hidden}
+.creed-box::before{content:'✝';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:160px;color:rgba(201,168,76,.04);pointer-events:none}
+.creed-label{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:18px}
+.creed-text{font-family:var(--font-s);font-size:clamp(14px,2.5vw,17px);color:var(--cream);line-height:3.2;letter-spacing:.5px}
+.creed-amen{font-family:var(--font-c);font-size:15px;letter-spacing:10px;color:var(--gold);opacity:.7;margin-top:20px}
+
+/* SHARE / BACK */
+.share-bar{position:fixed;bottom:32px;right:32px;display:flex;flex-direction:column;gap:10px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .3s;backdrop-filter:blur(8px)}
+.share-btn:hover{background:rgba(201,168,76,.25);transform:scale(1.08)}
+
+/* NAV LINKS */
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px;transition:all .3s}
+.sn-btn:hover{opacity:1;background:rgba(201,168,76,.08)}
+
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}.share-bar{bottom:20px;right:16px}}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">끝까지 믿음을 지키라</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">✝ 2026년 4월 15일 수요일</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 5분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"끝까지 견디는 자는 구원을 얻으리라"</div>
+    <div class="verse-ref">— 마태복음 10:22 —</div>
+  </div>
+
+  <!-- TTS PLAYER -->
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 5분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()" title="처음부터">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()" title="정지">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 5:00</span>
+    </div>
+    <div class="tts-settings">
+      <span style="font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.6;text-transform:uppercase">속도</span>
+      <input class="tts-range" type="range" id="ttsRate" min="0.5" max="1.2" step="0.05" value="0.85" oninput="updateRate(this.value)">
+      <span class="tts-time" id="ttsRateVal">0.78x</span>
+      <div class="tts-status" id="ttsStatus">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+            <div class="sermon-section">
+    <div class="sermon-text">
+      <p>잠깐 자신에게 솔직하게 물어보십시오.</p>
+      <p><span class="bold">요즘 믿음이 흔들린 적이 있으십니까?</span><br>
+      기도가 잘 안 되고, 말씀이 잘 안 읽히고, 하나님이 멀게 느껴진 적이 있으십니까?</p>
+      <p>있다면, 오늘 이 말씀은 바로 당신을 위한 것입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"끝까지 견디는 자는 구원을 얻으리라"</div>
+        <div class="v-ref">— 마태복음 10:22 —</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">배경 · 이 말씀은 어디서 나왔는가</div>
+    <div class="sermon-text">
+      <p>예수님이 열두 제자를 처음 세상으로 파송하시면서 하신 말씀입니다.<br>예수님은 아름다운 말씀만 하지 않으셨습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"보라 내가 너희를 보냄이 양을 이리 가운데로 보냄과 같도다"</div>
+        <div class="v-ref">— 마태복음 10:16 —</div>
+      </div>
+      <p>예수님은 힘들 것을 아셨습니다. 그래서 미리 말씀하셨습니다.<br>
+      <span class="emphasis">힘들 것이다. 그러나 끝까지 견디는 자는 구원을 얻으리라.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">1부 · 믿음을 흔드는 것들</div>
+    <div class="sermon-text">
+      <p>지금 우리의 믿음을 흔드는 것은 무엇입니까?</p>
+      <p><span class="bold">첫째, 바쁨.</span> 너무 바빠서 기도할 시간이 없습니다. 믿음이 없어서가 아닙니다. 그냥 바쁩니다.</p>
+      <p><span class="bold">둘째, 지침.</span> 기도해도 응답이 없는 것 같습니다. 착하게 살려고 했는데 오히려 손해 보는 것 같습니다.</p>
+      <p><span class="bold">셋째, 스마트폰.</span> 쏟아지는 정보, 끊임없는 알림. 그 속에서 하나님의 음성은 점점 작아집니다.</p>
+      <div class="verse-box">
+        <div class="v-text">가시덤불에 뿌려진 씨는 세상의 염려와 재물의 유혹에 막혀<br>열매를 맺지 못한다.</div>
+        <div class="v-ref">— 마태복음 13장 씨 뿌리는 비유 —</div>
+      </div>
+      <p><span class="emphasis">지금 내 믿음 주변에 가시덤불이 있지는 않습니까?</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">2부 · 끝까지라는 말의 의미</div>
+    <div class="sermon-text">
+      <p>끝까지의 헬라어 원어는 <span class="bold">휘포메네(ὑπομένω)</span>입니다.<br>단순히 버틴다는 뜻이 아닙니다. <span class="bold">그 자리를 지킨다</span>는 뜻입니다.</p>
+      <p>폭풍이 올 때 나무는 달아나지 않습니다.<br>뿌리를 더 깊이 박고 그 자리를 지킵니다.<br>
+      <span class="emphasis">바람이 불수록 뿌리가 더 깊어집니다.</span></p>
+      <p>믿음은 느낌이 아닙니다.<br>기도가 잘 안 돼도 기도의 자리를 지키는 것.<br>말씀이 잘 안 읽혀도 말씀 앞에 앉아 있는 것.<br>
+      <span class="bold">보이지 않아도 하나님이 계신다는 것을 붙드는 것.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">3부 · 끝까지 견딘 사람들</div>
+    <div class="sermon-text">
+      <p><span class="bold">욥.</span> 모든 것을 잃었습니다. 재산도, 자녀도, 건강도. 그러나 말했습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"그가 나를 죽이실지라도 나는 그를 의뢰하리라"</div>
+        <div class="v-ref">— 욥기 13:15 —</div>
+      </div>
+      <p><span class="bold">다윗.</span> 굴속에 숨어 도망자로 살면서도 선포했습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"내 영광아 깰지어다 내가 새벽을 깨우리로다"</div>
+        <div class="v-ref">— 시편 57:8 —</div>
+      </div>
+      <p>그들은 특별한 사람이 아니었습니다. 우리와 같은 연약한 사람들이었습니다.<br>
+      <span class="emphasis">그러나 끝까지 하나님 앞에 머물렀습니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">4부 · 바른믿음교회가 말하는 정착의 믿음</div>
+    <div class="sermon-text">
+      <p>바른믿음교회의 다섯 가지 삶의 방식 중 하나가 <span class="bold">정착(定着) — 뿌리를 내려라</span>입니다.</p>
+      <p>정착은 장소의 정착만이 아닙니다. 믿음의 정착입니다.<br>흔들리는 세상에서 하나님께 뿌리를 내리는 것.</p>
+      <div class="verse-box">
+        <div class="v-text">복 있는 사람은 시냇가에 심은 나무 같다.<br>가뭄이 와도 마르지 않는 이유 — 뿌리가 물에 닿아 있기 때문.</div>
+        <div class="v-ref">— 시편 1:3 —</div>
+      </div>
+      <p><span class="emphasis">끝까지 견디는 자는 구원을 얻으리라.<br>이 구원은 지금 이 자리에서 하나님 안에 머무는 것, 그 자체입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 · 내일 아침 1분</div>
+    <div class="sermon-text">
+      <p>내일 아침, 눈을 뜨면 <span class="bold">딱 1분만</span> 하나님께 드리십시오.</p>
+      <p>화면을 열기 전에. 알림을 확인하기 전에. 커피를 마시기 전에.</p>
+      <div class="verse-box">
+        <div class="v-text">"하나님, 오늘도 당신 앞에 섰습니다.<br>오늘 하루도 끝까지 당신을 붙들게 하십시오."</div>
+        <div class="v-ref">— 아멘 —</div>
+      </div>
+      <p><span class="bold">그 1분이, 끝까지 견디는 삶의 시작입니다.</span></p>
+      <p>끝까지 견디는 자는 구원을 얻으리라.<br>
+      <span class="emphasis">당신이 바로 그 사람입니다.</span></p>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.7;text-align:center;margin-top:24px">
+        느리게 · 바르게 · 함께 · 아멘
+      </p>
+    </div>
+  </div>
+
+<div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+</div>
+
+<audio id="sermonAudio" src="sermon.mp3" preload="auto"></audio>
+
+<script>
+const SERMON_TEXT = `끝까지 믿음을 지키라.
+
+오늘 수요 저녁, 이 말씀을 드립니다.
+
+잠깐 자신에게 솔직하게 물어보십시오.
+
+요즘 믿음이 흔들린 적이 있으십니까? 기도가 잘 안 되고, 말씀이 잘 안 읽히고, 교회도 멀어진 것 같고, 하나님이 멀게 느껴진 적이 있으십니까?
+
+있다면, 오늘 이 말씀은 바로 당신을 위한 것입니다.
+
+끝까지 견디는 자는 구원을 얻으리라. 마태복음 10장 22절.
+
+배경. 이 말씀은 어디서 나왔는가.
+
+이 말씀은 예수님이 열두 제자를 처음 세상으로 파송하시면서 하신 말씀입니다. 예수님은 제자들에게 아름다운 말씀만 하지 않으셨습니다.
+
+보라 내가 너희를 보냄이 양을 이리 가운데로 보냄과 같도다. 마태복음 10장 16절.
+
+양이 이리 가운데로 들어가는 것입니다. 위험하고, 힘들고, 두렵습니다. 예수님은 이것을 알고 계셨습니다. 그래서 미리 말씀하셨습니다. 힘들 것이다. 그러나 끝까지 견디는 자는 구원을 얻으리라.
+
+1부. 믿음을 흔드는 것들.
+
+오늘 우리의 믿음을 흔드는 것은 무엇입니까?
+
+옛날에는 믿음을 지키기 위해 목숨을 걸어야 했습니다. 그런데 지금은 죽이는 사람이 없는데도 믿음이 흔들립니다.
+
+왜입니까?
+
+첫 번째는 바쁨입니다. 너무 바빠서 기도할 시간이 없습니다. 너무 바빠서 말씀을 읽을 시간이 없습니다. 믿음이 없어서가 아닙니다. 그냥 바쁩니다.
+
+두 번째는 지침입니다. 기도해도 응답이 없는 것 같습니다. 믿음으로 살려고 했는데 오히려 더 힘든 것 같습니다. 착하게 살려고 했는데 오히려 손해 보는 것 같습니다.
+
+세 번째는 스마트폰과 디지털 세상입니다. 하루 종일 화면 앞에 있습니다. 쏟아지는 정보, 자극적인 콘텐츠, 끊임없는 알림. 그 속에서 하나님의 음성은 점점 작아집니다.
+
+예수님은 이것을 씨 뿌리는 비유로 설명하셨습니다. 가시덤불에 뿌려진 씨는 세상의 염려와 재물의 유혹에 막혀 열매를 맺지 못한다고 하셨습니다.
+
+가시덤불은 나쁜 것이 아닙니다. 그냥 세상의 것들입니다. 그런데 그것들이 씨를 막습니다. 지금 내 믿음 주변에 가시덤불이 있지는 않습니까?
+
+2부. 끝까지라는 말의 의미.
+
+끝까지 견디는 자는 구원을 얻으리라.
+
+끝까지. 이 단어가 오늘 핵심입니다.
+
+헬라어 원어로는 휘포메네입니다. 단순히 버틴다는 뜻이 아닙니다. 그 안에 머문다, 그 자리를 지킨다는 뜻입니다.
+
+폭풍이 올 때 나무가 어떻게 합니까? 달아나지 않습니다. 뿌리를 더 깊이 박고 그 자리를 지킵니다. 바람이 불수록 뿌리가 더 깊어집니다.
+
+끝까지 견딘다는 것은 이것입니다. 상황이 어려워도 하나님 앞에서 달아나지 않는 것입니다. 기도가 잘 안 돼도 기도의 자리를 지키는 것입니다. 말씀이 잘 안 읽혀도 말씀 앞에 앉아 있는 것입니다.
+
+믿음은 느낌이 아닙니다. 기분이 좋을 때만 믿고, 기분이 나쁠 때는 안 믿는 것이 믿음이 아닙니다. 보이지 않아도, 느껴지지 않아도, 하나님이 계신다는 것을 붙드는 것이 믿음입니다.
+
+3부. 끝까지 견딘 사람들.
+
+성경에는 끝까지 견딘 사람들이 있습니다.
+
+욥을 생각해 보십시오. 모든 것을 잃었습니다. 재산도 잃고, 자녀도 잃고, 건강도 잃었습니다. 친구들은 네가 죄를 지었기 때문이라고 했습니다. 아내는 하나님을 저주하고 죽으라고 했습니다.
+
+그런데 욥은 말했습니다. 그가 나를 죽이실지라도 나는 그를 의뢰하리라. 욥기 13장 15절.
+
+하나님이 나를 죽이실지라도 나는 하나님을 떠나지 않겠다는 것입니다.
+
+다윗을 생각해 보십시오. 사울 왕에게 쫓겨 광야를 떠돌았습니다. 굴속에 숨었습니다. 그러나 그는 그 굴속에서 시편을 썼습니다.
+
+내 영광아 깰지어다 내가 새벽을 깨우리로다.
+
+굴속에서 새벽을 깨우겠다고 선포했습니다. 상황이 나를 만드는 것이 아니라 내가 상황을 선택하는 것입니다.
+
+그들은 특별한 사람이 아니었습니다. 우리와 같은 연약한 사람들이었습니다. 그러나 끝까지 하나님 앞에 머물렀습니다.
+
+4부. 바른믿음교회가 말하는 정착의 믿음.
+
+바른믿음교회의 다섯 가지 삶의 방식 중 하나가 정착입니다. 뿌리를 내려라.
+
+정착은 장소의 정착만이 아닙니다. 믿음의 정착입니다.
+
+흔들리는 세상에서 하나님께 뿌리를 내리는 것. 빠른 세상이 흔들어도 하나님 앞에서 달아나지 않는 것. 느낌이 없어도 기도의 자리를 지키는 것.
+
+시편 1편은 말합니다. 복 있는 사람은 시냇가에 심은 나무 같다. 가뭄이 와도 마르지 않는 이유가 무엇입니까? 뿌리가 물에 닿아 있기 때문입니다.
+
+끝까지 견디는 자는 구원을 얻으리라. 이 구원은 단순히 천국 가는 것만이 아닙니다. 지금 이 자리에서 하나님 안에 머무는 것, 그 자체가 이미 구원입니다.
+
+마무리.
+
+오늘 저녁, 이 수요 예배를 드린 여러분께 한 가지 부탁드립니다.
+
+내일 아침, 눈을 뜨면 딱 1분만 하나님께 드리십시오.
+
+화면을 열기 전에. 알림을 확인하기 전에. 커피를 마시기 전에. 1분만, 이 짧은 기도를 드리십시오.
+
+하나님, 오늘도 당신 앞에 섰습니다. 오늘 하루도 끝까지 당신을 붙들게 하십시오.
+
+그 1분이, 끝까지 견디는 삶의 시작입니다.
+
+끝까지 견디는 자는 구원을 얻으리라.
+
+당신이 바로 그 사람입니다.
+
+느리게, 바르게, 함께. 아멘.`;
+
+// ── MP3 플레이어 (sermon.mp3) ──
+let sermonAudio;
+let isPlaying = false;
+let isPaused = false;
+let elapsedTime = 0;
+let startTime = 0;
+let timerInterval = null;
+let currentRate = 1.0; // MP3는 속도 고정
+const TOTAL_SECS = 600;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollHeight > 0) document.getElementById('progressBar').style.width = (scrollTop / scrollHeight * 100) + '%';
+});
+
+window.addEventListener('load', () => {
+  sermonAudio = document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent = '재생 준비 ✅';
+
+  sermonAudio.addEventListener('timeupdate', () => {
+    if(sermonAudio.duration){
+      const pct = (sermonAudio.currentTime / sermonAudio.duration) * 100;
+      document.getElementById('ttsProgressFill').style.width = pct + '%';
+      const m = Math.floor(sermonAudio.currentTime / 60);
+      const s = Math.floor(sermonAudio.currentTime % 60);
+      document.getElementById('ttsCurrentTime').textContent = m + ':' + String(s).padStart(2,'0');
+    }
+  });
+
+  sermonAudio.addEventListener('ended', () => {
+    isPlaying = false; isPaused = false;
+    document.getElementById('playBtn').textContent = '▶';
+    document.getElementById('ttsDot').classList.remove('on');
+    document.getElementById('ttsStatusText').textContent = '낭독 완료 🙏';
+    document.getElementById('ttsProgressFill').style.width = '100%';
+    stopTimer();
+  });
+});
+
+function ttsToggle() {
+  if (!isPlaying && !isPaused) { ttsPlay(); }
+  else if (isPlaying) { ttsPause(); }
+  else if (isPaused) { ttsResume(); }
+}
+function ttsPlay() {
+  sermonAudio.currentTime = 0;
+  sermonAudio.play().catch(e => console.log('play error', e));
+  isPlaying = true; isPaused = false;
+  document.getElementById('playBtn').textContent = '⏸';
+  document.getElementById('ttsDot').classList.add('on');
+  document.getElementById('ttsStatusText').textContent = '낭독 중 ✝';
+  startTimer();
+}
+function ttsPause() {
+  sermonAudio.pause();
+  isPlaying = false; isPaused = true;
+  document.getElementById('playBtn').textContent = '▶';
+  document.getElementById('ttsDot').classList.remove('on');
+  document.getElementById('ttsStatusText').textContent = '일시정지';
+  stopTimer();
+}
+function ttsResume() {
+  sermonAudio.play();
+  isPlaying = true; isPaused = false;
+  document.getElementById('playBtn').textContent = '⏸';
+  document.getElementById('ttsDot').classList.add('on');
+  document.getElementById('ttsStatusText').textContent = '낭독 중 ✝';
+  startTimer();
+}
+function ttsStop() {
+  sermonAudio.pause(); sermonAudio.currentTime = 0;
+  isPlaying = false; isPaused = false; elapsedTime = 0;
+  document.getElementById('playBtn').textContent = '▶';
+  document.getElementById('ttsDot').classList.remove('on');
+  document.getElementById('ttsStatusText').textContent = '재생 준비 ✅';
+  document.getElementById('ttsProgressFill').style.width = '0%';
+  document.getElementById('ttsCurrentTime').textContent = '0:00';
+  stopTimer();
+}
+function ttsRestart() { ttsStop(); setTimeout(() => ttsPlay(), 300); }
+function startTimer() {
+  startTime = Date.now() - (elapsedTime * 1000);
+  timerInterval = setInterval(() => {
+    elapsedTime = (Date.now() - startTime) / 1000;
+    const m = Math.floor(elapsedTime / 60);
+    const s = Math.floor(elapsedTime % 60);
+    document.getElementById('ttsCurrentTime').textContent = m + ':' + String(s).padStart(2,'0');
+  }, 500);
+}
+function stopTimer() { clearInterval(timerInterval); }
+function updateRate(val) {
+  // MP3는 속도 조절 없음
+  document.getElementById('ttsRateVal').textContent = '1.00x';
+}
+function ttsSeek(e) {
+  if(sermonAudio.duration){
+    const pct = e.offsetX / e.currentTarget.offsetWidth;
+    sermonAudio.currentTime = pct * sermonAudio.duration;
+  }
+}
+function shareSermon() {
+  if (navigator.share) { navigator.share({title:'주님 안에서 쉬라',text:'True Faith Church 말씀 — 주님 안에서 쉬라',url:window.location.href}); }
+  else { navigator.clipboard.writeText(window.location.href); alert('링크가 복사되었습니다!'); }
+}
+window.addEventListener('beforeunload', () => { if(sermonAudio) sermonAudio.pause(); });
+</script>
+</body>
+</html>
