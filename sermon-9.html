@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 내게 능력 주시는 자 안에서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199;transition:width .1s}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.6;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.55}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream);letter-spacing:1px}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .25s;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-btn.play:hover{transform:scale(1.08)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%;transition:width .3s}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.5}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px;transition:all .3s}
+.sn-btn:hover{opacity:1;background:rgba(201,168,76,.08)}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all .3s}
+.share-btn:hover{background:rgba(201,168,76,.25);transform:scale(1.08)}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">내게 능력 주시는 자 안에서</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">✝ 2026년 4월 19일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 5분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"</div>
+    <div class="verse-ref">— 빌립보서 4:13 —</div>
+  </div>
+
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 5분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()" title="처음부터">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()" title="정지">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 5:00</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status" id="ttsStatus">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>오늘 주일 아침, 빌립보서 4장 말씀을 함께 나눕니다.</p>
+      <p><span class="bold">내가 어떠한 형편에 있든지 자족하기를 배웠노라.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"내가 어떠한 형편에 있든지 자족하기를 배웠노라"</div>
+        <div class="v-ref">— 빌립보서 4:11 —</div>
+      </div>
+      <p>이 말씀을 쓴 사람은 지금 감옥 안에 있었습니다. 바울은 갇혀 있었습니다. 자유롭지 않았습니다. 그런데 그는 말합니다. <span class="emphasis">자족하기를 배웠노라.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">1부 · 자족은 타고나는 것이 아닙니다</div>
+    <div class="sermon-text">
+      <p>자족하기를 <span class="bold">배웠노라.</span> 바울은 자족이 배워야 하는 것이라고 말합니다.</p>
+      <p>우리는 가끔 이런 생각을 합니다. 나는 원래 불평이 많은 사람이야. 나는 원래 감사를 못하는 사람이야.</p>
+      <p>그런데 바울은 말합니다. <span class="emphasis">자족은 타고나는 것이 아닙니다. 배우는 것입니다.</span></p>
+      <p>잘 사는 법도 배워야 하고, 부족한 가운데 사는 법도 배워야 합니다. 인생의 어떤 자리에서도 하나님 안에 머무는 법을 배우는 것, 그것이 신앙입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">2부 · 배부름과 배고픔, 풍부와 궁핍</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"나는 비천에 처할 줄도 알고 풍부에 처할 줄도 알아 모든 일 곧 배부름과 배고픔과 풍부와 궁핍에도 처할 줄 아는 일체의 비결을 배웠노라"</div>
+        <div class="v-ref">— 빌립보서 4:12 —</div>
+      </div>
+      <p>바울은 두 가지 상황을 모두 경험했습니다. 풍족할 때도 있었고, 아무것도 없을 때도 있었습니다.</p>
+      <p>신앙은 상황이 좋을 때만 유지되는 것이 아닙니다. <span class="emphasis">오히려 상황이 어려울 때, 그 자리에서도 하나님과 함께 있는 것이 신앙입니다.</span></p>
+      <p>바른믿음교회가 말하는 <span class="bold">정착(定着) — 뿌리를 내려라.</span> 가뭄이 와도 뿌리가 물에 닿아 있으면 마르지 않습니다. 어떤 형편에서도 하나님께 뿌리를 내리는 것, 그것이 정착의 믿음입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">3부 · 능력 주시는 자 안에서</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"</div>
+        <div class="v-ref">— 빌립보서 4:13 —</div>
+      </div>
+      <p>이 말씀을 오해하면 안 됩니다. 내가 능력자다, 내가 뭐든 할 수 있다는 뜻이 아닙니다.</p>
+      <p><span class="bold">능력 주시는 자 안에서.</span> 핵심은 <span class="emphasis">안에서</span>입니다. 하나님 안에 있을 때, 내 힘이 아니라 하나님의 힘으로 살아갈 수 있다는 것입니다.</p>
+      <p>혼자서는 안 됩니다. 그러나 <span class="emphasis">하나님 안에서는 됩니다.</span> 내 자리에서 버티는 것도, 감사하는 것도, 포기하지 않는 것도, 모두 하나님이 주시는 능력으로 가능합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 · 이번 주 이 한 마디를 붙드십시오</div>
+    <div class="sermon-text">
+      <p>오늘 어떤 형편에 있든지, 이 말씀을 마음에 새기십시오.</p>
+      <p>잘 안 되는 것 같아도, 하나님 안에서라면 됩니다.<br>
+      혼자인 것 같아도, 하나님 안에 있으면 혼자가 아닙니다.<br>
+      부족한 것 같아도, 하나님 안에서 자족을 배울 수 있습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"오늘도 능력 주시는 자 안에서 삽니다."</div>
+        <div class="v-ref">— 아멘 —</div>
+      </div>
+      <p><span class="emphasis">이번 한 주, 아침에 눈 뜨면 이 한 마디를 고백하십시오.</span></p>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.7;text-align:center;margin-top:24px">
+        느리게 · 바르게 · 함께 · 아멘
+      </p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-8.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+  </div>
+</div>
+
+<audio id="sermonAudio" src="sermon.mp3" preload="auto"></audio>
+
+<script>
+let sermonAudio, isPlaying=false, isPaused=false, elapsedTime=0, startTime=0, timerInterval=null;
+
+window.addEventListener('scroll', () => {
+  const st = document.documentElement.scrollTop;
+  const sh = document.documentElement.scrollHeight - window.innerHeight;
+  if(sh > 0) document.getElementById('progressBar').style.width = (st/sh*100) + '%';
+});
+
+window.addEventListener('load', () => {
+  sermonAudio = document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent = '재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate', () => {
+    if(sermonAudio.duration){
+      const pct = (sermonAudio.currentTime / sermonAudio.duration) * 100;
+      document.getElementById('ttsProgressFill').style.width = pct + '%';
+      const m = Math.floor(sermonAudio.currentTime/60);
+      const s = Math.floor(sermonAudio.currentTime%60);
+      document.getElementById('ttsCurrentTime').textContent = m+':'+String(s).padStart(2,'0');
+    }
+  });
+  sermonAudio.addEventListener('ended', () => {
+    isPlaying=false; isPaused=false;
+    document.getElementById('playBtn').textContent = '▶';
+    document.getElementById('ttsDot').classList.remove('on');
+    document.getElementById('ttsStatusText').textContent = '낭독 완료 🙏';
+    document.getElementById('ttsProgressFill').style.width = '100%';
+    clearInterval(timerInterval);
+  });
+});
+
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){
+  sermonAudio.currentTime=0; sermonAudio.play().catch(e=>console.log(e));
+  isPlaying=true; isPaused=false;
+  document.getElementById('playBtn').textContent='⏸';
+  document.getElementById('ttsDot').classList.add('on');
+  document.getElementById('ttsStatusText').textContent='낭독 중 ✝';
+  startTimer();
+}
+function ttsPause(){
+  sermonAudio.pause(); isPlaying=false; isPaused=true;
+  document.getElementById('playBtn').textContent='▶';
+  document.getElementById('ttsDot').classList.remove('on');
+  document.getElementById('ttsStatusText').textContent='일시정지';
+  clearInterval(timerInterval);
+}
+function ttsResume(){
+  sermonAudio.play(); isPlaying=true; isPaused=false;
+  document.getElementById('playBtn').textContent='⏸';
+  document.getElementById('ttsDot').classList.add('on');
+  document.getElementById('ttsStatusText').textContent='낭독 중 ✝';
+  startTimer();
+}
+function ttsStop(){
+  sermonAudio.pause(); sermonAudio.currentTime=0;
+  isPlaying=false; isPaused=false; elapsedTime=0;
+  document.getElementById('playBtn').textContent='▶';
+  document.getElementById('ttsDot').classList.remove('on');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  document.getElementById('ttsProgressFill').style.width='0%';
+  document.getElementById('ttsCurrentTime').textContent='0:00';
+  clearInterval(timerInterval);
+}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){
+  startTime = Date.now()-(elapsedTime*1000);
+  timerInterval = setInterval(()=>{
+    elapsedTime=(Date.now()-startTime)/1000;
+    const m=Math.floor(elapsedTime/60), s=Math.floor(elapsedTime%60);
+    document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');
+  },500);
+}
+function ttsSeek(e){
+  if(sermonAudio.duration){
+    sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;
+  }
+}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
