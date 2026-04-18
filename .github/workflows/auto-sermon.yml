@@ -36,7 +36,7 @@ jobs:
       # 3) 의존성 설치
       - name: 패키지 설치
         run: |
-          pip install anthropic google-cloud-texttospeech --quiet
+          pip install google-genai google-cloud-texttospeech --quiet
 
       # 4) Google 키 파일 복원
       - name: Google TTS 키 파일 생성
@@ -46,7 +46,7 @@ jobs:
       # 5) 설교 자동생성 실행
       - name: 설교 생성 실행
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           if [ -n "${{ github.event.inputs.sermon_type }}" ]; then
             python generate_sermon.py ${{ github.event.inputs.sermon_type }}
