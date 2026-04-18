@@ -169,7 +169,7 @@ def generate_sermon_content(info):
 6. 한국어로만 작성
 7. JSON만 반환"""
 
-    response = client.models.generate_content(model="gemini-1.5-flash", contents=prompt)
+    response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
     raw = response.text.strip()
     raw = re.sub(r'^```json\s*', '', raw)
     raw = re.sub(r'^```\s*', '', raw)
