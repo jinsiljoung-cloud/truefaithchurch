@@ -803,29 +803,52 @@ function showStep(idx){
 
 /* ── 자동 오디오 재생 ── */
 function autoPlayAudio(idx, onEnded){
-  var audio = document.getElementById("audio" + idx);
-  var btn = document.getElementById("playBtn" + idx);
+  var audio = document.getElementById('audio' + idx);
   if(!audio){ if(onEnded) onEnded(); return; }
 
-  // 로드 완료 후 재생 시도
+  var btnId = idx === 3 ? 'ttsBtn3' : 'playBtn' + idx;
+  var btn = document.getElementById(btnId);
+  var statusId = idx === 3 ? 'ttsStatus3' : 'ttsStatus' + idx;
+  var status = document.getElementById(statusId);
+  var progId = 'progress' + idx;
+  var prog = document.getElementById(progId);
+
   function tryPlay(){
     audio.currentTime = 0;
+
+    var progTick = setInterval(function(){
+      if(!ttsPlaying[idx]){ clearInterval(progTick); return; }
+      if(audio.duration){
+        var pct = (audio.currentTime / audio.duration) * 100;
+        if(prog) prog.style.width = pct + '%';
+      }
+    }, 200);
+
     var p = audio.play();
     if(p !== undefined){
       p.then(function(){
-        if(btn){ btn.textContent = "⏹"; btn.style.animation = ""; }
-        audioPlaying[idx] = true;
+        if(btn) btn.innerHTML = idx===3 ? '⏹ 정지' : '⏹';
+        if(status) status.textContent = '낭독 중 ✝';
+        ttsPlaying[idx] = true;
         audio.onended = function(){
-          if(btn) btn.textContent = "▶";
-          audioPlaying[idx] = false;
+          ttsPlaying[idx] = false;
+          clearInterval(progTick);
+          if(btn) btn.innerHTML = idx===3 ? '▶ 낭독 듣기' : '▶';
+          if(status) status.textContent = '완료 ✝';
+          if(prog) prog.style.width = '100%';
+          if(onEnded) setTimeout(onEnded, 800);
+        };
+        audio.onerror = function(){
+          ttsPlaying[idx] = false;
+          clearInterval(progTick);
+          if(btn) btn.innerHTML = idx===3 ? '▶ 낭독 듣기' : '▶';
           if(onEnded) onEnded();
         };
       }).catch(function(e){
-        console.log("autoplay blocked:", e);
-        // 버튼 깜빡임으로 안내
-        if(btn) btn.style.animation = "pulse 0.8s ease-in-out infinite";
-        // 수동 클릭 대기 후 자동 다음 단계 진행 (30초 후)
-        setTimeout(function(){ if(!audioPlaying[idx] && onEnded) onEnded(); }, 30000);
+        clearInterval(progTick);
+        console.log('autoplay blocked:', e);
+        if(btn){ btn.innerHTML = idx===3 ? '▶ 낭독 듣기' : '▶'; btn.style.animation = 'pulse 0.8s ease-in-out infinite'; }
+        setTimeout(function(){ if(!ttsPlaying[idx] && onEnded) onEnded(); }, 30000);
       });
     }
   }
@@ -833,57 +856,12 @@ function autoPlayAudio(idx, onEnded){
   if(audio.readyState >= 2){
     tryPlay();
   } else {
-    audio.addEventListener("canplay", function handler(){
-      audio.removeEventListener("canplay", handler);
+    audio.addEventListener('canplay', function handler(){
+      audio.removeEventListener('canplay', handler);
       tryPlay();
     });
     audio.load();
   }
-}
-
-/* ── 자동 TTS 재생 ── */
-function autoPlayAudio(stepIdx, onEnded){
-  var audio = document.getElementById('audio' + stepIdx);
-  if(!audio) return;
-
-  var btnId = stepIdx === 3 ? "ttsBtn3" : "playBtn" + stepIdx;
-  var btn = document.getElementById(btnId);
-  var statusId = stepIdx === 3 ? "ttsStatus3" : "ttsStatus" + stepIdx;
-  var status = document.getElementById(statusId);
-  var progId = "progress" + stepIdx;
-  var prog = document.getElementById(progId);
-
-  if(btn) btn.innerHTML = stepIdx===3 ? "⏹ 정지" : "⏹";
-  if(status) status.textContent = "낭독 중 ✝";
-  ttsPlaying[stepIdx] = true;
-
-  audio.currentTime = 0;
-
-  var progTick = setInterval(function(){
-    if(!ttsPlaying[stepIdx]){ clearInterval(progTick); return; }
-    if(audio.duration){
-      var pct = (audio.currentTime / audio.duration) * 100;
-      if(prog) prog.style.width = pct + '%';
-    }
-  }, 200);
-
-  audio.onended = function(){
-    ttsPlaying[stepIdx] = false;
-    clearInterval(progTick);
-    if(btn) btn.innerHTML = stepIdx===3 ? "▶ 낭독 듣기" : "▶";
-    if(status) status.textContent = "완료 ✝";
-    if(prog) prog.style.width = "100%";
-    if(onEnded) setTimeout(onEnded, 800);
-  };
-
-  audio.onerror = function(){
-    ttsPlaying[stepIdx] = false;
-    clearInterval(progTick);
-    if(btn) btn.innerHTML = stepIdx===3 ? "▶ 낭독 듣기" : "▶";
-    if(onEnded) onEnded();
-  };
-
-  audio.play().catch(function(e){ console.log('audio play error', e); });
 }
 
 function autoPlayTTS(stepIdx, text, onEnded){
