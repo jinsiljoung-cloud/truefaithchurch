@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 불안한 당신에게, 지금 이 자리면 충분합니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.07) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.08),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.3);background:rgba(122,158,126,.08);color:var(--sage)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),#9bbe9f);color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--gold));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.4);padding:16px 20px;background:rgba(122,158,126,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.12);border:1px solid rgba(122,158,126,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">불안한 당신에게<br>지금 이 자리면 충분합니다</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 4월 22일 수요일</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"아무것도 염려하지 말고 다만 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라"</div>
+    <div class="verse-ref">— 빌립보서 4:6 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">목사님 육성 낭독 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time" id="ttsTotalTime">--:--</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>오늘 이 영상을 클릭하신 분들께 먼저 한마디 드리고 싶습니다.</p>
+      <p><span class="emphasis">오늘 하루, 수고하셨습니다.</span></p>
+      <p>아무도 그 말을 해주지 않았더라도. 아무도 알아주지 않았더라도. 오늘 하루를 버텨낸 여러분, 정말 잘하셨습니다.</p>
+      <p>오늘 우리가 함께 나눌 말씀의 제목은 <span class="bold">"혼자 걷지 않아도 돼"</span> 입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">현실 공감</div>
+    <div class="sermon-text">
+      <p>통계청 자료에 따르면 우리나라 20대의 가장 큰 고민 1위는 정서적 불안과 외로움이라고 합니다.</p>
+      <p>취업 스펙을 쌓고, SNS에서는 웃고 있지만, 정작 집에 돌아오면 말 걸 사람 하나 없는 텅 빈 방. 잘하고 있냐고 물어봐 줄 사람 하나 없는 하루하루.</p>
+      <p><span class="emphasis">우리는 그 어느 때보다 연결된 세상에 살고 있지만, 그 어느 때보다 더 깊은 고독 속에 있습니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">말씀 속으로</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내가 사망의 음침한 골짜기로 다닐지라도 해를 두려워하지 않을 것은 주께서 나와 함께 하심이라 주의 지팡이와 막대기가 나를 안위하시나이다"</div>
+        <div class="v-ref">— 빌립보서 4:6 —</div>
+      </div>
+      <p>이 말씀을 쓴 다윗은 어떤 사람이었을까요? 우리가 아는 다윗은 왕이요, 영웅입니다. 하지만 이 시편을 쓸 당시의 다윗은 도망자였습니다.</p>
+      <p>아들에게 쫓기고, 부하에게 배신당하고, 광야를 혼자 걷던 사람이었습니다.</p>
+      <p>그가 걸은 사망의 음침한 골짜기. 히브리어 원문으로는 <span class="bold">'짙은 어둠의 계곡'</span>입니다. 출구가 보이지 않는 어둠. 취업이 안 되는 그 막막함. 관계가 끊어진 그 고독. 내일이 두려운 그 밤. 그것이 바로 다윗이 걸었던 바로 그 골짜기입니다.</p>
+      <p>그런데 다윗은 말합니다. <span class="emphasis">두려워하지 않는다고.</span> 그 이유가 무엇입니까? 주께서 나와 함께 하심이라.</p>
+      <p>상황이 바뀐 게 아닙니다. 골짜기가 없어진 게 아닙니다. <span class="bold">그 골짜기 안에 주님이 함께 계신 것입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">히브리서의 약속</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내가 결코 너희를 버리지 아니하고 너희를 떠나지 아니하리라"</div>
+        <div class="v-ref">— 히브리서 13:5 —</div>
+      </div>
+      <p>헬라어 원문에서 이 구절은 이중 부정으로 쓰여 있습니다. <span class="emphasis">'결코, 절대로, 어떤 상황에서도'</span> 버리지 않겠다는 하나님의 선언입니다.</p>
+      <p>취업에 실패했을 때도. 관계가 무너졌을 때도. 이불 속에서 나오지 못하는 그날도. <span class="bold">하나님은 단 한 번도 자리를 뜨신 적이 없습니다.</span></p>
+      <p>여러분, 혼자 걷고 계신가요? 지금 당장 상황이 바뀌지 않아도 괜찮습니다. 오늘도 완벽하지 않아도 괜찮습니다. 느리게 가도 괜찮습니다.</p>
+      <p><span class="emphasis">단지 기억하십시오. 여러분이 걷는 그 길에 이미 주님이 함께 걷고 계십니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리</div>
+    <div class="sermon-text">
+      <p>오늘 이 말씀을 보시는 분들 중에 정말 힘드신 분이 계실 줄 압니다. 말 못 할 이야기들이 쌓여있는 분도 계실 겁니다.</p>
+      <p>바른믿음교회는 그런 여러분을 위해 존재합니다. 판단하지 않습니다. 있는 그대로 오셔도 됩니다. <span class="bold">주님도, 바른믿음교회도 여러분 곁에 있겠습니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">주님, 오늘 이 말씀을 마음에 품고 돌아가는 모든 분들의 손을 잡아주시옵소서. 골짜기를 걷고 있는 그 자리에서 주님의 지팡이와 막대기를 느끼게 하소서. 혼자가 아님을 알게 하시고, 다시 한 걸음 내딛을 용기를 주소서. 바른믿음교회와 함께 걸어가는 이 길이 외롭지 않게 하소서. 예수님의 이름으로 기도합니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.7;text-align:center;margin-top:24px">느리게 · 바르게 · 함께 · 아멘</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-9.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="sermon.mp3" preload="auto"></audio>
+<script>
+let isPlaying=false,isPaused=false;
+const audio=document.getElementById('sermonAudio');
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  audio.addEventListener('loadedmetadata',()=>{const m=Math.floor(audio.duration/60),s=Math.floor(audio.duration%60);document.getElementById('ttsTotalTime').textContent=m+':'+String(s).padStart(2,'0');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';});
+  audio.addEventListener('timeupdate',()=>{if(audio.duration){document.getElementById('ttsProgressFill').style.width=(audio.currentTime/audio.duration*100)+'%';const m=Math.floor(audio.currentTime/60),s=Math.floor(audio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  audio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){audio.currentTime=0;audio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';}
+function ttsPause(){audio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';}
+function ttsResume(){audio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';}
+function ttsStop(){audio.pause();audio.currentTime=0;isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function ttsSeek(e){if(audio.duration){audio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*audio.duration;}}
+window.addEventListener('beforeunload',()=>{if(audio)audio.pause();});
+</script>
+</body>
+</html>
