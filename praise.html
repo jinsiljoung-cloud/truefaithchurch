@@ -642,7 +642,68 @@ SNS엔 다들 행복해 보여
   </div>
 
   <audio id="audio-hj" preload="auto"><source src="혼자_걷지_않아도_돼.mp3" type="audio/mpeg"></audio>
+  <!-- 괜찮아, 잘하고 있어 — 창작 찬송가 제11장 -->
+  <div class="audio-card" id="card-kj">
+    <div style="font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.5;margin-bottom:14px;text-transform:uppercase">✝ 바른믿음교회 창작 찬송가 제11장 · 오늘 하루를 버텨낸 당신에게</div>
+    <div class="audio-header">
+      <span style="font-size:30px">💛</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">괜찮아, 잘하고 있어</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">오늘 하루를 버텨낸 당신에게 드리는 찬양</div>
+      </div>
+      <button class="audio-play-btn" id="btn-kj" onclick="toggleAudio('kj')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-kj" onclick="seekAudio('kj',event)"><div class="audio-progress-fill" id="pf-kj"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-kj">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('kj',this.value)">
+          <span class="audio-time" id="td-kj">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-kj" onclick="toggleLyrics('kj')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-kj">
+      <div class="lyrics-text">오늘도 알람을 세 번이나 껐어
+일어나기 싫은 게 아니라
+그냥 오늘 하루가 또 두려운 거야
+아무것도 안 하고 싶은 거야
+
+이불 속에서 핸드폰만 보다가
+또 남들 잘 사는 거 구경했어
+좋아요 누르면서 나는 왜 이럴까
+한숨만 쌓여가는 아침이야
+
+잘하고 있냐고 물어봐 줬으면
+그 한마디면 충분한데
+아무도 묻지 않는 하루가
+오늘도 조용히 지나가
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+괜찮아 오늘도 버텼잖아
+아무도 몰라도 넌 해낸 거야
+완벽하지 않아도 살아있잖아
+그것만으로도 충분해 오늘은
+
+넘어져도 괜찮아 또 일어나면 돼
+느려도 괜찮아 가고 있잖아
+혼자인 것 같아도 괜찮아
+네 곁에 있어줄게 오늘도</span>
+
+근데 있어 그런 곳이
+지치고 무너진 그대로 와도 되는 곳
+판단하지 않고 그냥 받아주는
+따뜻한 자리가 있어
+
+<span class="lyrics-chorus">괜찮아 오늘도 잘 살았어
+바른믿음교회와 함께</span></div>
+    </div>
+  </div>
+
   <audio id="audio-nc" preload="auto"><source src="네_곁에_있어줄게2.mp3" type="audio/mpeg"></audio>
+  <audio id="audio-kj" preload="auto"><source src="괜찮아_잘하고_있어.mp3" type="audio/mpeg"></audio>
 </div>
 
 <!-- 🌿 자연 묵상 탭 -->
@@ -727,8 +788,8 @@ function switchTab(t,btn){
 }
 
 /* ✝ 오디오 플레이어 */
-const AF=document.getElementById('audio-f'), AM=document.getElementById('audio-m'), AM2=document.getElementById('audio-m2'), AD=document.getElementById('audio-d'), AN=document.getElementById('audio-n'), ALG=document.getElementById('audio-lg'), AGI=document.getElementById('audio-gi'), AHJ=document.getElementById('audio-hj'), ANC=document.getElementById('audio-nc');
-const audios={f:AF,m:AM,m2:AM2,d:AD,n:AN,lg:ALG,gi:AGI,hj:AHJ,nc:ANC};
+const AF=document.getElementById('audio-f'), AM=document.getElementById('audio-m'), AM2=document.getElementById('audio-m2'), AD=document.getElementById('audio-d'), AN=document.getElementById('audio-n'), ALG=document.getElementById('audio-lg'), AGI=document.getElementById('audio-gi'), AHJ=document.getElementById('audio-hj'), ANC=document.getElementById('audio-nc'), AKJ=document.getElementById('audio-kj');
+const audios={f:AF,m:AM,m2:AM2,d:AD,n:AN,lg:ALG,gi:AGI,hj:AHJ,nc:ANC,kj:AKJ};
 
 AF.addEventListener('loadedmetadata',()=>{ document.getElementById('td-f').textContent=fmt(AF.duration); });
 AM.addEventListener('loadedmetadata',()=>{ document.getElementById('td-m').textContent=fmt(AM.duration); });
@@ -756,6 +817,9 @@ AHJ.addEventListener('ended',()=>stopUI('hj'));
 ANC.addEventListener('loadedmetadata',()=>{ document.getElementById('td-nc').textContent=fmt(ANC.duration); });
 ANC.addEventListener('timeupdate',()=>updProg('nc'));
 ANC.addEventListener('ended',()=>stopUI('nc'));
+AKJ.addEventListener('loadedmetadata',()=>{ document.getElementById('td-kj').textContent=fmt(AKJ.duration); });
+AKJ.addEventListener('timeupdate',()=>updProg('kj'));
+AKJ.addEventListener('ended',()=>stopUI('kj'));
 
 /* 페이지 로드 시 여자 버전 자동 재생 */
 // 자동재생 제거 - 사용자 클릭 후 재생
@@ -770,6 +834,7 @@ window.addEventListener('load',()=>{
   audios.gi.load();
   audios.hj.load();
   audios.nc.load();
+  audios.kj.load();
 });
 
 function toggleAudio(k){
