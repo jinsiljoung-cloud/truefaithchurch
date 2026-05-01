@@ -586,7 +586,63 @@ SNS엔 다들 행복해 보여
   </div>
 
   <audio id="audio-gi" preload="auto"><source src="괜찮아_일어나.mp3" type="audio/mpeg"></audio>
+  <!-- 네 곁에 있어줄게 — 창작 찬송가 제10장 -->
+  <div class="audio-card" id="card-nc">
+    <div style="font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.5;margin-bottom:14px;text-transform:uppercase">✝ 바른믿음교회 창작 찬송가 제10장 · 하나님의 동행 약속</div>
+    <div class="audio-header">
+      <span style="font-size:30px">🤝</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-s);font-size:15px;font-weight:700;margin-bottom:3px">네 곁에 있어줄게</div>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.55;text-transform:uppercase">지치고 외로운 당신에게 드리는 찬양</div>
+      </div>
+      <button class="audio-play-btn" id="btn-nc" onclick="toggleAudio('nc')">▶</button>
+    </div>
+    <div>
+      <div class="audio-progress-bar" id="pb-nc" onclick="seekAudio('nc',event)"><div class="audio-progress-fill" id="pf-nc"></div></div>
+      <div class="audio-time-row">
+        <span class="audio-time" id="tc-nc">0:00</span>
+        <div style="display:flex;align-items:center">
+          <span style="font-size:12px;opacity:.4">🔈</span>
+          <input type="range" class="audio-vol" min="0" max="1" step="0.05" value="0.85" oninput="setVol('nc',this.value)">
+          <span class="audio-time" id="td-nc">--:--</span>
+        </div>
+      </div>
+    </div>
+    <button class="lyrics-btn" id="lbtn-nc" onclick="toggleLyrics('nc')">♪ 가사 보기</button>
+    <div class="lyrics-wrap" id="lw-nc">
+      <div class="lyrics-text">오늘도 웃으며 괜찮다고 했어
+사실은 하나도 안 괜찮은데
+카페 창가에 앉아 커피 한 잔 시켜놓고
+멍하니 지나가는 사람들 봤어
+
+SNS엔 다들 행복해 보여
+나만 이러는 건지 모르겠어
+좋아요 누르면서 나도 모르게
+눈물이 고였어 닦아냈어
+
+말 못 할 이야기들이 쌓여가고
+들어줄 사람 하나 없는 것 같아서
+그냥 이어폰 꽂고 걸었어
+어디든 가고 싶었어
+
+<span class="lyrics-chorus">✝ 후렴 ✝
+누군가 나를 그냥 안아줬으면
+아무 말 없이 그냥 옆에 있어줬으면
+잘했다고 한마디만 해줬으면
+그 말 한마디가 그렇게 듣고 싶었어
+
+근데 있어 그런 곳이
+지치고 무너진 그대로 와도 되는 곳
+판단하지 않고 그냥 받아주는
+따뜻한 자리가 있어
+
+혼자 걷지 않아도 돼
+이제 바른믿음교회와 함께</span></div>
+    </div>
+  </div>
+
   <audio id="audio-hj" preload="auto"><source src="혼자_걷지_않아도_돼.mp3" type="audio/mpeg"></audio>
+  <audio id="audio-nc" preload="auto"><source src="네_곁에_있어줄게2.mp3" type="audio/mpeg"></audio>
 </div>
 
 <!-- 🌿 자연 묵상 탭 -->
@@ -671,8 +727,8 @@ function switchTab(t,btn){
 }
 
 /* ✝ 오디오 플레이어 */
-const AF=document.getElementById('audio-f'), AM=document.getElementById('audio-m'), AM2=document.getElementById('audio-m2'), AD=document.getElementById('audio-d'), AN=document.getElementById('audio-n'), ALG=document.getElementById('audio-lg'), AGI=document.getElementById('audio-gi'), AHJ=document.getElementById('audio-hj');
-const audios={f:AF,m:AM,m2:AM2,d:AD,n:AN,lg:ALG,gi:AGI,hj:AHJ};
+const AF=document.getElementById('audio-f'), AM=document.getElementById('audio-m'), AM2=document.getElementById('audio-m2'), AD=document.getElementById('audio-d'), AN=document.getElementById('audio-n'), ALG=document.getElementById('audio-lg'), AGI=document.getElementById('audio-gi'), AHJ=document.getElementById('audio-hj'), ANC=document.getElementById('audio-nc');
+const audios={f:AF,m:AM,m2:AM2,d:AD,n:AN,lg:ALG,gi:AGI,hj:AHJ,nc:ANC};
 
 AF.addEventListener('loadedmetadata',()=>{ document.getElementById('td-f').textContent=fmt(AF.duration); });
 AM.addEventListener('loadedmetadata',()=>{ document.getElementById('td-m').textContent=fmt(AM.duration); });
@@ -697,6 +753,9 @@ AGI.addEventListener('ended',()=>stopUI('gi'));
 AHJ.addEventListener('loadedmetadata',()=>{ document.getElementById('td-hj').textContent=fmt(AHJ.duration); });
 AHJ.addEventListener('timeupdate',()=>updProg('hj'));
 AHJ.addEventListener('ended',()=>stopUI('hj'));
+ANC.addEventListener('loadedmetadata',()=>{ document.getElementById('td-nc').textContent=fmt(ANC.duration); });
+ANC.addEventListener('timeupdate',()=>updProg('nc'));
+ANC.addEventListener('ended',()=>stopUI('nc'));
 
 /* 페이지 로드 시 여자 버전 자동 재생 */
 // 자동재생 제거 - 사용자 클릭 후 재생
@@ -710,6 +769,7 @@ window.addEventListener('load',()=>{
   audios.lg.load();
   audios.gi.load();
   audios.hj.load();
+  audios.nc.load();
 });
 
 function toggleAudio(k){
