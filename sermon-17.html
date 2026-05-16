@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 먼저 그의 나라와 그의 의를 구하라</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(201,168,76,.05);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--gold);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">먼저 그의 나라와 그의 의를 구하라<br>그리하면 이 모든 것을 더하시리라</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀️ 2026년 5월 17일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"너희는 먼저 그의 나라와 그의 의를 구하라 그리하면 이 모든 것을 너희에게 더하시리라 그러므로 내일 일을 위하여 염려하지 말라 한날의 괴로움은 그날로 족하니라"</div>
+    <div class="verse-ref">— 마태복음 6:33-34 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 9:55</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 오늘 아침 한 가지 질문으로 말씀을 시작하고 싶습니다.</p>
+      <p><span class="emphasis">"여러분은 지난 한 주, 무엇 때문에 가장 많이 잠을 설치셨습니까?"</span></p>
+      <p>30대 어느 형제님께서 제게 이런 고백을 하셨습니다. "목사님, 저는 회사에서 일하면서도, 퇴근하면서도, 심지어 잠자리에 누워서도 머릿속이 떠나지 않습니다. 다음 달 카드값, 아이 교육비, 내년 이사 비용, 부모님 병원비… 기도하려고 눈을 감으면 그것부터 떠올라요. 제가 신앙이 약한 걸까요?"</p>
+      <p>여러분, 이것은 한 사람의 이야기가 아닙니다. <span class="bold">오늘날 30대를 살아가는 우리 모두의 자화상</span>입니다. 출근길에 염려, 점심 시간에 염려, 퇴근길에 염려. 우리는 기도하는 시간보다 염려하는 시간이 훨씬 더 깁니다.</p>
+      <p>오늘 우리 주님께서 산상수훈에서 정확히 이 지점을 짚으십니다. <span class="bold">"염려하지 말라."</span> 그리고 그 대안을 주십니다. <span class="emphasis">"먼저 그의 나라와 그의 의를 구하라."</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">말씀 · 마태복음 6:25-34</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"그러므로 내가 너희에게 이르노니 목숨을 위하여 무엇을 먹을까 무엇을 마실까 몸을 위하여 무엇을 입을까 염려하지 말라 … 너희는 먼저 그의 나라와 그의 의를 구하라 그리하면 이 모든 것을 너희에게 더하시리라"</div>
+        <div class="v-ref">— 마태복음 6:25, 33 —</div>
+      </div>
+      <p>본문은 산상수훈, 곧 우리 주 예수 그리스도께서 갈릴리 산 위에서 베푸신 <span class="bold">천국 헌법의 한복판</span>에 자리 잡고 있습니다.</p>
+      <p>바로 앞 24절에서 주님은 "너희가 하나님과 재물을 겸하여 섬기지 못하느니라" 선언하셨습니다. 그리고 "그러므로"로 본문을 여시며 재물의 매임, 삶의 가장 깊은 뿌리, 곧 <span class="emphasis">염려</span>를 다루십니다.</p>
+      <p>주님께서 보시는 염려는 단순한 감정이 아니라 <span class="bold">"누구를 주인으로 섬기는가"</span>의 문제입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 염려는 하나님의 자녀에게 합당치 않습니다</div>
+    <div class="sermon-text">
+      <p>본문 26절을 보십시오. "공중의 새를 보라. 심지도 않고 거두지도 않고 창고에 모아들이지도 아니하되 너희 하늘 아버지께서 기르시나니, 너희는 이것들보다 귀하지 아니하냐."</p>
+      <p>주님은 우리에게 두 가지를 보라 하십니다. 하나는 <span class="bold">공중의 새</span>, 다른 하나는 <span class="bold">들의 백합화</span>입니다. 새는 농사를 짓지 않습니다. 백합화는 길쌈을 하지 않습니다. 그런데도 하나님께서 그들을 먹이시고 입히십니다. 주님의 논리는 단순합니다. <span class="emphasis">"하물며 너희일까 보냐."</span></p>
+      <p>새보다 풀보다 훨씬 더 귀한 존재가 누구입니까? 하나님의 형상으로 지음받은 우리, 더 나아가 <span class="bold">예수 그리스도의 십자가 피로 값주고 사신 하나님의 자녀들</span>입니다.</p>
+      <p>그런데 우리의 염려는 무엇을 말합니까? <span class="emphasis">"하나님은 새는 챙기시지만 나는 잊으셨다."</span> 사실상 이렇게 고백하는 것입니다.</p>
+      <p>30대는 책임이 가장 무거운 시기입니다. 가정을 세우고, 직장에서 자리 잡고, 자녀를 키우고, 노부모를 모시기 시작합니다. 어깨 위에 얹힌 짐이 무거우니 자연스레 시선이 땅으로 내려옵니다. 그러나 주님은 우리 시선을 다시 위로 들어 올리십니다.</p>
+      <p>여러분, <span class="bold">십자가를 보십시오.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"자기 아들도 아끼지 아니하시고 우리 모든 사람을 위하여 내어 주신 이가 어찌 그 아들과 함께 모든 것을 우리에게 거저 주시지 아니하겠느냐"</div>
+        <div class="v-ref">— 로마서 8:32 —</div>
+      </div>
+      <p>우리 염려의 가장 강력한 해독제는 바로 이 <span class="emphasis">십자가 사랑</span>입니다.</p>
+      <p>한 자매님께서 직장에서 갑작스레 부서가 폐지되었습니다. 두려움이 몰려올 때 그녀는 새벽기도 자리에 무릎 꿇고 이렇게 기도했다고 합니다. <span class="emphasis">"하나님 아버지, 저는 새보다 귀합니다. 백합화보다 귀합니다. 십자가에 달리신 예수님이 증명하셨습니다. 두려움을 거두어 주십시오."</span> 한 달 뒤 그녀에게 더 좋은 자리가 열렸습니다. 그러나 <span class="bold">더 큰 은혜는 직장이 바뀐 것이 아니라 그녀의 시선이 바뀐 것</span>이었습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 염려는 무익하며, 이방인의 삶의 방식입니다</div>
+    <div class="sermon-text">
+      <p>27절을 보십시오. <span class="bold">"너희 중에 누가 염려함으로 그 키를 한 자라도 더할 수 있겠느냐."</span></p>
+      <p>주님의 진단은 냉정합니다. 염려는 아무것도 더하지 못합니다. <span class="emphasis">도리어 빼앗습니다.</span> 평안을 빼앗고, 잠을 빼앗고, 사랑하는 이들과의 시간을 빼앗고, 무엇보다 하나님과의 친밀함을 빼앗습니다. 의사들은 만성적 염려가 면역력을 떨어뜨리고 우울증의 시작이 된다고 말합니다. 염려는 한 자를 더하기는커녕 <span class="bold">우리 수명을 깎습니다.</span></p>
+      <p>그러면서 주님은 더 충격적인 말씀을 하십니다. 32절. <span class="emphasis">"이는 다 이방인들이 구하는 것이라."</span> 무엇을 먹을까, 무엇을 입을까 매달리는 것은 <span class="bold">하나님을 모르는 사람들의 삶의 방식</span>이라는 것입니다.</p>
+      <p>자녀가 아버지를 신뢰하지 않을 때 염려합니다. 우리가 염려에 매여 있다면, 우리의 신앙이 사실상 이방인 수준에 머물러 있는 것은 아닌지 점검해야 합니다.</p>
+      <p>예수님은 누구보다 염려할 이유가 많은 분이셨습니다. 머리 둘 곳도 없으셨고, 십자가가 기다리고 있었습니다. 그러나 주님은 단 한 번도 염려에 사로잡혀 사명을 멈추신 적이 없습니다. 겟세마네 동산에서조차 <span class="bold">"내 뜻대로 마옵시고 아버지의 뜻대로 하옵소서"</span> 기도하셨습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"아무것도 염려하지 말고 다만 모든 일에 기도와 간구로 … 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라"</div>
+        <div class="v-ref">— 빌립보서 4:6-7 —</div>
+      </div>
+      <p>한 30대 가장이 사업 부도로 잠을 못 자던 시기, 새벽마다 본문을 노트에 베껴 쓰고 기도했습니다. 6개월 후 그는 이렇게 간증했습니다. <span class="emphasis">"상황은 똑같이 어려웠지만, 염려가 기도로 바뀌니 같은 어둠 속에서 빛을 보게 되었습니다."</span></p>
+      <p><span class="bold">염려가 멈춘 자리에 기도가 들어옵니다. 기도가 들어온 자리에 그리스도의 평강이 임합니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 먼저 그의 나라와 그의 의를 구하라</div>
+    <div class="sermon-text">
+      <p>본문의 가장 핵심, 33절입니다. <span class="bold">"너희는 먼저 그의 나라와 그의 의를 구하라. 그리하면 이 모든 것을 너희에게 더하시리라."</span></p>
+      <p>주님은 단순히 "염려하지 말라"로 끝나지 않으십니다. 빈자리는 채워져야 합니다. 염려가 빠져나간 그 자리에 무엇이 들어와야 합니까? <span class="emphasis">하나님의 나라와 그의 의</span>입니다.</p>
+      <p><span class="bold">"먼저"</span>라는 단어가 핵심입니다. 헬라어로 <span class="emphasis">프로톤(πρῶτον)</span>, 곧 시간적으로도 첫째요, 우선 순위에서도 첫째라는 뜻입니다.</p>
+      <p>우리는 이렇게 묻기 쉽습니다. "하나님 나라와 내 일, 둘 다 잘하면 안 되나요?" 주님의 대답은 분명합니다. <span class="bold">먼저, 순서가 있습니다.</span> 하나님 나라를 첫 자리에 놓을 때 나머지가 따라옵니다. 그러나 내 필요를 첫 자리에 놓으면 <span class="emphasis">하나님 나라마저 도구가 되어 버립니다.</span></p>
+      <p>그의 나라와 그의 의는 무엇입니까? 하나님의 통치가 우리 삶에 임하는 것입니다. 그리고 그의 의는 우리 행위의 의가 아니라 <span class="bold">예수 그리스도께서 십자가에서 우리에게 주신 의</span>입니다. 우리는 도무지 하나님 앞에 설 의가 없습니다. 그러나 예수님께서 우리 대신 율법을 완전히 순종하시고 십자가에서 우리 죄를 담당하셨습니다. 그 의를 믿음으로 받아 입은 자가 그리스도인입니다.</p>
+      <p>그러므로 그의 의를 구한다는 것은, 매일 그리스도의 의를 의지하며 그분의 통치 아래 살기를 선택한다는 뜻입니다.</p>
+      <p>이 약속을 보십시오. <span class="emphasis">"이 모든 것을 너희에게 더하시리라."</span> 하나님 나라를 먼저 구할 때, 먹을 것과 입을 것이 사라지는 것이 아니라 <span class="bold">더해집니다.</span> 우선순위를 바꾸면 하나님께서 책임지신다는 약속입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 "먼저"의 실천 — 네 가지</div>
+    <div class="sermon-text">
+      <p>구체적으로 어떻게 적용합니까?</p>
+      <div class="decision-list">
+        <div class="decision-item"><p><span class="bold">아침에 눈을 떴을 때</span> — 스마트폰보다 먼저 말씀을 펴십시오.</p></div>
+        <div class="decision-item"><p><span class="bold">출근길에</span> — 뉴스보다 먼저 기도하십시오.</p></div>
+        <div class="decision-item"><p><span class="bold">월급의 첫 부분</span>을 십일조로 드리십시오.</p></div>
+        <div class="decision-item"><p><span class="bold">주일</span>을 다른 약속으로 채우지 마십시오.</p></div>
+      </div>
+      <p>이 작은 "먼저"들이 쌓일 때, 30대의 무거운 짐 위에 <span class="emphasis">하나님 나라가 임합니다.</span></p>
+      <p>이번 한 주, 아침마다 단 5분만 시간을 정하셔서 그날의 모든 염려를 종이에 적은 후, 그 위에 십자가를 그리고 기도하십시오.</p>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:3px;color:var(--gold);opacity:.85;text-align:center;margin-top:24px">"주님, 이것을 주님께 맡깁니다.<br>저는 먼저 주의 나라를 구합니다."</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">은혜로 오신 하나님 아버지, 염려로 무거운 마음을 십자가 앞에 내려놓습니다. 새보다 백합화보다 귀하게 여기시는 사랑을 다시 신뢰합니다. 이 한 주, 먼저 주의 나라와 의를 구하게 하시고, 가정과 직장과 학업의 모든 자리에서 그리스도의 평강을 누리게 하옵소서. 곁에 염려로 흔들리는 형제 자매들도 함께 붙들어 주시옵소서. 우리 주 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.75;text-align:center;margin-top:24px">한 자도 더하지 못하는 염려를 내려놓고 · 하늘 보좌까지 닿는 기도를 선택하는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-16.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_05_17.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  sermonAudio=document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
