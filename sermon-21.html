@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 외로운 자의 아버지</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">외로운 자의 아버지<br>고독한 자를 가족 중에 살게 하시는 하나님</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀️ 2026년 5월 31일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"그의 거룩한 처소에 계신 하나님은 고아의 아버지시며 과부의 재판장이시라 하나님이 고독한 자들은 가족과 함께 살게 하시며 갇힌 자들은 이끌어 내사 형통하게 하시느니라"</div>
+    <div class="verse-ref">— 시편 68:5-6 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 9:45</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 한 주간도 평안하셨습니까. 오늘 예배의 자리로 우리를 불러 주신 하나님께 감사를 드립니다.</p>
+      <p>며칠 전 한 30대 성도님과 차를 마시며 이야기를 나눈 적이 있습니다. 그분이 이런 말씀을 하셨습니다.</p>
+      <p><span class="emphasis">"목사님, 저는 단톡방이 열 개가 넘고 SNS 친구는 수백 명인데요, 정작 새벽 두 시에 마음이 무너질 때 전화할 사람이 한 명도 없더라고요."</span></p>
+      <p>저는 그 말씀이 오래 마음에 남았습니다.</p>
+      <p>우리 시대는 <span class="bold">인류 역사상 가장 연결된 시대</span>입니다. 그러나 동시에 <span class="bold">가장 외로운 시대</span>이기도 합니다. 옆 사람과 어깨를 맞대고 살면서도 마음은 섬처럼 떨어져 있습니다.</p>
+      <p>오늘 우리는 바로 그 외로움을 향해 말씀하시는 하나님을 만나려고 합니다. 본문은 <span class="bold">시편 68편 5절과 6절</span>입니다. 이 짧은 두 구절 안에 <span class="emphasis">외로운 우리를 향한 하나님의 마음 전체</span>가 담겨 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">말씀 · 시편 68:5-6</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"그의 거룩한 처소에 계신 하나님은 고아의 아버지시며 과부의 재판장이시라 하나님이 고독한 자들은 가족과 함께 살게 하시며 갇힌 자들은 이끌어 내사 형통하게 하시는 이라 오직 거역하는 자들의 거처는 메마른 땅이로다"</div>
+        <div class="v-ref">— 시편 68:5-6 —</div>
+      </div>
+      <p>시편 68편은 다윗이 지은 승리의 노래입니다. 하나님의 언약궤가 옮겨질 때 불렀던 행진의 찬송으로 알려져 있습니다. 즉, 이 시는 <span class="bold">"하나님이 일어나신다, 하나님이 움직이신다"</span>는 선포로 시작합니다.</p>
+      <p>그런데 그 위대하신 하나님이 가장 먼저 찾아가시는 곳이 어디입니까? <span class="emphasis">왕궁이 아니었습니다. 부자의 집도 아니었습니다.</span> 고아와 과부, 외롭고 갇힌 자에게로 가십니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 하나님은 외로운 자의 아버지가 되십니다 (5절)</div>
+    <div class="sermon-text">
+      <p>5절을 보십시오. 하나님이 계신 곳을 <span class="bold">"거룩한 처소"</span>라고 표현합니다. 가장 높고, 가장 거룩하고, 가장 영광스러운 자리입니다.</p>
+      <p>그런데 그 높은 곳에 계신 분이 자신을 <span class="emphasis">"고아의 아버지"</span>라고 소개하십니다. 고대 사회에서 고아와 과부는 보호자가 없는 사람, 즉 세상에서 가장 약하고 가장 외로운 사람을 상징했습니다. 하나님은 바로 그들의 아버지가 되신다고 선언하십니다.</p>
+      <p>성도 여러분, <span class="bold">이것이 우리 하나님의 성품입니다.</span> 사람은 보통 강한 자, 가진 자에게 다가갑니다. 그러나 하나님은 정반대이십니다. 가장 외로운 자에게 친히 아버지로 다가오십니다.</p>
+      <p>이 아버지 되심은 <span class="emphasis">예수 그리스도에게서 가장 완전하게 드러났습니다.</span> 예수님은 하늘 보좌를 떠나 이 땅에 오셨습니다. 그분은 "여우도 굴이 있고 공중의 새도 거처가 있으되 인자는 머리 둘 곳이 없다"고 하셨습니다.</p>
+      <p>우리의 외로움을 머리로 아신 것이 아니라, <span class="bold">친히 외로움 한복판을 걸어가신 것입니다.</span></p>
+      <p>십자가 위에서 예수님은 "나의 하나님, 나의 하나님, 어찌하여 나를 버리셨나이까?"라고 부르짖으셨습니다. <span class="emphasis">가장 철저한 버림받음을 그분이 대신 당하셨습니다.</span> 우리가 다시는 버림받지 않고 하나님의 자녀로 받아들여지게 하시기 위해서입니다.</p>
+      <p>혹시 오늘 "나는 혼자다"라고 느끼는 분이 계십니까? 기억하십시오. <span class="bold">가장 높은 곳에 계신 하나님이 가장 낮은 당신에게 아버지가 되시기를 원하십니다.</span> 외로움은 당신을 향한 하나님의 초대장일 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 하나님은 외로운 자를 가족 중에 살게 하십니다 (6절 전반)</div>
+    <div class="sermon-text">
+      <p>6절 앞부분을 보십시오. <span class="bold">"하나님이 고독한 자들은 가족과 함께 살게 하시며."</span></p>
+      <p><span class="emphasis">이 말씀이 오늘 설교의 심장입니다.</span></p>
+      <p>하나님은 외로운 자를 단지 위로하고 끝내지 않으십니다. 외로운 자를 <span class="bold">가족 중에 두십니다.</span> 성경이 말하는 외로움의 반대말은 "가족"입니다. 그저 옆에 누가 있는 것이 아니라, <span class="emphasis">나를 자기 식구로 품어주는 관계, 책임지고 사랑하는 관계</span>입니다.</p>
+      <p>한 30대 자매님의 이야기를 나눕니다. 타지에서 직장을 잡고 홀로 자취를 시작한 분이었습니다. 명절에도 갈 곳이 없어 라면을 끓여 먹던 그분이 어느 주일, 우리 교회의 구역 식구들과 함께 밥을 먹게 되었습니다. 그날 그분이 울면서 이렇게 말했다고 합니다.</p>
+      <p><span class="emphasis">"여기 와서 처음으로 '같이 먹자'는 말을 들었어요."</span></p>
+      <p>바로 그것이 하나님이 일하시는 방식입니다. 하나님은 외로운 자를 가족 중에 살게 하시되, 그 가족을 바로 <span class="bold">교회 공동체를 통해 만들어 가십니다.</span></p>
+      <p>이것을 예수 그리스도 안에서 더 깊이 봅시다. 예수님은 십자가 위에서 어머니 마리아와 제자 요한을 보시며 말씀하셨습니다. <span class="emphasis">"여자여 보소서 아들이니이다 보라 내 어머니라."</span> 십자가의 고통 가운데서도 예수님은 새로운 가족을 만드셨습니다. 피로 맺어진 가족이 아니라, <span class="bold">십자가의 은혜로 맺어진 가족</span>입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"너희는 이제 외인도 아니요 나그네도 아니요 오직 성도들과 동일한 시민이요 하나님의 권속이라"</div>
+        <div class="v-ref">— 에베소서 2:19 —</div>
+      </div>
+      <p>예수님의 십자가는 <span class="emphasis">외로운 죄인들을 한 아버지 아래 한 가족으로 모으는 능력</span>입니다.</p>
+      <p>하나님이 외로운 자를 가족 중에 살게 하신다면, 우리 교회는 그 가족이 되어야 합니다. 오늘 예배당 안을 한번 둘러보십시오. 어쩌면 당신 곁에 명절에 라면을 끓여 먹는 누군가가 앉아 있을지 모릅니다.</p>
+      <p>이번 주 한 사람에게 <span class="bold">"같이 밥 먹어요"</span>라고 말해 보시기 바랍니다. 그 한마디가 누군가에게는 <span class="emphasis">하나님의 가족으로 들어오는 문</span>이 될 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 하나님은 갇힌 자를 이끌어내어 형통하게 하십니다 (6절 후반)</div>
+    <div class="sermon-text">
+      <p>외로움은 종종 감옥과 같습니다. 마음의 감옥, 상처의 감옥, 과거의 감옥에 갇혀 <span class="bold">스스로 나오지 못하는 분들</span>이 계십니다.</p>
+      <p>그런데 하나님은 갇힌 자를 그저 불쌍히 여기시는 데서 멈추지 않으십니다. <span class="emphasis">"이끌어 내신다"</span>고 하십니다. 직접 손을 잡고 끌어내시는 능동적인 하나님이십니다. 그리고 메마른 땅이 아니라 <span class="bold">형통한 곳으로 인도하십니다.</span></p>
+      <p>이 말씀은 예수 그리스도 안에서 성취되었습니다. 예수님은 회당에서 이사야의 말씀을 읽으며 자신의 사명을 선포하셨습니다. <span class="emphasis">"포로된 자에게 자유를, 갇힌 자에게 놓임을 선포하러 오셨다."</span></p>
+      <p>그리고 예수님은 부활하심으로 <span class="bold">사망의 감옥, 죄의 감옥, 외로움의 감옥의 문을 부수셨습니다.</span> 무덤이라는 가장 외롭고 어두운 감옥에 들어가셨다가 사흘 만에 이끌려 나오셨습니다. 그분이 먼저 이끌려 나오셨기에, 그분을 믿는 우리도 반드시 이끌려 나올 수 있습니다.</p>
+      <p>한 형제님의 이야기를 짧게 나눕니다. 사업에 실패하고 사람들을 다 끊은 채 1년을 방 안에만 있던 분이었습니다. 어느 새벽 기도회에서 이 본문을 듣고 처음으로 다시 문을 열고 나왔다고 합니다. 지금 그분은 우리 교회에서 같은 아픔을 겪는 이들을 섬기고 있습니다.</p>
+      <p><span class="emphasis">갇혀 있던 자가 이제 갇힌 자를 이끌어내는 통로가 된 것입니다.</span></p>
+      <p>여러분, 지금 어떤 감옥에 갇혀 계십니까? 혼자 힘으로 나오려 애쓰지 마십시오. <span class="bold">부활하신 예수님께 손을 내미십시오.</span> 그분이 이끌어내십니다.</p>
+      <p>그리고 기억하십시오. 본문은 경고도 함께 줍니다. <span class="emphasis">"오직 거역하는 자들의 거처는 메마른 땅이로다."</span> 하나님의 가족으로 들어오는 길은 오직 그분께 마음을 여는 것입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">한 문장 정리 · 한 가지 결단</div>
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 오늘 본문을 한 문장으로 정리합니다.</p>
+      <p style="font-family:var(--font-s);font-size:16px;color:var(--gold-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:20px 0">
+        <span class="bold">"높은 곳에 계신 하나님이<br>가장 외로운 자에게 내려오셔서,<br>그를 가족 중에 살게 하시고,<br>갇힌 곳에서 이끌어내신다."</span>
+      </p>
+      <p>이 모든 것은 <span class="emphasis">예수 그리스도의 십자가에서 이루어졌습니다.</span> 그분이 버림받으셨기에 우리가 받아들여졌고, 그분이 외로우셨기에 우리가 가족이 되었고, 그분이 무덤에서 이끌려 나오셨기에 우리가 자유롭게 되었습니다.</p>
+      <p>오늘 한 가지 결단을 드립니다. <span class="bold">이번 한 주, 외로운 한 사람에게 먼저 손을 내미십시오.</span></p>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:3px;color:var(--gold);opacity:.85;text-align:center;margin:18px 0">
+        문자 한 통 · 밥 한 끼
+      </p>
+      <p>그 작은 행동을 통해 하나님은 누군가를 가족 중에 살게 하실 것입니다. 우리가 받은 은혜를 <span class="emphasis">우리가 흘려보내는 통로</span>가 됩시다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">은혜로우신 하나님 아버지, 외로운 저희를 자녀 삼아 주시고 가족 중에 살게 하시니 감사합니다. 그동안 사람만 바라보며 외로워했던 저희의 마음을 회개합니다. 이제 예수 그리스도의 십자가 안에서 참된 가족 됨을 누리게 하시고, 우리 교회가 외로운 영혼을 품는 따뜻한 가족이 되게 하옵소서. 지금도 마음의 감옥에 갇힌 이들을 주님의 능하신 손으로 이끌어내어 주시옵소서. 우리를 가족으로 부르신 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.75;text-align:center;margin-top:24px">한 사람에게 · 같이 먹어요 한마디로 · 가족이 되는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-20.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_05_31.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  sermonAudio=document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
