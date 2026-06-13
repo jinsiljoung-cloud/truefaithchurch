@@ -185,13 +185,6 @@
 .dv-r{font-family:var(--fc);font-size:7.5px;letter-spacing:2px;color:var(--gold);opacity:.4}
 .dv-d{font-size:10px;opacity:.33;margin-top:5px;line-height:1.6;font-weight:300}
 
-/* 신앙고백 */
-.creed-box{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:56px 40px;max-width:640px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
-.creed-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.creed-label{font-family:var(--fc);font-size:9px;letter-spacing:4px;color:var(--gold);opacity:.55;margin-bottom:32px}
-.creed-lines{font-family:var(--fs);font-size:clamp(14px,2.2vw,18px);font-weight:400;color:var(--cream);line-height:3;letter-spacing:.3px}
-.creed-accent{color:var(--gold-l);font-weight:700}
-.creed-amen{font-family:var(--fc);font-size:14px;letter-spacing:8px;color:var(--gold);opacity:.65;margin-top:28px}
 
 /* 사역 페이지 카드 */
 .pages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
@@ -430,42 +423,9 @@ footer{background:#060d16;padding:64px 40px 36px;border-top:1px solid var(--bord
   </div>
 </section>
 
-<!-- Five Ways of Life -->
-<section class="section" id="values" style="background:var(--navy2)">
-  <div class="container">
-    <div class="tc reveal">
-      <div class="s-eye" id="valuesEye">What We Believe · 우리의 믿음</div>
-      <h2 class="s-title" id="valuesTitle">Five Ways of Life</h2>
-      <p class="s-sub" id="valuesSub">일상 속에서 실천하는 다섯 가지 삶의 방식입니다.</p>
-    </div>
-    <div class="d-grid reveal d1">
-      <div class="d-card"><div class="d-num">01</div><div class="d-eng">THE RIGHT PATH</div><div class="d-kor">정도 (正道)</div><div class="d-desc">바른 길을 걸어라</div></div>
-      <div class="d-card"><div class="d-num">02</div><div class="d-eng">TRANSPARENCY</div><div class="d-kor">정직 (正直)</div><div class="d-desc">투명하게 살아라</div></div>
-      <div class="d-card"><div class="d-num">03</div><div class="d-eng">TAKE ROOT</div><div class="d-kor">정착 (定着)</div><div class="d-desc">뿌리를 내려라</div></div>
-      <div class="d-card"><div class="d-num">04</div><div class="d-eng">SERVE PEOPLE</div><div class="d-kor">정민 (正民)</div><div class="d-desc">이웃을 섬겨라</div></div>
-      <div class="d-card"><div class="d-num">05</div><div class="d-eng">STILLNESS</div><div class="d-kor">정지 (靜止)</div><div class="d-desc">멈추어야 들린다</div></div>
-    </div>
-    <div class="d-row reveal d2">
-      <div class="d-verse"><div class="dv-t">"좁은 문으로 들어가라"</div><div class="dv-r">마태복음 7:13</div><div class="dv-d">성공보다 성실, 속도보다 방향.</div></div>
-      <div class="d-verse"><div class="dv-t">"진리가 너희를 자유롭게 하리라"</div><div class="dv-r">요한복음 8:32</div><div class="dv-d">온라인과 오프라인이 같은 사람.</div></div>
-      <div class="d-verse"><div class="dv-t">"어느 형편에든 자족하기를"</div><div class="dv-r">빌립보서 4:11</div><div class="dv-d">어디에 있든 그 곳이 성전.</div></div>
-      <div class="d-verse"><div class="dv-t">"이웃을 네 자신 같이 사랑하라"</div><div class="dv-r">마가복음 12:31</div><div class="dv-d">댓글 하나도 사랑의 언어로.</div></div>
-      <div class="d-verse"><div class="dv-t">"가만히 있어 내가 하나님임을"</div><div class="dv-r">시편 46:10</div><div class="dv-d">느린 삶이 곧 영성입니다.</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- 신앙고백 -->
-<section class="section" id="creed" style="background:var(--navy3)">
-  <div class="container-sm">
-    <div class="tc reveal"><div class="s-eye" id="creedEye">Confession of Faith · 신앙 고백</div></div>
-    <div class="creed-box reveal d1">
-      <div class="creed-label" id="creedLabel">✝ &nbsp; True Faith Church 신앙고백 &nbsp; ✝</div>
-      <div class="creed-lines" id="creedLines">나는 <span class="creed-accent">바른 길</span>을 걷는 바른믿음 성도이다.<br><span class="creed-accent">빠름</span>보다 깊음을,<br><span class="creed-accent">소유</span>보다 존재를,<br><span class="creed-accent">성공</span>보다 성품을 추구한다.<br><br>나는 디지털 세계에서도<br><span class="creed-accent">하나님의 사람</span>으로 살며,<br>느린 삶 안에서 <span class="creed-accent">영원</span>을 만난다.</div>
-      <div class="creed-amen" id="creedAmen">— Amen · 아멘 —</div>
-    </div>
-  </div>
-</section>
+
+
 
 <!-- 사역 페이지 -->
 <section class="section" id="pages" style="background:var(--navy)">
@@ -585,8 +545,6 @@ var LANG={
     al1:"✝ 10분 예배 바로가기",al2:"📖 말씀 · Sermons",al3:"🎵 찬양 · Praise",al4:"🤝 공동체 · Community",
     ab1l:"성전",ab1v:"인터넷이 닿는<br>모든 곳",ab2l:"예배 시간",ab2v:"딱 10분<br>언제 어디서든",
     ab3l:"선교 대상",ab3v:"디지털 세대<br>모든 믿는 자",ab4l:"교단",ab4v:"비교단 독립<br>Non-Denominational",
-    valuesEye:"What We Believe · 우리의 믿음",valuesTitle:"Five Ways of Life",valuesSub:"일상 속에서 실천하는 다섯 가지 삶의 방식입니다.",
-    creedEye:"Confession of Faith · 신앙 고백",creedLabel:"✝ &nbsp; True Faith Church 신앙고백 &nbsp; ✝",creedAmen:"— Amen · 아멘 —",
     pagesEye:"Our Ministry · 사역",pagesTitle:"함께 드리는 예배",
     pg1t:"10분 예배",pg1d:"찬양 · 말씀 · 기도 · 신앙고백 · 축도<br>언제 어디서든 완전한 예배",pg1l:"예배 시작하기 →",
     pg2t:"말씀",pg2d:"매주 수요일 저녁 · 주일 아침<br>디지털 세대를 위한 성경 메시지",pg2l:"말씀 목록 보기 →",
@@ -632,7 +590,6 @@ var LANG={
 
     ab1l:"Sanctuary",ab1v:"Wherever the<br>internet reaches",ab2l:"Worship Time",ab2v:"Just 10 minutes<br>Anywhere, anytime",
     ab3l:"Mission",ab3v:"Digital Generation<br>All believers",ab4l:"Denomination",ab4v:"Independent<br>Non-Denominational",
-    valuesEye:"What We Believe · Our Values",valuesTitle:"Five Ways of Life",valuesSub:"Five simple principles for living a meaningful, faith-centered life.",
     creedEye:"Confession of Faith · Our Creed",creedLabel:"✝ &nbsp; True Faith Church Creed &nbsp; ✝",creedAmen:"— Amen —",
     pagesEye:"Our Ministry",pagesTitle:"Worship Together",
     pg1t:"10-Min Worship",pg1d:"Praise · Word · Prayer · Creed · Benediction<br>Complete worship, anywhere",pg1l:"Start Worship →",
