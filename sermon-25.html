@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 잃어버린 자를 찾아 구원하러 오셨습니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--gold-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-box{padding:20px 24px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;margin:20px 0}
+.decision-box p{margin:0;font-size:14px;line-height:2;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">삭개오 — 잃어버린 자를 찾아<br>구원하러 오신 예수님</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀️ 2026년 6월 14일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 11분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"인자가 온 것은 잃어버린 자를 찾아 구원하려 함이니라"</div>
+    <div class="verse-ref">— 누가복음 19:10 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 11분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 10:47</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 안녕하십니까. 한 주간도 하나님의 은혜 가운데 평안하셨습니까.</p>
+      <p>오늘 말씀을 시작하기 전에, 짧은 이야기 하나를 나누고 싶습니다. 어느 시골 마을에 키가 아주 작은 아이가 있었습니다. 마을 잔치가 열리는 날, 모두가 광장에 모였는데 그 아이는 어른들 등 뒤에 가려서 아무것도 볼 수 없었습니다. 발을 동동 구르고 까치발을 들어도 소용이 없었습니다. 결국 그 아이는 옆에 있던 커다란 나무로 달려가 기어이 그 위로 올라갔습니다. 그러자 마을 전체가, 그리고 잔치의 주인공이 한눈에 보였습니다.</p>
+      <p>오늘 우리가 만날 사람도 꼭 그런 사람입니다. 키가 작았던 사람, 그러나 <span class="emphasis">예수님을 보기 위해 체면도 버리고 나무 위에 올라갔던 사람</span>, 바로 세리장 삭개오입니다.</p>
+      <p>그런데 사랑하는 여러분, 이 이야기는 단지 한 작은 사람의 호기심에 관한 이야기가 아닙니다. <span class="bold">잃어버린 한 영혼을 끝까지 찾아오시는 예수님의 사랑에 관한, 우리 모두의 이야기입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">말씀 · 누가복음 19:1-10</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"예수께서 여리고로 들어가 지나가시더라. 삭개오라 이름하는 자가 있으니 세리장이요 또한 부자라. 그가 예수께서 어떠한 사람인가 하여 보고자 하되 키가 작고 사람이 많아 할 수 없어 앞으로 달려가서 보기 위하여 돌무화과나무에 올라가니"</div>
+        <div class="v-ref">— 누가복음 19:1-4 —</div>
+      </div>
+      <p>여리고는 예루살렘으로 올라가는 길목에 있던 부유한 무역 도시였습니다. 세금이 오가는 곳이었기에 세리들이 많았고, 그 우두머리가 바로 삭개오였습니다.</p>
+      <p>당시 세리는 로마 제국의 앞잡이로 동족의 피를 빨아먹는 죄인 취급을 받았습니다. <span class="emphasis">삭개오는 부자였지만, 동시에 모든 사람에게 손가락질 받던, 철저히 외로운 사람</span>이었습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 예수님은 우리가 찾기 전에 먼저 찾으십니다</div>
+    <div class="sermon-text">
+      <p>본문을 자세히 보십시오. 삭개오가 나무에 올라간 것은 그저 예수가 어떤 사람인가 보고 싶은 <span class="bold">호기심</span> 때문이었습니다. 그는 예수님께 무엇을 구하지도 않았고, 자신이 구원받으리라고 기대하지도 않았습니다. 그저 멀리서 한 번 얼굴이나 보려던 것이었습니다.</p>
+      <p>그런데 5절을 보십시오.</p>
+      <div class="verse-box">
+        <div class="v-text">"예수께서 그곳에 이르사 쳐다보시고 이르시되, 삭개오야 속히 내려오라 내가 오늘 네 집에 유하여야 하겠다 하시니"</div>
+        <div class="v-ref">— 누가복음 19:5 —</div>
+      </div>
+      <p>예수님께서 그 수많은 무리 가운데, 나무 위에 숨듯이 올라가 있던 <span class="bold">한 사람의 이름을 정확히 부르셨습니다. "삭개오야."</span></p>
+      <p>아무도 그를 이름으로 다정하게 불러주지 않던 그 도시에서, <span class="emphasis">예수님만은 그의 이름을 아셨습니다.</span></p>
+      <p>사랑하는 성도 여러분, 여기에 복음의 핵심이 있습니다. 우리가 하나님을 찾는 것 같지만, 사실은 <span class="bold">하나님께서 먼저 우리를 찾으셨습니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"그 잃어버린 자를 내가 찾으며 쫓기는 자를 내가 돌아오게 하며"</div>
+        <div class="v-ref">— 에스겔 34:16 —</div>
+      </div>
+      <p>우리의 구원은 우리의 열심에서 시작된 것이 아니라, <span class="emphasis">잃은 양 한 마리를 찾아 광야로 나오시는 목자의 사랑에서 시작되었습니다.</span></p>
+      <p>십자가는 우리가 하나님께 올라가려고 세운 사다리가 아니라, <span class="bold">하나님께서 우리에게로 내려오신 길입니다.</span> 삭개오가 나무에 올라가기 전에, 예수님께서 이미 그 길로 지나가시기로 작정하셨던 것처럼 말입니다.</p>
+      <p>혹시 오늘 "나 같은 사람을 하나님이 알기나 하실까" 생각하는 분이 계십니까? <span class="bold">여러분의 이름은 이미 하나님의 손바닥에 새겨져 있습니다.</span> 오늘 예수님은 여러분의 이름을 부르고 계십니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 예수님을 만난 사람은 반드시 변화됩니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"삭개오가 서서 주께 여짜오되, 주여 보시옵소서 내 소유의 절반을 가난한 자들에게 주겠사오며 만일 누구의 것을 속여 빼앗은 일이 있으면 네 갑절이나 갚겠나이다"</div>
+        <div class="v-ref">— 누가복음 19:8 —</div>
+      </div>
+      <p>여러분, 이 변화가 얼마나 놀라운지 보십시오. 평생 돈을 긁어모으던 사람, 한 푼이라도 더 빼앗으려던 사람이, <span class="bold">자기 입으로 내 소유의 절반을 주겠다</span> 말합니다. 게다가 율법은 도둑질한 것을 갚을 때 보통 오분의 일을 더하라 했는데, 삭개오는 <span class="emphasis">네 배를 갚겠다</span>고 합니다.</p>
+      <p>여기서 우리가 분명히 알아야 할 것이 있습니다. 삭개오는 "내가 이렇게 착하게 살 테니 구원해 주십시오" 하지 않았습니다. <span class="bold">순서가 중요합니다.</span></p>
+      <p>먼저 예수님이 그의 집에 들어오셨고, 먼저 그가 구원의 기쁨을 맛보았고, <span class="emphasis">그 결과로 삶이 변한 것</span>입니다.</p>
+      <p style="font-size:15px;font-weight:500;color:var(--gold-p);line-height:2;text-align:center;padding:14px 20px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:18px 0">변화는 구원의 조건이 아니라 구원의 열매입니다.</p>
+      <p>이것이 복음과 종교의 결정적 차이입니다. <span class="bold">종교는 "변하면 받아주겠다"</span> 말하지만, <span class="emphasis">복음은 "먼저 받아주셨으니 변한다"</span> 말합니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"그런즉 누구든지 그리스도 안에 있으면 새로운 피조물이라 이전 것은 지나갔으니 보라 새것이 되었도다"</div>
+        <div class="v-ref">— 고린도후서 5:17 —</div>
+      </div>
+      <p>어떤 분이 평생 닫혀 있던 창고 같은 마음을 가지고 살았습니다. 그런데 예수님을 인격적으로 만난 뒤, 가장 먼저 한 일이 무엇이었는지 아십니까? 오랫동안 원수처럼 지내던 형제에게 먼저 전화를 걸어 용서를 구한 일이었습니다. 돈도, 자존심도, 그에게는 더 이상 붙들 이유가 없어진 것입니다.</p>
+      <p><span class="bold">예수님이 들어오시면 손이 펴지고, 마음이 열립니다.</span></p>
+      <p>여러분, 참된 회심에는 반드시 흔적이 남습니다. 지갑이 변하고, 입술이 변하고, 관계가 변합니다. <span class="emphasis">오늘 나의 변화의 열매는 무엇입니까?</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 예수님은 잃어버린 자를 찾아 구원하러 오셨습니다</div>
+    <div class="sermon-text">
+      <p>사람들의 반응을 보십시오. 7절입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"뭇사람이 보고 수군거려 이르되, 저가 죄인의 집에 유하러 들어갔도다 하더라"</div>
+        <div class="v-ref">— 누가복음 19:7 —</div>
+      </div>
+      <p>사람들은 삭개오를 "죄인"이라는 한 단어로 규정하고, 그를 향한 예수님의 사랑조차 못마땅하게 여겼습니다.</p>
+      <p>그러나 예수님의 시선은 달랐습니다. 9절과 10절, 오늘 본문의 절정입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"예수께서 이르시되, 오늘 구원이 이 집에 이르렀으니 이 사람도 아브라함의 자손임이로다. 인자가 온 것은 잃어버린 자를 찾아 구원하려 함이니라"</div>
+        <div class="v-ref">— 누가복음 19:9-10 —</div>
+      </div>
+      <p>사랑하는 성도 여러분, 바로 이 한 구절에 <span class="bold">누가복음 전체의 심장이 들어 있습니다.</span></p>
+      <p>예수님이 이 땅에 오신 이유, 베들레헴의 구유에 누우신 이유, 그리고 마침내 골고다 십자가에 달리신 이유가 바로 이것입니다. <span class="emphasis">잃어버린 자를 찾아 구원하시기 위함입니다.</span></p>
+      <p>세상은 삭개오를 "구제 불능의 죄인"이라 불렀지만, 예수님은 그를 <span class="bold">"아브라함의 자손, 곧 약속의 상속자"</span>라 부르셨습니다. 사람의 정죄가 마지막 말이 아닙니다. <span class="emphasis">예수님의 선언이 마지막 말입니다.</span></p>
+      <p>그리고 이 구원이 어떻게 이루어졌습니까? 거저 된 것이 아닙니다. 예수님은 지금 여리고를 지나 어디로 가고 계셨습니까? <span class="bold">예루살렘, 곧 십자가를 향해 가고 계셨습니다.</span></p>
+      <p>삭개오를 죄인의 자리에서 건져내기 위해, 예수님은 친히 죄인의 자리에 서서 죽으러 가시는 길이었습니다. 삭개오의 빚은 네 갑절로 갚을 수 있었지만, <span class="emphasis">우리의 죄의 빚은 오직 예수님의 보혈로만 갚을 수 있었습니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"우리는 다 양 같아서 그릇 행하여 각기 제 길로 갔거늘 여호와께서는 우리 모두의 죄악을 그에게 담당시키셨도다"</div>
+        <div class="v-ref">— 이사야 53:6 —</div>
+      </div>
+      <p>깊은 산속에서 길을 잃은 한 아이가 있었습니다. 온 마을 사람이 밤새 산을 뒤졌습니다. 마침내 아이를 찾은 것은, 가장 깊고 위험한 골짜기까지 포기하지 않고 내려간 아버지였습니다.</p>
+      <p>우리 주님이 그러하십니다. <span class="bold">가장 낮고 깊은 죄의 골짜기, 우리가 스스로 빠져나올 수 없는 그곳까지 친히 내려오셔서, 우리를 찾으시고 등에 업고 올라오신 분이 예수 그리스도이십니다.</span></p>
+      <p>혹시 내 곁에 "저 사람은 안 돼"라고 우리가 포기한 영혼이 있습니까? <span class="emphasis">예수님이 포기하지 않으신 영혼을, 우리가 포기할 수 없습니다.</span> 잃어버린 한 사람을 향한 주님의 마음을 우리도 품기를 바랍니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">한 문장 정리 · 오늘의 결단</div>
+    <div class="sermon-text">
+      <div class="key-sentence">
+        <span class="bold">예수님은 잃어버린 우리를 먼저 찾아오셨고,<br>그 만남은 반드시 우리 삶을 변화시키며,<br>그 모든 구원은 십자가의 은혜에서 흘러나왔습니다.</span>
+      </div>
+      <p>오늘 우리에게 한 가지 구체적인 결단을 촉구합니다.</p>
+      <div class="decision-box">
+        <p>삭개오처럼 나무에서 내려와, <span class="bold">예수님을 내 삶의 집으로 모셔 들이십시오.</span> 단지 멀리서 구경하는 신앙이 아니라, 예수님과 한 식탁에 마주 앉는 신앙으로 나아가십시오.</p>
+        <p style="margin-top:12px">그리고 그 만남의 증거로, 이번 한 주간 <span class="emphasis">펴야 할 손이 무엇인지, 갚아야 할 관계가 무엇인지, 용서해야 할 사람이 누구인지</span> 하나만 정하고 실천하십시오.</p>
+      </div>
+      <p>예수 그리스도의 은혜가 삭개오의 닫힌 마음을 열었듯이, <span class="bold">오늘 우리의 마음도 활짝 열리기를</span> 주님의 이름으로 축원합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">은혜로우신 하나님 아버지, 잃어버린 자를 찾아 구원하러 오신 예수님의 사랑 앞에 엎드립니다. 우리의 옛 모습을 회개합니다. 손에 움켜쥐고, 마음의 문을 닫고, 이웃을 정죄하며 살아온 죄를 용서하여 주옵소서. 이제 삭개오처럼 주님을 기쁨으로 영접하게 하시고, 변화된 삶의 열매를 맺게 하옵소서. 아직 주님을 모르는 우리의 가족과 이웃을 긍휼히 여겨 주시고, 우리를 그들에게 보내심을 받는 자로 세워 주옵소서. 한 주간도 십자가의 은혜를 의지하여 살게 하옵소서. 우리 주 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.75;text-align:center;margin-top:24px">이름을 아시는 주님 · 먼저 찾아오신 은혜 · 삶이 변하는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-24.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_06_14.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  sermonAudio=document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
