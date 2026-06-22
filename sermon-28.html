@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 나의 도움이 어디서 올까</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--sage:#7A9E7E;--sage-l:#9CBFA0;--sage-p:#C8DCC9;--gold:#C9A84C;--cream:#F5EDD6;--border:rgba(122,158,126,0.16);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.10) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage-l);opacity:.9;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.06);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--sage-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.85}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.10),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.28);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.32);background:rgba(122,158,126,.10);color:var(--sage-l)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),var(--sage-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.30)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.12);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-l);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.22),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--sage-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.42);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--sage-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage-l);opacity:.75}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.22),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.55;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(122,158,126,.05);border-left:2px solid var(--sage);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--sage);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.7;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(122,158,126,.28);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.14);border:1px solid rgba(122,158,126,.28);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">나의 도움이 어디서 올까<br>졸지도 주무시지도 않으시는 하나님</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 6월 24일 수요</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올까 나의 도움은 천지를 지으신 여호와에게서로다"</div>
+    <div class="verse-ref">— 시편 121:1-2 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 10:35</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 한 주의 절반을 지나온 수요일 저녁입니다. 오늘 하루도, 이번 한 주도 참 많은 일들이 있으셨지요.</p>
+      <p>분주함 속에서 잠시 숨을 고르고, 함께 하나님 앞에 영혼을 점검하는 이 저녁 시간으로 여러분을 초대합니다.</p>
+      <p>오늘 우리가 함께 묵상할 본문은 <span class="bold">시편 121편</span>입니다. "산을 향하여 눈을 들리라." 인생의 길 위에서 도움이 어디서 오는지를 노래한, 짧지만 깊은 다윗의 시편입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올까 나의 도움은 천지를 지으신 여호와에게서로다 여호와께서 너를 실족하지 아니하게 하시며 너를 지키시는 이가 졸지 아니하시리로다 이스라엘을 지키시는 이는 졸지도 아니하시고 주무시지도 아니하시리로다 여호와는 너를 지키시는 이시라 여호와께서 네 오른쪽에서 네 그늘이 되시나니 낮의 해가 너를 상하게 하지 아니하며 밤의 달도 너를 해치지 아니하리로다 여호와께서 너를 지켜 모든 환난을 면하게 하시며 또 네 영혼을 지키시리로다 여호와께서 너의 출입을 지금부터 영원까지 지키시리로다"</div>
+        <div class="v-ref">— 시편 121:1-8 —</div>
+      </div>
+      <p>이 시편은 성전에 올라가는 노래 가운데 하나입니다. 이스라엘 백성이 절기를 맞아 예루살렘 성전으로 순례 길을 떠날 때 부르던 노래였습니다. 그 길은 험한 산지를 넘는 위험한 여정이었습니다. 산에는 강도가 숨어 있었고, 우상을 섬기는 산당들도 있었습니다. 그런 두려움의 길목에서 순례자는 산을 바라보며 묻습니다. <span class="emphasis">"나의 도움이 어디서 올까."</span></p>
+      <p>오늘 우리도 인생이라는 순례 길을 걷고 있습니다. 그 길에서 이 노래는 여전히 우리의 노래입니다. 세 가지로 나누어 묵상하겠습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 도움은 산이 아니라 산을 지으신 분께 있습니다</div>
+    <div class="sermon-text">
+      <p>산을 향하여 눈을 듭니다. 그런데 여기서 산은 단순히 아름다운 경치가 아니었습니다. 그것은 두려움의 대상이었고, 동시에 사람들이 헛된 도움을 구하던 곳이었습니다. 고대 사람들은 산 위 높은 곳에 신당을 짓고 우상에게 도움을 빌었습니다.</p>
+      <p>그러나 다윗은 산을 바라보다가 곧 고백합니다. <span class="bold">"나의 도움은 천지를 지으신 여호와에게서로다."</span></p>
+      <p>여기에 깊은 전환이 있습니다. 다윗은 도움을 찾아 두리번거리던 눈을, 산 너머 그 산을 지으신 하나님께로 옮깁니다. <span class="emphasis">산이 아니라, 산을 만드신 하나님을 바라본 것입니다.</span> 천지를 지으신 분이라면 이 작은 인생 하나를 능히 붙드실 수 있지 않겠습니까?</p>
+      <p>우리도 살면서 늘 도움을 찾습니다. 문제가 생기면 사람을 찾고, 돈을 찾고, 방법을 찾습니다. 물론 하나님은 사람과 환경을 통해서도 일하십니다. 그것이 잘못은 아닙니다. 그러나 <span class="bold">우리의 시선이 그 수단에만 머물러 버릴 때, 우리는 불안해집니다.</span> 사람은 변하고, 환경은 무너지기 때문입니다.</p>
+      <p>묵상의 핵심은 <span class="emphasis">시선을 옮기는 데</span> 있습니다. 문제에서 하나님께로, 수단에서 그 수단을 주관하시는 분께로 말입니다.</p>
+      <p>이번 한 주, 마음이 무거운 일이 있으십니까? 그 문제를 노려보던 눈을 잠시 들어, 그 모든 것을 지으신 하나님을 바라보십시오. 오늘 밤 자리에 누우시기 전에, 가장 걱정되는 한 가지를 떠올리며 짧게 고백해 보십시오.</p>
+      <p style="font-family:var(--font-s);font-size:15px;color:var(--sage-p);line-height:2;text-align:center;padding:14px 20px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:18px 0">
+        <span class="bold">"나의 도움은 천지를 지으신 하나님께 있습니다."</span>
+      </p>
+      <p>이 한 문장의 고백이 여러분의 불안한 밤을 바꿀 것입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 지키시는 하나님은 졸지도 주무시지도 않으십니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"너를 지키시는 이가 졸지 아니하시리로다 이스라엘을 지키시는 이는 졸지도 아니하시고 주무시지도 아니하시리로다"</div>
+        <div class="v-ref">— 시편 121:3-4 —</div>
+      </div>
+      <p>이 말씀에는 분명한 대조가 담겨 있습니다. 고대 우상 숭배자들은 자기 신을 깨우려고 애를 썼습니다. 갈멜산에서 바알 선지자들이 부르짖던 장면을 기억하십니까? 엘리야는 그들을 향해 비웃듯 말했습니다. <span class="emphasis">"너희 신이 주무시고 있으니 더 크게 부르라."</span> 사람이 만든 신은 잠을 잡니다. 그러나 <span class="bold">살아 계신 하나님은 졸지도, 주무시지도 않으십니다.</span></p>
+      <p>성도 여러분, 이것이 얼마나 큰 위로인지요. 우리가 잠든 사이에도 하나님은 깨어 계십니다. 우리가 의식하지 못하는 그 모든 순간에도 하나님의 눈은 우리를 향해 열려 있습니다.</p>
+      <p>부모가 아무리 자식을 사랑해도 잠은 자야 합니다. 가장 헌신적인 친구도 늘 곁에 있을 수는 없습니다. 그러나 <span class="emphasis">하나님은 단 한순간도 우리에게서 눈을 떼지 않으십니다.</span></p>
+      <p>우리는 종종 이렇게 느낍니다. "하나님이 지금 나를 잊으신 것은 아닐까? 내 기도를 듣고 계실까?" 그러나 본문은 분명히 말합니다. 하나님은 졸지 않으십니다. <span class="bold">응답이 더딘 것은 하나님이 주무시기 때문이 아닙니다. 오히려 깨어서 가장 좋은 때를 준비하고 계시기 때문입니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"여호와는 너를 지키시는 이시라 여호와께서 네 오른쪽에서 네 그늘이 되시나니"</div>
+        <div class="v-ref">— 시편 121:5 —</div>
+      </div>
+      <p>오른쪽은 가장 가까이에서 돕는 자리입니다. 그늘은 뜨거운 광야에서 생명을 지키는 피난처입니다. <span class="emphasis">하나님은 멀리 계신 분이 아니라, 우리 바로 곁에서 그늘이 되어 주시는 분입니다.</span></p>
+      <p>이번 주, 잠 못 이루는 밤이 찾아오거든 기억하십시오. <span class="bold">내가 잠들 수 없을 때에도, 하나님은 깨어 나를 지키고 계십니다.</span> 그 사실에 마음을 기대고, 염려를 그분께 맡기고 평안히 잠드십시오.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 지키심은 모든 때와 모든 일상에 미칩니다</div>
+    <div class="sermon-text">
+      <p>본문에는 "지키다"라는 단어가 여섯 번이나 반복됩니다. 다윗은 이 말을 거듭 강조하면서, 하나님의 보호가 얼마나 온전하고 빈틈없는지를 노래합니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"낮의 해가 너를 상하게 하지 아니하며 밤의 달도 너를 해치지 아니하리로다"</div>
+        <div class="v-ref">— 시편 121:6 —</div>
+      </div>
+      <p>낮과 밤, 해와 달은 시간 전체를 가리킵니다. <span class="bold">즉 하루 24시간, 어느 순간에도 하나님의 보호 밖에 있는 시간은 없다는 뜻입니다.</span></p>
+      <p>그리고 절정에 이릅니다. <span class="emphasis">"여호와께서 너를 지켜 모든 환난을 면하게 하시며 또 네 영혼을 지키시리로다."</span></p>
+      <p>여기서 우리는 오해하지 말아야 합니다. "모든 환난을 면하게 하신다"는 말은, 우리가 고난을 전혀 겪지 않는다는 뜻이 아닙니다. 순례 길에는 분명 위험이 있었습니다. 인생길에도 고난은 찾아옵니다. 그러나 <span class="bold">본문은 그 고난 한가운데서도 하나님이 우리의 영혼을 지키신다고 약속합니다.</span> 환경이 흔들려도 영혼은 무너지지 않게 붙드신다는 것입니다. 이것이 성도가 받은 가장 깊은 보장입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"여호와께서 너의 출입을 지금부터 영원까지 지키시리로다"</div>
+        <div class="v-ref">— 시편 121:8 —</div>
+      </div>
+      <p>"출입을 지키신다"는 표현도 아름답습니다. 나가고 들어오는 것, 그것은 우리의 모든 일상을 가리킵니다. <span class="emphasis">일하러 나가는 아침, 집으로 돌아오는 저녁, 그 모든 평범한 발걸음을 하나님이 지키십니다.</span> 그것도 지금부터 영원까지 말입니다.</p>
+      <p>성도 여러분, 우리는 큰 사건에서만 하나님을 찾으려는 경향이 있습니다. 그러나 <span class="bold">하나님은 우리의 작은 출입, 평범한 하루하루 속에 함께하십니다.</span></p>
+      <p>이번 주, 집을 나서고 들어올 때마다 짧게 기도하십시오. <span class="emphasis">"하나님, 저의 나감과 들어옴을 지켜 주십시오."</span> 그 작은 습관이 여러분의 일상을 거룩한 동행으로 바꿀 것입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 결단 두 가지</div>
+    <div class="sermon-text">
+      <div class="decision-list">
+        <div class="decision-item"><p><span class="bold">매일 밤 잠들기 전에</span> 가장 무거운 염려 한 가지를 하나님께 맡기며 고백하십시오. <span class="emphasis">"나의 도움은 천지를 지으신 하나님께 있습니다."</span></p></div>
+        <div class="decision-item"><p><span class="bold">매일 집을 나서고 들어올 때마다</span> 짧은 기도로 하나님의 지키심을 구하십시오. <span class="emphasis">"하나님, 저의 나감과 들어옴을 지켜 주십시오."</span></p></div>
+      </div>
+      <div class="key-sentence">
+        <span class="bold">우리의 도움은 산이 아니라, 산을 지으신 하나님께 있습니다.<br>그 하나님이 졸지도 주무시지도 않으시고,<br>우리의 모든 일상을 영원토록 지키십니다.</span>
+      </div>
+      <p>이 확신을 안고 이번 한 주를 <span class="emphasis">평안히 걸어가시기를 축복합니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">천지를 지으신 하나님 아버지, 도움을 찾아 세상을 두리번거리던 우리의 눈을, 오늘 주님께로 들게 하시니 감사합니다. 우리의 연약함을 회개합니다. 사람과 환경에 마음을 빼앗겨 불안에 떨었던 우리를 용서하여 주옵소서. 졸지도 주무시지도 않으시는 주님, 우리가 잠든 사이에도 깨어 우리를 지켜 주시니 감사합니다. 이번 한 주, 우리의 나감과 들어옴을 지켜 주시고, 환난 가운데서도 우리의 영혼을 붙들어 주옵소서. 지치고 병든 성도들, 외로운 이웃들, 길을 잃은 영혼들을 주님의 그늘 아래로 품어 주옵소서. 우리의 출입을 지금부터 영원까지 지키시는 예수님의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--sage-l);opacity:.75;text-align:center;margin-top:24px">산 너머 하나님께로 · 졸지 않으시는 분께 맡기며 · 출입을 기도로 여는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-27.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_06_24.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  sermonAudio=document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
