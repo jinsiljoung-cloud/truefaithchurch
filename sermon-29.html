@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 영원히 목마르지 않는 생수</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--gold-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-box{padding:20px 24px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;margin:20px 0}
+.decision-box p{margin:0;font-size:14px;line-height:2;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">영원히 목마르지 않는 생수<br>수가 성 여인과 예수님</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀️ 2026년 6월 27일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"내가 주는 물을 마시는 자는 영원히 목마르지 아니하리니 내가 주는 물은 그 속에서 영생하도록 솟아나는 샘물이 되리라"</div>
+    <div class="verse-ref">— 요한복음 4:14 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 10:00</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 한 주간도 평안하셨습니까? 한 가지 질문으로 오늘 말씀을 시작하려 합니다. <span class="emphasis">여러분은 언제 가장 목이 마르셨습니까?</span></p>
+      <p>무더운 여름날 운동을 마치고 마시는 시원한 물 한 잔, 그 갈증이 풀리는 순간을 우리는 압니다. 그런데 한 가지 신기한 사실이 있습니다. 물은 마셔도 마셔도 또 마릅니다. 아침에 충분히 마셔도 오후가 되면 또 목이 마릅니다.</p>
+      <p>제가 아는 한 30대 직장인 형제가 이런 말을 했습니다. <span class="emphasis">"목사님, 저는 분명히 다 가졌는데 왜 이렇게 마음이 허전할까요."</span> 좋은 직장이 있고, 가정을 이루었고, 남들이 부러워하는 조건을 갖추었는데, 마음 한구석이 늘 비어 있다는 것입니다.</p>
+      <p>이것이 바로 오늘 우리가 만날 한 여인의 이야기입니다. 다섯 번 결혼하고도 채워지지 않았던 갈증, 그 갈증의 정체를 <span class="bold">예수님께서 정확히 짚어 주십니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">말씀 · 요한복음 4장</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"이 물을 마시는 자마다 다시 목마르려니와 내가 주는 물을 마시는 자는 영원히 목마르지 아니하리니 내가 주는 물은 그 속에서 영생하도록 솟아나는 샘물이 되리라"</div>
+        <div class="v-ref">— 요한복음 4:13-14 —</div>
+      </div>
+      <p>당시 유대인과 사마리아인은 서로 상종하지 않는 원수 관계였습니다. 그런데 예수님은 그 경계를 넘어, 한낮 뙤약볕에 홀로 물을 길러 나온 한 여인에게 먼저 말을 거십니다. 사람들의 눈을 피해 가장 더운 시간에 나온 이 여인, 그 자체가 그녀의 상한 인생을 보여 줍니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 예수님은 우리의 진짜 갈증을 아십니다</div>
+    <div class="sermon-text">
+      <p>여인이 물을 길러 왔을 때, 예수님은 물을 좀 달라 하고 청하십니다. 여인은 깜짝 놀랍니다. <span class="emphasis">"당신은 유대인으로서 어찌하여 사마리아 여자인 나에게 물을 달라 하나이까?"</span></p>
+      <p>그런데 예수님의 관심은 우물물이 아니었습니다. <span class="bold">예수님은 곧바로 그녀의 영혼을 향해 들어가십니다.</span></p>
+      <p>이 여인은 우물물을 길으러 왔지만, 사실 그녀의 진짜 목마름은 따로 있었습니다. 다섯 명의 남편을 거쳤고, 지금 함께 사는 남자도 남편이 아니었습니다. 그녀는 사랑으로 마음을 채우려 했지만 채워지지 않았습니다. <span class="emphasis">관계를 통해, 사람을 통해 영혼의 빈자리를 메우려 했지만, 마시면 마실수록 더 목이 말랐습니다.</span></p>
+      <p>오늘 우리 30대 성도들도 마찬가지입니다. 어떤 분은 성공이라는 우물에서, 어떤 분은 인정이라는 우물에서, 어떤 분은 관계라는 우물에서 끊임없이 물을 긷습니다. 그런데 <span class="bold">"이 물을 마시는 자마다 다시 목마르려니와."</span> 세상의 어떤 우물도 우리 영혼의 갈증을 영원히 채울 수 없습니다.</p>
+      <p>여기서 우리는 예수님이 누구신지를 봅니다. 예수님은 십자가에서 <span class="emphasis">"내가 목마르다"</span> 하고 외치셨습니다. 우리의 갈증을 대신 짊어지시기 위해, 영혼의 가장 깊은 목마름을 친히 겪으셨습니다. <span class="bold">그분만이 우리의 진짜 갈증을 아시고, 그 갈증을 채우실 수 있습니다.</span></p>
+      <p>이번 한 주간, 여러분이 자꾸 물을 긷는 그 우물이 무엇인지 정직하게 들여다보십시오. 그리고 그 우물이 결코 여러분을 채우지 못한다는 것을 인정하십시오. <span class="emphasis">진짜 갈증을 인정하는 것, 그것이 생수를 향한 첫걸음입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 예수님은 영원히 마르지 않는 생수를 주십니다</div>
+    <div class="sermon-text">
+      <p>세상의 물은 밖에서 잠시 들어와 곧 말라 버리는 물입니다. 그러나 예수님이 주시는 물은 <span class="bold">그 속에서 솟아나는 샘물</span>입니다. 밖에서 채우는 것이 아니라, 안에서 솟아나는 생명입니다.</p>
+      <p>이 생수가 무엇이겠습니까. 바로 <span class="emphasis">예수 그리스도 자신이며, 그분이 보내실 성령이십니다.</span> 요한복음 7장에서 예수님은 "누구든지 목마르거든 내게로 와서 마시라 나를 믿는 자는 그 배에서 생수의 강이 흘러나오리라" 하셨고, 이는 성령을 가리켜 하신 말씀이라고 성경이 친히 밝혀 줍니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"내 백성이 두 가지 악을 행하였나니 곧 생수의 근원되는 나를 버린 것과 스스로 웅덩이를 판 것인데 그것은 물을 가두지 못할 터진 웅덩이들이니라"</div>
+        <div class="v-ref">— 예레미야 2:13 —</div>
+      </div>
+      <p>성도 여러분, 우리는 생수의 근원이신 하나님을 버리고, 스스로 터진 웅덩이를 파는 자들이었습니다. 그러나 예수님은 우리가 버린 그 생수의 근원으로 우리를 다시 부르십니다.</p>
+      <p>한 자매의 간증이 떠오릅니다. 그 자매는 화려한 SNS 속 다른 사람들의 삶을 보며 늘 자신을 초라하게 느꼈다고 합니다. 비교의 우물에서 끊임없이 물을 긷던 그녀가, 어느 날 예배 중에 이 말씀을 만났습니다. <span class="emphasis">"내 속에 솟아나는 샘이 있다."</span> 그날 이후 그녀는 밖을 향하던 시선을 안에 계신 예수님께로 돌렸고, 비로소 마음에 평안이 찾아왔다고 고백합니다.</p>
+      <p>이것이 복음입니다. 예수님은 십자가에서 우리를 위해 자기를 다 쏟아부으셨습니다. <span class="bold">그분의 옆구리에서 물과 피가 흘러나왔습니다. 그 생명을 우리에게 부어 주시기 위함입니다.</span></p>
+      <p>오늘부터 갈증이 느껴질 때, 또 다른 세상의 우물로 달려가기 전에 먼저 예수님께 나아가십시오. 말씀 한 구절을 붙들고, 짧은 기도로 안에 계신 주님께 마음을 여십시오. <span class="emphasis">생수는 길으러 가는 것이 아니라, 받아 마시는 것입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 생수를 마신 사람은 반드시 증인이 됩니다</div>
+    <div class="sermon-text">
+      <p>여인은 예수님을 만난 후 어떻게 되었습니까?</p>
+      <div class="verse-box">
+        <div class="v-text">"여자가 물동이를 버려 두고 동네에 들어가서 사람들에게 이르되, 내가 행한 모든 일을 내게 말한 사람을 와서 보라 이는 그리스도가 아니냐 하니"</div>
+        <div class="v-ref">— 요한복음 4:28-29 —</div>
+      </div>
+      <p>주목하십시오. <span class="bold">그녀가 물동이를 버려 두고 갔습니다.</span> 물을 길으러 왔던 그 물동이를 버려 둔 것입니다. 이제 더 이상 그 우물물이 필요 없게 된 것입니다. <span class="emphasis">진짜 생수를 만난 사람은 옛 우물의 물동이를 내려놓습니다.</span></p>
+      <p>더 놀라운 것은 그녀가 향한 곳입니다. 그녀는 사람들을 피해 한낮에 혼자 나온 여인이었습니다. 그런데 이제 그 사람들에게 달려갑니다. 자기를 부끄럽게 했던 과거, "내가 행한 모든 일"을 오히려 <span class="bold">증거의 도구로 삼아 외칩니다. "와서 보라!"</span></p>
+      <p><span class="emphasis">예수님을 만난 사람은 자신의 상처조차 간증으로 바뀝니다.</span></p>
+      <p>그 결과를 성경은 이렇게 말합니다. "여자의 말이 내가 행한 모든 일을 그가 내게 말하였다 증언하므로 그 동네 중에 많은 사마리아인이 예수를 믿는지라." <span class="bold">한 여인의 만남이 한 동네를 변화시켰습니다.</span></p>
+      <p>30대 성도 여러분, 여러분의 직장, 여러분의 가정, 여러분의 이웃이 바로 그 수가 동네입니다. 우리는 자격이 있어서가 아니라, 그분의 은혜를 맛보았기에 증인이 됩니다.</p>
+      <p>이번 한 주, 단 한 사람에게 예수님을 이야기하십시오. 거창한 설교가 아니어도 됩니다. <span class="emphasis">"와서 보라"는 한마디, "내가 만난 예수님이 이런 분이시더라"는 작은 고백이면 충분합니다.</span> <span class="bold">생수는 고이면 썩지만, 흘려보내면 강이 됩니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">한 문장 정리 · 오늘의 결단</div>
+    <div class="sermon-text">
+      <div class="key-sentence">
+        <span class="bold">예수님은 우리의 진짜 갈증을 아시고,<br>영원히 마르지 않는 생수를 주시며,<br>그 생수를 마신 우리를 증인으로 세우십니다.</span>
+      </div>
+      <p>세상의 우물은 우리를 채울 수 없습니다. 오직 십자가에서 우리를 위해 목마르셨던 예수님만이 우리 영혼의 샘이 되십니다.</p>
+      <div class="decision-box">
+        <p><span class="bold">여러분이 붙들고 있던 그 옛 물동이를 내려놓으십시오.</span> 성공이든, 인정이든, 관계든, 그것으로 영혼을 채우려던 헛된 수고를 내려놓고, 안에서 솟아나는 생수의 주님께 나아가십시오.</p>
+        <p style="margin-top:12px">그리고 이번 한 주, <span class="emphasis">한 사람에게 그 주님을 전하십시오.</span> "와서 보라" 한마디가 그 사람의 인생을 바꿀 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">은혜로우신 하나님 아버지, 오늘도 마르지 않는 생수로 우리를 부르시니 감사합니다. 세상의 터진 웅덩이를 파며 살아온 우리의 어리석음을 회개합니다. 이제 옛 물동이를 내려놓고 예수님께 나아갑니다. 우리 안에 성령의 샘이 솟아나게 하시고, 우리를 한 영혼을 살리는 증인으로 세워 주옵소서. 우리를 위해 십자가에서 목마르셨던 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.75;text-align:center;margin-top:24px">물동이를 내려놓고 · 안에서 솟는 생수를 마시며 · 와서 보라 한마디로 사는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-28.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_06_27.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{
+  sermonAudio=document.getElementById('sermonAudio');
+  document.getElementById('ttsStatusText').textContent='재생 준비 ✅';
+  sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});
+  sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});
+});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
