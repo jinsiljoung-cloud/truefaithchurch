@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 하나님이 진정으로 원하시는 것</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--sage:#7A9E7E;--sage-l:#9CBFA0;--sage-p:#C8DCC9;--gold:#C9A84C;--cream:#F5EDD6;--border:rgba(122,158,126,0.16);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.10) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage-l);opacity:.9;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.06);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--sage-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.85}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.10),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.28);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.32);background:rgba(122,158,126,.10);color:var(--sage-l)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),var(--sage-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.30)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.12);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-l);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.22),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--sage-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.42);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--sage-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage-l);opacity:.75}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.22),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.55;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(122,158,126,.05);border-left:2px solid var(--sage);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--sage);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.7;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(122,158,126,.28);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.14);border:1px solid rgba(122,158,126,.28);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">하나님이 진정으로 원하시는 것<br>정의 · 인자 · 겸손한 동행</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 7월 8일 수요</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 10분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"사람아 주께서 선한 것이 무엇임을 네게 보이셨나니 여호와께서 네게 구하시는 것은 오직 정의를 행하며 인자를 사랑하며 겸손하게 네 하나님과 함께 행하는 것이 아니냐"</div>
+    <div class="verse-ref">— 미가서 6:8 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">차분한 목소리 · 약 10분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 10:27</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>성도 여러분, 한 주의 중간, 수요일 저녁 이 자리에 오신 것을 환영합니다. 바쁜 일상 가운데서도 이 시간 하나님 앞에 나아오신 여러분을 주님께서 기뻐하십니다.</p>
+      <p>오늘 저녁, 우리는 <span class="bold">미가서 6장</span>을 함께 펼치겠습니다. 하나님이 우리에게 진정으로 원하시는 것이 무엇인가라는 질문 앞에 조용히 서보는 시간이 되길 바랍니다.</p>
+      <p>미가 선지자는 기원전 8세기, 이사야와 같은 시대를 살았습니다. 당시 이스라엘과 유다는 겉으로는 번영하는 것처럼 보였지만 안으로는 사회적 불의가 만연했고 가난한 자를 짓밟는 일이 일상이었습니다. 놀라운 것은 <span class="emphasis">그 백성이 성전에는 부지런히 나왔다</span>는 것입니다. 제사도 드리고 예물도 드렸습니다. 그런데 하나님은 그 예배를 기뻐하지 않으셨습니다.</p>
+      <p>오늘 말씀 앞에서 우리도 조용히 자신을 돌아보는 시간이 되기를 바랍니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"사람아 주께서 선한 것이 무엇임을 네게 보이셨나니 여호와께서 네게 구하시는 것은 오직 정의를 행하며 인자를 사랑하며 겸손하게 네 하나님과 함께 행하는 것이 아니냐"</div>
+        <div class="v-ref">— 미가서 6:8 —</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 정의를 행하라 — 미쉬파트</div>
+    <div class="sermon-text">
+      <p>8절의 첫 번째 요구는 <span class="bold">정의를 행하라</span>는 것입니다. 히브리어로 <span class="emphasis">미쉬파트</span>인데, 이것은 단순히 법을 지키는 것이 아니라 관계 안에서 마땅히 해야 할 바를 실천하는 것을 의미합니다.</p>
+      <p>우리는 종종 신앙을 예배당 안에서만 생각합니다. 주일 예배에 나오고 헌금하고 봉사하면 신앙을 다 한 것처럼 느끼기 쉽습니다. 그런데 미가는 선포합니다. <span class="bold">"정의를 행하라."</span> 이것은 일상의 자리, 삶의 현장에서 실천되어야 하는 것입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"오직 정의를 물같이, 공의를 마르지 않는 강같이 흐르게 할지어다"</div>
+        <div class="v-ref">— 아모스 5:24 —</div>
+      </div>
+      <p>하나님이 원하시는 것은 종교적 행위의 열심이 아니라 <span class="emphasis">삶 속에서 끊임없이 흘러나오는 공의의 실천</span>이었습니다.</p>
+      <p>정의를 행한다는 것은 어떤 모습일까요. 직장에서 부당한 일을 당하는 동료를 외면하지 않는 것입니다. 내가 손해를 보더라도 옳은 말을 하는 것입니다. 더 약한 사람의 편에서 말해주는 것입니다. 작은 계약서 하나, 작은 거래 하나에서도 정직하게 행동하는 것입니다.</p>
+      <p>이번 한 주를 돌아볼 때, 혹시 <span class="emphasis">"그냥 모른 척하면 편한데"</span>라고 생각했던 순간이 있지 않으셨나요? 정의를 행하는 것은 때로 불편하고 손해처럼 느껴집니다. 그러나 <span class="bold">하나님은 바로 그 불편한 자리에서 우리를 부르고 계십니다.</span></p>
+      <p>공의를 행하는 것은 거창한 사회운동이 아닙니다. <span class="emphasis">오늘 내가 있는 자리에서, 내 앞에 있는 사람에게 마땅히 해야 할 바를 행하는 것입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 인자를 사랑하라 — 헤세드</div>
+    <div class="sermon-text">
+      <p>두 번째 요구는 <span class="bold">인자를 사랑하라</span>는 것입니다. 히브리어 <span class="emphasis">헤세드</span>는 성경에서 가장 깊고 풍성한 단어 중 하나입니다. 단순한 친절이나 자선이 아니라 언약적 사랑, 즉 끊어지지 않는 사랑, 끝까지 붙들어 주는 신실한 사랑을 의미합니다.</p>
+      <p>흥미로운 것은 <span class="bold">"인자를 행하라"가 아니라 "인자를 사랑하라"</span>는 표현입니다. 행하는 것을 넘어 사랑해야 한다는 것입니다. 즉 헤세드는 의무로 하는 것이 아니라 마음으로 원하는 것이어야 합니다. <span class="emphasis">사랑의 행위가 아니라 사랑의 사람이 되어야 한다는 것입니다.</span></p>
+      <p>우리는 때때로 인자를 베풀면서도 속으로는 부담을 느낍니다. "또 부탁이야, 이 사람은 왜 이리 자꾸 기대는 걸까." 이런 마음이 드는 것은 인자를 의무로 여기고 있기 때문입니다.</p>
+      <p>그러나 하나님의 헤세드는 달랐습니다. 시편 기자는 <span class="emphasis">"여호와의 인자하심은 영원하다"</span>고 반복해서 노래했습니다. 하나님의 사랑은 우리가 실망시켜도, 배신해도, 떠나도 끝나지 않는 사랑이었습니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"새 계명을 너희에게 주노니 서로 사랑하라 내가 너희를 사랑한 것같이 너희도 서로 사랑하라"</div>
+        <div class="v-ref">— 요한복음 13:34 —</div>
+      </div>
+      <p>헤세드의 사람은 어떤 사람일까요. <span class="emphasis">연락이 끊긴 사람에게 먼저 문자를 보내는 사람</span>입니다. 상처를 준 사람인데도 기도해 주는 사람입니다. 고마워할 줄 모르는 사람인데도 한 번 더 기회를 주는 사람입니다.</p>
+      <p>매일 아침 하나님의 헤세드를 받고 사는 우리가 오늘 만나는 사람에게 그 사랑을 흘려보낼 수 있습니다. <span class="bold">인자를 사랑하는 사람이란 그 사랑에 감동받아 그 사랑을 살아내는 사람입니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 겸손하게 하나님과 동행하라 — 차나</div>
+    <div class="sermon-text">
+      <p>세 번째 요구는 <span class="bold">겸손하게 네 하나님과 함께 행하는 것</span>입니다. 이것이 세 가지 중 가장 근본입니다. 왜냐하면 정의도 인자도 결국 하나님과의 관계에서 흘러나오기 때문입니다.</p>
+      <p>"겸손하게"라는 단어는 히브리어로 <span class="emphasis">차나</span>인데, 조심스럽게 걷는다, 발소리를 낮추며 걷는다는 의미를 담고 있습니다. <span class="bold">거만하게 앞장서지 않고 하나님의 보조를 맞추며 걷는 것입니다.</span> 내가 먼저 달려 나가는 것이 아니라 하나님의 걸음에 나를 맞추는 것입니다.</p>
+      <p>우리는 살면서 많은 결정을 스스로 내립니다. 직업의 선택, 관계의 결정, 미래의 설계. 그런데 겸손하게 하나님과 동행한다는 것은 그 모든 결정의 자리에 하나님을 초청하는 것입니다.</p>
+      <p style="font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2;text-align:center;padding:14px 20px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:18px 0">
+        <span class="bold">"주님, 어떻게 하면 좋겠습니까?"</span><br>
+        <span style="font-size:13px;opacity:.75">이 질문 하나가 우리 삶을 완전히 바꿉니다.</span>
+      </p>
+      <p>동행이란 함께 걷는 것입니다. 함께 걷기 위해서는 같은 방향을 봐야 합니다. 같은 속도로 걸어야 합니다. 내가 너무 빠르게 달리거나 내 길로 꺾어 가면 동행이 끊어집니다.</p>
+      <p><span class="emphasis">하나님과 동행한다는 것은 나의 계획, 나의 속도, 나의 방향을 내려놓고 하나님의 뜻에 나를 맞추는 일입니다. 이것이 겸손입니다.</span></p>
+      <p>그리고 이 동행은 매일의 이야기입니다. 주일 하루만의 동행이 아닙니다. <span class="bold">월요일 아침 출근길에도, 화요일 저녁 지친 퇴근길에도, 수요일 저녁 이 예배당 안에서도, 매일 매 순간 하나님과 함께 걷는 것</span>, 이것이 신앙의 본질입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 결단 두 가지</div>
+    <div class="sermon-text">
+      <p>성도 여러분, 오늘 미가 6장 8절 말씀이 우리에게 던지는 질문은 이것입니다. <span class="emphasis">"나는 종교적 행위에만 집중하고 있지 않은가?"</span></p>
+      <p>하나님이 원하시는 것은 더 많은 예배, 더 많은 헌금이 아니라 <span class="bold">정의를 행하고 인자를 사랑하고 겸손하게 하나님과 동행하는 삶</span>입니다.</p>
+      <div class="decision-list">
+        <div class="decision-item"><p>오늘 예배를 마치고 집에 돌아가는 길에 <span class="bold">내가 외면하고 있던 누군가를 떠올려 보십시오.</span> 그리고 작은 행동 하나를 해보십시오. <span class="emphasis">연락 한 통, 말 한 마디, 작은 배려 하나.</span> 그것이 정의이고 인자입니다.</p></div>
+        <div class="decision-item"><p>내일 아침 하루를 시작하기 전에 <span class="bold">5분만 하나님 앞에 앉아 보십시오.</span> 오늘의 계획을 먼저 세우기 전에 <span class="emphasis">"주님, 오늘도 함께해 주세요. 제 걸음을 인도해 주세요"</span>라고 고백하는 것. 그것이 겸손하게 하나님과 동행하는 첫 걸음입니다.</p></div>
+      </div>
+      <div class="key-sentence">
+        <span class="bold">하나님이 원하시는 것은 많은 종교적 행위가 아니라<br>정의를 행하고, 인자를 사랑하고,<br>겸손하게 하나님과 동행하는 삶입니다.</span>
+      </div>
+      <p>이번 한 주, <span class="emphasis">그 삶을 살아내는 아름다운 하나님의 사람들</span>이 되시길 축복합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">하나님 아버지, 오늘 저녁 이 말씀 앞에 섰습니다. 우리가 얼마나 많은 시간 예배의 형식은 채우면서 정의를 외면했는지, 인자를 흘려보내지 못했는지, 겸손 대신 자기 중심으로 살았는지를 돌아봅니다. 주님 용서해 주십시오. 정의를 행하는 것이 불편하고 손해처럼 느껴질 때, 그래도 옳은 길을 걷는 용기를 주십시오. 내 안에 헤세드가 마를 때 주님의 끝없는 사랑을 다시 부어주셔서 그 사랑으로 주변을 적시게 해주십시오. 그리고 무엇보다 겸손하게 하나님 아버지 곁을 걷는 삶을 살게 해주십시오. 내 보조를 주님의 걸음에 맞추는 오늘 하루, 이번 한 주가 되게 해주십시오. 이 자리에 함께한 모든 성도들을 축복해 주시고 각자의 삶의 자리에서 하나님의 사람으로 빛나게 하여 주십시오. 예수 그리스도의 이름으로 기도합니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--sage-l);opacity:.75;text-align:center;margin-top:24px">정의의 자리에서 · 헤세드를 흘려보내며 · 주님 발걸음에 보조를 맞추는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-31.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_07_08.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{sermonAudio=document.getElementById('sermonAudio');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
