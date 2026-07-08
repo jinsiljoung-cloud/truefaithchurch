@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 그가 찔림은 우리의 허물 때문이요</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--gold);padding:16px 20px;background:rgba(201,168,76,.05);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.8}
+.tts-player{background:linear-gradient(145deg,rgba(201,168,76,.08),rgba(15,29,46,.95));border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(201,168,76,.1);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--gold);opacity:.8;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--gold-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(201,168,76,.4);padding:16px 20px;background:rgba(201,168,76,.04);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--gold-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.45;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--gold-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-box{padding:20px 24px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;margin:20px 0}
+.decision-box p{margin:0;font-size:14px;line-height:2;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.65;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(201,168,76,.25);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 주일 아침 예배</div>
+  <h1 class="sermon-title">그가 찔림은 우리의 허물 때문이요<br>고난 받는 종 — 이사야 53장</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">☀️ 2026년 7월 5일 주일</span>
+    <span class="meta-item">📖 주일 아침 예배</span>
+    <span class="meta-item">⏱ 낭독 약 12분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"그가 찔림은 우리의 허물 때문이요 그가 상함은 우리의 죄악 때문이라 그가 징계를 받음으로 우리는 평화를 누리고 그가 채찍에 맞음으로 우리는 나음을 받았도다"</div>
+    <div class="verse-ref">— 이사야 53:5 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">낮고 차분한 목소리 · 약 12분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 12:10</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>사랑하는 성도 여러분, 오늘 말씀을 시작하기 전에 잠깐 한 장면을 상상해 보시겠습니까?</p>
+      <p>삼십대 초반의 한 직장인이 있었습니다. 회사에서도 인정받고, 가정도 꾸렸고, 겉으로 보기엔 아무 문제가 없는 사람이었습니다. 그런데 어느 날 아버지로부터 연락이 왔습니다. 알고 보니 아버지는 아들이 이십대 초반에 충동적으로 빌린 빚을 몰래 갚아주기 위해 보증을 서셨던 겁니다. <span class="emphasis">자신의 죄가 아버지를 이 자리에 오게 했다는 것을 처음 알게 된 순간</span>, 그 아들은 그날 밤 처음으로 엉엉 울었다고 했습니다. <span class="bold">"아버지가 내 대신 고난을 당하고 계셨구나."</span></p>
+      <p>성도 여러분, 오늘 이사야 53장이 바로 그 이야기입니다. 지금으로부터 약 2,700년 전, 선지자 이사야는 아직 오시지 않은 한 분의 이야기를 기록했습니다. <span class="emphasis">그리고 그 예언은 예수 그리스도 안에서 한 치의 오차도 없이 완전히 성취되었습니다.</span></p>
+    </div>
+  </div>
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 우리가 외면한 종 — 고난 받는 종의 정체</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"고운 모양도 없고 풍채도 없은즉 우리의 보기에 흠모할 만한 아름다운 것이 없도다 그는 멸시를 받아 사람들에게 버림 받았으며 … 우리도 그를 귀히 여기지 아니하였도다"</div>
+        <div class="v-ref">— 이사야 53:2-3 —</div>
+      </div>
+      <p>당시 이스라엘 백성들은 다윗 같은 위대한 왕, 화려한 군복을 입고 적을 무찌르는 정복자를 기대했습니다. 그런데 이사야가 보여주는 종은 전혀 달랐습니다. <span class="emphasis">마른 땅에서 나온 줄기, 주목받지 못하는 존재입니다.</span></p>
+      <p>어느 미술관에 오래되고 낡아 보이는 그림이 있었습니다. 사람들은 대부분 그냥 지나쳤습니다. 그런데 어느 날 저명한 전문가가 말했습니다. "이것은 렘브란트의 진품입니다." 그 순간부터 사람들은 그 그림 앞에 멈춰 서기 시작했습니다. <span class="bold">예수님도 그러하십니다.</span> 세상의 눈으로 보면 십자가에서 처형된 목수에 불과합니다. 그러나 하나님의 눈으로 보면 <span class="emphasis">온 우주의 창조주이시며 유일한 구원자이십니다.</span></p>
+      <p>3절 끝의 고백이 우리를 찌릅니다. <span class="bold">"우리도 그를 귀히 여기지 아니하였도다."</span> 특히 30대는 가장 바쁜 시간을 보내는 세대입니다. 육아와 직장과 사회적 관계 속에서 예수님이 밀려나 있지는 않습니까? <span class="emphasis">매일 아침 "예수 그리스도가 오늘도 나의 주님이십니다"라는 고백으로 하루를 시작해 보시기 바랍니다.</span></p>
+    </div>
+  </div>
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 우리를 대신한 종 — 고난 받는 종의 사역</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"그가 찔림은 우리의 허물 때문이요 그가 상함은 우리의 죄악 때문이라 그가 징계를 받음으로 우리는 평화를 누리고 그가 채찍에 맞음으로 우리는 나음을 받았도다 … 여호와께서는 우리 모두의 죄악을 그에게 담당시키셨도다"</div>
+        <div class="v-ref">— 이사야 53:5-6 —</div>
+      </div>
+      <p>"찔림"은 히브리어 <span class="bold">할랄</span> — 치명적으로 관통당한다는 뜻입니다. "상함"은 <span class="bold">다까</span> — 으깨지고 분쇄되는 것입니다. 그리고 6절의 이 고백이 핵심입니다. <span class="bold">"여호와께서는 우리 모두의 죄악을 그에게 담당시키셨도다."</span> 이것이 <span class="emphasis">대속</span>입니다. 내가 받아야 할 형벌을, 다른 분이 대신 받으셨다는 것입니다.</p>
+      <p>새벽에 화재가 났습니다. 아버지는 잠을 자던 아이 방으로 뛰어들었습니다. 아이는 상처 하나 없이 구출되었지만, 아버지는 온몸에 화상을 입었습니다. <span class="emphasis">아이가 살 수 있었던 이유는 아버지가 그 상처를 대신 받았기 때문입니다.</span> <span class="bold">예수님이 바로 그러하십니다.</span></p>
+      <p>오늘 이 시간, 예수님의 찔리심이 바로 나의 허물 때문임을 가슴으로 받으시기 바랍니다. 여전히 짊어지고 있는 죄의 짐이 있습니까? <span class="bold">예수 그리스도의 십자가 보혈이 그 모든 것을 남김없이 덮습니다.</span></p>
+    </div>
+  </div>
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 영광 받으신 종 — 고난 받는 종의 승리</div>
+    <div class="sermon-text">
+      <p>이야기는 고난으로 끝나지 않습니다. <span class="bold">"그가 자기 영혼의 수고한 것을 보고 만족하게 여길 것이라"</span>(이사야 53:11) — 이것이 부활의 예언입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"이러므로 하나님이 그를 지극히 높여 모든 이름 위에 뛰어난 이름을 주사 … 모든 무릎을 예수의 이름에 꿇게 하시고"</div>
+        <div class="v-ref">— 빌립보서 2:9-10 —</div>
+      </div>
+      <p><span class="emphasis">찔리신 그분이, 상하신 그분이, 멸시를 받으신 그분이 지금 하나님 우편에 앉아 계십니다.</span> 그리고 그 영광을 예수님 혼자 누리시는 것이 아니라, <span class="bold">예수 그리스도 안에 있는 우리와 함께 나누십니다.</span></p>
+      <p>우리도 이 땅에서 고난을 당합니다. 30대의 현실 속에서, 자녀를 키우는 힘듦, 직장의 압박, 미래에 대한 불안. 그럴 때 이사야 53장을 기억하십시오. <span class="emphasis">고난은 끝이 아닙니다. 그분이 먼저 그 길을 걸으셨습니다. 그분이 고난을 통과해 부활에 이르셨듯이, 예수 그리스도 안에서 당신도 이 고난을 통과할 것입니다.</span> 포기하지 마십시오.</p>
+    </div>
+  </div>
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+  <div class="sermon-section">
+    <div class="section-label">오늘의 한 구절 · 이번 주 결단</div>
+    <div class="sermon-text">
+      <div class="key-sentence">
+        <span class="bold">"그가 찔림은 우리의 허물 때문이요<br>그가 상함은 우리의 죄악 때문이라<br>그가 징계를 받음으로 우리는 평화를 누리고<br>그가 채찍에 맞음으로 우리는 나음을 받았도다"</span>
+        <div style="font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;margin-top:10px">— 이사야 53:5 —</div>
+      </div>
+      <div class="decision-box">
+        <p><span class="bold">이 한 구절을 이번 한 주 붙들고 사십시오.</span> 힘들 때마다, 지칠 때마다 고백하십시오.</p>
+        <p style="margin-top:12px"><span class="emphasis">"그분이 찔리셨기 때문에 내가 평화를 누린다."</span></p>
+        <p style="margin-top:12px">그리고 <span class="bold">매일 아침 하루를 시작하기 전에</span>, "예수 그리스도가 오늘도 나의 주님이십니다"라고 고백하십시오.</p>
+      </div>
+      <p><span class="bold">예수 그리스도의 십자가가 오늘도 우리의 유일한 근거이며 유일한 소망입니다.</span></p>
+    </div>
+  </div>
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">하나님 아버지, 오늘 이사야 53장 말씀을 통해 예수 그리스도의 십자가 앞에 다시 서게 하시니 감사합니다. 우리는 그분을 귀히 여기지 않은 죄인들이었습니다. 각자 제 길로 갔고 그분을 외면했습니다. 그러나 그분이 우리의 허물로 찔리시고 우리의 죄악으로 상하셨습니다. 이 은혜 앞에 우리가 다시 엎드립니다. 이 십자가의 은혜를 이번 한 주 잊지 않게 하옵소서. 각 가정으로 돌아가는 성도들에게 십자가의 평화를 허락하시고, 고난 중에 있는 이들에게 부활의 소망을 붙잡게 하옵소서. 고난 받으시고 죽으시고 다시 살아나신 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.75;text-align:center;margin-top:24px">찔리심으로 우리의 평화 · 부활로 우리의 소망 · 오늘도 나의 주님이십니다</p>
+    </div>
+  </div>
+  <div class="sermon-nav">
+    <a href="/sermon-30.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_07_05.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{sermonAudio=document.getElementById('sermonAudio');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
