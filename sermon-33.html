@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 나를 살피소서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--sage:#7A9E7E;--sage-l:#9CBFA0;--sage-p:#C8DCC9;--gold:#C9A84C;--cream:#F5EDD6;--border:rgba(122,158,126,0.16);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.10) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage-l);opacity:.9;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.06);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--sage-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.85}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.10),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.28);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.32);background:rgba(122,158,126,.10);color:var(--sage-l)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),var(--sage-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.30)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.12);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-l);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.22),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--sage-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.42);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--sage-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage-l);opacity:.75}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.22),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.55;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(122,158,126,.05);border-left:2px solid var(--sage);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--sage);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.7;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(122,158,126,.28);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.14);border:1px solid rgba(122,158,126,.28);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">나를 살피소서<br>하나님은 나를 완전히 아십니다</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 7월 12일 수요</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 12분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"하나님이여 나를 살피사 내 마음을 아시며 나를 시험하사 내 뜻을 아옵소서 내게 무슨 악한 행위가 있나 보시고 나를 영원한 길로 인도하소서"</div>
+    <div class="verse-ref">— 시편 139:23-24 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">차분한 목소리 · 약 12분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 12:26</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>성도 여러분, 오늘 저녁 이 자리에 함께해 주셔서 감사합니다. 오늘은 <span class="bold">시편 139편</span>, 다윗의 고백 "나를 살피소서"를 함께 묵상하겠습니다.</p>
+      <p>시편 139편은 다윗이 기록한 시입니다. 그는 왕이었지만, 동시에 많은 허물을 가진 사람이었습니다. 밧세바와의 사건, 우리야를 향한 배신, 자녀들 사이의 비극. 그러나 그 모든 연약함 속에서도 다윗은 하나님 앞에서 정직했습니다. <span class="emphasis">그 정직함이 그를 하나님의 마음에 합한 자로 만들었습니다.</span></p>
+      <p>오늘 이 말씀이 우리 각자의 내면을 향한 하나님의 음성이 되기를 바랍니다. 세 가지로 나누어 묵상하겠습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 하나님은 나를 완전히 아십니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"여호와여 주께서 나를 살펴보셨으므로 나를 아시나이다 주께서 내가 앉고 일어섬을 아시고 멀리서도 나의 생각을 밝히 아시오며 나의 모든 길과 내가 눕는 것을 살펴보셨으므로 나의 모든 행위를 익히 아시오니 여호와여 내 혀의 말을 알기 전에 주께서 다 아시나이다"</div>
+        <div class="v-ref">— 시편 139:1-4 —</div>
+      </div>
+      <p>1절에서 6절은 하나님의 <span class="bold">전지하심</span>을 노래합니다. 하나님은 내가 앉고 일어섬을 아십니다. 나의 생각을 밝히 아십니다. 내 혀의 말을 알기 전에 이미 다 아십니다.</p>
+      <p>이것이 두려움으로 느껴지십니까, 아니면 위로로 느껴지십니까? 솔직히 처음엔 두렵게 느껴질 수 있습니다. 내 마음속의 부끄러운 생각, 아무에게도 말하지 못한 분노, 내가 스스로도 인정하기 싫은 욕심까지 다 보신다는 것이 불편하게 느껴질 수 있습니다.</p>
+      <p>그런데 다윗은 이 사실 앞에서 도망가지 않았습니다. <span class="emphasis">오히려 담대하게 노래했습니다.</span> 왜냐하면 하나님이 모든 것을 아신다는 것은, <span class="bold">내가 아무것도 감출 필요가 없다는 뜻이기 때문입니다.</span></p>
+      <p>우리는 얼마나 많은 에너지를 '잘 보이려는 것'에 씁니까? SNS에 올릴 사진을 고르고, 직장에서 좋은 사람인 척하고, 교회에서 믿음 좋은 사람인 척합니다. 그 모든 수고가 하나님 앞에서는 의미가 없습니다.</p>
+      <p><span class="bold">하나님은 나의 가장 어두운 곳을 다 보시면서도, 여전히 나를 사랑하십니다.</span> 이것이 완전한 앎에서 오는 완전한 사랑입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"이 지식이 내게 너무 기이하니 높아서 내가 능히 미치지 못하나이다"</div>
+        <div class="v-ref">— 시편 139:6 —</div>
+      </div>
+      <p>다윗은 6절에서 이렇게 고백합니다. "이 지식이 내게 너무 기이하니." 내가 이해할 수 없는 깊이의 사랑, <span class="emphasis">다 알면서도 사랑하시는 그 사랑 앞에서 다윗은 경탄했습니다.</span></p>
+      <p>오늘 이 저녁, 하나님 앞에서 내 진짜 모습으로 나아오십시오. 꾸밀 필요 없습니다. 포장할 필요 없습니다. <span class="bold">그분은 이미 다 아십니다. 그리고 여전히 사랑하십니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 하나님은 언제나 나와 함께하십니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내가 주의 영을 떠나 어디로 가며 주의 앞에서 어디로 피하리이까 내가 하늘에 올라갈지라도 거기 계시며 스올에 내 자리를 펼지라도 거기 계시니이다 내가 새벽 날개를 치며 바다 끝에 가서 거주할지라도 거기서도 주의 손이 나를 인도하시며 주의 오른손이 나를 붙드시리이다"</div>
+        <div class="v-ref">— 시편 139:7-10 —</div>
+      </div>
+      <p>7절부터 12절은 하나님의 <span class="bold">편재하심</span>을 노래합니다. 하늘에도 계시고, 스올(가장 깊은 곳)에도 계시고, 새벽 날개를 치며 바다 끝에 가도 거기 계십니다.</p>
+      <p>다윗이 말하는 "어디로 피하리이까"는 단지 도망칠 곳이 없다는 뜻이 아닙니다. <span class="emphasis">어디에 있어도 하나님이 함께 계신다는 경이로운 사실을 노래하는 것입니다.</span></p>
+      <p>성도 여러분, 우리가 가장 외롭다고 느끼는 곳이 어디입니까? 아무도 모르는 새벽 이불 속, 누구에게도 말 못 하는 마음 한구석, 인생이 막다른 골목처럼 느껴지는 그 자리.</p>
+      <p>그러나 시편은 말합니다. <span class="bold">스올, 즉 가장 깊고 어두운 곳에도 하나님이 계십니다.</span> 그 손이 나를 인도하시고, 그 오른손이 나를 붙드십니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"내가 혹시 말하기를 흑암이 반드시 나를 덮고 나를 두른 빛은 밤이 되리라 할지라도 주에게는 흑암이 숨기지 못하며 밤이 낮과 같이 비추이나니 주에게는 흑암과 빛이 같음이니이다"</div>
+        <div class="v-ref">— 시편 139:11-12 —</div>
+      </div>
+      <p><span class="bold">하나님께는 밤이 없습니다.</span> 우리가 밤이라고 느끼는 그 어두운 시간에도, 하나님 앞에서는 환한 대낮입니다. 이번 주 어떤 어둠을 지나고 계십니까? 그 어둠 속에서도 하나님은 당신과 함께 계십니다. <span class="emphasis">그 손은 당신을 결코 놓지 않으십니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 하나님은 나를 귀하게 지으셨습니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"주께서 내 내장을 지으시며 나의 모태에서 나를 만드셨나이다 내가 주께 감사하옴은 나를 지으심이 심히 기묘하심이라 … 내 형질이 이루기 전에 주의 눈이 보셨으며 나를 위하여 정한 날이 하루도 되기 전에 주의 책에 다 기록이 되었나이다"</div>
+        <div class="v-ref">— 시편 139:13-16 —</div>
+      </div>
+      <p>14절의 <span class="bold">"기묘하게 지으셨다"</span>는 표현, 히브리어 원문에는 <span class="emphasis">두려울 만큼 놀랍게, 경이롭게</span>라는 뜻이 담겨 있습니다. 하나님은 나를 실수로 만드신 것이 아닙니다. 대충, 급하게, 어쩌다 보니 만드신 것이 아닙니다. <span class="bold">두려울 만큼 놀랍게, 경이로울 만큼 정교하게 만드셨습니다.</span></p>
+      <p>16절은 더 나아갑니다. 내가 세상에 태어나기도 전, 어머니의 태 속에서 아직 형체도 갖추지 못했을 때, 하나님의 눈은 이미 나를 보고 계셨습니다. 그리고 나를 위하여 정한 날이 하루도 되기 전에 주의 책에 다 기록이 되었습니다.</p>
+      <p>성도님, 우리는 너무 자주 자신을 너무 작게 봅니다. "나는 별 볼 일 없는 사람이야." "나는 특별하지 않아." "내가 이 세상에 있어도 없어도 아무 상관없어." 비교의 시대에 살다 보니, 나보다 더 능력 있는 사람, 더 성공한 사람, 더 빛나는 사람 앞에서 나 자신이 초라하게 느껴지기도 합니다.</p>
+      <p>그러나 하나님은 오늘 말씀하십니다. <span class="bold">"나는 너를 두려울 만큼 놀랍게 만들었다. 너는 나의 작품이다."</span></p>
+      <div class="verse-box">
+        <div class="v-text">"우리는 그가 만드신 바라 그리스도 예수 안에서 선한 일을 위하여 지으심을 받은 자니"</div>
+        <div class="v-ref">— 에베소서 2:10 —</div>
+      </div>
+      <p>우리는 하나님의 작품입니다. 하나님이 정성을 들여, 목적을 가지고, 특별하게 만드신 존재입니다. <span class="emphasis">하나님의 눈으로 나를 바라볼 때, 비로소 내 삶이 달라집니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">담대한 기도 · 나를 살피소서</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"하나님이여 나를 살피사 내 마음을 아시며 나를 시험하사 내 뜻을 아옵소서 내게 무슨 악한 행위가 있나 보시고 나를 영원한 길로 인도하소서"</div>
+        <div class="v-ref">— 시편 139:23-24 —</div>
+      </div>
+      <p>다윗은 이 모든 고백 끝에 23절과 24절에서 담대하게 기도합니다. 이 기도가 얼마나 대담한 기도인지 생각해 보십시오. 하나님께 "나를 살피소서"라고 기도한다는 것은, <span class="bold">내 마음의 가장 어두운 구석까지 보여드리겠다는 뜻입니다.</span></p>
+      <p>이것은 두려움에서 나온 기도가 아닙니다. <span class="emphasis">신뢰에서 나온 기도입니다.</span> 하나님이 나를 완전히 아신다는 것, 그분이 어디서나 나와 함께하신다는 것, 그리고 그분이 나를 귀하게 만드셨다는 것을 믿기 때문에 할 수 있는 기도입니다.</p>
+      <p>"나를 영원한 길로 인도하소서." 다윗은 자신의 길이 아니라 <span class="bold">영원한 길</span>을 구했습니다. 내가 옳다고 생각하는 길이 아니라, 하나님이 인도하시는 길을 구했습니다. 이것이 진짜 겸손이고, 진짜 신앙입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 결단 두 가지</div>
+    <div class="sermon-text">
+      <div class="decision-list">
+        <div class="decision-item"><p><span class="bold">매일 아침, 시편 139편 23절을 기도로 고백하며 하루를 시작하십시오.</span> <span class="emphasis">"하나님이여 나를 살피사 내 마음을 아시며 나를 영원한 길로 인도하소서."</span> 이 한 줄이 하루를 여는 열쇠가 됩니다.</p></div>
+        <div class="decision-item"><p>이번 한 주, <span class="bold">하나님의 눈으로 나를 바라보는 시간</span>을 가지십시오. "나는 하나님이 두려울 만큼 놀랍게 만드신 작품이다." <span class="emphasis">이 사실을 거울 앞에서, 출근길에서, 잠들기 전에 고백해 보십시오.</span> 세상의 비교가 아니라 창조주의 눈으로 나를 보는 것, 그것이 진정한 자존감의 시작입니다.</p></div>
+      </div>
+      <div class="key-sentence">
+        <span class="bold">하나님은 나를 완전히 아시고,<br>언제나 나와 함께하시며,<br>귀하게 지으셨습니다.</span>
+      </div>
+      <p>이 세 가지 진리가 이번 한 주 여러분의 내면을 단단하게 붙들어 주기를 주님의 이름으로 축복합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">하나님 아버지, 오늘 시편 139편 앞에 섰습니다. 주님은 저를 다 아십니다. 제가 가장 부끄러운 생각을 할 때도, 아무도 모르는 새벽에 혼자 울 때도, 주님은 거기 계셨습니다. 감추려 했던 것들, 포장하려 했던 것들을 오늘 주님 앞에 그대로 내어 놓습니다. 다 알면서도 사랑하시는 그 사랑 앞에 엎드립니다. 우리가 초라하다고 느낄 때 주님이 두려울 만큼 놀랍게 만드셨다는 것을 기억하게 하옵소서. 이번 한 주, 세상의 눈이 아니라 창조주의 눈으로 나 자신을 바라보게 하옵소서. 나를 살피시고 영원한 길로 인도해 주옵소서. 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--sage-l);opacity:.75;text-align:center;margin-top:24px">다 알면서도 사랑하시는 하나님 · 어디서나 함께하시는 손 · 귀하게 지음 받은 작품으로 사는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-32.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_07_12.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{sermonAudio=document.getElementById('sermonAudio');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
