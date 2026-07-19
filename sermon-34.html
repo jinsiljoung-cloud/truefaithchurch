@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 풀무불 속에서도 혼자가 아닙니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--sage:#7A9E7E;--sage-l:#9CBFA0;--sage-p:#C8DCC9;--gold:#C9A84C;--cream:#F5EDD6;--border:rgba(122,158,126,0.16);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.10) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage-l);opacity:.9;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.06);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--sage-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.85}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.10),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.28);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.32);background:rgba(122,158,126,.10);color:var(--sage-l)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),var(--sage-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.30)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.12);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-l);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.22),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--sage-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.42);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--sage-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage-l);opacity:.75}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.22),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.55;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(122,158,126,.05);border-left:2px solid var(--sage);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--sage);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.7;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(122,158,126,.28);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.14);border:1px solid rgba(122,158,126,.28);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">풀무불 속에서도<br>혼자가 아닙니다</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 7월 15일 수요</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 13분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"네가 불 가운데로 지날 때에 타지도 아니할 것이요 불꽃이 너를 사르지도 못하리니 나는 여호와 네 하나님이요"</div>
+    <div class="verse-ref">— 이사야 43:2-3 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">차분한 목소리 · 약 13분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 13:05</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>성도 여러분, 수요일 저녁 이 자리에 함께해 주셔서 감사합니다. 월요일부터 오늘까지, 쉽지 않은 하루하루를 보내셨을 텐데 이 예배의 자리까지 나아오신 여러분을 주님께서 기뻐하십니다.</p>
+      <p>오늘 저녁, 우리는 <span class="bold">다니엘 3장</span>으로 나아갑니다. 풀무불 속에 던져진 세 청년의 이야기입니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"왕이여 우리가 섬기는 하나님이 계시다면 우리를 맹렬히 타는 풀무불 가운데서 능히 건져내시겠고 왕의 손에서도 건져내시리이다 그리할지라도 왕이여 우리가 왕의 신들을 섬기지도 아니하고 왕이 세우신 금 신상에게 절하지도 아니할 줄을 아옵소서"</div>
+        <div class="v-ref">— 다니엘 3:17-18 —</div>
+      </div>
+      <p>"그리할지라도." 이 세 글자가 오늘 우리에게 전하는 믿음의 본질입니다. <span class="emphasis">응답이 보장될 때만 믿는 것이 아니라, 결과를 알 수 없어도 하나님을 신뢰하는 것.</span> 그것이 살아있는 믿음입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 하나님은 때로 풀무불을 피하게 하지 않으십니다</div>
+    <div class="sermon-text">
+      <p>느부갓네살 왕은 세 청년에게 금 신상에 절하지 않으면 맹렬히 타는 풀무불에 던지겠다고 위협했습니다. 그리고 실제로 던졌습니다. <span class="bold">하나님은 그들이 풀무불에 던져지는 것을 막지 않으셨습니다.</span></p>
+      <p>우리는 종종 이렇게 기도합니다. "하나님, 이 고난을 피하게 해 주세요. 이 시험을 없애 주세요." 그런데 하나님의 방식은 때로 우리의 기대와 다릅니다.</p>
+      <div class="verse-box">
+        <div class="v-text">"네가 물 가운데로 지날 때에 내가 너와 함께 할 것이라 강을 건널 때에 물이 너를 침몰하지 못할 것이며 네가 불 가운데로 지날 때에 타지도 아니할 것이요 불꽃이 너를 사르지도 못하리니"</div>
+        <div class="v-ref">— 이사야 43:2 —</div>
+      </div>
+      <p>주목하십시오. <span class="bold">"불 가운데를 피하게 해주신다"고 하지 않으셨습니다. "불 가운데로 지날 때에"라고 하셨습니다.</span> 하나님은 우리가 불을 통과하는 그 과정에서 함께하십니다.</p>
+      <p>이것이 복음의 핵심이기도 합니다. 예수 그리스도께서 이 땅에 오신 것은 우리를 고난 없는 세계로 데려가시기 위함이 아니었습니다. <span class="emphasis">고난의 한가운데서 우리와 함께 계시기 위함이었습니다.</span> 그분은 우리의 풀무불이 어떤 것인지 아십니다. 그리고 그 안에 함께 계십니다.</p>
+      <p>지금 이 시간, 어떤 성도님은 취업 불합격 통보를 받은 지 여섯 달이 됐을 수도 있습니다. 어떤 분은 가장 가까운 사람에게 상처를 받아서 아프실 수도 있습니다. 어떤 분은 진로를 잃어버려서 아무것도 보이지 않는 막막함 속에 계실 수도 있습니다. <span class="bold">그 풀무불 속에서, 하나님께서 지금 당신 곁에 걷고 계십니다.</span></p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 풀무불 속에 넷째 분이 함께 계십니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내가 보니 결박되지 아니한 네 사람이 불 가운데로 다니는데 상하지도 아니하였고 그 넷째의 모양은 신들의 아들과 같도다"</div>
+        <div class="v-ref">— 다니엘 3:25 —</div>
+      </div>
+      <p>풀무불 속에 던져진 것은 세 사람인데, 느부갓네살 왕이 불 속을 들여다보니 <span class="bold">네 사람이 있었습니다.</span> 그것도 결박이 풀려 자유롭게 걷고 있었습니다.</p>
+      <p>그 넷째 분, 신들의 아들과 같다고 한 그분이 누구이겠습니까? 구약에서 그리스도의 임재를 미리 보여주는 장면이라고 많은 신학자들이 고백합니다. <span class="emphasis">예수 그리스도께서 그 불 속에 함께 계셨던 것입니다.</span></p>
+      <p>성도 여러분, 우리가 풀무불 속에 있을 때 하나님은 밖에서 구경하시는 분이 아닙니다. <span class="bold">그분은 그 불 속으로 직접 들어오십니다.</span> 예수님은 우리를 위해 죽음의 불 속으로 직접 들어가셨습니다. 그래서 그분은 우리가 어떤 불 속에 있든 함께 걸으실 수 있습니다.</p>
+      <p>눈에 보이지 않아도, 느껴지지 않아도, <span class="emphasis">하나님은 그 불 속에 함께 계십니다.</span> 혼자라고 느껴지는 그 순간에도, 넷째 분이 곁에 계십니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 불은 결박을 태웁니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"총독들과 수령들과 행정관들과 왕의 고문들이 모여 이 사람들을 본즉 불이 능히 그 몸을 해하지 못하였고 머리털도 그을리지 아니하였고 겉옷 빛도 변하지 아니하였고 불탄 냄새도 없었더라"</div>
+        <div class="v-ref">— 다니엘 3:27 —</div>
+      </div>
+      <p>풀무불에서 나온 세 청년을 사람들이 살펴보았더니, <span class="bold">옷도 머리카락도 타지 않았습니다.</span> 불탄 냄새조차 없었습니다.</p>
+      <p>그런데 한 가지 타버린 것이 있습니다. <span class="emphasis">바로 그들을 묶었던 결박입니다.</span> 25절을 보면 "결박되지 아니한 네 사람"이라고 했습니다. 풀무불 속에 들어갈 때 결박되어 있었는데, 그 불이 결박만 태워버렸습니다.</p>
+      <p>성도 여러분, 하나님은 때로 우리를 풀무불 같은 고난의 시간 속으로 이끄십니다. 그것은 우리를 태우기 위해서가 아닙니다. <span class="bold">우리를 묶고 있던 결박을 태우기 위해서입니다.</span></p>
+      <p>지금의 풀무불은 영원한 영광을 이루는 하나님의 도구입니다. 고난이 우리에게서 빼앗아 가는 것이 있는 것 같지만, 실제로는 <span class="emphasis">우리를 붙들고 있던 두려움, 집착, 잘못된 의존을 태워내고 있는 것</span>입니다.</p>
+      <p style="font-family:var(--font-s);font-size:15px;color:var(--sage-p);line-height:2;text-align:center;padding:14px 20px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:18px 0">
+        <span class="bold">지금 당신이 통과하고 있는 풀무불은<br>당신을 태우려는 것이 아닙니다.<br>당신을 묶고 있던 결박을 태우고 있습니다.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 결단 두 가지</div>
+    <div class="sermon-text">
+      <div class="decision-list">
+        <div class="decision-item"><p>사드락과 메삭과 아벳느고처럼, <span class="bold">"그리할지라도"의 믿음을 고백하십시오.</span> 이번 주 가장 힘든 상황 앞에서 이렇게 기도해 보십시오. <span class="emphasis">"하나님, 결과가 어떻게 될지 모르지만, 저는 주님을 신뢰합니다."</span></p></div>
+        <div class="decision-item"><p><span class="bold">풀무불 속에 넷째 분이 함께 계심을 신뢰하겠습니다.</span> 지금 어렵고 힘든 시간을 보내고 계신 분이 있으시다면, 오늘 이 말씀을 붙들고 하루를 살아가십시오. <span class="emphasis">눈에 보이지 않아도 함께 계신 그분을 신뢰하십시오.</span></p></div>
+      </div>
+      <div class="key-sentence">
+        <span class="bold">이번 한 주,<br>어떤 풀무불 속에서도<br>당신은 혼자가 아닙니다.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">하나님 아버지, 오늘 저녁 이 말씀 앞에 우리를 세워주셔서 감사합니다. 풀무불을 피하게 해달라고만 기도했던 우리의 연약함을 용서해 주십시오. 그리할지라도 주님을 신뢰하겠다는 세 청년의 고백이 우리의 고백이 되게 해주십시오. 지금 풀무불 같은 시간을 보내고 있는 성도님들 위에 임재해 주십시오. 미래가 두렵고 막막한 분들 곁에 오늘 저녁 넷째 분으로 함께해 주시옵소서. 그 불이 우리를 태우는 것이 아니라 결박을 태우는 도구임을 믿게 해주십시오. 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--sage-l);opacity:.75;text-align:center;margin-top:24px">그리할지라도 · 넷째 분이 함께 · 결박을 태우는 불 속을 통과하는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-33.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_07_15.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{sermonAudio=document.getElementById('sermonAudio');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>
