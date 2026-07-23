@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Faith Church — 이것이 진짜 사랑입니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--sage:#7A9E7E;--sage-l:#9CBFA0;--sage-p:#C8DCC9;--gold:#C9A84C;--cream:#F5EDD6;--border:rgba(122,158,126,0.16);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px}
+.progress-bar{position:fixed;top:64px;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));z-index:199}
+.hero{padding:80px 32px 60px;max-width:720px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(122,158,126,.10) 0%,transparent 70%);pointer-events:none}
+.sermon-series{font-family:var(--font-c);font-size:9px;letter-spacing:5px;color:var(--sage-l);opacity:.9;text-transform:uppercase;margin-bottom:12px}
+.sermon-title{font-family:var(--font-s);font-size:clamp(24px,5vw,38px);font-weight:900;color:var(--cream);line-height:1.4;margin-bottom:16px}
+.sermon-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.meta-item{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.4;text-transform:uppercase}
+.sermon-verse-hero{border-left:3px solid var(--sage);padding:16px 20px;background:rgba(122,158,126,.06);border-radius:0 6px 6px 0;margin-bottom:32px}
+.verse-text{font-style:italic;font-size:15px;color:var(--sage-p);line-height:2;margin-bottom:6px}
+.verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.85}
+.tts-player{background:linear-gradient(145deg,rgba(122,158,126,.10),rgba(15,29,46,.95));border:1px solid rgba(122,158,126,.28);border-radius:12px;padding:24px 28px;margin-bottom:40px;position:relative;overflow:hidden}
+.tts-player::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent)}
+.tts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tts-info .tts-title{font-family:var(--font-s);font-size:13px;font-weight:700;color:var(--cream)}
+.tts-info .tts-sub{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-top:3px}
+.tts-controls{display:flex;align-items:center;gap:8px}
+.tts-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:1px solid rgba(122,158,126,.32);background:rgba(122,158,126,.10);color:var(--sage-l)}
+.tts-btn.play{width:52px;height:52px;font-size:20px;background:linear-gradient(135deg,var(--sage),var(--sage-l));color:var(--navy);border:none;box-shadow:0 4px 20px rgba(122,158,126,.30)}
+.tts-progress-bar{width:100%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;margin-bottom:8px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--sage-l));border-radius:2px;width:0%}
+.tts-time-row{display:flex;justify-content:space-between}
+.tts-time{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--cream);opacity:.4}
+.tts-settings{display:flex;padding-top:14px;border-top:1px solid rgba(122,158,126,.12);margin-top:10px}
+.tts-status{font-family:var(--font-c);font-size:8px;letter-spacing:3px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-left:auto;display:flex;align-items:center;gap:5px}
+.tts-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-l);display:none}
+.tts-dot.on{display:block;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.content{max-width:720px;margin:0 auto;padding:0 32px 80px}
+.sermon-section{margin-bottom:36px}
+.section-label{font-family:var(--font-c);font-size:8px;letter-spacing:4px;color:var(--sage-l);opacity:.85;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(122,158,126,.22),transparent)}
+.sermon-text p{font-size:15px;font-weight:300;line-height:2.8;color:var(--cream);opacity:.82;margin-bottom:14px}
+.emphasis{color:var(--sage-p);font-weight:500}
+.bold{font-weight:700;color:var(--cream)}
+.verse-box{border-left:2px solid rgba(122,158,126,.42);padding:16px 20px;background:rgba(122,158,126,.05);border-radius:0 6px 6px 0;margin:20px 0}
+.verse-box .v-text{font-style:italic;font-size:14px;color:var(--sage-p);line-height:2.2;margin-bottom:6px}
+.verse-box .v-ref{font-family:var(--font-c);font-size:8px;letter-spacing:2px;color:var(--sage-l);opacity:.75}
+.h-rule{display:flex;align-items:center;gap:12px;margin:32px 0}
+.h-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,158,126,.22),transparent)}
+.h-rule-dot{width:5px;height:5px;background:var(--sage);transform:rotate(45deg);opacity:.55;flex-shrink:0}
+.key-sentence{font-family:var(--font-s);font-size:16px;color:var(--sage-p);line-height:2.2;text-align:center;padding:18px 24px;background:rgba(122,158,126,.07);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;margin:20px 0}
+.decision-list{counter-reset:dlist;margin:8px 0}
+.decision-item{counter-increment:dlist;padding:14px 18px 14px 56px;background:rgba(122,158,126,.05);border-left:2px solid var(--sage);border-radius:0 6px 6px 0;margin-bottom:10px;position:relative}
+.decision-item::before{content:counter(dlist);position:absolute;left:18px;top:50%;transform:translateY(-50%);font-family:var(--font-c);font-size:18px;font-weight:700;color:var(--sage);opacity:.65}
+.decision-item p{margin:0;font-size:14px;line-height:1.9;color:var(--cream);opacity:.88}
+.sermon-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;gap:12px}
+.sn-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--sage-l);opacity:.7;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(122,158,126,.28);border-radius:4px}
+.share-row{display:flex;justify-content:flex-end;margin-top:20px}
+.share-btn{width:48px;height:48px;border-radius:50%;background:rgba(122,158,126,.14);border:1px solid rgba(122,158,126,.28);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+@media(max-width:600px){.nav{padding:0 16px}.content,.hero{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav">
+  <div class="nav-logo">True Faith Church</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+<div class="hero">
+  <div class="sermon-series">True Faith Church 말씀 · 수요 저녁 예배</div>
+  <h1 class="sermon-title">이것이 진짜 사랑입니다<br>고린도전서 13장 묵상</h1>
+  <div class="sermon-meta">
+    <span class="meta-item">🌙 2026년 7월 22일 수요</span>
+    <span class="meta-item">📖 수요 저녁 예배</span>
+    <span class="meta-item">⏱ 낭독 약 11분</span>
+  </div>
+  <div class="sermon-verse-hero">
+    <div class="verse-text">"사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며 사랑은 자랑하지 아니하며 교만하지 아니하며"</div>
+    <div class="verse-ref">— 고린도전서 13:4 —</div>
+  </div>
+  <div class="tts-player">
+    <div class="tts-header">
+      <div class="tts-info">
+        <div class="tts-title">✝ 말씀 낭독</div>
+        <div class="tts-sub">차분한 목소리 · 약 11분</div>
+      </div>
+      <div class="tts-controls">
+        <button class="tts-btn" onclick="ttsRestart()">↺</button>
+        <button class="tts-btn play" id="playBtn" onclick="ttsToggle()">▶</button>
+        <button class="tts-btn" onclick="ttsStop()">■</button>
+      </div>
+    </div>
+    <div class="tts-progress-bar" onclick="ttsSeek(event)">
+      <div class="tts-progress-fill" id="ttsProgressFill"></div>
+    </div>
+    <div class="tts-time-row">
+      <span class="tts-time" id="ttsCurrentTime">0:00</span>
+      <span class="tts-time">약 11:31</span>
+    </div>
+    <div class="tts-settings">
+      <div class="tts-status">
+        <div class="tts-dot" id="ttsDot"></div>
+        <span id="ttsStatusText">재생 준비</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+
+  <div class="sermon-section">
+    <div class="sermon-text">
+      <p>성도 여러분, 수요일 저녁입니다. 성도님들은 "사랑한다"는 말, 요즘 얼마나 자주 하셨나요?</p>
+      <p>연애할 때는 자연스럽게 나오던 말인데, 결혼하고 나면 오히려 줄어들죠. 직장에서 치이고, 아이를 키우느라 지치고, 서로 바쁘다는 핑계로 <span class="emphasis">가장 가까운 사람에게 오히려 가장 인색해집니다.</span></p>
+      <p>오늘 우리가 함께 펼쳐 볼 <span class="bold">고린도전서 13장</span>은 흔히 '사랑장'이라고 불립니다. 결혼식에서 자주 읽히고, 예쁜 액자에도 새겨지는 말씀이지요. 그런데 오늘 저는 이 말씀을 그냥 아름다운 시처럼이 아니라, <span class="emphasis">우리의 현실을 정확히 꿰뚫는 하나님의 말씀으로 함께 붙들어 드리고 싶습니다.</span> 왜냐하면 이 본문은 사랑을 찬양하는 노래가 아니라, 사랑이 무엇인지 제대로 모르는 우리에게 주시는 하나님의 교정이기 때문입니다.</p>
+      <p>세 가지로 나누어 묵상하겠습니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">첫째 · 사랑 없이는 아무것도 아닙니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"내가 사람의 방언과 천사의 말을 할지라도 사랑이 없으면 소리 나는 구리와 울리는 꽹과리가 되고 내가 예언하는 능력이 있어 모든 비밀과 모든 지식을 알고 또 산을 옮길 만한 모든 믿음이 있을지라도 사랑이 없으면 내가 아무것도 아니요"</div>
+        <div class="v-ref">— 고린도전서 13:1-2 —</div>
+      </div>
+      <p>고린도 교회의 상황을 먼저 이해해야 이 말씀이 선명하게 다가옵니다. 고린도 교회는 성령의 은사가 넘치는 교회였습니다. 방언도 하고, 예언도 하고, 기적도 일어났습니다. 그런데 문제가 있었습니다. <span class="emphasis">그들은 은사를 자랑하고, 서로 시기하고, 파벌을 나누고 있었습니다.</span></p>
+      <p>그 교회에 바울이 씁니다. <span class="bold">"사랑이 없으면 소리 나는 구리와 울리는 꽹과리가 되고."</span></p>
+      <p>꽹과리는 시끄럽습니다. 사람들의 주목을 끌고, 큰 소리를 냅니다. 그런데 결국 남는 것은 소음뿐입니다. <span class="emphasis">사랑 없는 모든 능력, 사랑 없는 모든 헌신, 사랑 없는 모든 신앙 활동은 결국 꽹과리 소음에 불과하다</span>는 것입니다.</p>
+      <p>2절은 더 강하게 선언합니다. 예언하는 능력이 있어도, 모든 지식을 알아도, 산을 옮길 믿음이 있어도, <span class="bold">사랑이 없으면 내가 아무것도 아니라고.</span></p>
+      <p>성도 여러분, 우리는 때로 사랑보다 능력을 추구합니다. 더 많이 알고, 더 잘 가르치고, 더 크게 섬기려 합니다. 그것이 나쁜 것은 아닙니다. 그러나 그 모든 것이 <span class="emphasis">사랑의 뿌리에서 나오지 않으면, 하나님 앞에서 아무 의미가 없다는 것</span>을 오늘 이 말씀이 선포합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">둘째 · 사랑의 얼굴은 이렇습니다</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">"사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며 사랑은 자랑하지 아니하며 교만하지 아니하며 무례히 행하지 아니하며 자기의 유익을 구하지 아니하며 성내지 아니하며 악한 것을 생각하지 아니하며"</div>
+        <div class="v-ref">— 고린도전서 13:4-5 —</div>
+      </div>
+      <p>4절부터 8절은 사랑의 얼굴을 아주 구체적으로 보여줍니다. 주목할 것은 <span class="bold">사랑을 감정이나 느낌으로 묘사하지 않는다</span>는 것입니다. 전부 행동입니다. "오래 참고, 온유하며, 시기하지 아니하며, 자랑하지 아니하며."</p>
+      <p><span class="emphasis">사랑은 감정의 문제가 아니라 선택의 문제입니다.</span> 느낌이 올 때 사랑하는 것이 아니라, 느낌이 없어도 사랑을 선택하는 것입니다.</p>
+      <p>"오래 참음"은 헬라어로 <span class="bold">마크로쒸미아</span>입니다. "크다"는 뜻의 마크로스와 "영혼"을 뜻하는 쒸모스의 합성어입니다. 문자적으로는 <span class="emphasis">"큰 영혼"</span>이라는 뜻입니다. 영혼이 큰 사람은 작은 것에 쉽게 무너지지 않습니다. 상대방의 결점 앞에서, 갑자기 닥친 실망 앞에서 허물어지지 않습니다.</p>
+      <p>그리고 "온유함"은 약함이 아닙니다. 온유함은 <span class="bold">힘이 있지만 그 힘을 절제하는 것</span>입니다. 군마가 훈련을 통해 조련되듯, 온유함은 훈련된 힘입니다.</p>
+      <p>성도 여러분, 지금 당장 고린도전서 13장 4절부터 7절을 읽으면서 사랑 자리에 <span class="emphasis">내 이름을 넣어 보십시오.</span> "홍길동은 오래 참고, 홍길동은 온유하며, 홍길동은 시기하지 아니하며…" 어느 지점에서 문장이 어색해집니까? 그 지점이 바로 오늘 하나님이 우리를 다듬고 싶으신 자리입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">셋째 · 사랑의 수원지는 하나님입니다</div>
+    <div class="sermon-text">
+      <p>그렇다면 이 사랑을 어떻게 실천할 수 있습니까? <span class="bold">이 사랑은 우리가 만들어내는 것이 아닙니다.</span></p>
+      <p>저는 한 청년을 상담한 적이 있습니다. 직장에서 너무 힘든 동료가 있는데, 그 사람을 사랑하는 것이 도저히 안 된다고 했습니다. 저는 조심스럽게 물었습니다. <span class="emphasis">"그 사람을 사랑하려고 노력하기 전에, 오늘 아침 하나님 앞에 얼마나 앉아 있었나요?"</span> 그 청년은 조용히 고개를 숙였습니다.</p>
+      <p><span class="bold">사랑은 우리가 만들어내는 것이 아닙니다. 날마다 하나님 앞에 먼저 받는 것입니다. 그 자리가 우리 사랑의 수원지입니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"내 계명은 곧 내가 너희를 사랑한 것 같이 너희도 서로 사랑하라 하는 이것이니라"</div>
+        <div class="v-ref">— 요한복음 15:12 —</div>
+      </div>
+      <p>예수님은 "서로 사랑하라"고만 하지 않으셨습니다. <span class="emphasis">"내가 너희를 사랑한 것 같이"</span>라고 먼저 말씀하셨습니다. 우리의 서로 사랑함은, 주님이 우리를 사랑하신 그 사랑을 받아 흘려보내는 것입니다. 그 순서를 놓치면, 우리의 사랑은 결국 지쳐 쓰러집니다.</p>
+      <p>저는 한 부부를 오랫동안 지켜봤습니다. 두 분 모두 성격이 강하고 갈등이 잦았습니다. 어느 날 형제님이 조용히 제게 말했습니다. <span class="bold">"목사님, 요즘 매일 아침 아내를 위해 기도하는데, 이상하게 화가 덜 납니다."</span> 아내를 변화시키려는 노력을 내려놓고, 먼저 하나님 앞에 앉는 것, 그것이 그 관계를 조금씩 바꾸기 시작했습니다.</p>
+      <p><span class="emphasis">사랑은 상대방이 먼저 변해야 가능한 것이 아닙니다. 내가 먼저 은혜 앞에 서는 것에서 시작됩니다.</span></p>
+      <div class="verse-box">
+        <div class="v-text">"우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라"</div>
+        <div class="v-ref">— 로마서 5:8 —</div>
+      </div>
+      <p>하나님은 우리가 완전히 변화된 후에 사랑하신 것이 아닙니다. <span class="bold">우리가 아직 죄인이었을 때 먼저 사랑하셨습니다.</span> 우리가 이웃에게 흘려보낼 사랑의 모양이 바로 이것입니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">이번 주 결단 두 가지</div>
+    <div class="sermon-text">
+      <div class="decision-list">
+        <div class="decision-item"><p>고린도전서 13장 4~7절을 읽으면서 <span class="bold">사랑 자리에 내 이름을 넣어 보십시오.</span> <span class="emphasis">어느 지점에서 문장이 어색해집니까?</span> 그 지점이 오늘 하나님이 다듬고 싶으신 자리입니다. 그 한 가지를 붙들고 이번 주 기도해 보십시오.</p></div>
+        <div class="decision-item"><p>가장 가까운 사람에게 <span class="bold">먼저 하나님 앞에 앉는 것</span>으로 하루를 시작하십시오. <span class="emphasis">그 사람을 바꾸려는 기도가 아니라, 내가 먼저 은혜를 받는 시간.</span> 그 5분이 오늘 하루의 관계를 바꿉니다.</p></div>
+      </div>
+      <div class="key-sentence">
+        <span class="bold">사랑은 감정이 아니라 선택입니다.<br>그 사랑의 수원지는 하나님이십니다.<br>먼저 받아야 흘려보낼 수 있습니다.</span>
+      </div>
+      <p>이번 한 주, <span class="emphasis">꽹과리 소음이 아닌 진짜 사랑으로 살아가는 한 주</span>가 되기를 축복합니다.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"><div class="h-rule-line"></div><div class="h-rule-dot"></div><div class="h-rule-line"></div></div>
+
+  <div class="sermon-section">
+    <div class="section-label">마무리 기도</div>
+    <div class="sermon-text">
+      <div class="verse-box">
+        <div class="v-text">사랑의 하나님 아버지, 오늘 고린도전서 13장 앞에 섰습니다. 우리가 얼마나 사랑을 잘못 이해하고 있었는지를 봅니다. 감정이 올 때만 사랑하고, 상대방이 변하기를 기다리며 사랑을 미루어 온 우리를 용서해 주십시오. 우리의 사랑이 꽹과리 소음이 되지 않도록, 먼저 주님의 사랑을 받는 자리에 앉게 해주십시오. 우리 삶에서 가장 어려운 관계, 오래 참기 힘든 그 사람을 위해 기도하는 한 주가 되게 해주십시오. 사랑은 결코 끝나지 않는다고 하신 그 약속처럼, 우리에게 사랑의 능력을 부어주옵소서. 예수 그리스도의 이름으로 기도드립니다. 아멘.</div>
+        <div class="v-ref">— 기도 —</div>
+      </div>
+      <p style="font-family:var(--font-c);font-size:11px;letter-spacing:4px;color:var(--sage-l);opacity:.75;text-align:center;margin-top:24px">내 이름을 넣어 읽는 사랑장 · 수원지에서 먼저 받기 · 꽹과리가 아닌 사랑으로 사는 한 주</p>
+    </div>
+  </div>
+
+  <div class="sermon-nav">
+    <a href="/sermon-35.html" class="sn-btn">← 이전 말씀</a>
+    <a href="/sermons.html" class="sn-btn">말씀 목록</a>
+  </div>
+  <div class="share-row">
+    <button class="share-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</div>
+<audio id="sermonAudio" src="2026_07_22.mp3" preload="auto"></audio>
+<script>
+let sermonAudio,isPlaying=false,isPaused=false,elapsedTime=0,startTime=0,timerInterval=null;
+window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop,sh=document.documentElement.scrollHeight-window.innerHeight;if(sh>0)document.getElementById('progressBar').style.width=(st/sh*100)+'%';});
+window.addEventListener('load',()=>{sermonAudio=document.getElementById('sermonAudio');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';sermonAudio.addEventListener('timeupdate',()=>{if(sermonAudio.duration){document.getElementById('ttsProgressFill').style.width=(sermonAudio.currentTime/sermonAudio.duration*100)+'%';const m=Math.floor(sermonAudio.currentTime/60),s=Math.floor(sermonAudio.currentTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');}});sermonAudio.addEventListener('ended',()=>{isPlaying=false;isPaused=false;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='낭독 완료 🙏';document.getElementById('ttsProgressFill').style.width='100%';clearInterval(timerInterval);});});
+function ttsToggle(){if(!isPlaying&&!isPaused)ttsPlay();else if(isPlaying)ttsPause();else ttsResume();}
+function ttsPlay(){sermonAudio.currentTime=0;sermonAudio.play().catch(e=>console.log(e));isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsPause(){sermonAudio.pause();isPlaying=false;isPaused=true;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='일시정지';clearInterval(timerInterval);}
+function ttsResume(){sermonAudio.play();isPlaying=true;isPaused=false;document.getElementById('playBtn').textContent='⏸';document.getElementById('ttsDot').classList.add('on');document.getElementById('ttsStatusText').textContent='낭독 중 ✝';startTimer();}
+function ttsStop(){sermonAudio.pause();sermonAudio.currentTime=0;isPlaying=false;isPaused=false;elapsedTime=0;document.getElementById('playBtn').textContent='▶';document.getElementById('ttsDot').classList.remove('on');document.getElementById('ttsStatusText').textContent='재생 준비 ✅';document.getElementById('ttsProgressFill').style.width='0%';document.getElementById('ttsCurrentTime').textContent='0:00';clearInterval(timerInterval);}
+function ttsRestart(){ttsStop();setTimeout(()=>ttsPlay(),300);}
+function startTimer(){startTime=Date.now()-(elapsedTime*1000);timerInterval=setInterval(()=>{elapsedTime=(Date.now()-startTime)/1000;const m=Math.floor(elapsedTime/60),s=Math.floor(elapsedTime%60);document.getElementById('ttsCurrentTime').textContent=m+':'+String(s).padStart(2,'0');},500);}
+function ttsSeek(e){if(sermonAudio.duration){sermonAudio.currentTime=(e.offsetX/e.currentTarget.offsetWidth)*sermonAudio.duration;}}
+window.addEventListener('beforeunload',()=>{if(sermonAudio)sermonAudio.pause();});
+</script>
+</body>
+</html>

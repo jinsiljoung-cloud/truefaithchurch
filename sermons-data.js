@@ -155,14 +155,13 @@ var SERMONS_DATA = [
     date: "2026년 5월 3일 주일",
     url: "/sermon-13.html"
   }  ,
-  { id: 33, title: "나를 살피소서", subtitle: "하나님은 나를 완전히 아십니다", verse: "하나님이여 나를 살피사 내 마음을 아시며 … 나를 영원한 길로 인도하소서", ref: "시편 139편", series: "바른믿음교회 말씀 · 주일 아침 예배", date: "2026년 7월 13일 주일", url: "/sermon-33.html" }
+  { id: 33, title: "나를 살피소서", subtitle: "하나님은 나를 완전히 아십니다", verse: "하나님이여 나를 살피사 내 마음을 아시며 … 나를 영원한 길로 인도하소서", ref: "시편 139편", series: "바른믿음교회 말씀 · 수요 저녁 예배", date: "2026년 7월 12일 수요일", url: "/sermon-33.html" }
 
 ];
 
 /* 최신 설교 = 마지막 항목 */
 var LATEST_SERMON = SERMONS_DATA[SERMONS_DATA.length - 1];  },
-  { id: 34, title: "풀무불 속에서도 혼자가 아닙니다", verse: "네가 불 가운데로 지날 때에 타지도 아니할 것이요 불꽃이 너를 사르지도 못하리니", ref: "다니엘 3장 / 이사야 43:2", series: "바른믿음교회 말씀 · 수요 저녁 예배", date: "2026년 7월 15일 수요일", url: "/sermon-34.html" },
-  { id: 35, title: "너희는 세상의 소금이요 빛이라", verse: "너희는 세상의 소금이니 … 너희는 세상의 빛이라", ref: "마태복음 5:13-16", series: "바른믿음교회 말씀 · 주일 아침 예배", date: "2026년 7월 19일 주일", url: "/sermon-35.html" }
+  { id: 36, title: "이것이 진짜 사랑입니다", subtitle: "고린도전서 13장 묵상", verse: "사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며", ref: "고린도전서 13장", series: "바른믿음교회 말씀 · 수요 저녁 예배", date: "2026년 7월 22일 수요일", url: "/sermon-36.html" }
 
 ];RMONS_DATA = [
   {
@@ -321,7 +320,7 @@ var LATEST_SERMON = SERMONS_DATA[SERMONS_DATA.length - 1];  },
     date: "2026년 5월 3일 주일",
     url: "/sermon-13.html"
   }  ,
-  { id: 33, title: "나를 살피소서", subtitle: "하나님은 나를 완전히 아십니다", verse: "하나님이여 나를 살피사 내 마음을 아시며 … 나를 영원한 길로 인도하소서", ref: "시편 139편", series: "바른믿음교회 말씀 · 주일 아침 예배", date: "2026년 7월 13일 주일", url: "/sermon-33.html" }
+  { id: 33, title: "나를 살피소서", subtitle: "하나님은 나를 완전히 아십니다", verse: "하나님이여 나를 살피사 내 마음을 아시며 … 나를 영원한 길로 인도하소서", ref: "시편 139편", series: "바른믿음교회 말씀 · 수요 저녁 예배", date: "2026년 7월 12일 수요일", url: "/sermon-33.html" }
 
 ];
 
