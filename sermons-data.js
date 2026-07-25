@@ -161,7 +161,7 @@ var SERMONS_DATA = [
 
 /* 최신 설교 = 마지막 항목 */
 var LATEST_SERMON = SERMONS_DATA[SERMONS_DATA.length - 1];  },
-  { id: 36, title: "이것이 진짜 사랑입니다", subtitle: "고린도전서 13장 묵상", verse: "사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며", ref: "고린도전서 13장", series: "바른믿음교회 말씀 · 수요 저녁 예배", date: "2026년 7월 22일 수요일", url: "/sermon-36.html" }
+  { id: 37, title: "행함이 있는 믿음", subtitle: "달력과 지갑이 말해주는 신앙", verse: "영혼 없는 몸이 죽은 것 같이 행함이 없는 믿음은 죽은 것이니라", ref: "야고보서 2장", series: "바른믿음교회 말씀 · 주일 아침 예배", date: "2026년 7월 26일 주일", url: "/sermon-37.html" }
 
 ];RMONS_DATA = [
   {
