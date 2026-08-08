@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>행함이 없는 믿음은 죽은 것이라 — 야고보서 2장 | 바른믿음교회</title>
+<meta name="description" content="야고보서 2장 — 살아있는 믿음. 믿음은 선언이 아니라 삶입니다. 예배당 문을 나서는 순간부터 믿음이 걸어 나옵니다. 바른믿음교회 주일 아침 예배.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden;line-height:1.8}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9}
+.hero{padding:80px 32px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.2);padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.hero-date{font-family:var(--font-c);font-size:10px;letter-spacing:4px;color:var(--cream);opacity:.3;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:var(--font-s);font-size:clamp(26px,5vw,44px);font-weight:900;color:var(--cream);letter-spacing:2px;line-height:1.3;margin-bottom:14px}
+.hero-subtitle{font-size:15px;font-weight:300;color:var(--cream);opacity:.55;margin-bottom:32px;letter-spacing:1px}
+.hero-verse-box{display:inline-block;border-left:3px solid var(--gold);padding:16px 24px;text-align:left;max-width:620px;margin:0 auto}
+.hero-verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:1.9;margin-bottom:8px}
+.hero-verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
+.content{max-width:720px;margin:0 auto;padding:0 32px 100px}
+.audio-section{background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:48px;text-align:center}
+.audio-label{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.audio-section audio{width:100%;border-radius:8px;accent-color:var(--gold)}
+.audio-note{font-size:11px;color:var(--cream);opacity:.3;margin-top:12px;font-family:var(--font-c);letter-spacing:1px}
+.sermon-body{font-size:16px;font-weight:400;color:var(--cream);line-height:2.2}
+.sermon-body p{margin-bottom:24px;opacity:.85}
+.sermon-body p.opener{font-size:17px;font-weight:500;opacity:.95}
+.sermon-body .section-head{font-family:var(--font-s);font-size:19px;font-weight:700;color:var(--gold-l);margin:48px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border);letter-spacing:1px}
+.sermon-body .bible-quote{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);padding:20px 24px;margin:28px 0;border-radius:0 8px 8px 0}
+.sermon-body .bible-quote p{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:4px;opacity:1}
+.sermon-body .bible-quote .ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;font-style:normal;margin-bottom:0}
+.sermon-body .story-box{background:rgba(122,158,126,.05);border:1px solid rgba(122,158,126,.15);border-radius:8px;padding:20px 24px;margin:28px 0}
+.sermon-body .story-box p{font-size:14px;opacity:.7;line-height:2.2;margin-bottom:8px}
+.sermon-body .story-box p:last-child{margin-bottom:0}
+.sermon-body .closing{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.sermon-body .closing p{font-size:15px;opacity:.75;font-weight:300}
+.sermon-body .amen{text-align:center;font-family:var(--font-s);font-size:20px;font-weight:700;color:var(--gold);letter-spacing:4px;margin-top:36px;opacity:.8}
+.sermon-body .prayer-box{background:rgba(11,22,34,.6);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:32px 0}
+.sermon-body .prayer-box p{font-size:14px;font-style:italic;opacity:.65;line-height:2.2;margin-bottom:8px}
+.sermon-body .prayer-box p:last-child{margin-bottom:0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.fnav-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:12px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);opacity:.5;text-transform:uppercase;transition:all .3s}
+.fnav-btn:hover{opacity:.9;border-color:var(--gold)}
+.fnav-btn.worship{background:linear-gradient(135deg,rgba(201,168,76,.12),transparent);border-color:rgba(201,168,76,.3);color:var(--gold);opacity:1}
+.share-row{display:flex;justify-content:center;gap:12px;margin:40px 0}
+.share-btn{font-family:var(--font-c);font-size:9px;letter-spacing:2px;padding:10px 20px;border:1px solid var(--border);border-radius:20px;color:var(--cream);opacity:.4;cursor:pointer;transition:all .3s;background:none}
+.share-btn:hover{opacity:.8;border-color:var(--gold)}
+@media(max-width:640px){
+  .hero{padding:60px 20px 40px}
+  .content{padding:0 20px 80px}
+  .nav{padding:0 20px}
+  .footer-nav{flex-direction:column}
+  .fnav-btn{text-align:center;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">바른믿음교회</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">☀️ 주일 아침 예배</div>
+  <div class="hero-date">2026년 8월 9일 주일</div>
+  <h1 class="hero-title">행함이 없는 믿음은 죽은 것이라</h1>
+  <div class="hero-subtitle">살아있는 믿음 — 예배당 문을 나서는 순간, 믿음이 걸어 나온다</div>
+  <div class="hero-verse-box">
+    <div class="hero-verse-text">"이와 같이 행함이 없는 믿음은 그 자체가 죽은 것이라"</div>
+    <div class="hero-verse-ref">야고보서 2:17</div>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="audio-section">
+    <div class="audio-label">☀️ 설교 듣기</div>
+    <audio controls preload="auto">
+      <source src="2026_08_09.mp3" type="audio/mpeg">
+      브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+    <div class="audio-note">바른믿음교회 주일 아침 예배 · 2026.08.09</div>
+  </div>
+
+  <div class="sermon-body">
+
+    <p class="opener">2026년 8월 9일, 바른믿음교회 주일 아침 예배를 시작하겠습니다.</p>
+
+    <p>혹시 이런 경험이 있으신가요? 주일 아침, 예배를 드리고 돌아오는 길에 마음속으로 이런 생각을 해보신 적 있지 않으신가요? 나는 믿음이 있다. 하나님을 믿는다. 예수님을 내 구주로 영접했다. 그런데 집에 돌아와 월요일 아침이 되면, 직장에서, 육아 전쟁터 한가운데서, 그 믿음이 어디론가 사라진 것 같은 느낌.</p>
+
+    <p>내가 그리스도인이라는 사실이 오늘 하루를 살아가는 방식과 실제로 연결되어 있는지, 솔직히 잘 모르겠다는 그 감각 말입니다. 30대 성도 여러분, 이 자리에 앉아 계신 분들 가운데 많은 분들이 아마 인생에서 가장 분주하고 치열한 계절을 살고 계실 겁니다. 그 안에서 믿음이라는 단어가 때로는 너무 추상적으로, 너무 멀게 느껴질 수 있습니다.</p>
+
+    <p>오늘 우리가 함께 펼쳐볼 말씀은 야고보서 2장입니다. 야고보 사도는 오늘 우리에게 아주 직접적인 질문을 던집니다. <em>"당신의 믿음에는 행함이 있습니까?"</em></p>
+
+    <div class="section-head">1부. 야고보의 날 선 질문</div>
+
+    <p>야고보서는 예수님의 형제 야고보가 기록한 서신입니다. 박해와 가난 속에서 믿음을 지켜가고 있던 성도들에게, 말로는 믿음을 고백하면서도 실제 삶에서는 그 믿음이 전혀 드러나지 않는 현상이 교회 안에 퍼져 있었습니다. 야고보는 그것을 절대 그냥 지나치지 않았습니다.</p>
+
+    <div class="bible-quote">
+      <p>"내 형제들아 만일 사람이 믿음이 있노라 하고 행함이 없으면 무슨 유익이 있으리요 그 믿음이 능히 자기를 구원하겠느냐 만일 형제나 자매가 헐벗고 일용할 양식이 없는데 너희 중에 누구든지 그에게 이르되 평안히 가라, 덥게 하라, 배부르게 하라 하며 그 몸에 쓸 것을 주지 아니하면 무슨 유익이 있으리요 이와 같이 행함이 없는 믿음은 그 자체가 죽은 것이라"</p>
+      <div class="ref">야고보서 2:14–17</div>
+    </div>
+
+    <p>배고픈 형제를 앞에 두고 잘 가세요, 따뜻하게 입으세요, 배불리 드세요 라고 말만 하고 아무것도 건네지 않는다면, 그 말이 무슨 소용이 있겠냐는 겁니다. 야고보는 이것을 믿음에 그대로 적용합니다. 하나님을 믿는다고 입으로만 말하면서 그 믿음이 삶에서 아무런 모양도 갖추지 못한다면, 그 믿음은 죽은 것이라고 단언합니다.</p>
+
+    <p>여기서 중요한 거 하나를 짚겠습니다. 야고보가 말하는 건 구원의 방법이 아닙니다. 행함이 믿음을 만들어내는 게 아니라, 진정한 믿음은 반드시 그리고 자연스럽게 행함을 낳는다는 겁니다. 뿌리가 건강하면 열매가 맺히듯이, 살아있는 믿음은 반드시 삶 속에서 열매로 드러납니다.</p>
+
+    <div class="section-head">2부. 먼저 행하신 예수님</div>
+
+    <p>이것을 가장 선명하게 이해하는 방법은 예수 그리스도를 바라보는 겁니다. 우리 주님은 결코 말씀만으로 사역하지 않으셨습니다.</p>
+
+    <p>나병환자를 만나셨을 때를 생각해 보십시오. 당시 율법으로는 누구도 감히 나병환자에게 손을 대지 않았습니다. 그런데 예수님은 깨끗하게 되어라 말씀하시기 전에, 먼저 손을 내밀어 그를 만지셨습니다. 하나님 아버지의 사랑이 말이 아닌 몸으로, 행동으로 드러난 순간이었습니다.</p>
+
+    <p>더 나아가 성육신 그 자체가 행함입니다. 하나님은 우리를 사랑한다고 선언만 하신 게 아닙니다. 독생자를 이 땅에 보내시고, 그 아들이 십자가에서 생명을 내어놓으심으로 사랑을 실제로 행하셨습니다. 복음은 말뿐인 소식이 아닙니다. 복음은 행동하신 하나님의 이야기입니다.</p>
+
+    <div class="story-box">
+      <p>30대 초반의 직장인이었던 한 성도님은 매주 예배를 빠지지 않고, 성경도 꼬박꼬박 읽으셨습니다. 그런데 함께 일하는 동료가 이혼을 하게 되어 힘들어하고 있다는 것을 알게 되었습니다. 마음속으로 기도해줘야지, 위로해줘야지 생각했지만, 바쁘다는 이유로, 어색하다는 이유로, 며칠이 지나도록 그냥 지나쳤습니다.</p>
+      <p>그러던 어느 날 그 동료가 먼저 말했습니다. <em>"당신은 교회 다닌다고 했잖아요. 하나님이 계신다고 믿는 거잖아요. 근데 저는 하나님이 계신다면 왜 저한테 이런 일이 생기는지 모르겠어요."</em></p>
+      <p>그 말이 가슴에 비수처럼 꽂혔다고 합니다. 그분은 그제야 깨달았습니다. 자신의 믿음이 예배당 안에서만 살아있었다는 것을.</p>
+    </div>
+
+    <p>야고보는 바로 이것을 경고하고 있습니다. 예배당 안에서의 믿음이 월요일 아침 우리 삶의 현장까지 걸어 나오지 못한다면, 그 믿음은 죽은 것입니다. 그런데 중요한 건, 야고보의 이 말씀이 정죄가 아니라는 점입니다. 이건 초대입니다. 죽어있는 믿음이 다시 살아나도록 부르시는 초대입니다.</p>
+
+    <div class="section-head">3부. 살아있는 믿음의 모양</div>
+
+    <div class="bible-quote">
+      <p>"영혼 없는 몸이 죽은 것같이 행함이 없는 믿음은 죽은 것이니라"</p>
+      <div class="ref">야고보서 2:26</div>
+    </div>
+
+    <p>몸에 영혼이 없으면 그건 시체입니다. 믿음도 마찬가지입니다. 행함이 없는 믿음은 겉으로는 신앙처럼 보일지 모르지만, 그 안에 살아 움직이는 생명력이 없는 겁니다.</p>
+
+    <div class="bible-quote">
+      <p>"우리는 그가 만드신 바라 그리스도 예수 안에서 선한 일을 위하여 지으심을 받은 자니 이 일은 하나님이 전에 예비하사 우리로 그 가운데서 행하게 하려 하심이니라"</p>
+      <div class="ref">에베소서 2:10</div>
+    </div>
+
+    <p>하나님은 우리를 구원하실 때부터 이미 선한 일을 위해 빚으셨습니다. 우리의 행함은 구원을 쟁취하기 위한 노력이 아니라, 구원받은 자가 걸어가도록 이미 예비된 길입니다.</p>
+
+    <div class="story-box">
+      <p>30대 중반의 직장인 한 자매님이 퇴근 후 엘리베이터에서 혼자 무거운 짐을 들고 힘겨워하시는 이웃 어르신을 만났습니다. 몸은 지쳐있었고, 빨리 집에 들어가고 싶었습니다. 잠깐 머뭇거렸지만 마음을 다잡고 먼저 말을 건넸습니다. <em>"제가 들어드릴게요."</em></p>
+      <p>고작 몇 분 되지 않는 짧은 시간이었지만, 그 어르신은 눈가를 닦으시며 진심으로 감사해하셨습니다. 그 자매님은 나중에 이런 말씀을 나눠주셨습니다. <em>"그날 그 짧은 행동 하나가 오히려 제 믿음에 생기를 불어넣어줬어요. 믿음이 살아있다는 게 느껴졌어요."</em></p>
+    </div>
+
+    <div class="section-head">4부. 오늘 내 앞에 있는 한 사람</div>
+
+    <div class="bible-quote">
+      <p>"자녀들아 우리가 말과 혀로만 사랑하지 말고 행함과 진실함으로 하자"</p>
+      <div class="ref">요한일서 3:18</div>
+    </div>
+
+    <p>어려운 게 아닙니다. 지금 내 곁에 있는 사람을 진심으로 바라보는 것, 그게 시작입니다. 30대의 바쁜 일상 속에서 믿음의 행함은 이런 겁니다.</p>
+
+    <p>오늘 직장에서 힘들어 보이는 동료에게 잠깐 멈춰 서서 <em>"괜찮아요?"</em> 한마디 건네는 것, 퇴근 후 지쳐도 아이와 눈을 맞추며 오늘 하루를 들어주는 것, 오랫동안 연락을 못했던 부모님께 안부 전화 한 통 드리는 것, 주일 예배 후 혼자 앉아 있는 새 성도에게 먼저 다가가 말을 건네는 것. 이 모든 순간들이 살아있는 믿음이 세상 속으로 걸어 나오는 모습입니다.</p>
+
+    <p>한 가지 꼭 기억하십시오. 이 행함은 우리 힘으로 억지로 만들어내는 게 아닙니다. 예수님을 믿고 구원받은 순간, 성령님이 우리 안에 오셨습니다. 그 성령님이 우리의 마음을 새롭게 하시고, 그 새로워진 마음이 우리의 손과 발을 움직입니다. 우리가 숨을 쉬는 게 노력이 아닌 것처럼, 살아있는 믿음은 자연스럽게 행동으로 드러납니다.</p>
+
+    <div class="closing">
+      <p>오늘 이 자리에서 우리 모두 한 가지 결단을 품고 돌아가시길 바랍니다. 예배당 문을 나서는 이 순간부터, 이번 한 주 단 한 사람을 향해 믿음의 행함을 실천해보는 겁니다. 거창할 필요 없습니다. 이름을 불러주는 것, 밥 한 끼를 함께하는 것, 무거운 짐을 잠깐 함께 들어주는 것. 그 작은 한 걸음이 당신의 믿음을 살아있게 하고, 당신을 통해 이 세상에 예수님의 손길이 닿게 됩니다.</p>
+      <p>야고보서의 메시지는 결국 이겁니다. <em>믿음은 선언이 아니라 삶입니다.</em> 그리고 그 삶을 가능하게 하시는 분은, 먼저 우리를 위해 사랑을 행하신 예수 그리스도이십니다. 우리의 믿음이 오늘 이 예배당 문을 함께 나서기를 주님의 이름으로 소망합니다.</p>
+    </div>
+
+    <div class="prayer-box">
+      <p>하나님 아버지, 오늘 말씀 앞에서 우리의 믿음을 다시 바라보게 하심에 감사드립니다.</p>
+      <p>믿음을 마음속에만 가두어두고, 예배당 안에서만 살아있는 신앙으로 살아온 날들을 고백하며 회개합니다.</p>
+      <p>주님, 성령님의 능력으로 우리 안의 믿음을 새롭게 살려주시고, 이번 한 주 우리 곁의 단 한 사람을 향해 손을 내밀 용기를 허락하여 주옵소서.</p>
+      <p>먼저 사랑을 행하신 예수 그리스도의 은혜가 우리를 통해 이 세상에 흘러가게 하여 주옵소서.</p>
+      <p>예수님의 이름으로 기도합니다.</p>
+    </div>
+
+    <div class="amen">느리게 · 바르게 · 함께 · 아멘</div>
+
+  </div>
+
+  <div class="share-row">
+    <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ 복사됨')">🔗 링크 복사</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href))">Facebook</button>
+  </div>
+
+  <div class="footer-nav">
+    <a href="/sermon-40.html" class="fnav-btn">← 이전 말씀</a>
+    <a href="/worship.html" class="fnav-btn worship">✝ 10분 예배 드리기</a>
+    <a href="/sermons.html" class="fnav-btn">말씀 목록 →</a>
+  </div>
+
+</div>
+</body>
+</html>
