@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네 보물 있는 곳에 마음도 있다 — 마태복음 6장 | 바른믿음교회</title>
+<meta name="description" content="마태복음 6장 — 하늘의 보물. 땅의 불안이 아닌 하늘의 소망으로. 마음의 닻을 영원한 곳에 내리는 삶. 바른믿음교회 주일 아침 예배.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden;line-height:1.8}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9}
+.hero{padding:80px 32px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.2);padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.hero-date{font-family:var(--font-c);font-size:10px;letter-spacing:4px;color:var(--cream);opacity:.3;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:var(--font-s);font-size:clamp(26px,5vw,44px);font-weight:900;color:var(--cream);letter-spacing:2px;line-height:1.3;margin-bottom:14px}
+.hero-subtitle{font-size:15px;font-weight:300;color:var(--cream);opacity:.55;margin-bottom:32px;letter-spacing:1px}
+.hero-verse-box{display:inline-block;border-left:3px solid var(--gold);padding:16px 24px;text-align:left;max-width:620px;margin:0 auto}
+.hero-verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:1.9;margin-bottom:8px}
+.hero-verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
+.content{max-width:720px;margin:0 auto;padding:0 32px 100px}
+.audio-section{background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:48px;text-align:center}
+.audio-label{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.audio-section audio{width:100%;border-radius:8px;accent-color:var(--gold)}
+.audio-note{font-size:11px;color:var(--cream);opacity:.3;margin-top:12px;font-family:var(--font-c);letter-spacing:1px}
+.sermon-body{font-size:16px;font-weight:400;color:var(--cream);line-height:2.2}
+.sermon-body p{margin-bottom:24px;opacity:.85}
+.sermon-body p.opener{font-size:17px;font-weight:500;opacity:.95}
+.sermon-body .section-head{font-family:var(--font-s);font-size:19px;font-weight:700;color:var(--gold-l);margin:48px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border);letter-spacing:1px}
+.sermon-body .bible-quote{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);padding:20px 24px;margin:28px 0;border-radius:0 8px 8px 0}
+.sermon-body .bible-quote p{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:4px;opacity:1}
+.sermon-body .bible-quote .ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;font-style:normal;margin-bottom:0}
+.sermon-body .story-box{background:rgba(122,158,126,.05);border:1px solid rgba(122,158,126,.15);border-radius:8px;padding:20px 24px;margin:28px 0}
+.sermon-body .story-box p{font-size:14px;opacity:.7;line-height:2.2;margin-bottom:8px}
+.sermon-body .story-box p:last-child{margin-bottom:0}
+.sermon-body .closing{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.sermon-body .closing p{font-size:15px;opacity:.75;font-weight:300;margin-bottom:20px}
+.sermon-body .amen{text-align:center;font-family:var(--font-s);font-size:20px;font-weight:700;color:var(--gold);letter-spacing:4px;margin-top:36px;opacity:.8}
+.sermon-body .prayer-box{background:rgba(11,22,34,.6);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:32px 0}
+.sermon-body .prayer-box p{font-size:14px;font-style:italic;opacity:.65;line-height:2.2;margin-bottom:8px}
+.sermon-body .prayer-box p:last-child{margin-bottom:0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.fnav-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:12px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);opacity:.5;text-transform:uppercase;transition:all .3s}
+.fnav-btn:hover{opacity:.9;border-color:var(--gold)}
+.fnav-btn.worship{background:linear-gradient(135deg,rgba(201,168,76,.12),transparent);border-color:rgba(201,168,76,.3);color:var(--gold);opacity:1}
+.share-row{display:flex;justify-content:center;gap:12px;margin:40px 0}
+.share-btn{font-family:var(--font-c);font-size:9px;letter-spacing:2px;padding:10px 20px;border:1px solid var(--border);border-radius:20px;color:var(--cream);opacity:.4;cursor:pointer;transition:all .3s;background:none}
+.share-btn:hover{opacity:.8;border-color:var(--gold)}
+@media(max-width:640px){
+  .hero{padding:60px 20px 40px}
+  .content{padding:0 20px 80px}
+  .nav{padding:0 20px}
+  .footer-nav{flex-direction:column}
+  .fnav-btn{text-align:center;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">바른믿음교회</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">☀️ 주일 아침 예배</div>
+  <div class="hero-date">2026년 8월 16일 주일</div>
+  <h1 class="hero-title">네 보물 있는 곳에 마음도 있다</h1>
+  <div class="hero-subtitle">하늘의 보물 — 마음의 닻을 영원한 곳에 내리는 삶</div>
+  <div class="hero-verse-box">
+    <div class="hero-verse-text">"네 보물 있는 그 곳에는 네 마음도 있느니라"</div>
+    <div class="hero-verse-ref">마태복음 6:21</div>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="audio-section">
+    <div class="audio-label">☀️ 설교 듣기</div>
+    <audio controls preload="auto">
+      <source src="2026_08_16.mp3" type="audio/mpeg">
+      브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+    <div class="audio-note">바른믿음교회 주일 아침 예배 · 2026.08.16</div>
+  </div>
+
+  <div class="sermon-body">
+
+    <p class="opener">바른믿음교회 주일 아침 예배를 시작하겠습니다.</p>
+
+    <p>이번 달 카드값은 어떻게 막지, 전세 계약은 또 올릴 텐데, 아이 학원비는 다음 달부터 오른다고 하고, 회사에서 내 자리는 과연 안전한 걸까. 삼십 대를 살아가는 우리에게 이런 질문들은 결코 사소하지 않습니다. 주차장에 차를 세우고 잠깐 핸드폰을 열었다가 부동산이 또 올랐다는 기사 하나에 한숨 한 번 쉬고 들어오신 분도 계실 겁니다.</p>
+
+    <p>우리는 지금 무엇을 붙잡고 살아가고 있을까요? 무엇이 우리에게 안심을 주고, 무엇이 우리의 밤잠을 빼앗아 가고 있을까요? 오늘 예수님께서는 바로 그 질문의 한가운데로 걸어들어오십니다. 마태복음 6장에서 예수님은 우리에게 이렇게 말씀하십니다. <em>너희의 보물이 지금 어디에 있느냐고.</em></p>
+
+    <div class="section-head">1부. 당신의 보물은 무엇입니까</div>
+
+    <p>마태복음 6장은 예수님의 산상수훈 가운데 한 부분입니다. 예수님은 구제와 기도와 금식을 다루시다가, 후반부로 넘어오면서 삶의 가장 실제적인 문제를 건드리십니다. 바로 돈과 물질, 그리고 우리가 무엇을 신뢰하며 살아가는가 하는 문제입니다.</p>
+
+    <div class="bible-quote">
+      <p>"너희를 위하여 보물을 땅에 쌓아 두지 말라 거기는 좀과 동록이 해하며 도둑이 구멍을 뚫고 도둑질하느니라 오직 너희를 위하여 보물을 하늘에 쌓아 두라 거기는 좀이나 동록이 해하지 못하며 도둑이 구멍을 뚫지도 못하고 도둑질도 못하느니라 네 보물 있는 그 곳에는 네 마음도 있느니라"</p>
+      <div class="ref">마태복음 6:19–21</div>
+    </div>
+
+    <p>여기서 사용되는 헬라어 '데사우로스'는 단순히 돈이나 재산만을 의미하지 않습니다. 자신이 가장 가치 있다고 여기는 것, 가장 소중하게 붙들고 있는 것을 가리킵니다. 예수님은 이런 질문을 하고 계신 겁니다. <em>당신이 아침에 눈을 떴을 때 가장 먼저 생각하는 건 무엇입니까? 잠들기 전에 마지막으로 걱정하는 건 무엇입니까? 잃어버리면 가장 두려울 게 무엇입니까?</em> 그게 바로 당신의 보물입니다.</p>
+
+    <p>예수님은 물질 자체를 정죄하지 않으십니다. 예수님이 지적하신 건, 우리가 그것에 마음을 빼앗기는 것, 그것에 안전과 미래를 통째로 의탁하는 것, 그게 삶의 가장 중심 자리를 차지하는 겁니다.</p>
+
+    <div class="story-box">
+      <p>어느 삼십 대 직장인이 있었습니다. 매달 월급의 절반 이상을 저축하고, 주식과 부동산 공부에 주말 대부분을 쏟아부었습니다. 노후가 두려웠고, 남들보다 뒤처지는 게 견딜 수 없었습니다.</p>
+      <p>그러던 어느 날 오랜 친구가 물었습니다. <em>"야, 너 요즘 뭐가 제일 재미있어?"</em> 그는 한참을 생각했습니다. 그런데 대답이 나오지 않았습니다. 언제부터인가 불안을 줄여주는 게 재미가 되어버린 겁니다. 그의 보물은 어느새 안정이었고, 숫자였고, 통장 잔고였습니다. 그리고 그는 그것을 붙들면 붙들수록 오히려 더 두려워졌습니다.</p>
+    </div>
+
+    <p>예수님은 바로 이 메커니즘을 꿰뚫어 보고 계십니다. 땅의 보물은 반드시 썩는다고 말씀하십니다. 좀과 동록, 오늘날의 말로 바꾸면 인플레이션, 시장의 변동, 건강의 쇠락, 갑작스럽게 찾아오는 위기입니다. 이건 비관론이 아닙니다. 이건 현실입니다. 그리고 예수님은 그 현실을 직시하면서 우리에게 더 나은 길을 보여주십니다.</p>
+
+    <div class="section-head">2부. 예수님 자신이 하늘의 보물이시다</div>
+
+    <p>하늘에 보물을 쌓는다는 건 무엇을 의미할까요? 이것을 제대로 이해하려면 예수님 자신을 바라보아야 합니다. 예수님은 하나님의 아들이셨지만, 이 땅에 오셔서 아무것도 움켜쥐지 않으셨습니다. 자신의 영광을 내려놓으셨고, 안전을 포기하셨고, 결국 십자가 위에서 모든 것을 내어놓으셨습니다. 그런데 바로 그 자리에서 하나님께서는 가장 귀한 것, 부활의 생명을 주셨습니다.</p>
+
+    <div class="bible-quote">
+      <p>"또한 모든 것을 해로 여김은 내 주 그리스도 예수를 아는 지식이 가장 고상하기 때문이라 내가 그를 위하여 모든 것을 잃어버리고 배설물로 여김은 그리스도를 얻고"</p>
+      <div class="ref">빌립보서 3:8</div>
+    </div>
+
+    <p>바울은 이것을 이론으로만 말한 게 아닙니다. 그는 로마 시민권을 가진 당대 최고의 엘리트였습니다. 가문도 있었고, 학벌도 있었고, 종교적 지위도 있었습니다. 그런데 그 모든 것을 그리스도를 위해 내려놓았다고 말합니다. 그리고 그것을 <em>잃었다</em>고 하지 않고, <em>얻었다</em>고 합니다. 왜냐하면 그리스도 자체가 진짜 보물이었기 때문입니다.</p>
+
+    <div class="story-box">
+      <p>삼십 대 초반에 대기업에서 안정적인 자리를 다니던 한 형제가 교회의 작은 사역에 참여하면서 청소년들을 가르치기 시작했습니다. 처음에는 그냥 봉사 정도로 생각했는데, 어느 순간 아이들이 복음을 처음 들었을 때 눈이 빛나는 걸 보게 됐다고 합니다.</p>
+      <p><em>"그때 처음으로, 내가 진짜 무언가를 하고 있다는 느낌이 들었다고요."</em> 그 후 시간을 더 내고, 에너지도 더 쏟았습니다. 겉으로만 보면 손해처럼 보입니다. 하지만 그분 안에서 두려움이 줄어들고 기쁨이 깊어졌습니다.</p>
+    </div>
+
+    <div class="section-head">3부. 마음의 방향을 바꾸는 법</div>
+
+    <p>예수님은 21절에서 이렇게 말씀하십니다. <em>"네 보물 있는 그곳에는 네 마음도 있느니라."</em> 이 말씀은 방향을 가르쳐줍니다. 내 마음이 어디에 있는지 알고 싶으면, 내 돈이 어디로 흘러가는지 보라는 겁니다. 내 시간이 어디로 쏠리는지 보라는 겁니다.</p>
+
+    <p>삼십 대 성도님들, 지금 여러분의 일상을 한번 솔직하게 들여다봐 주세요. 한 달에 가장 많이 쓰는 돈이 어디에 있나요? 가장 많은 시간을 어디에 쏟고 있나요? 그게 틀렸다는 게 아닙니다. 다만 그게 내 마음이 지금 어디를 향하고 있는지를 보여주는 거울이라는 겁니다.</p>
+
+    <div class="story-box">
+      <p>삼십 대 중반에 아이를 키우며 살림을 하고 있던 한 자매가 어느 날부터 매달 수입의 일부를 선교 헌금으로 드리기 시작했습니다. 처음에는 솔직히 아깝다는 마음이 들었다고 했습니다.</p>
+      <p>그런데 신기한 건, 그렇게 드리기 시작한 다음부터 돈에 대한 집착이 조금씩 풀렸다는 겁니다. 생활은 여전히 빠듯했지만, 예전처럼 돈이 없을 때 그렇게 무너지지 않더라는 겁니다. <em>"하나님께 드렸더니, 하나님이 내 마음을 붙잡아 주시는 것 같았다고요."</em> 바로 그게 하늘에 보물을 쌓을 때 일어나는 일입니다. 마음이 따라옵니다.</p>
+    </div>
+
+    <div class="section-head">마무리</div>
+
+    <div class="closing">
+      <p>하늘에 보물을 쌓는 삶은 이렇게 생겼습니다. 나보다 어려운 사람에게 조금씩 나누는 것, 복음을 위한 일에 시간을 드리는 것, 관계 속에서 진심을 다하는 것, 하나님 앞에서 무언가를 작정하며 헌신하는 것. 거창할 필요 없습니다. 작더라도 방향이 바뀌는 게 중요합니다.</p>
+
+      <div class="bible-quote">
+        <p>"그런즉 너희는 먼저 그의 나라와 그의 의를 구하라 그리하면 이 모든 것을 너희에게 더하시리라"</p>
+        <div class="ref">마태복음 6:33</div>
+      </div>
+
+      <p>오늘 이 자리에서 한 가지 결단을 해주세요. 매달 하나님 나라를 위해 쓰는 돈을 조금 늘리는 것, 내 시간의 일부를 다른 사람을 위해 내어놓는 것, 핸드폰을 보던 그 시간 중 일부를 말씀 앞에 앉는 것으로 바꾸는 것. 그 작은 결단이 여러분 마음의 방향을 바꾸기 시작할 겁니다.</p>
+      <p>하늘에 보물을 쌓는다는 건 이 땅을 포기하는 게 아닙니다. 이 땅에서 살아가면서 마음의 닻을 영원한 곳에 내리는 겁니다. 그 닻은 오직 그리스도 안에서만 내릴 수 있습니다. 그분 자신이 하늘의 보물이시기 때문입니다.</p>
+    </div>
+
+    <div class="prayer-box">
+      <p>하나님 아버지, 오늘 이 말씀 앞에 서니 저희 마음이 얼마나 땅에 묶여 있었는지 보입니다.</p>
+      <p>더 가지려 했고, 더 쌓으려 했고, 그게 저희를 지켜줄 것이라고 믿었습니다. 그 두려움과 집착을 용서하여 주시옵소서.</p>
+      <p>오늘 다시 예수님을 바라봅니다. 그분이 저희의 진짜 보물이심을 고백합니다.</p>
+      <p>오늘 이 자리에서 결단한 것들을 붙들어 주시고, 저희의 마음이 조금씩 하늘을 향해 돌아서게 하여 주시옵소서.</p>
+      <p>이 교회의 모든 성도가 땅의 불안이 아닌 하늘의 소망으로 이 한 주를 살아가게 하여 주시옵소서. 예수님의 이름으로 기도합니다.</p>
+    </div>
+
+    <div class="amen">느리게 · 바르게 · 함께 · 아멘</div>
+
+  </div>
+
+  <div class="share-row">
+    <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ 복사됨')">🔗 링크 복사</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href))">Facebook</button>
+  </div>
+
+  <div class="footer-nav">
+    <a href="/sermon-42.html" class="fnav-btn">← 이전 말씀</a>
+    <a href="/worship.html" class="fnav-btn worship">✝ 10분 예배 드리기</a>
+    <a href="/sermons.html" class="fnav-btn">말씀 목록 →</a>
+  </div>
+
+</div>
+</body>
+</html>
