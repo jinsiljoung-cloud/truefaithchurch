@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한 가지 부족한 것이 있으니 — 마가복음 10장 | 바른믿음교회</title>
+<meta name="description" content="마가복음 10장 부자 청년 — 많은 것을 가졌어도 허전한 이유. 예수님은 사랑하시기에 그 마음의 첫 자리를 원하십니다. 바른믿음교회 주일 아침 예배.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden;line-height:1.8}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9}
+.hero{padding:80px 32px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.2);padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.hero-date{font-family:var(--font-c);font-size:10px;letter-spacing:4px;color:var(--cream);opacity:.3;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:var(--font-s);font-size:clamp(26px,5vw,44px);font-weight:900;color:var(--cream);letter-spacing:2px;line-height:1.3;margin-bottom:14px}
+.hero-subtitle{font-size:15px;font-weight:300;color:var(--cream);opacity:.55;margin-bottom:32px;letter-spacing:1px}
+.hero-verse-box{display:inline-block;border-left:3px solid var(--gold);padding:16px 24px;text-align:left;max-width:620px;margin:0 auto}
+.hero-verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:1.9;margin-bottom:8px}
+.hero-verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
+.content{max-width:720px;margin:0 auto;padding:0 32px 100px}
+.audio-section{background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:48px;text-align:center}
+.audio-label{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.audio-section audio{width:100%;border-radius:8px;accent-color:var(--gold)}
+.audio-note{font-size:11px;color:var(--cream);opacity:.3;margin-top:12px;font-family:var(--font-c);letter-spacing:1px}
+.sermon-body{font-size:16px;font-weight:400;color:var(--cream);line-height:2.2}
+.sermon-body p{margin-bottom:24px;opacity:.85}
+.sermon-body p.opener{font-size:17px;font-weight:500;opacity:.95}
+.sermon-body .section-head{font-family:var(--font-s);font-size:19px;font-weight:700;color:var(--gold-l);margin:48px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border);letter-spacing:1px}
+.sermon-body .bible-quote{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);padding:20px 24px;margin:28px 0;border-radius:0 8px 8px 0}
+.sermon-body .bible-quote p{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:4px;opacity:1}
+.sermon-body .bible-quote .ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;font-style:normal;margin-bottom:0}
+.sermon-body .story-box{background:rgba(122,158,126,.05);border:1px solid rgba(122,158,126,.15);border-radius:8px;padding:20px 24px;margin:28px 0}
+.sermon-body .story-box p{font-size:14px;opacity:.7;line-height:2.2;margin-bottom:8px}
+.sermon-body .story-box p:last-child{margin-bottom:0}
+.sermon-body .closing{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.sermon-body .closing p{font-size:15px;opacity:.75;font-weight:300;margin-bottom:20px}
+.sermon-body .amen{text-align:center;font-family:var(--font-s);font-size:20px;font-weight:700;color:var(--gold);letter-spacing:4px;margin-top:36px;opacity:.8}
+.sermon-body .prayer-box{background:rgba(11,22,34,.6);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:32px 0}
+.sermon-body .prayer-box p{font-size:14px;font-style:italic;opacity:.65;line-height:2.2;margin-bottom:8px}
+.sermon-body .prayer-box p:last-child{margin-bottom:0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.fnav-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:12px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);opacity:.5;text-transform:uppercase;transition:all .3s}
+.fnav-btn:hover{opacity:.9;border-color:var(--gold)}
+.fnav-btn.worship{background:linear-gradient(135deg,rgba(201,168,76,.12),transparent);border-color:rgba(201,168,76,.3);color:var(--gold);opacity:1}
+.share-row{display:flex;justify-content:center;gap:12px;margin:40px 0}
+.share-btn{font-family:var(--font-c);font-size:9px;letter-spacing:2px;padding:10px 20px;border:1px solid var(--border);border-radius:20px;color:var(--cream);opacity:.4;cursor:pointer;transition:all .3s;background:none}
+.share-btn:hover{opacity:.8;border-color:var(--gold)}
+@media(max-width:640px){
+  .hero{padding:60px 20px 40px}
+  .content{padding:0 20px 80px}
+  .nav{padding:0 20px}
+  .footer-nav{flex-direction:column}
+  .fnav-btn{text-align:center;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">바른믿음교회</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">☀️ 주일 아침 예배</div>
+  <div class="hero-date">2026년 8월 23일 주일</div>
+  <h1 class="hero-title">한 가지 부족한 것이 있으니</h1>
+  <div class="hero-subtitle">부자 청년 — 주님이 원하시는 그 마음의 첫 자리</div>
+  <div class="hero-verse-box">
+    <div class="hero-verse-text">"예수께서 그를 보시고 사랑하사 이르시되 네게 한 가지 부족한 것이 있으니 가서 네게 있는 것을 다 팔아 가난한 자들에게 주라 그리고 와서 나를 따르라"</div>
+    <div class="hero-verse-ref">마가복음 10:21</div>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="audio-section">
+    <div class="audio-label">☀️ 설교 듣기</div>
+    <audio controls preload="auto">
+      <source src="2026_08_23.mp3" type="audio/mpeg">
+      브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+    <div class="audio-note">바른믿음교회 주일 아침 예배 · 2026.08.23</div>
+  </div>
+
+  <div class="sermon-body">
+
+    <p class="opener">사랑하는 바른믿음교회 성도 여러분, 주님께서 지으신 새 주일 아침, 이렇게 함께 모여 하나님 앞에 예배드릴 수 있음을 진심으로 감사드립니다.</p>
+
+    <p>분명히 열심히 살았는데, 분명히 잘못한 것도 없는 것 같은데, 마음 어딘가가 늘 허전하고 뭔가 한 가지가 채워지지 않는 느낌. 자녀들도 잘 키웠고, 직장에서도 성실하게 일했고, 교회도 빠지지 않았고, 부모님께도 효도했습니다. 그런데도 가끔 새벽에 눈이 떠지면 마음 한구석이 묘하게 서늘합니다. <em>"나는 잘 살고 있는 걸까. 나는 정말 괜찮은 걸까."</em></p>
+
+    <p>오늘 본문에 등장하는 한 사람이 딱 그런 사람이었습니다. 재산도 있었고, 도덕적으로도 흠이 없었고, 심지어 예수님께 달려와 무릎을 꿇을 만큼 간절했습니다. 그런데 그는 결국 슬픈 얼굴로 돌아갔습니다. 오늘 우리는 그 청년의 슬픔 속에서, 사실은 우리 자신의 이야기를 발견하게 될 겁니다.</p>
+
+    <div class="section-head">1부. 달려와 무릎 꿇은 사람</div>
+
+    <p>마가복음 10장 17절에서 시작됩니다. 예수님께서 길을 걸어가시는데, 한 사람이 달려와서 그분 앞에 꿇어앉습니다. 공개적인 장소에서, 달려와서, 무릎을 꿇은 겁니다. 당시 유대 사회에서 어른이, 재산 있는 사람이, 사람들 앞에서 누군가에게 무릎을 꿇는다는 것은 대단히 파격적인 행동이었습니다. 그는 진심으로 간절했습니다.</p>
+
+    <div class="bible-quote">
+      <p>"선한 선생님이여 내가 무엇을 하여야 영생을 얻으리이까"</p>
+      <div class="ref">마가복음 10:17</div>
+    </div>
+
+    <p>이 질문 하나에 그의 모든 것이 담겨 있습니다. 그는 영생을 원했습니다. 단순한 호기심이 아니었습니다. 뭔가를 하면 영생을 얻을 수 있다고 믿었습니다. 그래서 무엇을 해야 하느냐고 물은 겁니다.</p>
+
+    <p>예수님의 대답은 예상을 빗나갑니다. 먼저 그가 부른 호칭을 짚어내십니다. <em>"네가 어찌하여 나를 선하다 일컫느냐 하나님 한 분 외에는 선한 이가 없느니라."</em> 이 한 마디로 질문을 던지시는 겁니다. <em>너는 지금 나를 누구로 보고 있느냐.</em></p>
+
+    <p>그러고 나서 계명들을 열거하십니다. 그 청년은 망설임 없이 대답합니다. <em>"선생님이여 이것은 내가 어릴 때부터 다 지켰나이다."</em> 이것은 거짓말이 아니었을 겁니다. 도덕적으로 흠잡을 데 없는 삶, 율법의 외면적 기준을 성실하게 지켜온 삶이었습니다.</p>
+
+    <div class="section-head">2부. 사랑하사 — 정죄가 아닌 사랑으로</div>
+
+    <div class="bible-quote">
+      <p>"예수께서 그를 보시고 사랑하사 이르시되 네게 한 가지 부족한 것이 있으니 가서 네게 있는 것을 다 팔아 가난한 자들에게 주라 그리하면 하늘에서 보화가 네게 있으리라 그리고 와서 나를 따르라"</p>
+      <div class="ref">마가복음 10:21</div>
+    </div>
+
+    <p>이 부분이 중요합니다. 예수님은 그를 정죄하려 하신 것이 아닙니다. 꾸짖으려 하신 것이 아닙니다. <em>사랑하셨습니다.</em> 그 사랑 안에서 말씀하십니다.</p>
+
+    <p>그런데 이 말씀을 들은 청년은 어떻게 했습니까. <em>"그 사람은 재물이 많은 고로 이 말씀으로 인하여 슬픈 기색을 띠고 근심하며 가니라."</em> 슬픈 기색을 띠고, 근심하며 갔습니다. 예수님의 부르심을 받았지만, 돌아섰습니다.</p>
+
+    <p>여기서 우리가 놓치지 말아야 할 것이 있습니다. 예수님이 요구하신 것은 단순히 재산을 팔라는 것이 아니었습니다. 말씀의 끝을 보십시오. <em>"와서 나를 따르라."</em> 핵심은 그거였습니다. 재물이 그 자리를 차지하고 있어서 예수님이 들어오실 자리가 없었던 겁니다. 예수님은 그 청년의 마음 안에서 재물이 차지한 자리를 원하셨습니다.</p>
+
+    <div class="story-box">
+      <p>어느 어머니가 오래된 장롱 하나를 아끼며 살았습니다. 자식들이 새 장롱을 사드리겠다고 해도 한사코 거절했습니다. 그런데 어느 날 그 장롱 때문에 햇빛이 들어오는 창이 반쯤 가려져 있다는 것을 알았습니다.</p>
+      <p>장롱을 옮기고 나서야 비로소 방 안 가득 빛이 들어왔고, 그 어머니는 <em>"이렇게 밝았었구나"</em> 하고 눈물을 흘렸다고 합니다. 그 청년의 재물이 딱 그 장롱이었습니다. 나쁜 것이 아니었습니다. 오랫동안 함께한 거였습니다. 그러나 그것이 주님이 들어오실 자리를 막고 있었습니다.</p>
+    </div>
+
+    <p>성도 여러분, 우리 각 사람의 마음 안에도, 그 장롱과 같은 무언가가 자리를 차지하고 있지는 않을까요? 재물일 수도 있고, 오래된 자존심일 수도 있고, 평생 쌓아온 체면일 수도 있습니다. 예수님은 그것을 빼앗으려 하시는 것이 아닙니다. 사랑하시기에, 더 좋은 것으로 채워주시기 위해 그 자리를 비워달라고 말씀하십니다.</p>
+
+    <div class="section-head">3부. 사람으로는 할 수 없으되</div>
+
+    <p>그 청년이 근심하며 돌아선 뒤, 제자들이 물었습니다. <em>"그러면 누가 구원을 얻을 수 있나이까."</em> 그때 예수님이 이렇게 말씀하셨습니다.</p>
+
+    <div class="bible-quote">
+      <p>"사람으로는 할 수 없으되 하나님으로서는 그렇지 아니하니 하나님으로서는 다 하실 수 있느니라"</p>
+      <div class="ref">마가복음 10:27</div>
+    </div>
+
+    <p>이 한 말씀이 오늘 본문의 전환점입니다. 이 말씀이 없었다면, 이 이야기는 그저 한 청년의 실패 이야기로 끝났을 겁니다. 하지만 예수님은 여기서 소망의 문을 여셨습니다. 내가 못 놓는 것을, 하나님이 놓을 수 있게 하신다는 겁니다.</p>
+
+    <p>우리는 흔히 이렇게 생각합니다. <em>내가 이걸 포기할 수 있을까, 내가 과연 그렇게 살 수 있을까.</em> 그렇게 자신을 바라보면 낙심이 옵니다. 그러나 오늘 예수님은 말씀하십니다. 너로서는 안 돼도, 하나님으로서는 된다고. 우리에게 필요한 것은 우리의 의지력이 아니라, 하나님께서 내 마음을 다루실 수 있도록 허락하는 그 한 걸음입니다.</p>
+
+    <div class="story-box">
+      <p>수십 년을 신앙생활 하면서도 마음속 깊이 내어드리지 못한 것이 있었다는 권사님이 있었습니다. 대수롭지 않아 보이는 것이었는데, 너무 오래 익숙해져서 그것이 주님 앞에 장애가 된다는 것조차 알지 못했다고 합니다.</p>
+      <p>그런데 어느 새벽기도 시간에 조용히 <em>"이것도 제 것이 아닙니다, 주님께 드립니다"</em> 하고 내어드렸더니, 오히려 마음이 텅 빈 것 같으면서도 충만해지는 경험을 하셨다고 했습니다. <em>"비워야 채워진다는 말이 그때 비로소 실감이 났다고요."</em> 우리가 못 하는 것을, 하나님이 하시는 거. 그것이 은혜입니다.</p>
+    </div>
+
+    <div class="section-head">마무리 — 두 가지 선택</div>
+
+    <div class="closing">
+      <p>그 부자 청년은 슬픈 기색을 띠고 돌아갔습니다. 예수님은 그를 사랑하셨지만, 그는 그 사랑 안에 머물지 않았습니다. 그것이 성경이 기록한 결말입니다. 그런데 우리의 결말은 달라질 수 있습니다.</p>
+
+      <div class="bible-quote">
+        <p>"그런즉 너희는 먼저 그의 나라와 그의 의를 구하라 그리하면 이 모든 것을 너희에게 더하시리라"</p>
+        <div class="ref">마태복음 6:33</div>
+      </div>
+
+      <p>먼저가 중요합니다. 모든 것을 버리라는 것이 아니라, 순서를 바로 세우라는 겁니다. 주님이 첫 자리에 계실 때, 나머지 모든 것들도 제자리를 찾게 됩니다. 오늘 이 시간, 그 순서를 다시 세우시기 바랍니다.</p>
+      <p>오늘 이 자리에서 우리도 그 청년과 같은 부름을 받고 있습니다. <em>"와서 나를 따르라."</em> 이 부름 앞에서 우리는 두 가지 선택을 할 수 있습니다. 근심하며 돌아서거나, 아니면 내어드리고 따르거나. 주님의 부르심은 우리에게 무거운 짐을 더하는 것이 아닙니다. 오히려 우리가 지고 있던 짐을 내려놓고, 참된 안식으로 나아오는 초대입니다.</p>
+    </div>
+
+    <div class="prayer-box">
+      <p>사랑의 주님, 오늘 이 시간 부자 청년의 이야기를 통해 우리 자신의 모습을 돌아보게 하셨습니다.</p>
+      <p>주님보다 더 소중히 여기며 붙들고 있던 것들이 우리 안에 있음을 고백합니다. 오랫동안 익숙해져서 그것이 문제인 줄도 몰랐습니다. 주님, 용서해 주시옵소서.</p>
+      <p>오늘 이 예배 자리에서 그 첫 자리를 주님께 돌려드리기 원합니다. 우리 힘으로는 내어드릴 수 없지만, 하나님으로서는 다 하실 수 있다고 하셨으니, 주님의 은혜로 우리 마음의 가장 깊은 자리에 주님이 좌정하여 주시옵소서.</p>
+      <p>이 한 주간, 오늘 들은 말씀을 붙들고 살아가게 하시고, 주님과 동행하는 복된 날들이 되게 하여 주시옵소서. 예수님의 이름으로 기도합니다.</p>
+    </div>
+
+    <div class="amen">느리게 · 바르게 · 함께 · 아멘</div>
+
+  </div>
+
+  <div class="share-row">
+    <button class="share-btn" onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ 복사됨')">🔗 링크 복사</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href))">Facebook</button>
+  </div>
+
+  <div class="footer-nav">
+    <a href="/sermon-44.html" class="fnav-btn">← 이전 말씀</a>
+    <a href="/worship.html" class="fnav-btn worship">✝ 10분 예배 드리기</a>
+    <a href="/sermons.html" class="fnav-btn">말씀 목록 →</a>
+  </div>
+
+</div>
+</body>
+</html>
