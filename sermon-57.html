@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 도움은 천지를 지으신 여호와에게서 — 시편 121편 | 바른믿음교회</title>
+<meta name="description" content="시편 121편 — 산을 바라보던 눈을 들어 천지를 지으신 하나님을 바라볼 때, 우리의 출입은 지금부터 영원까지 지켜집니다. 바른믿음교회 주일 아침 예배.">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1622;--navy2:#0F1D2E;--navy3:#162638;--gold:#C9A84C;--gold-l:#E8C96A;--gold-p:#F0DFAA;--sage:#7A9E7E;--cream:#F5EDD6;--border:rgba(201,168,76,0.14);--font-s:'Noto Serif KR',serif;--font-c:'Cinzel',serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:var(--font-s);overflow-x:hidden;line-height:1.8}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.4}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:200;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(11,22,34,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-s);font-size:17px;font-weight:700;letter-spacing:4px}
+.nav-back{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--cream);opacity:.5;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:2px;transition:all .3s}
+.nav-back:hover{opacity:.9}
+.hero{padding:80px 32px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.2);padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.hero-date{font-family:var(--font-c);font-size:10px;letter-spacing:4px;color:var(--cream);opacity:.3;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:var(--font-s);font-size:clamp(18px,3.8vw,36px);font-weight:900;color:var(--cream);letter-spacing:1px;line-height:1.4;margin-bottom:14px}
+.hero-subtitle{font-size:15px;font-weight:300;color:var(--cream);opacity:.55;margin-bottom:32px;letter-spacing:1px}
+.hero-verse-box{display:inline-block;border-left:3px solid var(--gold);padding:16px 24px;text-align:left;max-width:620px;margin:0 auto}
+.hero-verse-text{font-style:italic;font-size:15px;color:var(--gold-p);line-height:1.9;margin-bottom:8px}
+.hero-verse-ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
+.content{max-width:720px;margin:0 auto;padding:0 32px 100px}
+.audio-section{background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:48px;text-align:center}
+.audio-label{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.audio-section audio{width:100%;border-radius:8px;accent-color:var(--gold)}
+.audio-note{font-size:11px;color:var(--cream);opacity:.3;margin-top:12px;font-family:var(--font-c);letter-spacing:1px}
+.sermon-body{font-size:16px;font-weight:400;color:var(--cream);line-height:2.2}
+.sermon-body p{margin-bottom:24px;opacity:.85}
+.sermon-body p.opener{font-size:17px;font-weight:500;opacity:.95}
+.sermon-body .section-head{font-family:var(--font-s);font-size:19px;font-weight:700;color:var(--gold-l);margin:48px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border);letter-spacing:1px}
+.sermon-body .bible-quote{background:rgba(201,168,76,.06);border-left:3px solid var(--gold);padding:20px 24px;margin:28px 0;border-radius:0 8px 8px 0}
+.sermon-body .bible-quote p{font-style:italic;font-size:15px;color:var(--gold-p);line-height:2;margin-bottom:4px;opacity:1}
+.sermon-body .bible-quote .ref{font-family:var(--font-c);font-size:9px;letter-spacing:3px;color:var(--gold);opacity:.6;text-transform:uppercase;font-style:normal;margin-bottom:0}
+.sermon-body .story-box{background:rgba(122,158,126,.05);border:1px solid rgba(122,158,126,.15);border-radius:8px;padding:20px 24px;margin:28px 0}
+.sermon-body .story-box p{font-size:14px;opacity:.7;line-height:2.2;margin-bottom:8px}
+.sermon-body .story-box p:last-child{margin-bottom:0}
+.sermon-body .closing{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.sermon-body .closing p{font-size:15px;opacity:.75;font-weight:300;margin-bottom:20px}
+.sermon-body .amen{text-align:center;font-family:var(--font-s);font-size:20px;font-weight:700;color:var(--gold);letter-spacing:4px;margin-top:36px;opacity:.8}
+.sermon-body .prayer-box{background:rgba(11,22,34,.6);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:32px 0}
+.sermon-body .prayer-box p{font-size:14px;font-style:italic;opacity:.65;line-height:2.2;margin-bottom:8px}
+.sermon-body .prayer-box p:last-child{margin-bottom:0}
+.footer-nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.fnav-btn{font-family:var(--font-c);font-size:9px;letter-spacing:3px;padding:12px 24px;border:1px solid var(--border);border-radius:4px;color:var(--cream);opacity:.5;text-transform:uppercase;transition:all .3s}
+.fnav-btn:hover{opacity:.9;border-color:var(--gold)}
+.fnav-btn.worship{background:linear-gradient(135deg,rgba(201,168,76,.12),transparent);border-color:rgba(201,168,76,.3);color:var(--gold);opacity:1}
+.share-row{display:flex;justify-content:center;gap:12px;margin:40px 0}
+.share-btn{font-family:var(--font-c);font-size:9px;letter-spacing:2px;padding:10px 20px;border:1px solid var(--border);border-radius:20px;color:var(--cream);opacity:.4;cursor:pointer;transition:all .3s;background:none}
+.share-btn:hover{opacity:.8;border-color:var(--gold)}
+@media(max-width:640px){
+  .hero{padding:60px 20px 40px}
+  .content{padding:0 20px 80px}
+  .nav{padding:0 20px}
+  .footer-nav{flex-direction:column}
+  .fnav-btn{text-align:center;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">바른믿음교회</div>
+  <a href="/sermons.html" class="nav-back">← 말씀 목록</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">☀️ 주일 아침 예배</div>
+  <div class="hero-date">2026년 10월 4일 주일</div>
+  <h1 class="hero-title">내 도움은 천지를 지으신<br>여호와에게서</h1>
+  <div class="hero-subtitle">시편 121편 — 산을 바라보던 눈을 들어 창조주를 바라보는 순례자의 노래</div>
+  <div class="hero-verse-box">
+    <div class="hero-verse-text">"내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올까 나의 도움은 천지를 지으신 여호와에게서로다"</div>
+    <div class="hero-verse-ref">시편 121:1–2</div>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="audio-section">
+    <div class="audio-label">☀️ 설교 듣기</div>
+    <audio controls preload="auto">
+      <source src="2026_10_04.mp3" type="audio/mpeg">
+      브라우저가 오디오를 지원하지 않습니다.
+    </audio>
+    <div class="audio-note">바른믿음교회 주일 아침 예배 · 2026.10.04</div>
+  </div>
+
+  <div class="sermon-body">
+
+    <p class="opener">사랑하는 바른믿음교회 성도 여러분, 주님께서 지으신 새 주일 아침, 이렇게 함께 모여 예배드릴 수 있음을 감사합니다.</p>
+
+    <p>지난 한 주 동안 각자의 자리에서 무거운 짐을 지고 걸어오신 걸음들을 주님께서 다 아십니다. 오늘 이 아침, 그 짐을 잠시 내려놓고 하나님 앞에 마음을 여는 복된 시간이 되기를 바랍니다.</p>
+
+    <p>오늘 우리가 펼칠 말씀은 시편 백이십일편입니다. 오십 대라는 나이를 살아가다 보면 문득 이런 생각이 들 때가 있습니다. 이제는 내가 누군가를 붙들어 주어야 할 나이인데, 정작 나를 붙들어 줄 사람은 어디에 있을까. 위로는 연로하신 부모님을 모셔야 하고, 아래로는 아직 자리를 잡지 못한 자녀들을 걱정해야 합니다. 직장에서는 후배들에게 밀려나는 것 같고, 건강검진 결과지를 받아 들 때마다 마음이 철렁 내려앉습니다. 밤에 잠자리에 누워도 쉽게 잠이 오지 않습니다.</p>
+
+    <p>혹시 오늘 이 자리에 그런 질문을 품고 나오신 분이 계십니까? 그렇다면 오늘 말씀은 바로 여러분을 위한 말씀입니다.</p>
+
+    <div class="section-head">순례자의 질문 — 산이 나를 도울 수 있을까</div>
+
+    <p>시편 백이십일편에는 '성전에 올라가는 노래'라는 제목이 붙어 있습니다. 이스라엘 백성이 일 년에 세 차례 큰 절기를 지키기 위해 예루살렘 성전으로 올라가면서 부르던 순례의 노래였습니다. 그 시절 예루살렘으로 가는 길은 결코 편안한 길이 아니었습니다. 험한 산길을 며칠씩 걸어야 했고, 낮에는 뜨거운 태양이 머리 위에서 내리쬐었으며, 밤에는 차가운 기운이 몸을 파고들었습니다. 산골짜기마다 강도들이 숨어 있었고, 한 걸음만 헛디뎌도 돌길에서 넘어질 수 있었습니다.</p>
+
+    <p>그 길 위에서 순례자는 고개를 들어 앞을 가로막은 산들을 바라보며 이렇게 노래합니다.</p>
+
+    <div class="bible-quote">
+      <p>"내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올까<br>나의 도움은 천지를 지으신 여호와에게서로다"</p>
+      <div class="ref">Psalm 121:1–2</div>
+    </div>
+
+    <p>여기서 산은 두 가지 의미를 가지고 있습니다. 하나는 순례자가 넘어야 할 험한 장애물입니다. 또 하나는 당시 가나안 사람들이 산 위에 세워 놓은 우상의 산당들입니다. 사람들은 높은 산 위에 신당을 짓고 그곳에서 도움을 구했습니다. 그러니까 순례자는 산을 바라보며 이렇게 묻고 있는 겁니다. 저 산들이 나를 도울 수 있을까? 저 산 위의 우상들이 내 인생을 지켜 줄 수 있을까?</p>
+
+    <p>그리고 그는 단호하게 대답합니다. 아니다, 나의 도움은 그 산들을 만드신 분, 천지를 지으신 여호와에게서 온다.</p>
+
+    <p>오늘 우리에게도 저마다 바라보는 산이 있습니다. 어떤 분에게는 통장의 잔고가 산입니다. 어떤 분에게는 자녀의 성공이 산이고, 어떤 분에게는 쌓아 온 경력과 인맥이 산입니다. 우리는 그 산들을 바라보며 '그래도 이것만 있으면 괜찮겠지' 하고 안심합니다. 그런데 오십 년을 살아 보신 여러분은 이미 아십니다. 그 산들이 생각보다 쉽게 무너진다는 것을 말입니다. 믿었던 회사가 등을 돌리고, 의지했던 건강이 한순간에 흔들리고, 붙들었던 사람이 떠나갑니다. 그러나 시편은 말합니다. 그 모든 산을 지으신 분이 계시다고 말입니다. 산은 무너져도 산을 지으신 분은 무너지지 않으십니다.</p>
+
+    <div class="story-box">
+      <p>한 집사님의 이야기를 들려드리고 싶습니다. 쉰셋에 다니던 회사에서 명예퇴직을 하신 분이었습니다. 삼십 년을 한 회사에 바쳤는데, 마지막 날 받아 든 것은 작은 상자 하나였습니다.</p>
+      <p>그날 밤 그분은 집 근처 뒷산에 올라가 한참을 앉아 있었다고 합니다. 저 아래 불 켜진 아파트들을 내려다보며 '이제 나는 무엇을 의지하며 살아야 하나' 생각했답니다. 그때 어릴 적 주일학교에서 외웠던 말씀 한 구절이 떠올랐습니다. "나의 도움은 천지를 지으신 여호와에게서로다." 그분은 그 자리에서 소리 내어 울며 기도했다고 합니다. "하나님, 제가 그동안 회사라는 산만 바라보았습니다. 이제 주님을 바라보겠습니다." 그 집사님은 지금도 그날 밤을 인생의 새로운 출발점이라고 말씀하십니다.</p>
+    </div>
+
+    <div class="section-head">졸지도 주무시지도 않으시는 하나님의 지키심</div>
+
+    <p>그렇다면 천지를 지으신 그 하나님께서 우리를 어떻게 도우셨습니까? 하나님은 하늘 높은 곳에서 멀리 바라만 보지 않으셨습니다. 그분은 친히 이 땅에 내려오셨습니다. 요한복음은 만물이 그로 말미암아 지은 바 되었다고 증언합니다. 천지를 지으신 바로 그분께서 예수 그리스도로 우리 가운데 오신 겁니다.</p>
+
+    <p>예수님도 순례자처럼 예루살렘으로 올라가셨습니다. 그런데 그분의 순례는 십자가를 향한 길이었습니다. 겟세마네 동산에서 제자들은 잠이 들었지만, 예수님은 깨어 땀방울이 핏방울이 되도록 기도하셨습니다. 우리는 졸고 넘어지지만, 우리를 지키시는 분은 졸지도 아니하시고 주무시지도 아니하십니다.</p>
+
+    <div class="bible-quote">
+      <p>"여호와는 너를 지키시는 이시라 여호와께서 네 오른쪽에서 네 그늘이 되시나니<br>낮의 해가 너를 상하게 하지 아니하며 밤의 달도 너를 해치지 아니하리로다"</p>
+      <div class="ref">시편 121:5–6</div>
+    </div>
+
+    <p>예루살렘으로 올라가는 순례길에서 가장 귀한 것은 쉬어 갈 그늘 하나였습니다. 그런데 하나님께서 바로 그 그늘이 되어 주신다고 말씀하십니다. 그것도 멀리 계신 그늘이 아니라 '네 오른쪽에 계신 그늘'입니다. 오른쪽은 가장 가까운 자리이고, 가장 든든한 보호자가 서는 자리입니다. 여기서 '지킨다'는 말이 이 짧은 시편 안에 여섯 번이나 나옵니다. 마치 불안해하는 자녀의 손을 꼭 붙잡고 몇 번이고 '괜찮다'고 말해 주는 아버지의 음성 같습니다.</p>
+
+    <div class="story-box">
+      <p>어느 권사님은 남편을 먼저 하늘나라로 보내시고 한동안 밤마다 잠을 이루지 못하셨다고 합니다. 혼자 남은 빈 방이 그렇게 무섭고 길게 느껴졌답니다.</p>
+      <p>그런데 어느 밤 시편 백이십일편을 펴 놓고 읽다가 이 구절에서 멈추셨습니다. "졸지도 아니하시고 주무시지도 아니하시리로다." 그 권사님은 이렇게 고백하셨습니다. "내가 잠 못 드는 이 밤에도 나를 지키시는 분이 깨어 계시는구나." 그날 이후로 그분은 기도하고 편안히 잠자리에 드신다고 합니다.</p>
+    </div>
+
+    <div class="bible-quote">
+      <p>"여호와께서 너를 지켜 모든 환난을 면하게 하시며 또 네 영혼을 지키시리로다<br>여호와께서 너의 출입을 지금부터 영원까지 지키시리로다"</p>
+      <div class="ref">시편 121:7–8</div>
+    </div>
+
+    <p>하나님의 지키심은 우리 몸에서 끝나지 않고 우리 영혼에까지 이릅니다. 오늘에서 끝나지 않고 영원까지 이어집니다. 그리고 그 약속은 예수 그리스도 안에서 확증되었습니다. 예수님께서 요한복음 십장 이십팔절에서 이렇게 말씀하셨습니다. "내가 그들에게 영생을 주노니 영원히 멸망하지 아니할 것이요 또 그들을 내 손에서 빼앗을 자가 없느니라." 십자가에서 못 박히신 그 손이 지금 우리를 붙들고 계십니다. 우리를 위해 대신 뜨거운 심판의 해를 받으신 분이 우리의 영원한 그늘이 되신 겁니다.</p>
+
+    <div class="section-head">결단 — 매일 아침 현관문 앞에서</div>
+
+    <p>이 말씀은 오늘 우리 오십 대의 삶에 아주 구체적으로 다가옵니다. 오십 대는 인생의 정상 같지만, 사실은 가장 많은 짐을 진 나이이기도 합니다. 위로는 연로하신 부모님을 돌봐야 하고, 아래로는 아직 자리를 잡지 못한 자녀들이 있습니다. 직장에서는 언제까지 일할 수 있을까 마음이 조급해지고, 몸은 예전 같지 않다는 신호를 보내옵니다. 그래서 우리는 자꾸 산을 바라봅니다. 통장 잔고라는 산, 자녀의 성공이라는 산, 건강검진 결과라는 산을 바라보며 불안해합니다.</p>
+
+    <p>그런데 하나님께서는 이사야 사십육장 사절에서 이렇게 약속하십니다. "너희가 노년에 이르기까지 내가 그리하겠고 백발이 되기까지 내가 너희를 품을 것이라 내가 지었은즉 내가 업을 것이요 내가 품고 구하여 내리라." 하나님께서는 우리가 젊고 힘 있을 때만 쓰시는 분이 아닙니다. 머리가 희어지고 걸음이 느려질 때에도 우리를 업어 주시겠다고 말씀하십니다.</p>
+
+    <div class="story-box">
+      <p>한 장로님은 매일 아침 출근하기 전에 현관문 앞에서 잠시 멈춰 서신다고 합니다. 그리고 문고리를 잡고 이렇게 기도하신답니다.</p>
+      <p>"하나님, 오늘 저의 나가는 길과 들어오는 길을 지켜 주옵소서."</p>
+      <p>처음에는 습관처럼 시작한 기도였는데, 몇 년이 지나고 보니 그 짧은 기도가 하루를 버티는 힘이 되었다고 고백하십니다. 출입을 지키신다는 말씀을 매일 현관문 앞에서 붙잡으신 겁니다.</p>
+    </div>
+
+    <p>성도 여러분, 우리도 이렇게 해 보면 어떻겠습니까? 걱정이 밀려올 때마다 그 걱정의 이름을 하나님 앞에 구체적으로 내어놓는 겁니다. 막연히 불안해하지 말고, '하나님, 제 아들의 취업 문제를 맡깁니다, 어머니의 건강을 맡깁니다' 이렇게 하나하나 이름을 불러 맡기는 겁니다. 그것이 산을 바라보던 눈을 들어 천지를 지으신 하나님을 바라보는 믿음의 훈련입니다.</p>
+
+    <p>오늘 말씀을 한마디로 정리하면 이렇습니다. 우리의 도움은 세상의 어떤 산에서도 오지 않고, 오직 천지를 지으시고 십자가로 우리를 붙드신 하나님에게서 옵니다.</p>
+
+    <p>이번 한 주간, 이렇게 결단하시기를 권합니다. 매일 아침 집을 나서기 전, 현관문 앞에서 단 한 문장이라도 좋습니다.</p>
+
+    <div class="bible-quote">
+      <p>"하나님, 오늘 저의 출입을 지켜 주옵소서"</p>
+    </div>
+
+    <p>우리가 지켜 내는 인생이 아닙니다. 우리를 지키시는 분이 계십니다. 졸지도 주무시지도 않으시는 그분이, 우리를 위해 자기 생명까지 내어주신 예수 그리스도 안에서 오늘도 우리를 붙들고 계십니다. 그 은혜가 오늘 이 자리에 계신 모든 성도님들 위에 넘치기를 바랍니다.</p>
+
+    <div class="prayer-box">
+      <p>하나님 아버지, 저희가 그동안 주님보다 눈앞의 산을 더 바라보며 살았던 것을 회개합니다. 돈과 건강과 사람을 의지하며 불안해했던 저희의 연약한 믿음을 용서하여 주옵소서.</p>
+      <p>이제 눈을 들어 천지를 지으신 하나님만을 바라보겠습니다. 저희의 남은 인생을 주님께 온전히 맡겨 드립니다.</p>
+      <p>하나님, 지금 병상에 있는 성도들과 일자리를 잃고 낙심한 가정들, 홀로 외로운 밤을 보내는 이들을 기억하여 주옵소서. 그들의 오른쪽에서 그늘이 되어 주시고, 그들의 출입을 지금부터 영원까지 지켜 주옵소서.</p>
+      <p>예수님의 이름으로 기도합니다.</p>
+    </div>
+
+    <div class="amen">아멘</div>
+
+    <div class="closing">
+      <p>사랑하는 성도 여러분, 오늘 이 말씀을 마음에 품고 한 주간을 살아가시길 바랍니다. 세상의 산들이 크게 보이고 마음이 흔들리는 날에도, 우리를 지키시는 하나님께서 결코 졸지 않으신다는 사실을 기억하십시오. 이번 한 주도 주님과 동행하는 복된 날들이 되기를 축복합니다.</p>
+      <p>수요일 저녁에도 함께 모여 말씀과 기도로 서로의 손을 붙잡는 은혜의 시간이 되기를 바랍니다. 가정과 일터로 나아가시는 모든 걸음 위에 주님의 평강이 함께하기를 소망합니다.</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="/sermon-56.html" class="fnav-btn">← 이전 말씀</a>
+      <a href="/worship.html" class="fnav-btn worship">🙏 예배 참여하기</a>
+      <a href="/sermons.html" class="fnav-btn">말씀 목록 →</a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
