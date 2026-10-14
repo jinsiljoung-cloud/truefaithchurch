@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마음을 다하여 여호와를 신뢰하라 — 바른믿음교회</title>
+<style>
+  :root {
+    --navy: #1a2a4a;
+    --gold: #c9a84c;
+    --cream: #fdf8f0;
+    --gray: #6b7280;
+    --light: #f3f4f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--cream); color: #1f2937; line-height: 1.8; }
+
+  /* Header */
+  .sermon-header {
+    background: linear-gradient(135deg, #2c3e6b 0%, #1a2a4a 100%);
+    color: white;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .church-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .sermon-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+  .sermon-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.8rem;
+    word-keep: keep-all;
+    word-break: keep-all;
+  }
+  .sermon-subtitle {
+    font-size: 0.92rem;
+    opacity: 0.75;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+  .sermon-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    opacity: 0.6;
+    flex-wrap: wrap;
+  }
+
+  /* Key verse */
+  .key-verse {
+    background: white;
+    border-left: 4px solid var(--gold);
+    margin: 1.5rem auto;
+    max-width: 680px;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .key-verse blockquote {
+    font-size: 0.97rem;
+    font-style: italic;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+  .key-verse cite {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* Audio */
+  .audio-section {
+    background: white;
+    padding: 1.2rem 1.5rem;
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .audio-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  audio {
+    width: 100%;
+    height: 40px;
+  }
+
+  /* Content */
+  .content-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .section {
+    margin-bottom: 2.5rem;
+  }
+  .section-number {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .section p {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 0.9rem;
+    word-break: keep-all;
+  }
+
+  /* Story box */
+  .story-box {
+    background: #f9f6ef;
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    margin: 1.2rem 0;
+    border: 1px solid #e8dfc8;
+  }
+  .story-box .story-label {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  /* Scripture inline */
+  .scripture {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    line-height: 1.7;
+  }
+  .scripture .ref {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* Decision box */
+  .decision-box {
+    background: linear-gradient(135deg, #1a2a4a, #2c3e6b);
+    color: white;
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .decision-box .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .decision-box p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .decision-box .verse-highlight {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 1rem 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* Footer nav */
+  .footer-nav {
+    border-top: 1px solid #e5e7eb;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 680px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+  .footer-nav a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    transition: background 0.15s;
+    word-break: keep-all;
+  }
+  .footer-nav a:hover { background: #f3f4f6; }
+  .footer-nav .nav-center {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+  }
+  .footer-nav .nav-center:hover { background: #2c3e6b; }
+</style>
+</head>
+<body>
+
+<header class="sermon-header">
+  <p class="church-name">바른믿음교회</p>
+  <span class="sermon-badge">🌙 수요 저녁</span>
+  <h1 class="sermon-title">마음을 다하여<br>여호와를 신뢰하라</h1>
+  <p class="sermon-subtitle">잠언 3장 — 내 명철을 의지하지 말고 하나님께 모든 길을 맡기는 삶</p>
+  <div class="sermon-meta">
+    <span>📖 잠언 3:5-6</span>
+    <span>📅 2026년 10월 14일 수요일</span>
+    <span>🎙 수요 저녁 예배</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+  <div class="key-verse">
+    <blockquote>너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라 너는 범사에 그를 인정하라 그리하면 네 길을 지도하시리라</blockquote>
+    <cite>잠언 3:5-6</cite>
+  </div>
+
+  <div class="audio-section">
+    <p class="audio-label">🎧 설교 듣기</p>
+    <audio id="audio1" controls preload="auto">
+      <source src="2026_10_14.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <p class="section-number">첫 번째</p>
+    <h2>마음을 다하는 신뢰 — 네 명철을 의지하지 말라</h2>
+
+    <div class="story-box">
+      <p class="story-label">🚗 내비게이션 비유</p>
+      <p>내비게이션을 켜 놓고도 내 생각대로 운전해 본 적 있으십니까? 안내는 분명히 오른쪽으로 가라고 하는데, 내가 아는 길이 더 빠를 것 같아서 그냥 직진해 버립니다. 그러다 꽉 막힌 도로 한가운데에 서서 후회하지요.</p>
+      <p>우리 신앙생활이 이와 참 많이 닮았습니다. 주일에는 하나님을 믿는다고 고백합니다. 그런데 월요일 아침이 되면 사정이 달라집니다. 입술로는 주님을 믿는다고 하면서, 정작 운전대는 내가 꽉 붙들고 놓지 않는 겁니다.</p>
+    </div>
+
+    <p>신뢰한다는 것은 머리로 동의하는 것이 아니라 내 무게를 온전히 실어 기대는 겁니다. 의자를 바라보며 "저 의자는 튼튼하다"고 말하는 것은 아직 신뢰가 아닙니다. 그 의자에 털썩 앉아 내 몸을 맡기는 것, 그것이 신뢰입니다.</p>
+
+    <p>성경에서 마음은 단순히 감정만을 가리키지 않습니다. 생각하고 결정하고 바라는 사람의 중심 전체를 말합니다. 그러니 "마음을 다하여 신뢰하라"는 말씀은, 네 생각과 네 계획과 네 소원과 네 두려움까지 그 전부를 하나님께 기대라는 뜻입니다.</p>
+
+    <p>세상에서 가장 지혜로운 사람이라 불렸던 솔로몬이 "네 명철을 의지하지 말라"고 말합니다. 지혜를 가장 많이 가져 본 사람이 사람의 지혜가 얼마나 한계가 분명한지를 고백하고 있는 겁니다. 명철은 하나님이 주신 귀한 선물입니다. 다만 그것을 기대어 설 지팡이로 삼지는 말라는 것입니다. 선물을 붙들지 말고 선물을 주신 분을 붙들라는 겁니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🏊 수영 배우기 비유</p>
+      <p>어린 시절 처음 수영을 배우던 때를 떠올려 보십시오. 물에 빠질까 무서워서 온몸에 힘을 주고 허우적거리면 오히려 가라앉습니다. 그때 아버지가 등 밑에 손을 받치고 말합니다. "괜찮다, 아빠가 받치고 있으니 힘을 빼라."</p>
+      <p>그 말을 믿고 몸을 맡기는 순간, 신기하게도 몸이 물 위에 뜹니다. 물이 달라진 것이 아닙니다. 아버지의 손을 믿고 힘을 뺀 것뿐입니다. 신뢰란 그런 겁니다. 내가 더 세게 붙드는 것이 아니라, 나를 붙들고 계신 손을 믿고 힘을 빼는 겁니다.</p>
+    </div>
+
+    <p>우리 힘으로는 마음을 다할 수가 없습니다. 늘 한 귀퉁이를 남겨 둡니다. 바로 여기서 우리는 예수 그리스도를 바라보아야 합니다.</p>
+
+    <div class="scripture">
+      겟세마네 동산에서 예수님은 이렇게 아뢰셨습니다. "내 원대로 마시옵고 아버지의 원대로 되기를 원하나이다." 눈앞의 길은 죽음의 길이었지만, 예수님은 자기 뜻에 기대지 않으시고 마음을 다하여 아버지를 신뢰하셨습니다.
+      <span class="ref">누가복음 22:42</span>
+    </div>
+
+    <p>잠언 3:5는 더 열심히 믿어 보라는 채찍이 아닙니다. 우리 대신 온전히 신뢰하신 예수님 안으로 들어오라는 초청입니다. 우리가 신뢰할 수 있는 근거는 내 믿음의 크기가 아니라 십자가에서 확증된 하나님의 사랑입니다.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <p class="section-number">두 번째</p>
+    <h2>범사에 그를 인정하라 — 아는 길에서도 내비를 켜는 이유</h2>
+
+    <p>"인정하라"는 말은 히브리어로 "안다"는 뜻입니다. 머리로 하나님이 계신다고 고개를 끄덕이는 정도가 아닙니다. 부부가 서로를 알듯이, 삶의 모든 자리에서 하나님을 인격적으로 알고 그분을 모셔 들이라는 뜻입니다.</p>
+
+    <p>"범사"라고 하셨습니다. 주일 예배 시간만이 아닙니다. 통장을 들여다보는 시간도, 자녀와 다투고 난 뒤의 어색한 시간도, 검사 결과를 기다리는 시간도 모두 범사 안에 들어 있습니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🛣 아는 길에도 내비게이션</p>
+      <p>운전을 오래 하신 분들은 아실 겁니다. 매일 다니는 출근길은 눈을 감고도 갈 수 있습니다. 그런데도 요즘은 아는 길에서도 내비게이션을 켭니다. 왜 그렇습니까? 길은 내가 알아도, 저 앞에서 사고가 났는지, 공사를 하는지는 내가 모르기 때문입니다. 위에서 전체를 내려다보는 눈이 필요한 겁니다.</p>
+      <p>범사에 하나님을 인정한다는 것이 바로 이겁니다. 아는 길에서도 하나님께 여쭙는 겁니다. "하나님, 이 길이 맞습니까?"</p>
+    </div>
+
+    <div class="scripture">
+      "아들이 아버지께서 하시는 일을 보지 않고는 아무 것도 스스로 할 수 없나니…" 예수님은 모든 걸음에서 아버지를 인정하셨습니다. 그리고 그분이 친히 우리의 길이 되셨습니다.
+      <span class="ref">요한복음 5:19 / 요한복음 14:6</span>
+    </div>
+
+    <p>"그리하면 네 길을 지도하시리라." 이 말은 길을 곧게 하신다, 평탄하게 펴 주신다는 뜻입니다. 굽은 길이 아예 없어진다는 약속이 아닙니다. 굽은 길에서도 하나님이 목적지까지 반드시 이끄신다는 약속입니다.</p>
+
+    <div class="scripture">
+      아무것도 염려하지 말고 다만 모든 일에 기도와 간구로, 너희 구할 것을 감사함으로 하나님께 아뢰라 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라
+      <span class="ref">빌립보서 4:6-7</span>
+    </div>
+
+    <p>문제가 먼저 풀리는 것이 아니라, 아뢰는 사람의 마음이 먼저 지켜집니다. 이것이 신뢰하는 사람이 누리는 평강입니다.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <p class="section-number">세 번째</p>
+    <h2>결단 — 매일 아침 잠언 3:5-6을 소리 내어 읽기</h2>
+
+    <div class="story-box">
+      <p class="story-label">🚪 현관 집사님의 기도</p>
+      <p>한 집사님이 아침마다 현관에서 신발을 신으며 짧게 기도합니다. "하나님, 오늘도 저와 함께 가 주십시오." 십 초도 걸리지 않는 기도입니다.</p>
+      <p>회사에서 어려운 전화를 받기 전에 숨을 한 번 고르며 속으로 아룁니다. "주님, 지혜를 주십시오." 저녁에 집 문을 열기 전에 다시 한 번 아룁니다. "주님, 가족에게 따뜻한 얼굴로 들어가게 해 주십시오."</p>
+      <p>상황은 하루아침에 바뀌지 않을 수 있습니다. 그러나 그 사람의 하루는 분명히 달라집니다. 혼자 걷던 길이 함께 걷는 길이 되기 때문입니다.</p>
+    </div>
+
+    <p>젊은이들은 진로와 만남의 문제 앞에서, 부모 세대는 자녀와 일터의 문제 앞에서, 어르신들은 건강과 남은 날들의 문제 앞에서 이렇게 주님을 인정하시기 바랍니다. 어린 자녀들도 학교 가는 길에 "하나님, 오늘 친구들과 잘 지내게 해 주세요" 하고 말씀드리면, 그것이 범사에 하나님을 인정하는 겁니다.</p>
+
+    <div class="decision-box">
+      <p class="label">✅ 이번 한 주 결단</p>
+      <p>아침에 눈을 뜨면 휴대전화를 집어 들기 전에, 먼저 이 말씀을 소리 내어 읽으십시오.</p>
+      <p class="verse-highlight">"너는 마음을 다하여 여호와를 신뢰하고<br>네 명철을 의지하지 말라<br>너는 범사에 그를 인정하라<br>그리하면 네 길을 지도하시리라"</p>
+      <p>그리고 "하나님, 오늘 하루를 주님께 맡깁니다" 하고 한마디 아뢰십시오.</p>
+    </div>
+
+    <p>우리는 넘어집니다. 내일 또 내 명철을 의지하려 들 겁니다. 그러나 우리를 향한 하나님의 신실하심은 우리의 실패보다 큽니다. 겟세마네에서 아버지의 뜻에 자신을 맡기신 예수님이 오늘도 우리를 위해 간구하고 계십니다.</p>
+
+    <p>그 은혜를 의지하여 다시 힘을 빼고, 다시 맡기며 걸어가시기 바랍니다. 신뢰는 내가 더 세게 붙드는 것이 아니라, 나를 붙드신 하나님의 손에 내 모든 길을 맡겨 드리는 겁니다.</p>
+  </div>
+
+</div>
+
+<nav class="footer-nav">
+  <a href="/sermon-59.html">← 이전 설교</a>
+  <a href="/worship.html" class="nav-center">🙏 예배</a>
+  <a href="/sermons.html">목록 →</a>
+</nav>
+
+</body>
+</html>
