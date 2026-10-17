@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>행함이 있는 믿음 — 바른믿음교회</title>
+<style>
+  :root {
+    --navy: #1a2a4a;
+    --gold: #c9a84c;
+    --cream: #fdf8f0;
+    --gray: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--cream); color: #1f2937; line-height: 1.8; }
+
+  .sermon-header {
+    background: linear-gradient(135deg, #2c3e6b 0%, #1a2a4a 100%);
+    color: white;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .church-name { font-size: 0.8rem; letter-spacing: 0.15em; opacity: 0.7; margin-bottom: 1.2rem; text-transform: uppercase; }
+  .sermon-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+  .sermon-title { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 700; line-height: 1.35; margin-bottom: 0.8rem; word-break: keep-all; }
+  .sermon-subtitle { font-size: 0.92rem; opacity: 0.75; line-height: 1.6; max-width: 480px; margin: 0 auto 1.5rem; }
+  .sermon-meta { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.78rem; opacity: 0.6; flex-wrap: wrap; }
+
+  .key-verse {
+    background: white;
+    border-left: 4px solid var(--gold);
+    margin: 1.5rem auto;
+    max-width: 680px;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .key-verse blockquote { font-size: 0.97rem; font-style: italic; color: #374151; line-height: 1.7; margin-bottom: 0.4rem; }
+  .key-verse cite { font-size: 0.8rem; color: var(--gold); font-style: normal; font-weight: 600; }
+
+  .audio-section {
+    background: white;
+    padding: 1.2rem 1.5rem;
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .audio-label { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+  audio { width: 100%; height: 40px; }
+
+  .content-wrap { max-width: 680px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+  .section { margin-bottom: 2.5rem; }
+  .section-number { font-size: 0.7rem; color: var(--gold); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .section h2 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; line-height: 1.4; word-break: keep-all; }
+  .section p { font-size: 0.95rem; color: #374151; margin-bottom: 0.9rem; word-break: keep-all; }
+
+  .story-box {
+    background: #f9f6ef;
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    margin: 1.2rem 0;
+    border: 1px solid #e8dfc8;
+  }
+  .story-box .story-label { font-size: 0.7rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .story-box p { font-size: 0.9rem; color: #4b5563; line-height: 1.75; margin-bottom: 0.5rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .scripture {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    line-height: 1.7;
+  }
+  .scripture .ref { font-size: 0.75rem; color: #6b7280; margin-top: 0.3rem; display: block; }
+
+  .decision-box {
+    background: linear-gradient(135deg, #1a2a4a, #2c3e6b);
+    color: white;
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .decision-box .label { font-size: 0.72rem; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.8rem; }
+  .decision-box p { font-size: 0.95rem; opacity: 0.9; line-height: 1.7; word-break: keep-all; }
+  .decision-box .highlight { font-size: 1rem; font-weight: 700; color: var(--gold); margin: 1rem 0 0.5rem; line-height: 1.5; }
+
+  .footer-nav {
+    border-top: 1px solid #e5e7eb;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 680px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+  .footer-nav a { text-decoration: none; font-size: 0.8rem; color: var(--gray); display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0.7rem; border-radius: 8px; transition: background 0.15s; word-break: keep-all; }
+  .footer-nav a:hover { background: #f3f4f6; }
+  .footer-nav .nav-center { background: var(--navy); color: white; font-weight: 600; padding: 0.5rem 1rem; }
+  .footer-nav .nav-center:hover { background: #2c3e6b; }
+</style>
+</head>
+<body>
+
+<header class="sermon-header">
+  <p class="church-name">바른믿음교회</p>
+  <span class="sermon-badge">☀️ 주일 아침</span>
+  <h1 class="sermon-title">행함이 있는 믿음</h1>
+  <p class="sermon-subtitle">야고보서 2장 — 살아 있는 믿음은 반드시 사랑의 손길로 나타납니다</p>
+  <div class="sermon-meta">
+    <span>📖 야고보서 2:14, 17</span>
+    <span>📅 2026년 10월 18일 주일</span>
+    <span>🎙 주일 아침 예배</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+  <div class="key-verse">
+    <blockquote>내 형제들아 만일 사람이 믿음이 있노라 하고 행함이 없으면 무슨 유익이 있으리요 … 이와 같이 행함이 없는 믿음은 그 자체가 죽은 것이라</blockquote>
+    <cite>야고보서 2:14, 17</cite>
+  </div>
+
+  <div class="audio-section">
+    <p class="audio-label">🎧 설교 듣기</p>
+    <audio id="audio1" controls preload="auto">
+      <source src="2026_10_18.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <p class="section-number">첫 번째</p>
+    <h2>행함 없는 믿음은 죽은 것이다 — 야고보와 바울은 다른 말을 하는가</h2>
+
+    <p>교회에서는 참 은혜를 받았는데, 예배당 문을 나서서 주차장에 도착하기도 전에 옆 사람과 언성을 높인 경험이 있으십니까? 찬양하던 그 입술로 집에 돌아가 가족에게 날카로운 말을 쏟아 낸 적은 없으십니까? 저도 그렇습니다. 우리 모두 그렇습니다.</p>
+
+    <p>야고보서가 쓰여진 배경이 있습니다. 박해를 피해 흩어진 유대인 그리스도인들의 교회 안에서 이상한 일이 벌어지고 있었습니다. 금가락지를 끼고 좋은 옷을 입은 부자가 들어오면 좋은 자리로 안내하고, 가난한 사람이 들어오면 저기 서 있거나 발등상 아래 앉으라고 했던 겁니다. 입으로는 믿는다고 하면서, 삶으로는 세상과 똑같이 사람을 차별하고 있었던 겁니다.</p>
+
+    <p>어떤 분들은 이 말씀을 읽고 혼란스러워하십니다. 우리는 행위가 아니라 믿음으로 구원받는다고 배웠는데, 야고보는 행함을 강조하니 혹시 바울과 야고보가 서로 다른 말을 하는 것은 아닌가 하고 말입니다.</p>
+
+    <div class="scripture">
+      너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니… 우리는 그가 만드신 바라 그리스도 예수 안에서 선한 일을 위하여 지으심을 받은 자니
+      <span class="ref">에베소서 2:8, 10</span>
+    </div>
+
+    <p>바울도 선한 일을 말합니다. 바울은 구원의 뿌리를 말하고, 야고보는 구원의 열매를 말합니다. 뿌리가 살아 있는 나무는 반드시 열매를 맺습니다. 열매가 전혀 없다면 그 뿌리가 정말 살아 있는지 물어야 합니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">💛 은혜가 넘쳐서 흘러가는 믿음</p>
+      <p>제가 아는 한 권사님은 젊은 시절 큰 병으로 죽음 앞까지 가셨다가 교회 성도들의 눈물 어린 기도와 돌봄으로 다시 일어나셨습니다. 그 후 수십 년 동안 교회에 아픈 성도가 생기면 누구보다 먼저 죽을 끓여 들고 찾아가셨습니다.</p>
+      <p>누군가 왜 그렇게까지 하시느냐고 물었더니, 권사님은 웃으며 이렇게 대답하셨습니다. "내가 받은 게 너무 많아서 그래요. 갚으려는 게 아니라, 넘쳐서 흘러가는 거예요."</p>
+      <p>행함은 구원을 얻기 위한 조건이 아니라, 이미 받은 은혜에 대한 자연스러운 반응입니다.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <p class="section-number">두 번째</p>
+    <h2>평안히 가라 — 말만 하고 돌아선 믿음</h2>
+
+    <div class="scripture">
+      만일 형제나 자매가 헐벗고 일용할 양식이 없는데 너희 중에 누구든지 그에게 이르되 평안히 가라, 덥게 하라, 배부르게 하라 하며 그 몸에 쓸 것을 주지 아니하면 무슨 유익이 있으리요
+      <span class="ref">야고보서 2:15-16</span>
+    </div>
+
+    <p>장면을 한번 떠올려 보십시오. 추운 겨울날, 얇은 옷 한 벌만 걸친 형제가 교회 문 앞에 서 있습니다. 며칠째 제대로 먹지 못해 얼굴이 창백합니다. 그때 한 성도가 다가가 따뜻한 미소로 말합니다. "형제님, 평안히 가세요. 따뜻하게 지내시고 배부르게 드세요. 제가 기도할게요." 그리고 그냥 돌아섭니다.</p>
+
+    <p>말은 참 아름답습니다. 그런데 그 형제는 여전히 춥고, 여전히 배가 고픕니다. 야고보가 말하는 죽은 믿음은 약한 믿음이 아닙니다. 아예 생명이 없는 믿음입니다.</p>
+
+    <p>아브라함은 하나님을 믿었기에 가장 사랑하는 아들 이삭을 제단에 올려놓았습니다. 그의 믿음은 머릿속에만 머물지 않고 순종의 걸음으로 나타났습니다.</p>
+
+    <p>우리가 헐벗고 굶주린 그 형제였습니다. 그런데 하나님께서는 하늘에서 "평안히 가라" 하고 말씀만 하지 않으셨습니다. 독생자를 보내셔서 우리의 수치를 덮으시고, 당신의 살과 피로 우리를 먹이셨습니다. 십자가는 하나님의 사랑이 말로 끝나지 않았다는 가장 확실한 증거입니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🧣 목도리를 풀어 드린 집사님</p>
+      <p>어느 겨울, 한 집사님이 출근길 지하철역에서 떨고 있는 노숙인을 보았습니다. 늘 지나치던 분이었는데, 그날따라 그 얼굴에 십자가에 달리신 주님의 얼굴이 겹쳐 보였다고 합니다.</p>
+      <p>집사님은 자기가 두르고 있던 목도리를 풀어 그분의 목에 둘러 드리고, 근처 가게에서 따뜻한 국밥 한 그릇을 사 드렸습니다. 나중에 그 집사님은 이렇게 고백했습니다. "그날 저는 처음으로 제 믿음이 살아 있다는 걸 느꼈습니다."</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <p class="section-number">세 번째</p>
+    <h2>결단 — 이번 주 한 사람에게 구체적인 행동 하나</h2>
+
+    <div class="scripture">
+      자녀들아 우리가 말과 혀로만 사랑하지 말고 행함과 진실함으로 하자
+      <span class="ref">요한일서 3:18</span>
+    </div>
+
+    <p>기도하겠다는 말 뒤에 실제로 기도하는 것, 걱정된다는 말 뒤에 전화 한 통 거는 것, 수고했다는 말 뒤에 따뜻한 밥 한 끼를 대접하는 것. 바로 이것이 행함과 진실함으로 하는 사랑입니다.</p>
+
+    <p>어르신들은 오랜 신앙의 연륜으로 젊은 세대를 품어 주시는 것이, 부모님들은 자녀 앞에서 말이 아니라 삶으로 신앙을 보여 주시는 것이, 청년들은 학교와 일터에서 외롭게 혼자 있는 친구에게 먼저 다가가는 것이 행함입니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🍱 식판을 내려놓은 아이</p>
+      <p>한 초등학생 아이가 있었습니다. 반에서 늘 혼자 점심을 먹는 친구를 보고 엄마에게 이렇게 물었답니다. "엄마, 예수님이라면 그 친구 옆에 앉으셨겠지요?"</p>
+      <p>다음 날 그 아이는 그 친구 옆에 식판을 내려놓았습니다. 그 작은 행동 하나로 한 아이의 학교생활이 완전히 달라졌습니다. 행함이 있는 믿음은 이렇게 작은 식판 하나에서도 시작됩니다.</p>
+    </div>
+
+    <div class="scripture">
+      내가 진실로 너희에게 이르노니 너희가 여기 내 형제 중에 지극히 작은 자 하나에게 한 것이 곧 내게 한 것이니라
+      <span class="ref">마태복음 25:40</span>
+    </div>
+
+    <div class="decision-box">
+      <p class="label">✅ 이번 한 주 결단</p>
+      <p class="highlight">우리 주변에 도움이 필요한 한 사람을 떠올리시고,<br>이번 주 안에 구체적인 행동 하나를 실천해 보십시오.</p>
+      <p>전화 한 통이어도 좋고, 반찬 한 그릇이어도 좋습니다.<br>우리가 무엇을 해서 구원받는 것이 아닙니다. 십자가에서 이미 모든 것을 내어 주신 예수님의 은혜가 우리를 움직이게 하십니다.</p>
+    </div>
+
+    <p>예배는 이곳에서 끝나지만, 우리의 진짜 예배는 이제 세상 속에서 시작됩니다. 가정에서, 일터에서, 학교에서 여러분의 믿음이 사랑의 행함으로 환하게 드러나기를 바랍니다.</p>
+  </div>
+
+</div>
+
+<nav class="footer-nav">
+  <a href="/sermon-60.html">← 이전 설교</a>
+  <a href="/worship.html" class="nav-center">🙏 예배</a>
+  <a href="/sermons.html">목록 →</a>
+</nav>
+
+</body>
+</html>
