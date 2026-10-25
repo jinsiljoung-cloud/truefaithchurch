@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>십자가 위의 말씀 — 바른믿음교회</title>
+<style>
+  :root {
+    --navy: #1a2a4a;
+    --gold: #c9a84c;
+    --cream: #fdf8f0;
+    --gray: #6b7280;
+    --light: #f3f4f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--cream); color: #1f2937; line-height: 1.8; }
+
+  .sermon-header {
+    background: linear-gradient(135deg, #2c3e6b 0%, #1a2a4a 100%);
+    color: white;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .church-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .sermon-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+  .sermon-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.8rem;
+    word-break: keep-all;
+  }
+  .sermon-subtitle {
+    font-size: 0.92rem;
+    opacity: 0.75;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+  .sermon-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    opacity: 0.6;
+    flex-wrap: wrap;
+  }
+
+  .key-verse {
+    background: white;
+    border-left: 4px solid var(--gold);
+    margin: 1.5rem auto;
+    max-width: 680px;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .key-verse blockquote {
+    font-size: 0.97rem;
+    font-style: italic;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+  .key-verse cite {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .audio-section {
+    background: white;
+    padding: 1.2rem 1.5rem;
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .audio-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  audio {
+    width: 100%;
+    height: 40px;
+  }
+
+  .content-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .section {
+    margin-bottom: 2.5rem;
+  }
+  .section-number {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .section p {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 0.9rem;
+    word-break: keep-all;
+  }
+
+  .story-box {
+    background: #f9f6ef;
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    margin: 1.2rem 0;
+    border: 1px solid #e8dfc8;
+  }
+  .story-box .story-label {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .scripture {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    line-height: 1.7;
+  }
+  .scripture .ref {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .decision-box {
+    background: linear-gradient(135deg, #1a2a4a, #2c3e6b);
+    color: white;
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .decision-box .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .decision-box p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .decision-box .verse-highlight {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 1rem 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .footer-nav {
+    border-top: 1px solid #e5e7eb;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 680px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+  .footer-nav a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    transition: background 0.15s;
+    word-break: keep-all;
+  }
+  .footer-nav a:hover { background: #f3f4f6; }
+  .footer-nav .nav-center {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+  }
+  .footer-nav .nav-center:hover { background: #2c3e6b; }
+</style>
+</head>
+<body>
+
+<header class="sermon-header">
+  <p class="church-name">바른믿음교회</p>
+  <span class="sermon-badge">☀️ 주일 아침</span>
+  <h1 class="sermon-title">십자가 위의<br>말씀</h1>
+  <p class="sermon-subtitle">누가복음 23장 — 용서하고, 받아 주시고, 아버지 손에 맡기신 사랑</p>
+  <div class="sermon-meta">
+    <span>📖 누가복음 23:34</span>
+    <span>📅 2026년 10월 25일 주일</span>
+    <span>🎙 주일 아침 예배</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+  <div class="key-verse">
+    <blockquote>이에 예수께서 이르시되 아버지 저들을 사하여 주옵소서 자기들이 하는 것을 알지 못함이니이다 하시더라</blockquote>
+    <cite>누가복음 23:34</cite>
+  </div>
+
+  <div class="audio-section">
+    <p class="audio-label">🎧 설교 듣기</p>
+    <audio id="audio1" controls preload="auto">
+      <source src="2026_10_25.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <p class="section-number">첫 번째</p>
+    <h2>용서의 기도 — 못이 박히는 그 순간에 터져 나온 첫 마디</h2>
+
+    <p>마음속에 도저히 용서되지 않는 사람이 있으십니까. 가까운 가족에게 들은 날카로운 한마디가 몇 년이 지나도 잊히지 않을 때가 있습니다. 믿었던 친구에게 배신당한 기억, 직장에서 억울하게 누명을 썼던 일, 학교에서 따돌림을 받았던 상처가 문득문득 떠오릅니다. 겉으로는 괜찮은 척 웃지만, 밤에 혼자 누우면 그 장면이 다시 살아나 가슴을 짓누릅니다.</p>
+
+    <p>머리로는 용서해야 한다는 것을 압니다. 그런데 마음이 따라가지 않습니다. 그래서 더 괴롭습니다. 오늘 우리는 바로 그런 우리에게 들려주시는 말씀 앞에 섭니다.</p>
+
+    <p>예수님께서는 십자가에 달리신 여섯 시간 동안 일곱 마디의 말씀을 남기셨습니다. 교회는 이것을 가상칠언, 곧 십자가 위의 일곱 말씀이라고 불러 왔습니다. 그 중 세 말씀이 오늘 본문인 누가복음 이십삼장에 담겨 있습니다.</p>
+
+    <div class="scripture">
+      갈보리라 하는 곳에 이르러 거기서 예수를 십자가에 못 박고 두 행악자도 그렇게 하니 하나는 우편에, 하나는 좌편에 있더라
+      <span class="ref">누가복음 23:33</span>
+    </div>
+
+    <p>십자가형은 로마 제국이 가장 흉악한 죄인과 반역자에게 내리던 형벌이었습니다. 가장 고통스럽고 가장 수치스러운 죽음이었습니다. 죄 없으신 하나님의 아들이 강도들 사이에 매달리셨습니다. 바로 그 순간, 못이 손과 발을 뚫고 들어가는 그 순간에, 예수님의 입에서 첫 번째 말씀이 흘러나왔습니다.</p>
+
+    <p>사람이 극심한 고통을 당할 때 입에서 무엇이 나옵니까. 비명이 나옵니다. 원망이 나옵니다. 저주가 나옵니다. 실제로 당시 십자가에 달린 죄수들은 하늘을 향해, 군인들을 향해, 구경꾼들을 향해 온갖 저주를 퍼부었다고 합니다. 그런데 예수님의 첫 마디는 저주가 아니었습니다. 기도였습니다. 그것도 자신을 위한 기도가 아니라, 자신을 못 박는 사람들을 위한 기도였습니다.</p>
+
+    <p>주목할 단어가 있습니다. 바로 '아버지'라는 부르심입니다. 가장 깊은 고통 속에서도 예수님은 하나님을 아버지라 부르셨습니다. 아들과 아버지 사이의 그 사랑의 관계가 십자가 위에서도 끊어지지 않았습니다. 또 하나 눈여겨볼 것이 있습니다. 예수님께서 기도하시는 그 순간, 군인들은 그의 옷을 나눠 제비를 뽑고 있었습니다. 하나님의 아들이 자신들을 위해 기도하는 바로 그 발밑에서, 그들은 옷 한 벌을 차지하려고 주사위를 던지고 있었습니다. 이것이 인간의 모습이고, 이것이 바로 우리의 모습입니다.</p>
+
+    <p>"자기들이 하는 것을 알지 못함이니이다." 이 말씀은 저들의 죄가 가볍다는 뜻이 아닙니다. 죄의 무게조차 깨닫지 못할 만큼 눈먼 인생들을 향한 주님의 깊은 긍휼입니다. 그렇다면 이 용서는 어떻게 가능했을까요. 예수님은 단지 너그러운 분이셔서 용서하신 것이 아닙니다. 그분은 지금 그 죄의 값을 친히 치르고 계셨기 때문에 용서를 구하실 수 있었습니다. 십자가는 용서의 말씀이 선포된 자리이면서, 동시에 그 용서의 대가가 지불된 자리입니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">✝️ 손양원 목사님 이야기</p>
+      <p>우리 한국 교회에는 이 십자가의 기도를 삶으로 보여 준 분이 계십니다. '사랑의 원자탄'이라 불린 손양원 목사님입니다. 1948년, 목사님은 여수·순천 사건 때 사랑하는 두 아들 동인과 동신을 한꺼번에 잃었습니다. 아들들을 죽인 사람은 안재선이라는 청년이었습니다. 그가 붙잡혀 처형될 위기에 놓이자, 손양원 목사님은 그를 살려 달라고 탄원했습니다. 그리고 놀랍게도 그 청년을 자신의 양아들로 삼았습니다.</p>
+      <p>사람들이 어떻게 그럴 수 있느냐고 물었을 때, 목사님의 대답은 결국 하나였습니다. "주님께서 먼저 나를 그렇게 용서하셨다"는 겁니다.</p>
+      <p>손양원 목사님이 특별히 강한 사람이어서 그렇게 할 수 있었던 것이 아닙니다. 그분 역시 아버지로서 찢어지는 가슴을 안고 몇 날 밤을 울었을 겁니다. 그러나 그분은 십자가 아래에 서 있었습니다. '아버지 저들을 사하여 주옵소서' 하신 그 기도가 자기 자신을 향한 기도였다는 것을 알았기에, 그 용서를 다른 이에게 흘려보낼 수 있었던 겁니다.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <p class="section-number">두 번째</p>
+    <h2>낙원의 약속 — "오늘 네가 나와 함께 낙원에 있으리라"</h2>
+
+    <p>용서를 구하신 주님의 시선은 이제 바로 곁에 매달린 한 사람에게로 향합니다. 한쪽 강도는 끝까지 주님을 비방했습니다. "네가 그리스도라면 너와 우리를 구원하라"고 조롱했습니다. 그런데 다른 한 강도는 달랐습니다. 그는 같은 정죄를 받고 있는 친구를 꾸짖으며, "우리는 행한 대로 받는 것이지만 이분은 옳지 않은 일을 하나도 하지 않으셨다"고 고백합니다. 그리고 고개를 돌려 주님께 이렇게 구합니다.</p>
+
+    <div class="scripture">
+      이르되 예수여 당신의 나라에 임하실 때에 나를 기억하소서 하니 예수께서 이르시되 내가 진실로 네게 이르노니 오늘 네가 나와 함께 낙원에 있으리라 하시니라
+      <span class="ref">누가복음 23:42-43</span>
+    </div>
+
+    <p>이 강도가 주님께 드릴 수 있었던 것이 무엇이었습니까. 세례를 받을 시간도 없었습니다. 헌금을 드릴 손도 못에 박혀 있었습니다. 봉사를 할 발도 묶여 있었습니다. 그가 내놓을 수 있는 것은 오직 자기가 죄인이라는 고백과, 이분만이 나를 구원하실 수 있다는 믿음뿐이었습니다. 그런데 주님은 그것으로 충분하다고 하셨습니다.</p>
+
+    <p>나중에 언젠가가 아니라 '오늘', 홀로가 아니라 '나와 함께', '낙원에 있으리라'고 약속하셨습니다. 이것이 복음입니다.</p>
+
+    <div class="scripture">
+      너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 이것은 너희에게서 난 것이 아니요 하나님의 선물이라
+      <span class="ref">에베소서 2:8</span>
+    </div>
+
+    <p>그 강도가 구원받은 이유는 그의 행위 때문이 아니었습니다. 바로 옆 십자가에서 그의 죄값까지 대신 치르고 계신 예수 그리스도 때문이었습니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🏥 호스피스 병동 할아버지 이야기</p>
+      <p>한 호스피스 병동에서 평생 교회를 멀리했던 할아버지가 임종을 며칠 앞두고 이렇게 물으셨다고 합니다. "이렇게 늦게 와도 받아 주시겠느냐"고요.</p>
+      <p>그때 원목 목사님이 이 십자가 위의 강도 이야기를 들려드렸습니다. 할아버지는 한참을 우시다가 예수님을 영접하셨고, 마지막 날 얼굴이 참 평안하셨다고 합니다.</p>
+      <p>주님 앞에 너무 늦은 사람은 없습니다. 지금 이 말씀을 듣고 계신 분이 누구시든, 오늘이 바로 그 은혜의 날입니다.</p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <p class="section-number">세 번째</p>
+    <h2>아버지 손에 맡김 — 보이지 않아도 괜찮다</h2>
+
+    <p>이제 주님은 마지막 숨을 몰아쉬시며 한 말씀을 더 하십니다.</p>
+
+    <div class="scripture">
+      예수께서 큰 소리로 불러 이르시되 아버지 내 영혼을 아버지 손에 부탁하나이다 하고 이 말씀을 하신 후 숨지시니라
+      <span class="ref">누가복음 23:46</span>
+    </div>
+
+    <p>이 말씀은 시편 31편 5절의 고백이기도 합니다. "내가 나의 영을 주의 손에 부탁하나이다 진리의 하나님 여호와여 나를 속량하셨나이다." 주님은 가장 깊은 고통과 어둠 속에서도 아버지를 부르셨습니다. 버림받은 것 같은 그 자리에서도 아버지의 손을 신뢰하셨습니다.</p>
+
+    <p>우리는 이 말씀을 죽음의 순간에만 붙드는 것이 아닙니다. 오늘 하루하루의 삶 속에서 드려야 할 기도입니다. 자녀의 진로가 막막할 때, 건강 검사 결과를 기다릴 때, 사업이 흔들리고 관계가 무너질 때, 우리는 내 손으로 움켜쥐려고 애를 씁니다. 그러나 주님은 우리에게 손을 펴는 법을 가르쳐 주십니다.</p>
+
+    <div class="scripture">
+      너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라
+      <span class="ref">베드로전서 5:7</span>
+    </div>
+
+    <div class="story-box">
+      <p class="story-label">🔥 불난 집 아버지와 아들 이야기</p>
+      <p>어느 날 밤 집에 불이 나서 아버지가 먼저 창밖으로 뛰어내렸습니다. 이층 창가에 남은 어린 아들에게 아버지가 외쳤습니다. "뛰어내려라, 아빠가 받아 줄게!"</p>
+      <p>연기 때문에 아무것도 보이지 않던 아이가 말했습니다. "아빠, 아빠가 안 보여요."</p>
+      <p>그러자 아버지가 대답했습니다. "너는 내가 안 보여도 괜찮다. 나는 너를 보고 있단다."</p>
+      <p>아이는 그 말을 믿고 뛰어내렸고, 아버지의 품에 안겼습니다. 우리 인생에도 하나님이 보이지 않는 순간이 있습니다. 그러나 하나님은 언제나 우리를 보고 계십니다.</p>
+    </div>
+
+    <div class="decision-box">
+      <p class="label">✦ 이번 주 결단 ✦</p>
+      <p>십자가 위의 말씀은 결국 하나로 모아집니다.</p>
+      <p class="verse-highlight">우리를 용서하시고, 우리를 받아 주시고,<br>우리를 아버지의 손에 맡기신 그 사랑입니다.</p>
+      <p>이번 주, 내 마음에 아직 용서하지 못한 한 사람의 이름을 떠올리시고, 그분을 위해 매일 한 번씩 기도하기로 결단하시기 바랍니다. 우리 힘으로는 할 수 없습니다. 그러나 십자가에서 먼저 우리를 용서하신 그리스도의 은혜가 우리를 붙들어 주실 겁니다.</p>
+    </div>
+
+    <p>이번 한 주, 아침에 눈을 뜨실 때마다 이렇게 기도해 보십시오. "하나님 아버지, 오늘 제 하루를 아버지 손에 맡깁니다." 십자가의 사랑을 받은 사람답게, 가정에서 일터에서 학교에서 먼저 손 내밀고 먼저 용서하는 한 주가 되시기를 바랍니다.</p>
+
+    <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:var(--gray); letter-spacing:0.1em;">느리게 · 바르게 · 함께 · 아멘</p>
+  </div>
+
+</div>
+
+<nav class="footer-nav">
+  <a href="/sermon-62.html">← 이전 말씀</a>
+  <a href="/worship.html" class="nav-center">🕊 예배</a>
+  <a href="/sermons.html">목록 →</a>
+</nav>
+
+</body>
+</html>
