@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>결코 정죄함이 없나니 — 바른믿음교회</title>
+<style>
+  :root {
+    --navy: #1a2a4a;
+    --gold: #c9a84c;
+    --cream: #fdf8f0;
+    --gray: #6b7280;
+    --light: #f3f4f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--cream); color: #1f2937; line-height: 1.8; }
+
+  .sermon-header {
+    background: linear-gradient(135deg, #2c3e6b 0%, #1a2a4a 100%);
+    color: white;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .church-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .sermon-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+  .sermon-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.8rem;
+    word-break: keep-all;
+  }
+  .sermon-subtitle {
+    font-size: 0.92rem;
+    opacity: 0.75;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+  .sermon-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.78rem;
+    opacity: 0.6;
+    flex-wrap: wrap;
+  }
+
+  .key-verse {
+    background: white;
+    border-left: 4px solid var(--gold);
+    margin: 1.5rem auto;
+    max-width: 680px;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .key-verse blockquote {
+    font-size: 0.97rem;
+    font-style: italic;
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+  .key-verse cite {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .audio-section {
+    background: white;
+    padding: 1.2rem 1.5rem;
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .audio-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  audio {
+    width: 100%;
+    height: 40px;
+  }
+
+  .content-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .section {
+    margin-bottom: 2.5rem;
+  }
+  .section-number {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .section p {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 0.9rem;
+    word-break: keep-all;
+  }
+
+  .story-box {
+    background: #f9f6ef;
+    border-radius: 12px;
+    padding: 1.3rem 1.4rem;
+    margin: 1.2rem 0;
+    border: 1px solid #e8dfc8;
+  }
+  .story-box .story-label {
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .scripture {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    line-height: 1.7;
+  }
+  .scripture .ref {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .decision-box {
+    background: linear-gradient(135deg, #1a2a4a, #2c3e6b);
+    color: white;
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .decision-box .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .decision-box p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .decision-box .verse-highlight {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 1rem 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .footer-nav {
+    border-top: 1px solid #e5e7eb;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 680px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+  .footer-nav a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    transition: background 0.15s;
+    word-break: keep-all;
+  }
+  .footer-nav a:hover { background: #f3f4f6; }
+  .footer-nav .nav-center {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+  }
+  .footer-nav .nav-center:hover { background: #2c3e6b; }
+</style>
+</head>
+<body>
+
+<header class="sermon-header">
+  <p class="church-name">바른믿음교회</p>
+  <span class="sermon-badge">🌙 수요 저녁</span>
+  <h1 class="sermon-title">결코 정죄함이<br>없나니</h1>
+  <p class="sermon-subtitle">로마서 8장 — 그리스도 안에서 주어지는 참된 자유</p>
+  <div class="sermon-meta">
+    <span>📖 로마서 8:1-2</span>
+    <span>📅 2026년 10월 28일 수요일</span>
+    <span>🎙 수요 저녁 예배</span>
+  </div>
+</header>
+
+<div class="content-wrap">
+
+  <div class="key-verse">
+    <blockquote>그러므로 이제 그리스도 예수 안에 있는 자에게는 결코 정죄함이 없나니 이는 그리스도 예수 안에 있는 생명의 성령의 법이 죄와 사망의 법에서 너를 해방하였음이라</blockquote>
+    <cite>로마서 8:1-2</cite>
+  </div>
+
+  <div class="audio-section">
+    <p class="audio-label">🎧 설교 듣기</p>
+    <audio id="audio1" controls preload="auto">
+      <source src="2026_10_28.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <p class="section-number">첫 번째</p>
+    <h2>정죄에서의 해방 — 이미 갚아진 빚</h2>
+
+    <p>혹시 이런 경험이 있으십니까. 밤에 잠자리에 누웠는데 낮에 했던 말 한마디가 자꾸 떠오릅니다. 괜히 그 말을 했구나, 그 사람이 상처받았겠구나. 이미 지나간 일인데도 마음이 계속 나를 고소합니다. 어떤 분은 수십 년 전의 실수가 아직도 가슴 한구석에 남아 있습니다. 하나님 앞에 회개했는데도 정말 용서받은 것일까 하는 의심이 불쑥불쑥 올라옵니다.</p>
+
+    <p>젊은 세대도 다르지 않습니다. 공부를 해도, 일을 해도 늘 부족하다는 느낌, 나는 왜 이것밖에 안 될까 하는 생각이 마음을 짓누릅니다. 나이와 상관없이 우리 모두는 어떤 목소리 앞에 서 있습니다. "너는 부족하다, 너는 실패했다, 너는 자격이 없다"고 말하는 그 목소리 말입니다.</p>
+
+    <p>오늘 본문 로마서 팔장은 바로 그 목소리에 대한 하나님의 대답입니다. 그 대답은 한마디로 자유입니다.</p>
+
+    <p>로마서 팔장을 제대로 이해하려면 먼저 바로 앞의 칠장을 보아야 합니다. 칠장에서 사도 바울은 아주 솔직한 고백을 합니다. 선을 행하기 원하지만 그 선을 행하지 못하고, 원하지 않는 악을 행하는 자기 자신을 발견합니다. 위대한 사도 바울조차도 자기 안에 있는 죄의 힘 앞에서 무력함을 느꼈던 겁니다. 그리고 마침내 이렇게 탄식합니다.</p>
+
+    <div class="scripture">
+      오호라 나는 곤고한 사람이로다 이 사망의 몸에서 누가 나를 건져내랴
+      <span class="ref">로마서 7:24</span>
+    </div>
+
+    <p>이것은 바울 한 사람만의 탄식이 아닙니다. 율법 앞에 선 모든 인간의 탄식입니다. 율법은 거룩하고 선한 것이지만, 율법은 우리에게 죄를 보여 줄 뿐 죄에서 건져낼 힘은 없습니다. 거울이 얼굴의 얼룩을 보여 주지만 그 얼룩을 지워 주지는 못하는 것과 같습니다. 그래서 바울은 "누가 나를 건져내랴" 하고 부르짖었던 겁니다.</p>
+
+    <p>그런데 바로 그 절망의 끝에서 로마서 팔장이 시작됩니다. 캄캄한 밤이 지나고 새벽이 밝아오듯, 바울은 전혀 다른 목소리로 선포합니다.</p>
+
+    <div class="scripture">
+      그러므로 이제 그리스도 예수 안에 있는 자에게는 결코 정죄함이 없나니 이는 그리스도 예수 안에 있는 생명의 성령의 법이 죄와 사망의 법에서 너를 해방하였음이라
+      <span class="ref">로마서 8:1-2</span>
+    </div>
+
+    <p>일절의 첫 단어를 보십시오. "그러므로 이제"라고 말합니다. 이 말은 무언가 결정적인 일이 이미 일어났다는 뜻입니다. 우리가 노력해서 앞으로 얻게 될 자유가 아니라, 이미 이루어진 사실을 선포하는 겁니다. 그 결정적인 일이 무엇입니까. 바로 예수 그리스도의 십자가입니다. 우리가 받아야 할 정죄를 예수님께서 십자가 위에서 대신 받으셨습니다. 심판대 앞에서 우리에게 내려져야 할 판결이 이미 그리스도의 몸 위에 내려졌습니다.</p>
+
+    <p>또 "결코"라는 단어도 놓치지 마시기 바랍니다. 정죄함이 조금 줄어들었다는 말이 아닙니다. 대부분 없어졌다는 말도 아닙니다. 결코, 전혀, 조금도 없다는 말입니다. 우리의 행위가 완전해서가 아닙니다. 우리가 그리스도 예수 안에 있기 때문입니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">📜 이미 갚아진 빚 이야기</p>
+      <p>한 사람이 오랫동안 감당할 수 없는 큰 빚을 지고 살았습니다. 매일 아침 우편함을 열 때마다 손이 떨렸고, 전화벨이 울릴 때마다 가슴이 내려앉았습니다. 그러던 어느 날 그를 사랑하는 누군가가 그 빚을 모두 갚아 주었습니다. 서류에는 분명히 '완납'이라는 도장이 찍혀 있었습니다. 그런데 이상하게도 그는 그 후로도 한참 동안 우편함 앞에서 떨었습니다. 빚은 이미 사라졌는데, 빚진 사람처럼 살았던 겁니다.</p>
+      <p>성도 여러분, 혹시 우리의 모습이 이와 같지는 않습니까. 예수님께서 십자가에서 "다 이루었다"고 선포하셨는데도, 우리는 여전히 정죄의 목소리 앞에서 떨고 있지는 않습니까. 하나님의 법정에서는 이미 무죄 판결이 내려졌는데, 우리 마음의 법정에서는 아직도 재판이 계속되고 있지는 않습니까.</p>
+      <p>오늘 저녁 주님께서 우리에게 말씀하십니다. 그 빚은 이미 갚아졌다고, 너는 더 이상 정죄 아래 있지 않다고 말씀하십니다.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <p class="section-number">두 번째</p>
+    <h2>새 생명의 삶 — 억지로 짜내는 것이 아니라 솟아나는 은혜</h2>
+
+    <p>그렇다면 이렇게 정죄에서 해방된 사람은 이제 어떻게 살아가야 할까요. 사도 바울은 삼절에서 이렇게 말씀합니다.</p>
+
+    <div class="scripture">
+      율법이 육신으로 말미암아 연약하여 할 수 없는 그것을 하나님은 하시나니 곧 죄로 말미암아 자기 아들을 죄 있는 육신의 모양으로 보내어 육신에 죄를 정하사
+      <span class="ref">로마서 8:3</span>
+    </div>
+
+    <p>율법은 선하고 거룩합니다. 그러나 율법은 우리에게 무엇이 옳은지를 보여 줄 수는 있어도, 그 옳은 길을 걸어갈 힘을 줄 수는 없었습니다. 율법이 할 수 없던 그 일을 하나님께서 친히 하셨습니다. 자기 아들을 우리와 같은 육신의 모양으로 이 땅에 보내시고, 그 아들의 몸에 우리의 죄를 정하셨습니다.</p>
+
+    <p>그런데 하나님의 목적은 거기서 끝나지 않습니다. 사절은 이렇게 말씀합니다.</p>
+
+    <div class="scripture">
+      육신을 따르지 않고 그 영을 따라 행하는 우리에게 율법의 요구가 이루어지게 하려 하심이니라
+      <span class="ref">로마서 8:4</span>
+    </div>
+
+    <p>우리가 그토록 지키려 애썼지만 끝내 지킬 수 없었던 율법의 요구가, 이제 성령을 따라 사는 우리 안에서 이루어진다는 겁니다. 그리스도께서 우리를 정죄에서 건지셨을 뿐 아니라, 이제 성령으로 우리 안에 새 생명을 심으신 겁니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🌊 샘줄기가 터진 우물 이야기</p>
+      <p>어느 시골 마을에 오래된 우물이 있었다고 합니다. 사람들은 매일 그 우물에서 물을 퍼 올리느라 지쳐 있었습니다. 아무리 퍼도 물은 늘 부족했습니다. 그러던 어느 날 깊은 땅 아래에서 샘줄기가 터졌습니다. 그 뒤로 물은 더 이상 억지로 퍼 올리는 것이 아니라 저절로 솟아 넘쳐흘렀습니다.</p>
+      <p>그리스도 안에서의 삶이 바로 이와 같습니다. 이제 우리는 억지로 짜내는 의무로 사는 사람이 아닙니다. 우리 안에 계신 성령께서 생명의 샘처럼 솟아나게 하시는 은혜로 사는 사람들입니다.</p>
+    </div>
+
+    <p>죄와 사망의 법은 마치 중력과 같습니다. 아무리 높이 뛰어올라도 결국 땅으로 끌어내리는 힘입니다. 우리 스스로는 그 힘을 이길 수 없습니다. 그러나 더 강한 법이 들어왔습니다. 비행기가 중력을 없애지 않고도 하늘을 나는 것처럼, 그리스도 안에 있는 생명의 성령의 법이 우리를 죄와 사망의 끌어당김에서 들어 올리는 겁니다.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <p class="section-number">세 번째</p>
+    <h2>자유를 살아 내기 — 사랑으로 이웃을 섬기는 삶</h2>
+
+    <p>그렇다면 이 자유는 오늘 우리의 삶에서 어떻게 드러나야 할까요. 바울은 오절과 육절에서 이렇게 말씀합니다.</p>
+
+    <div class="scripture">
+      육신을 따르는 자는 육신의 일을, 영을 따르는 자는 영의 일을 생각하나니 육신의 생각은 사망이요 영의 생각은 생명과 평안이니라
+      <span class="ref">로마서 8:5-6</span>
+    </div>
+
+    <p>자유는 생각에서부터 시작됩니다. 우리가 무엇을 마음에 두고 사느냐가 우리의 삶을 결정합니다. 아침에 눈을 뜨자마자 무엇을 먼저 생각하십니까. 걱정입니까, 비교입니까, 아니면 하나님의 약속입니까. 하루 종일 우리 마음을 붙잡고 있는 생각이 염려와 정죄라면, 우리는 이미 풀려났는데도 여전히 묶인 사람처럼 살게 됩니다.</p>
+
+    <div class="scripture">
+      그리스도께서 우리를 자유롭게 하려고 자유를 주셨으니 그러므로 굳건하게 서서 다시는 종의 멍에를 메지 말라
+      <span class="ref">갈라디아서 5:1</span>
+    </div>
+
+    <p>자유는 받는 것이면서 동시에 지켜 내는 겁니다. 그리고 그 자유는 나만을 위한 것이 아닙니다. 갈라디아서 오장 십삼절은 말씀합니다. "형제들아 너희가 자유를 위하여 부르심을 입었으나 그러나 그 자유로 육체의 기회를 삼지 말고 오직 사랑으로 서로 종 노릇 하라." 참된 자유는 내 마음대로 사는 것이 아니라, 사랑으로 다른 사람을 섬길 수 있는 힘입니다.</p>
+
+    <div class="story-box">
+      <p class="story-label">🍱 권사님의 반찬 한 그릇</p>
+      <p>한 할머니 권사님이 계셨습니다. 젊은 시절 큰 상처를 준 이웃을 수십 년 동안 용서하지 못하셨습니다. 그런데 어느 수요일 저녁 예배에서 "내가 이미 용서받은 사람이라"는 말씀 앞에 눈물을 흘리셨습니다. 그 주에 권사님은 그 이웃의 집 앞에 따뜻한 반찬 한 그릇을 놓고 오셨습니다. 그리고 이렇게 말씀하셨습니다.</p>
+      <p>"그 사람을 풀어 주었더니 내가 풀려났습니다."</p>
+      <p>정죄에서 해방된 사람은 이제 다른 사람을 정죄하지 않습니다. 용서받은 사람은 용서하며 살고, 사랑받은 사람은 사랑하며 삽니다. 이것이 그리스도 안에서 자유를 얻은 사람의 새로운 삶입니다.</p>
+    </div>
+
+    <div class="decision-box">
+      <p class="label">✦ 이번 주 결단 ✦</p>
+      <p>오늘 말씀을 한 문장으로 정리하면 이렇습니다.</p>
+      <p class="verse-highlight">그리스도 안에 있는 사람은 이미 정죄에서 자유하게 되었으니,<br>이제 성령을 따라 사랑으로 그 자유를 살아 내야 합니다.</p>
+      <p>이번 한 주, 정죄의 목소리가 마음에 들려올 때마다 로마서 팔장 일절 말씀을 소리 내어 고백해 보십시오. "그러므로 이제 그리스도 예수 안에 있는 자에게는 결코 정죄함이 없나니." 그리고 그 자유의 마음으로 내 주변의 한 사람에게 먼저 사랑을 건네 보십시오. 우리가 붙잡는 것이 아니라, 예수님께서 우리를 붙잡고 계십니다.</p>
+    </div>
+
+    <p>우리의 연약함보다 그분의 은혜가 언제나 더 큽니다. 십자가에서 다 이루신 그 사랑이 오늘도 우리를 자유롭게 합니다.</p>
+
+    <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:var(--gray); letter-spacing:0.1em;">느리게 · 바르게 · 함께 · 아멘</p>
+  </div>
+
+</div>
+
+<nav class="footer-nav">
+  <a href="/sermon-63.html">← 이전 말씀</a>
+  <a href="/worship.html" class="nav-center">🕊 예배</a>
+  <a href="/sermons.html">목록 →</a>
+</nav>
+
+</body>
+</html>
