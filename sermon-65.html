@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자기 십자가를 지고 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+/* ── header ── */
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+/* ── hero ── */
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-sun { background:rgba(201,168,76,.15); color:var(--gold); border:1px solid rgba(201,168,76,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+/* ── audio ── */
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+/* ── content ── */
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+/* ── 결단 ── */
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+/* ── footer nav ── */
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+/* ── divider ── */
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">말씀</a>
+  </nav>
+</header>
+
+<main>
+  <div class="sermon-hero">
+    <div class="badge-row">
+      <span class="badge badge-sun">☀️ 주일 아침</span>
+      <span class="sermon-date">2026년 11월 1일 주일</span>
+    </div>
+    <h1 class="sermon-title">자기 십자가를 지고</h1>
+    <p class="sermon-subtitle">마가복음 8장 — 주님을 따르는 삶의 의미</p>
+
+    <div class="key-verse">
+      <p>"누구든지 나를 따라오려거든 자기를 부인하고 자기 십자가를 지고 나를 따를 것이니라"</p>
+      <cite>마가복음 8:34</cite>
+    </div>
+
+    <div class="audio-wrap">
+      <div class="audio-title">SERMON AUDIO</div>
+      <div class="audio-name">자기 십자가를 지고 — 마가복음 8장</div>
+      <div class="audio-controls">
+        <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress" onclick="seek(event)">
+            <div class="audio-progress-fill" id="progressFill"></div>
+          </div>
+          <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+        </div>
+      </div>
+      <audio id="audio" src="2026_11_01.mp3" preload="auto"></audio>
+    </div>
+  </div>
+
+  <div class="sermon-body">
+
+    <!-- 섹션 1 -->
+    <div class="section">
+      <div class="section-num">Part 1</div>
+      <h2 class="section-title">십자가는 먼저 예수님께서 지신 길</h2>
+      <div class="section-body">
+        <p>마가복음 8장에서 베드로는 예수님을 그리스도라고 고백합니다. 그러나 곧이어 예수님께서 고난과 죽음을 예고하시자, 베드로는 그것을 막으려 했습니다. 예수님은 단호하게 말씀하셨습니다. "사탄아 내 뒤로 물러가라. 네가 하나님의 일을 생각하지 아니하고 도리어 사람의 일을 생각하는도다."</p>
+        <p>베드로의 반응은 우리의 반응과 다르지 않습니다. 우리도 고난 없는 신앙, 희생 없는 제자도를 원하기 때문입니다. 그러나 예수님은 먼저 그 길을 걸어가셨습니다.</p>
+
+        <div class="story-box">
+          <div class="story-label">역사의 증언 — 디트리히 본회퍼</div>
+          <p>신학자 디트리히 본회퍼는 나치 독일의 박해를 피해 미국으로 건너갔습니다. 안전한 자리가 기다리고 있었습니다. 그러나 그는 결국 독일로 돌아갔습니다. "나의 그리스도인 형제들이 고통받는 이 시간에 나는 그들과 함께 있어야 한다." 그는 나치에 저항하다 처형당했습니다. 그가 남긴 말, "값싼 은혜는 십자가 없는 은혜입니다."</p>
+        </div>
+
+        <p>값싼 은혜는 우리를 편하게 할 수 있지만, 우리를 변화시키지는 않습니다. 예수님은 십자가의 길이 어떤 것인지 먼저 몸으로 보여주셨습니다.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 섹션 2 -->
+    <div class="section">
+      <div class="section-num">Part 2</div>
+      <h2 class="section-title">자기를 부인한다는 것</h2>
+      <div class="section-body">
+        <p>예수님은 말씀하십니다. "자기를 부인하고." 자기 부인이란 자신을 없애거나 억압하는 것이 아닙니다. 내 인생의 왕좌에 누가 앉아 있는가를 바꾸는 것입니다. 지금까지 내가 앉아 있던 그 자리에 예수님을 모셔 들이는 것입니다.</p>
+
+        <div class="verse-inline">
+          "내가 그리스도와 함께 십자가에 못 박혔나니 그런즉 이제는 내가 사는 것이 아니요 오직 내 안에 그리스도께서 사시는 것이라"<br>
+          — 갈라디아서 2:20
+        </div>
+
+        <p>이것은 삶의 주도권을 이양하는 일입니다. "나의 계획대로가 아니라, 주님의 뜻대로." 이 고백이 매일 아침 이루어질 때, 자기 부인은 추상적인 신학이 아니라 구체적인 삶이 됩니다.</p>
+
+        <div class="story-box">
+          <div class="story-label">신앙의 증인 — 손양원 목사님</div>
+          <p>여순사건 당시, 손양원 목사님의 두 아들이 공산주의자 청년에게 살해당했습니다. 그 청년이 사형을 앞두고 있을 때, 손양원 목사님은 당국에 탄원하여 그를 살렸습니다. 그리고 그 청년을 양아들로 삼았습니다. "원수를 사랑하라"는 말씀이 그의 삶 속에서 십자가가 되었습니다.</p>
+        </div>
+
+        <p>자기를 부인한다는 것은 이렇게 인간의 감정과 이성으로는 도저히 할 수 없는 일을 가능하게 하는 하나님의 능력을 힘입는 것입니다.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 섹션 3 -->
+    <div class="section">
+      <div class="section-num">Part 3</div>
+      <h2 class="section-title">날마다 지는 십자가</h2>
+      <div class="section-body">
+        <p>누가복음 9:23은 "날마다"라는 말을 덧붙입니다. 십자가는 한 번의 결단으로 끝나는 것이 아닙니다. 매일 아침 다시 지는 것입니다. 가정에서, 직장에서, 학교에서, 내가 선 자리마다 십자가는 새롭게 주어집니다.</p>
+
+        <div class="story-box">
+          <div class="story-label">선교사의 고백 — 짐 엘리엇</div>
+          <p>"영원한 것을 얻기 위해 영원하지 않은 것을 버리는 사람은 어리석은 사람이 아니다." 에콰도르 원주민 선교를 위해 목숨을 바친 짐 엘리엇이 남긴 말입니다. 그는 청년의 나이에 순교했지만, 그의 죽음은 더 많은 선교사들을 그 땅으로 이끌었습니다.</p>
+        </div>
+
+        <p>날마다 지는 십자가는 무겁습니까? 예수님은 말씀하십니다. "내 멍에는 쉽고 내 짐은 가벼움이라." (마태복음 11:30) 혼자 지는 십자가가 아니라, 주님과 함께 지는 십자가이기 때문입니다.</p>
+
+        <p>오늘도 당신의 자리에서 한 번의 내려놓음이 있기를 바랍니다. 직장 동료에게 먼저 인사하는 것, 가족에게 먼저 사과하는 것, 억울한 상황에서 한 발 물러서는 것 — 그 작은 내려놓음이 바로 오늘의 십자가입니다.</p>
+      </div>
+    </div>
+
+    <!-- 결단 -->
+    <div class="decision-box">
+      <h3>✝ 이번 주 결단</h3>
+      <p>매일 아침 눈을 뜨면 이 기도로 하루를 시작하십시오.<br><br>
+      <em style="color:var(--cream); font-family:var(--fc);">"주님, 오늘 제가 내려놓아야 할 것이 무엇입니까?"</em><br><br>
+      그 기도가 삶의 방향을 바꿉니다. 느리게, 바르게, 함께.</p>
+    </div>
+
+  </div><!-- /.sermon-body -->
+
+  <nav class="footer-nav">
+    <a class="fn-btn" href="/sermon-64.html">← 이전 말씀</a>
+    <a class="fn-btn primary" href="/worship.html">🙏 예배 참여</a>
+    <a class="fn-btn" href="/sermons.html">📋 말씀 목록</a>
+  </nav>
+</main>
+
+<script>
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const progressFill = document.getElementById('progressFill');
+const audioTime = document.getElementById('audioTime');
+
+function fmt(s) {
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+function togglePlay() {
+  if (audio.paused) { audio.play(); playBtn.textContent = '⏸'; }
+  else { audio.pause(); playBtn.textContent = '▶'; }
+}
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) {
+    progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+    audioTime.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  }
+});
+audio.addEventListener('ended', () => { playBtn.textContent = '▶'; });
+function seek(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  if (audio.duration) audio.currentTime = ratio * audio.duration;
+}
+</script>
+</body>
+</html>
