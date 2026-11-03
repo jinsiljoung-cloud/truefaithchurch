@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 안에 거하라 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+/* ── header ── */
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+/* ── hero ── */
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-wed { background:rgba(122,158,126,.15); color:var(--sage); border:1px solid rgba(122,158,126,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+/* ── audio ── */
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+/* ── content ── */
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+/* ── 결단 ── */
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+/* ── footer nav ── */
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+/* ── divider ── */
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-wed">🌙 수요 저녁</span>
+    <span class="sermon-date">2026년 11월 4일 수요일</span>
+  </div>
+  <h1 class="sermon-title">내 안에 거하라</h1>
+  <p class="sermon-subtitle">요한복음 15장 — 포도나무와 가지, 열매 맺는 삶의 비밀</p>
+  <div class="key-verse">
+    <p>나는 포도나무요 너희는 가지라 그가 내 안에, 내가 그 안에 거하면 사람이 열매를 많이 맺나니 나를 떠나서는 너희가 아무 것도 할 수 없음이라</p>
+    <cite>요한복음 15:5</cite>
+  </div>
+
+  <!-- 오디오 플레이어 -->
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">내 안에 거하라 · 요한복음 15장</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_04.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">참포도나무</h2>
+    <div class="section-body">
+      <p>구약성경에서 이스라엘은 하나님의 포도나무로 불렸습니다. 이사야 5장은 포도원 노래를 부릅니다. 하나님께서 좋은 포도 맺기를 기다리셨지만, 돌아온 것은 들포도였습니다. 이스라엘은 포도나무의 역할을 감당하지 못했습니다.</p>
+      <p>그런데 예수님께서 말씀하십니다. "나는 참포도나무요." 이스라엘이 실패한 그 자리에, 예수님이 서십니다. 그분이 참 포도나무이십니다.</p>
+      <div class="verse-inline">
+        "내 아버지는 농부라 무릇 내게 붙어 있어 열매를 맺지 아니하는 가지는 아버지께서 그것을 제거해 버리시고 무릇 열매를 맺는 가지는 더 열매를 맺게 하려 하여 그것을 깨끗하게 하시느니라"<br>— 요한복음 15:1-2
+      </div>
+      <p>가지는 특별히 해야 할 일이 없습니다. 나무에 붙어 있기만 하면 됩니다. 나무에서 흐르는 수액이 가지로 오고, 가지는 저절로 열매를 맺습니다. 우리가 할 일은 단 하나입니다. 주님께 붙어 있는 것입니다.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">농부의 가지치기</h2>
+    <div class="section-body">
+      <p>하나님 아버지는 농부이십니다. 농부는 가지를 두 가지로 다루십니다. 열매 없는 가지는 제거하시고, 열매 맺는 가지는 깨끗하게 하십니다. 더 많은 열매를 위해 가지를 치시는 것입니다.</p>
+      <p>가지치기는 아픕니다. 신앙 안에서 우리가 겪는 고난, 내려놓음, 상실감 — 그 모든 것이 때로는 농부의 손길일 수 있습니다.</p>
+      <div class="story-box">
+        <div class="story-label">포도원 농부의 이야기</div>
+        <p>한 청년이 포도원 농부 할아버지에게 물었습니다. "할아버지, 가지를 그렇게 많이 잘라내면 나무가 아프지 않나요?" 할아버지가 웃으며 대답하셨습니다. "나무는 잠깐 아프지. 하지만 가을에 가서는 고마워할 거야."</p>
+      </div>
+      <div class="verse-inline">
+        "무릇 징계가 당시에는 즐거워 보이지 않고 슬퍼 보이나 후에 그로 말미암아 연단 받은 자들은 의와 평강의 열매를 맺느니라"<br>— 히브리서 12:11
+      </div>
+      <p>가지치기는 버려짐이 아닙니다. 더 풍성한 열매를 향한 사랑의 손길입니다. 농부가 애정 없는 나무에는 가위를 대지 않습니다. 아버지께서 우리를 다듬으실 때, 그것은 그분이 우리를 포도나무에 붙어있는 가지로 보고 계신다는 증거입니다.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">주님 안에 거하기</h2>
+    <div class="section-body">
+      <p>예수님은 반복해서 말씀하십니다. "내 안에 거하라." 거한다는 것은 머무는 것입니다. 잠깐 들르는 것이 아니라, 그 안에 사는 것입니다.</p>
+      <div class="verse-inline">
+        "너희가 내 안에 거하고 내 말이 너희 안에 거하면 무엇이든지 원하는 대로 구하라 그리하면 이루리라"<br>— 요한복음 15:7
+      </div>
+      <div class="verse-inline">
+        "아버지께서 나를 사랑하신 것 같이 나도 너희를 사랑하였으니 나의 사랑 안에 거하라"<br>— 요한복음 15:9
+      </div>
+      <div class="story-box">
+        <div class="story-label">권사님의 이야기</div>
+        <p>우리 교회 한 권사님이 계십니다. 예전에는 교회 봉사를 많이 하셨습니다. 그런데 어느 날 건강이 허락지 않아 봉사를 줄이게 되셨습니다. 처음에는 마음이 힘드셨다고 합니다. 그런데 봉사를 줄이고 나니 오히려 말씀 앞에 앉는 시간이 많아졌습니다. 기도하는 시간이 늘었습니다. 그분이 나중에 이렇게 말씀하셨습니다. "봉사는 줄었는데, 열매는 오히려 많아진 것 같아요."</p>
+      </div>
+      <div class="story-box">
+        <div class="story-label">청년의 이야기</div>
+        <p>한 청년이 있었습니다. 직장 생활이 바쁘고 신앙이 흐트러지는 것 같아 걱정이 많았습니다. 그래서 작은 것 하나를 시작했습니다. 출퇴근 지하철 안에서 10분, 성경 한 구절을 읽고 조용히 기도하는 것이었습니다. 한 달이 지나자 변화가 생겼습니다. 직장 동료가 먼저 물어왔습니다. "요즘 뭔가 달라진 것 같아요. 무슨 일이 있었어요?"</p>
+      </div>
+      <p>스마트폰은 충전기에 꽂혀 있어야 합니다. 약은 매일 복용해야 합니다. 거함도 그렇습니다. 한 번에 몰아서 하는 것이 아니라, 매일 조금씩 주님 앞에 머무는 것입니다. 그 시간이 쌓일 때, 우리는 자신도 모르게 열매를 맺어 가고 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>이번 주 결단</h3>
+    <p>이번 주, 매일 10분을 정하십시오.<br>주님 앞에 조용히 머무는 시간입니다.<br>아침이어도 좋고, 자기 전이어도 좋습니다.<br>가지가 나무에 붙어 있듯, 그분 안에 거하십시오.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-65.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
