@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>입으로 시인하면 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-sun { background:rgba(201,168,76,.15); color:var(--gold); border:1px solid rgba(201,168,76,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-sun">☀️ 주일 아침</span>
+    <span class="sermon-date">2026년 11월 8일 주일</span>
+  </div>
+  <h1 class="sermon-title">입으로 시인하면</h1>
+  <p class="sermon-subtitle">로마서 10장 — 구원은 가까이 있고, 고백은 삶이 된다</p>
+  <div class="key-verse">
+    <p>네가 만일 네 입으로 예수를 주로 시인하며 또 하나님께서 그를 죽은 자 가운데서 살리신 것을 네 마음에 믿으면 구원을 받으리라</p>
+    <cite>로마서 10:9</cite>
+  </div>
+
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">입으로 시인하면 · 로마서 10장</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_08.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">구원은 멀리 있지 않다</h2>
+    <div class="section-body">
+      <p>이스라엘 백성은 누구보다 열심이었습니다. 율법을 지키고, 안식일을 지키고, 정결 규례를 지키는 일에 온 힘을 쏟았습니다. 그러나 바울은 말합니다. 바로 그 열심이 문제였다고. 그들은 하나님께서 주시는 의를 받으려 하지 않고, 자기 힘으로 의를 세우려 했습니다.</p>
+      <p>오늘도 많은 사람들이 묻습니다. "나는 정말 구원받은 사람이 맞을까? 더 열심히 해야 구원이 확실해지지 않을까?" 그러나 바울은 단호하게 선포합니다.</p>
+      <div class="verse-inline">
+        "그리스도는 모든 믿는 자에게 의를 이루기 위하여 율법의 마침이 되시니라"<br>— 로마서 10:4
+      </div>
+      <p>예수 그리스도께서 율법이 가리키던 목적지를 완성하셨습니다. 우리가 결코 채울 수 없던 그 의를, 그분의 완전한 순종과 십자가의 피로 다 채우셨습니다. 구원은 내가 얼마나 열심히 했느냐에 달려 있지 않습니다. 예수님께서 무엇을 하셨느냐에 달려 있습니다.</p>
+      <div class="story-box">
+        <div class="story-label">다리 이야기</div>
+        <p>어느 산골 마을, 깊은 계곡 사이에 두 마을이 있었습니다. 험한 낭떠러지를 건너야 했기에 많은 이들이 중간에 포기했습니다. 그런데 한 사람이 목숨을 걸고 튼튼한 다리를 놓았습니다. 다리가 완성된 뒤에도 어떤 사람들은 밧줄을 들고 낭떠러지로 내려갔습니다. 남이 놓은 다리를 그냥 건너는 것은 왠지 공짜 같다고 여겼기 때문입니다. 지혜로운 사람들은 감사하며 그저 발을 내디뎠습니다. 예수 그리스도께서 그 다리가 되셨습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">마음으로 믿고 입으로 시인하라</h2>
+    <div class="section-body">
+      <p>바울은 구원의 길을 두 가지로 말합니다. 마음으로 믿는 것과 입으로 시인하는 것입니다.</p>
+      <p>마음으로 믿는다는 것은 단순히 머리로 아는 것이 아닙니다. 십자가에서 죽으시고 부활하신 예수님께서 지금도 살아 계신다는 사실에 내 인생 전체를 맡기는 것입니다. 그 다리 위에 내 발을 온전히 올려놓는 것입니다.</p>
+      <p>입으로 시인한다는 것은 "같은 말을 한다"는 뜻입니다. 하나님께서 예수님에 대해 말씀하신 것을 나도 똑같이 말하는 것, "예수님은 나의 주님이십니다"라고 고백하는 것입니다. 이 고백은 내 인생의 주인이 더 이상 내가 아니라 예수님이시라는 선언입니다.</p>
+      <div class="verse-inline">
+        "사람이 마음으로 믿어 의에 이르고 입으로 시인하여 구원에 이르느니라"<br>— 로마서 10:10
+      </div>
+      <div class="story-box">
+        <div class="story-label">폴리갑의 고백</div>
+        <p>서머나 교회의 감독 폴리갑은 "그리스도를 욕하면 놓아주겠다"는 총독 앞에서 이렇게 말했습니다. "나는 86년 동안 그분을 섬겼으나 그분은 한 번도 나를 해롭게 하신 적이 없소. 그런데 어찌 나를 구원하신 나의 왕을 모독할 수 있겠소." 그는 예수님을 주로 시인하며 순교의 길을 걸어갔습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">시인하는 삶 — 일상에서 흘러나오는 고백</h2>
+    <div class="section-body">
+      <p>예배당 문을 나서는 순간부터 고백은 진짜 시험을 받습니다. 직장에서, 학교에서, 가정에서 — 우리는 과연 "예수님이 나의 주님"이라고 살아가고 있습니까?</p>
+      <div class="story-box">
+        <div class="story-label">고등학생 이야기</div>
+        <p>한 고등학생이 급식실에서 친구들 앞에 앉아 밥을 먹을 때마다 기도하는 것이 너무 부끄러웠습니다. 몇 달 동안 기도 없이 밥을 먹었습니다. 어느 날 용기를 내어 조용히 눈을 감고 기도했습니다. 그러자 옆 친구가 물었습니다. "너 교회 다니니? 나도 사실 예전에 다녔었어." 그 짧은 기도가 친구의 마음 문을 여는 열쇠가 되었습니다.</p>
+      </div>
+      <p>시인한다는 것은 거창한 연설이 아닙니다. 식사 전에 드리는 짧은 기도, 힘들어하는 이웃에게 건네는 "제가 당신을 위해 기도할게요", 어려운 결정 앞에서 하나님의 뜻을 먼저 구하는 모습 — 이 모든 것이 예수님을 주로 시인하는 삶입니다.</p>
+      <div class="verse-inline">
+        "누구든지 주의 이름을 부르는 자는 구원을 받으리라"<br>— 로마서 10:13
+      </div>
+      <p>우리 곁에는 아직 이 복된 소식을 듣지 못한 가족과 이웃이 있습니다. 어르신들은 손주에게, 부모님은 자녀에게, 젊은이들은 친구와 동료에게 — 우리의 입술이 그들이 복음을 듣는 통로가 되어야 합니다.</p>
+      <div class="verse-inline">
+        "그러므로 믿음은 들음에서 나며 들음은 그리스도의 말씀으로 말미암았느니라"<br>— 로마서 10:17
+      </div>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>이번 주 결단</h3>
+    <p>아직 예수님을 모르는 단 한 사람을 마음에 품고,<br>그 사람 앞에서 한 번 고백해 보십시오.<br>"예수님은 나의 주님이십니다."<br>서툴러도 괜찮습니다. 떨려도 괜찮습니다.<br>좋은 소식을 전하는 자들의 발이 아름답습니다.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-66.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
