@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정한 마음을 창조하소서 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-wed { background:rgba(122,158,126,.15); color:var(--sage); border:1px solid rgba(122,158,126,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-wed">🌙 수요 저녁</span>
+    <span class="sermon-date">2026년 11월 11일 수요일</span>
+  </div>
+  <h1 class="sermon-title">정한 마음을 창조하소서</h1>
+  <p class="sermon-subtitle">시편 51편 — 다윗의 눈물, 그리고 새 마음을 주시는 하나님</p>
+  <div class="key-verse">
+    <p>하나님이여 내 속에 정한 마음을 창조하시고 내 안에 정직한 영을 새롭게 하소서</p>
+    <cite>시편 51:10</cite>
+  </div>
+
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">정한 마음을 창조하소서 · 시편 51편</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_11.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">하나님의 긍휼에 기대는 회개</h2>
+    <div class="section-body">
+      <p>시편 51편은 다윗의 회개 기도입니다. 하나님의 마음에 합한 자라 불렸던 다윗이 깊은 죄에 빠졌습니다. 밧세바 사건, 우리아를 죽게 한 사건 — 음란이 거짓을 낳고, 거짓이 살인을 낳았습니다. 선지자 나단이 찾아와 "당신이 그 사람이라"고 말했을 때, 다윗은 무너졌습니다. 그리고 이 눈물의 기도를 드렸습니다.</p>
+      <div class="verse-inline">
+        "하나님이여 주의 인자를 따라 나를 불쌍히 여기시며 주의 많은 긍휼을 따라 내 죄악을 지워 주소서"<br>— 시편 51:1
+      </div>
+      <p>다윗의 첫마디는 자기 공로가 아닙니다. "골리앗을 물리쳤습니다", "이스라엘을 위해 얼마나 많은 일을 했는지 기억해 주십시오"라고 하지 않습니다. 그가 붙든 것은 단 두 가지, 주의 인자(헤세드)와 주의 긍휼입니다. 언약을 맺으신 하나님의 변함없는 사랑, 그것뿐입니다.</p>
+      <p>다윗은 "내 죄악을 지워 주소서"라고 기도합니다. 장부에 적힌 빚의 기록을 지워 달라는 것입니다. "말갛게 씻으시며" — 더러운 옷을 두드리고 비벼서 빨래하듯 씻어 달라는 말입니다. 자기 죄가 그냥 눈감아 줄 작은 실수가 아니라, 반드시 씻겨야 할 깊은 얼룩임을 알았습니다.</p>
+      <div class="story-box">
+        <div class="story-label">화분 이야기</div>
+        <p>어린 아들이 아버지가 아끼던 화분을 깨뜨리고 마당 구석에 몰래 묻었습니다. 그날부터 아버지 얼굴을 제대로 쳐다보지 못하고, 밥을 먹어도 속이 답답했습니다. 며칠 뒤 견디다 못해 울면서 다 털어놓자, 아버지가 꼭 안아 주며 말했습니다. "아빠는 벌써 알고 있었단다. 네가 먼저 말해 주기를 기다리고 있었어." 하나님 아버지가 바로 그런 분이십니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">죄를 있는 그대로 — 우슬초와 십자가</h2>
+    <div class="section-body">
+      <p>다윗은 자기 죄를 있는 그대로 바라봤습니다.</p>
+      <div class="verse-inline">
+        "내가 주께만 범죄하여 주의 목전에 악을 행하였사오니 주께서 말씀하실 때에 의로우시다 하고 주께서 심판하실 때에 순전하시다 하리이다"<br>— 시편 51:4
+      </div>
+      <p>밧세바에게 상처를 주고, 우리아의 목숨까지 빼앗았는데 "주께만 범죄하였다"고 말합니다. 사람에게 지은 죄가 없다는 뜻이 아닙니다. 모든 죄는 결국 하나님을 향한 반역이라는 것을 깨달은 겁니다. 환경 탓도, 다른 사람 탓도 하지 않고 하나님의 판단이 옳으시다고 인정했습니다.</p>
+      <div class="verse-inline">
+        "우슬초로 나를 정결하게 하소서 내가 정하리이다 나를 씻어 주소서 내가 눈보다 희리이다"<br>— 시편 51:7
+      </div>
+      <p>우슬초는 출애굽의 밤에 어린 양의 피를 문설주에 바를 때 쓰던 풀입니다. 다윗은 자기 힘으로는 결코 깨끗해질 수 없다는 것을 알았습니다. 오직 피로써만, 하나님이 정하신 희생으로써만 정결해질 수 있음을 알았습니다.</p>
+      <p>그 우슬초가 신약에 다시 등장합니다. 예수님이 십자가에 달리셨을 때, 군인들이 신 포도주를 적신 해면을 우슬초에 매어 주님의 입에 대었습니다. 다윗이 바라보았던 그 정결의 길이, 골고다에서 이루어진 겁니다.</p>
+      <div class="story-box">
+        <div class="story-label">셔츠 얼룩 이야기</div>
+        <p>하얀 셔츠에 커피를 쏟았는데 물로 아무리 문질러도 얼룩이 더 번지기만 했습니다. 세탁소에 맡겼더니 다음 날 처음처럼 깨끗하게 돌아왔습니다. 우리 죄도 그렇습니다. 혼자 문지를수록 얼룩은 더 번집니다. 주님께 맡기면 주님께서 온전히 깨끗하게 하십니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">새 마음의 창조 — 회개는 기쁨을 되찾는 길</h2>
+    <div class="section-body">
+      <p>깨끗하게 된 사람에게 하나님은 무엇을 주십니까?</p>
+      <div class="verse-inline">
+        "하나님이여 내 속에 정한 마음을 창조하시고 내 안에 정직한 영을 새롭게 하소서"<br>— 시편 51:10
+      </div>
+      <p>'창조한다'는 말은 하나님께서 천지를 지으실 때 쓰신 바로 그 단어입니다. 다윗은 조금 고쳐 달라고 하지 않았습니다. 완전히 새롭게 지어 달라고 기도했습니다. 회개는 죄를 털어놓는 데서 끝나지 않습니다. 잃어버렸던 기쁨을 다시 찾는 길입니다.</p>
+      <div class="story-box">
+        <div class="story-label">권사님의 고백</div>
+        <p>한 권사님이 며느리와 몇 년을 서로 말도 하지 않고 지내셨습니다. 어느 날 새벽기도 시간에 시편 51편을 읽다가 "하나님께서 구하시는 제사는 상한 심령이라"는 17절 말씀 앞에서 한참을 우셨습니다. 그날 저녁 먼저 며느리에게 전화해 "내가 미안했다"고 말씀하셨습니다. 막혀 있던 담이 무너졌고, 지금은 누구보다 다정한 고부 사이가 되셨다고 합니다. 권사님이 웃으며 말씀하셨습니다. "회개했더니 하나님만 돌아오신 게 아니라, 우리 며느리도 돌아왔어요."</p>
+      </div>
+      <div class="verse-inline">
+        "만일 우리가 우리 죄를 자백하면 그는 미쁘시고 의로우사 우리 죄를 사하시며 우리를 모든 불의에서 깨끗하게 하실 것이요"<br>— 요한일서 1:9
+      </div>
+      <p>용서받은 사람은 용서를 전하는 사람이 됩니다. 다윗은 "그리하면 내가 범죄자에게 주의 도를 가르치리니 죄인들이 주께 돌아오리이다"라고 고백했습니다. 은혜를 경험한 사람이 다른 사람을 은혜의 자리로 이끌게 됩니다.</p>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>오늘 밤 결단</h3>
+    <p>잠자리에 들기 전 조용히 무릎을 꿇고,<br>마음 깊이 묻어 두었던 죄 하나를<br>하나님 앞에 정직하게 꺼내 놓으십시오.<br>필요하다면 이번 주가 가기 전에<br>상처를 준 그 사람에게 먼저 미안하다고 말해 보십시오.<br>주님의 은혜는 우리의 어떤 죄보다도 크십니다.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-67.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
