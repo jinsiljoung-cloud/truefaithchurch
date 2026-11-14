@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하나님이 세상을 이처럼 사랑하사 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --sky: #6BAED6;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-sun { background:rgba(107,174,214,.15); color:var(--sky); border:1px solid rgba(107,174,214,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(107,174,214,.06); border:1px solid rgba(107,174,214,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sky); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-sun">☀️ 주일 아침</span>
+    <span class="sermon-date">2026년 11월 15일 주일</span>
+  </div>
+  <h1 class="sermon-title">하나님이 세상을 이처럼 사랑하사</h1>
+  <p class="sermon-subtitle">요한복음 3:16 — 니고데모에게, 그리고 오늘 우리에게</p>
+  <div class="key-verse">
+    <p>하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 그를 믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라</p>
+    <cite>요한복음 3:16</cite>
+  </div>
+
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">하나님이 세상을 이처럼 사랑하사 · 요한복음 3:16</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_15.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">하나님의 사랑의 크기 — 세상을 이처럼</h2>
+    <div class="section-body">
+      <p>니고데모는 밤에 예수님을 찾아왔습니다. 바리새인이요, 유대인의 관원이요, 이스라엘의 선생이었던 그가 사람들의 눈을 피해 어둠 속을 걸어온 겁니다. 그는 많은 것을 알고 있었지만, 무언가가 빠져 있다는 것을 느꼈습니다. 예수님은 그에게 거듭남을 말씀하셨고, 그 거듭남이 어떻게 가능한지를 하나의 구절에 담으셨습니다.</p>
+      <div class="verse-inline">
+        "하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니"<br>— 요한복음 3:16a
+      </div>
+      <p>'세상'은 헬라어로 코스모스입니다. 단지 아름다운 창조물이 아니라, 하나님을 반역하고 등을 돌린 세상입니다. 그 죄인 된 세상을 하나님은 사랑하셨습니다. 그 사랑의 증거가 독생자를 주신 것입니다.</p>
+      <p>'이처럼(so)'이라는 한 단어가 그 사랑의 깊이를 담습니다. 그냥 사랑하신 게 아닙니다. 아들을 내어주실 만큼 사랑하셨습니다.</p>
+      <div class="story-box">
+        <div class="story-label">홍수 속 어머니</div>
+        <p>수년 전, 큰 홍수 피해가 났을 때의 이야기입니다. 급류에 휩쓸릴 뻔한 어린 아이를 구하려던 어머니가 두 팔로 아이를 번쩍 들어 올려 나무에 걸친 채 숨을 거두었습니다. 구조대가 도착했을 때, 어머니는 차가운 물 속에 잠겨 있었고 아이는 나무 위에서 살아 있었습니다. 아이를 살리기 위해 자신의 목숨을 내놓은 사랑. 하나님이 세상을 향해 하신 일이 바로 그것입니다. 단 한 번, 단 하나뿐인 아들을 내어주셨습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">그를 믿는 자마다 — 진짜 믿음이란</h2>
+    <div class="section-body">
+      <p>예수님은 니고데모에게 민수기 21장의 놋뱀 이야기를 먼저 하셨습니다. 광야에서 불뱀에 물린 이스라엘 백성이 장대 위의 놋뱀을 바라보면 살았습니다. 쳐다보는 것 — 단순해 보이지만, 그것이 바로 믿음의 행위였습니다.</p>
+      <div class="verse-inline">
+        "모세가 광야에서 뱀을 든 것 같이 인자도 들려야 하리니 이는 그를 믿는 자마다 영생을 얻게 하려 하심이라"<br>— 요한복음 3:14-15
+      </div>
+      <p>'믿는 자마다'라는 말이 중요합니다. 조건이 없습니다. 니고데모처럼 많이 배운 사람도, 광야의 죄 많은 이스라엘 백성도, 오늘의 우리도 — 주님을 바라보는 자는 누구든지입니다.</p>
+      <div class="story-box">
+        <div class="story-label">나이아가라 곡예사</div>
+        <p>19세기, 한 곡예사가 나이아가라 폭포 위에 외줄을 걸고 외바퀴 수레를 밀며 건너갔습니다. 군중이 환호했습니다. 곡예사가 군중에게 물었습니다. "제가 사람을 태우고 건널 수 있다고 믿으십니까?" 모두 "믿습니다!"라고 외쳤습니다. 그러자 곡예사가 한 사람을 가리키며 말했습니다. "그럼 올라타시겠습니까?" 아무도 나서지 않았습니다. 진짜 믿음은 수레에 올라타는 것입니다. 예수님이 나를 구원하신다고 고개를 끄덕이는 것이 아니라, 나의 삶을 그분께 맡기는 것입니다.</p>
+      </div>
+      <p>멸망하지 않고 영생을 얻는 것 — 이것이 복음의 약속입니다. 지금 여기 이 자리에서 주님을 붙드는 믿음이 그 약속을 현실로 만듭니다.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">사랑을 흘려보내는 삶 — 요한복음 3:16을 전하십시오</h2>
+    <div class="section-body">
+      <p>이 말씀은 니고데모 한 사람에게 주신 말씀이지만, 오늘 우리 모두에게 주시는 말씀입니다. 이 사랑을 받은 사람은 이 사랑을 흘려보내는 사람이 됩니다.</p>
+      <div class="story-box">
+        <div class="story-label">채소 할머니 권사님</div>
+        <p>교회 근처 시장에서 채소를 파시는 권사님이 계셨습니다. 단골손님에게 채소를 건네시며 조용히 말씀하셨습니다. "하나님이 당신을 사랑하신대요." 처음엔 그냥 지나쳤던 그 손님이 몇 달 뒤 교회 문을 두드렸습니다. "그 말씀이 계속 머릿속에 맴돌았어요." 거창한 전도 프로그램이 아니었습니다. 하나님의 사랑을 한 마디로 전한 것뿐이었습니다.</p>
+      </div>
+      <p>가정에서, 이웃에게, 일터에서 — 우리가 먼저 사랑받은 사람임을 기억할 때, 그 사랑이 자연스럽게 흘러나옵니다.</p>
+      <div class="verse-inline">
+        "우리가 사랑함은 그가 먼저 우리를 사랑하셨음이라"<br>— 요한일서 4:19
+      </div>
+      <p>오늘 예배를 마치고 돌아가는 길에, 한 사람을 떠올려 보십시오. 요한복음 3:16을 전하고 싶은 그 한 사람. 문자 한 통이어도 좋고, 함께 나누는 따뜻한 차 한 잔이어도 좋습니다. 하나님이 세상을 이처럼 사랑하신다는 것을 오늘 당신의 입으로 전하십시오.</p>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>오늘의 결단</h3>
+    <p>이번 주 한 사람에게 요한복음 3:16을 전하십시오.<br>문자 한 통, 따뜻한 차 한 잔, 조용한 한 마디.<br>"하나님이 세상을 이처럼 사랑하사."<br>그 사랑이 당신을 통해 흘러가게 하십시오.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-68.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
