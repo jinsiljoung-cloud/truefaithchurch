@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나를 살피소서 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-wed { background:rgba(122,158,126,.15); color:var(--sage); border:1px solid rgba(122,158,126,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-wed">🌙 수요 저녁</span>
+    <span class="sermon-date">2026년 11월 18일 수요일</span>
+  </div>
+  <h1 class="sermon-title">나를 살피소서</h1>
+  <p class="sermon-subtitle">시편 139편 — 나를 가장 깊이 아시는 분이 나를 가장 깊이 사랑하신다</p>
+  <div class="key-verse">
+    <p>하나님이여 나를 살피사 내 마음을 아시며 나를 시험하사 내 뜻을 아옵소서 내게 무슨 악한 행위가 있나 보시고 나를 영원한 길로 인도하소서</p>
+    <cite>시편 139:23–24</cite>
+  </div>
+
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">나를 살피소서 · 시편 139편</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_18.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">하나님이 나를 완전히 아신다</h2>
+    <div class="section-body">
+      <p>우리는 누군가에게 알려지기를 원하면서도, 동시에 다 알려지는 것을 두려워합니다. 누군가 내 마음을 알아주면 눈물이 날 만큼 고마운데, 막상 내 속마음이 다 드러날까 봐 겁이 납니다. 그래서 우리는 웃는 얼굴로 "괜찮다"고 말합니다. 직장에서는 괜찮은 척, 교회에서는 믿음 좋은 척, 가정에서는 강한 척합니다.</p>
+      <p>그런데 오늘 시편 139편은 놀라운 소식을 전합니다. 나를 끝까지, 속속들이 아시는 분이 계시다는 겁니다. 그리고 그분이 나를 다 아시면서도 떠나지 않으신다는 겁니다.</p>
+      <div class="verse-inline">
+        "여호와여 주께서 나를 살펴 보셨으므로 나를 아시나이다 주께서 내가 앉고 일어섬을 아시고 멀리서도 나의 생각을 밝히 아시오며"<br>— 시편 139:1–2
+      </div>
+      <p>'살펴 보셨다'는 말은 단순히 멀리서 구경하신다는 뜻이 아닙니다. 광부가 땅을 파고 들어가 금맥을 찾듯, 깊이 파고들어 샅샅이 살피신다는 의미입니다. 내가 입을 열기도 전에, 그 말이 혀끝에 맺히기도 전에 하나님께서는 이미 아십니다.</p>
+      <div class="story-box">
+        <div class="story-label">시계 서랍 이야기</div>
+        <p>어린 아들이 아버지가 아끼던 시계를 실수로 떨어뜨려 망가뜨렸습니다. 겁이 나서 서랍 깊숙이 숨겨 두었고, 며칠 동안 아버지 얼굴을 제대로 보지 못했습니다. 결국 어느 날 밤 울면서 고백했을 때, 아버지가 아이를 안아 주며 말했습니다. "아빠는 처음부터 알고 있었단다. 네가 먼저 말해 주기를 기다리고 있었어." 아이는 그날 밤 며칠 만에 처음으로 편안히 잠들었습니다. 하나님이 우리를 다 아신다는 것은 정죄가 아닙니다. 돌아오기를 기다리시는 아버지의 마음입니다.</p>
+      </div>
+      <p>나다나엘이 예수님께 "어떻게 나를 아시나이까" 물었을 때, 주님은 "빌립이 너를 부르기 전에 네가 무화과나무 아래에 있을 때에 보았노라"고 하셨습니다. 베드로가 세 번 부인할 것을 미리 아셨던 주님은, 그 연약함을 다 아시면서도 "내 양을 먹이라"고 맡기셨습니다. 우리를 가장 깊이 아시는 분이, 우리를 가장 깊이 사랑하시는 분입니다.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">어디에나 계시는 하나님 — 감시가 아니라 붙드심</h2>
+    <div class="section-body">
+      <p>이렇게 나를 다 아시는 하나님 앞에서 우리는 어디로 피할 수 있을까요? 다윗은 솔직하게 묻습니다.</p>
+      <div class="verse-inline">
+        "내가 주의 영을 떠나 어디로 가며 주의 앞에서 어디로 피하리이까 내가 하늘에 올라갈지라도 거기 계시며 스올에 내 자리를 펼지라도 거기 계시니이다"<br>— 시편 139:7–8
+      </div>
+      <p>가장 높은 하늘, 가장 깊은 스올, 해가 떠오르는 동쪽 끝에서 서쪽 바다 끝까지 — 높이와 깊이와 넓이를 다 말하고도, 그 어디에도 하나님이 계시지 않은 곳은 없습니다. 처음에는 두렵게 들릴 수 있습니다. 숨을 곳이 하나도 없다는 뜻이니까요. 그런데 다윗이 말하는 결론을 보십시오.</p>
+      <div class="verse-inline">
+        "거기서도 주의 손이 나를 인도하시며 주의 오른손이 나를 붙드시리이다"<br>— 시편 139:10
+      </div>
+      <p>하나님이 어디에나 계시다는 것은 감시가 아니라 붙드심입니다. 내가 아무리 멀리 도망쳐도 그 손이 나를 놓지 않으신다는 약속입니다.</p>
+      <div class="story-box">
+        <div class="story-label">자전거 아빠 이야기</div>
+        <p>어떤 아버지가 어린 딸에게 자전거를 가르쳐 주었습니다. 아이는 넘어질까 무서워 계속 뒤를 돌아보며 물었습니다. "아빠, 잡고 있지요?" 아버지는 그때마다 대답했습니다. "그래, 잡고 있어." 아이는 그 말을 믿고 끝까지 페달을 밟았습니다. 나중에 보니 아버지는 한 번도 손을 놓지 않고 숨이 차도록 뒤따라 달리고 있었습니다. 우리 하나님이 바로 그런 분이십니다. 우리가 보지 못할 때에도 주의 오른손은 여전히 우리를 붙들고 계십니다.</p>
+      </div>
+      <p>주님은 하늘 영광을 버리고 이 땅에 내려오셨고, 십자가 위에서 "나의 하나님, 어찌하여 나를 버리셨나이까" 하고 부르짖으셨습니다. 가장 어둡고 깊은 그 자리까지 주님이 친히 내려가신 겁니다. 이제 우리가 어떤 어둠 속에 있어도, 그곳은 주님이 이미 다녀가신 곳입니다.</p>
+      <div class="verse-inline">
+        "사망이나 생명이나 … 높음이나 깊음이나 다른 어떤 피조물이라도 우리를 우리 주 그리스도 예수 안에 있는 하나님의 사랑에서 끊을 수 없으리라"<br>— 로마서 8:38–39
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">숨기던 사람이 문을 여는 사람으로</h2>
+    <div class="section-body">
+      <p>처음에는 "주께서 나를 살펴 보셨다"는 고백으로 시작했던 다윗이, 마지막에는 스스로 "나를 살펴 달라"는 간구로 끝맺습니다. 숨기던 사람이 이제는 문을 활짝 여는 사람이 된 겁니다. 나를 정죄하지 않으시고 사랑하시는 분 앞이기 때문에, 우리는 마음 깊은 곳까지 내어 드릴 수 있습니다.</p>
+      <div class="story-box">
+        <div class="story-label">권사님의 밤 기도</div>
+        <p>교회의 한 권사님은 매일 밤 잠자리에 들기 전에 시편 139편 23절과 24절을 소리 내어 읽으신다고 합니다. 그리고 하루를 돌아보며 여쭙니다. "하나님, 오늘 제 말 가운데 누군가를 아프게 한 것이 있었습니까? 제 마음에 미움이나 욕심이 자리 잡은 것은 없었습니까?" 생각나는 것이 있으면 그 자리에서 바로 회개하시고, 다음 날 아침에는 먼저 찾아가 화해하신다고 합니다. 권사님은 웃으시며 말씀하셨습니다. "이렇게 하고 나면 잠이 그렇게 달 수가 없어요."</p>
+      </div>
+      <p>바쁜 하루 속에서 마음을 살필 틈 없이 지나가다 보면, 작은 미움이 쌓이고 말하지 못한 죄가 서랍 속에 쌓여 갑니다. 그러나 말씀은 약속합니다.</p>
+      <div class="verse-inline">
+        "만일 우리가 우리 죄를 자백하면 그는 미쁘시고 의로우사 우리 죄를 사하시며 우리를 모든 불의에서 깨끗하게 하실 것이요"<br>— 요한일서 1:9
+      </div>
+      <p>나를 가장 깊이 아시는 하나님이 나를 가장 깊이 사랑하시기에, 우리는 그분 앞에서 숨지 않고 마음을 열 수 있습니다. 자녀들은 부모님 앞에서, 부모님은 자녀들 앞에서, 그리고 우리 모두는 하나님 앞에서 숨기지 않는 삶을 살아갈 때, 우리 가정과 교회 안에 참된 평안이 찾아옵니다.</p>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>이번 주 결단</h3>
+    <p>매일 밤 잠들기 전 시편 139편 23–24절을 소리 내어 읽고,<br>하나님께 내 마음을 살펴 달라고 기도하십시오.<br>서랍 속에 감춰 둔 것이 있다면 오늘 밤 주님께 꺼내 놓으십시오.<br>십자가에서 이미 그 값을 치르신 예수 그리스도께서<br>기쁘게 안아 주실 것입니다.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-69.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
