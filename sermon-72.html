@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>겸손과 깨어 있음 — 바른믿음교회</title>
+<style>
+:root {
+  --bg: #0e0e0e;
+  --surface: #161616;
+  --border: rgba(255,255,255,.08);
+  --gold: #C9A84C;
+  --gold-l: #E8C96A;
+  --cream: #F0EAD6;
+  --muted: rgba(240,234,214,.55);
+  --sage: #7A9E7E;
+  --fc: 'Georgia', serif;
+  --fs: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--cream); font-family:var(--fs); min-height:100vh; }
+
+.site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(14,14,14,.92); backdrop-filter:blur(12px); z-index:100; }
+.logo { font-family:var(--fc); font-size:15px; color:var(--gold); letter-spacing:.5px; text-decoration:none; }
+.header-nav a { color:var(--muted); font-size:13px; text-decoration:none; margin-left:20px; transition:color .2s; }
+.header-nav a:hover { color:var(--cream); }
+
+.sermon-hero { padding:52px 24px 36px; max-width:680px; margin:0 auto; }
+.badge-row { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; }
+.badge-wed { background:rgba(122,158,126,.15); color:var(--sage); border:1px solid rgba(122,158,126,.3); }
+.sermon-date { font-size:13px; color:var(--muted); }
+.sermon-title { font-family:var(--fc); font-size:clamp(26px,6vw,38px); font-weight:700; line-height:1.25; margin-bottom:10px; }
+.sermon-subtitle { font-size:15px; color:var(--muted); margin-bottom:28px; }
+.key-verse { background:rgba(201,168,76,.06); border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:18px 20px; margin-bottom:36px; }
+.key-verse p { font-family:var(--fc); font-size:16px; line-height:1.7; color:var(--cream); font-style:italic; }
+.key-verse cite { display:block; margin-top:8px; font-size:12px; color:var(--gold); font-style:normal; letter-spacing:.5px; }
+
+.audio-wrap { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:22px 24px; margin-bottom:40px; max-width:500px; position:relative; overflow:hidden; }
+.audio-wrap::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.audio-title { font-family:var(--fc); font-size:9px; letter-spacing:3px; color:var(--gold); opacity:.6; margin-bottom:10px; }
+.audio-name { font-size:14px; color:var(--cream); opacity:.85; margin-bottom:14px; }
+.audio-controls { display:flex; align-items:center; gap:12px; }
+.audio-btn { width:42px; height:42px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; flex-shrink:0; }
+.audio-btn:hover { background:var(--gold-l); transform:scale(1.05); }
+.audio-progress-wrap { flex:1; }
+.audio-progress { width:100%; height:4px; background:rgba(201,168,76,.15); border-radius:2px; cursor:pointer; margin-bottom:5px; }
+.audio-progress-fill { height:100%; background:var(--gold); border-radius:2px; width:0%; }
+.audio-time { font-size:11px; color:var(--muted); }
+
+.sermon-body { max-width:680px; margin:0 auto; padding:0 24px 60px; }
+.section { margin-bottom:44px; }
+.section-num { font-size:10px; letter-spacing:3px; color:var(--gold); opacity:.7; margin-bottom:6px; text-transform:uppercase; }
+.section-title { font-family:var(--fc); font-size:20px; font-weight:700; margin-bottom:16px; }
+.section-body { font-size:15px; line-height:1.85; color:rgba(240,234,214,.85); }
+.section-body p { margin-bottom:14px; }
+.story-box { background:rgba(122,158,126,.06); border:1px solid rgba(122,158,126,.15); border-radius:8px; padding:16px 18px; margin:18px 0; }
+.story-box p { font-size:14px; line-height:1.75; color:rgba(240,234,214,.8); margin:0; }
+.story-label { font-size:10px; letter-spacing:2px; color:var(--sage); margin-bottom:8px; opacity:.8; }
+.verse-inline { font-family:var(--fc); font-style:italic; color:var(--gold-l); font-size:14px; line-height:1.6; margin:16px 0; padding-left:16px; border-left:2px solid rgba(201,168,76,.3); }
+
+.decision-box { background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:10px; padding:28px 24px; margin:40px 0; text-align:center; }
+.decision-box h3 { font-family:var(--fc); font-size:17px; color:var(--gold); margin-bottom:14px; }
+.decision-box p { font-size:14px; line-height:1.75; color:var(--muted); }
+
+.footer-nav { display:flex; justify-content:center; gap:12px; padding:32px 24px 48px; border-top:1px solid var(--border); margin-top:20px; flex-wrap:wrap; }
+.fn-btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:20px; font-size:13px; text-decoration:none; border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+.fn-btn:hover { border-color:rgba(201,168,76,.4); color:var(--cream); }
+.fn-btn.primary { background:rgba(201,168,76,.1); border-color:rgba(201,168,76,.3); color:var(--gold); }
+.fn-btn.primary:hover { background:rgba(201,168,76,.18); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="/worship.html">바른믿음교회</a>
+  <nav class="header-nav">
+    <a href="/worship.html">예배</a>
+    <a href="/sermons.html">설교</a>
+  </nav>
+</header>
+
+<section class="sermon-hero">
+  <div class="badge-row">
+    <span class="badge badge-wed">🌙 수요 저녁</span>
+    <span class="sermon-date">2026년 11월 25일 수요일</span>
+  </div>
+  <h1 class="sermon-title">겸손과 깨어 있음</h1>
+  <p class="sermon-subtitle">베드로전서 5장 — 낮아진 사람이 염려를 내려놓고 깨어 있는 사람으로 살아간다</p>
+  <div class="key-verse">
+    <p>하나님의 능하신 손 아래에서 겸손하라 때가 되면 너희를 높이시리라 너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라</p>
+    <cite>베드로전서 5:6–7</cite>
+  </div>
+
+  <div class="audio-wrap">
+    <div class="audio-title">SERMON AUDIO</div>
+    <div class="audio-name">겸손과 깨어 있음 · 베드로전서 5장</div>
+    <div class="audio-controls">
+      <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-progress" onclick="seek(event)">
+          <div class="audio-progress-fill" id="progressFill"></div>
+        </div>
+        <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+      </div>
+    </div>
+    <audio id="audioEl" src="2026_11_25.mp3" preload="auto"></audio>
+  </div>
+</section>
+
+<main class="sermon-body">
+
+  <!-- 1부 -->
+  <div class="section">
+    <div class="section-num">Part 1</div>
+    <h2 class="section-title">겸손으로 허리를 동이라</h2>
+    <div class="section-body">
+      <p>누군가가 나를 무시하는 것 같은 말 한마디에 밤새 잠을 못 이루었던 일, 한 번쯤 있으시지요. 회사에서, 가정에서, 때로는 교회 안에서도 인정받지 못한다고 느낄 때, 마음속 어딘가에서 "내가 얼마나 애썼는데" 하는 목소리가 올라옵니다. 반대로 일이 잘 풀리고 칭찬을 받을 때는 어느새 기도를 잊어버리고 내 힘으로 된 줄 압니다. 그렇게 마음이 오르내리는 사이에 우리의 영혼은 어느 순간 졸고 있습니다.</p>
+      <p>오늘 베드로 사도는 고난받는 소아시아 교회를 향해 두 가지를 말씀합니다. 낮아지라, 그리고 깨어 있으라.</p>
+      <div class="verse-inline">
+        "젊은 자들아 이와 같이 장로들에게 순종하고 다 서로 겸손으로 허리를 동이라 하나님은 교만한 자를 대적하시되 겸손한 자들에게는 은혜를 주시느니라"<br>— 베드로전서 5:5
+      </div>
+      <p>'허리를 동이라'는 말은 종이 주인을 섬기기 위해 앞치마를 두르는 모습입니다. 베드로가 이 말씀을 쓸 때, 아마도 한 장면이 떠올랐을 겁니다. 마지막 만찬의 밤, 예수님께서 수건을 허리에 두르시고 대야에 물을 담아 제자들의 발을 하나하나 씻기시던 그 장면입니다. 그때 베드로는 펄쩍 뛰며 말했습니다. "주님, 제 발은 절대로 씻기지 못하십니다." 그러나 주님은 조용히 그의 발을 씻기셨습니다.</p>
+      <div class="story-box">
+        <div class="story-label">화장실 청소 권사님 이야기</div>
+        <p>교회에서 오래 섬기시며 존경받는 한 권사님은, 주일마다 예배가 끝나면 아무도 모르게 화장실 청소를 하셨다고 합니다. 어느 날 젊은 집사님이 "권사님, 이런 일은 저희가 하겠습니다" 하고 말리자, 권사님은 웃으며 말씀하셨습니다. "우리 주님은 내 더러운 발도 씻겨 주셨는데, 내가 이 정도 못 하겠어요." 은혜를 아는 사람은 낮은 자리가 부끄럽지 않습니다.</p>
+      </div>
+      <p>겸손은 마음속의 감정이 아닙니다. 옷처럼 입는 것이고, 실제로 섬김의 자리로 내려가는 것입니다. 그리고 하나님은 분명히 말씀하십니다. 교만한 자를 대적하시되 겸손한 자들에게는 은혜를 주신다고.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2부 -->
+  <div class="section">
+    <div class="section-num">Part 2</div>
+    <h2 class="section-title">능하신 손 아래 염려를 맡기라</h2>
+    <div class="section-body">
+      <p>낮아지려 할 때 마음 한편에 두려움이 생깁니다. 내가 이렇게 낮아지면 사람들이 나를 우습게 보지 않을까, 내 몫을 빼앗기지 않을까. 바로 그 두려움에 대해 베드로는 놀라운 약속을 들려줍니다.</p>
+      <div class="verse-inline">
+        "그러므로 하나님의 능하신 손 아래에서 겸손하라 때가 되면 너희를 높이시리라 너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라"<br>— 베드로전서 5:6–7
+      </div>
+      <p>원문을 보면 '염려를 맡기는 것'은 '겸손하라'는 명령에 이어지는 말입니다. 내 염려를 주님께 맡기는 것이 곧 겸손입니다. 교만은 내 인생을 끝까지 내 손으로 붙들고 있으려는 마음입니다. 겸손은 내 손을 펴고 하나님의 능하신 손 아래로 들어가는 겁니다. 그 손은 나를 누르는 손이 아니라 나를 덮고 보호하는 손입니다.</p>
+      <div class="story-box">
+        <div class="story-label">아빠 품에 잠든 아이 이야기</div>
+        <p>어린아이가 아빠 품에 안겨 잠드는 모습을 보신 적이 있으실 겁니다. 차가 흔들려도, 길이 어두워도 아이는 걱정하지 않습니다. 운전대를 잡은 사람이 아빠라는 것을 알기 때문입니다. 염려를 맡긴다는 것은 바로 이런 겁니다. 그가 너희를 돌보심이라.</p>
+      </div>
+      <div class="verse-inline">
+        "자기 아들을 아끼지 아니하시고 우리 모든 사람을 위하여 내주신 이가 어찌 그 아들과 함께 모든 것을 우리에게 은사로 주지 아니하시겠느냐"<br>— 로마서 8:32
+      </div>
+      <p>십자가까지 낮아지신 예수님을 하나님은 부활과 승천으로 높이셨습니다. 겟세마네에서 "내 원대로 마시옵고 아버지의 원대로 되기를 원하나이다" 기도하신 주님, 그 길을 우리가 따라갑니다. 높이시는 분은 내가 아니라 하나님이시고, 그 때도 내가 아닌 하나님이 정하십니다. 우리를 돌보시는 분이 계시기에, 우리는 마음 놓고 낮아질 수 있습니다.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3부 -->
+  <div class="section">
+    <div class="section-num">Part 3</div>
+    <h2 class="section-title">근신하라 깨어 있으라</h2>
+    <div class="section-body">
+      <p>그런데 베드로는 여기서 멈추지 않고 곧바로 경고합니다.</p>
+      <div class="verse-inline">
+        "근신하라 깨어라 너희 대적 마귀가 우는 사자 같이 두루 다니며 삼킬 자를 찾나니"<br>— 베드로전서 5:8
+      </div>
+      <p>이 말씀을 쓴 베드로를 생각해 보십시오. 겟세마네 동산에서 예수님은 말씀하셨습니다. "시험에 들지 않게 깨어 기도하라." 그러나 베드로는 잠들었고, 그날 밤 세 번이나 주님을 부인했습니다. 주님을 위해 죽겠다고 큰소리치던 그 자신감이 바로 마귀가 노린 틈이었습니다. 그래서 베드로는 누구보다 잘 압니다. 교만한 사람은 잠들고, 잠든 사람은 넘어진다는 것을.</p>
+      <p>마귀는 우리가 가장 약할 때만 오지 않습니다. 오히려 모든 것이 잘 풀리고 마음이 느슨해질 때 찾아옵니다. 조금 바쁘다고 기도를 미루고, 피곤하다고 말씀을 덮고, 이 정도는 괜찮겠지 하며 작은 죄를 허락할 때 사자는 조용히 다가옵니다.</p>
+      <div class="story-box">
+        <div class="story-label">휴대폰 첫 화면 집사님 이야기</div>
+        <p>한 집사님은 휴대폰 첫 화면에 성경 앱을 두셨다고 합니다. 아침에 눈을 뜨면 뉴스나 메시지보다 말씀 한 구절을 먼저 읽으신다는 겁니다. 작은 습관이지만 하루의 첫 자리를 주님께 드리는 그 습관이 그분을 지켜 주었다고 고백하셨습니다. 깨어 있다는 것은 거창한 일이 아닙니다. 매일 아침 오 분이라도 말씀 앞에 앉는 것, 잠들기 전 하루를 돌아보며 회개하는 것, 이것이 깨어 있는 삶입니다.</p>
+      </div>
+      <p>또한 베드로는 혼자 싸우라고 하지 않습니다. "이는 세상에 있는 너희 형제들도 동일한 고난을 당하는 줄을 앎이라." 오늘 이렇게 수요일 저녁에 함께 모여 예배드리는 이 자리가 바로 서로를 깨우는 자리입니다. 지친 형제를 위해 기도해 주고, 넘어진 자매에게 손 내밀어 주는 것, 이것이 사자를 대적하는 교회의 모습입니다.</p>
+      <div class="verse-inline">
+        "아무 것도 염려하지 말고 다만 모든 일에 기도와 간구로, 너희 구할 것을 감사함으로 하나님께 아뢰라 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라"<br>— 빌립보서 4:6–7
+      </div>
+      <p>넘어졌던 베드로를 다시 세우신 주님이 우리도 세우십니다. 모든 은혜의 하나님이 잠깐 고난을 당한 너희를 친히 온전하게 하시며 굳건하게 하시며 강하게 하시며 터를 견고하게 하시리라.</p>
+    </div>
+  </div>
+
+  <!-- 결단 -->
+  <div class="decision-box">
+    <h3>이번 주 결단</h3>
+    <p>매일 잠들기 전, 오늘 내 마음을 무겁게 한 염려 한 가지를<br>구체적으로 이름 불러 주님께 맡기는 기도를 드리십시오.<br>"그가 너희를 돌보심이라" — 이 약속을 붙들고,<br>하루의 첫 자리를 말씀으로 시작하십시오.<br>낮아진 사람이 염려를 내려놓고 깨어 있는 사람으로 살아갑니다.<br><br>느리게, 바르게, 함께. 아멘.</p>
+  </div>
+
+</main>
+
+<nav class="footer-nav">
+  <a class="fn-btn" href="/sermon-71.html">← 이전 설교</a>
+  <a class="fn-btn primary" href="/worship.html">🎵 예배</a>
+  <a class="fn-btn" href="/sermons.html">목록 →</a>
+</nav>
+
+<script>
+const audio = document.getElementById('audioEl');
+const btn = document.getElementById('playBtn');
+const fill = document.getElementById('progressFill');
+const timeEl = document.getElementById('audioTime');
+
+function fmt(s){ const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function togglePlay(){ audio.paused ? audio.play() : audio.pause(); }
+audio.addEventListener('play', ()=>{ btn.textContent='⏸'; });
+audio.addEventListener('pause', ()=>{ btn.textContent='▶'; });
+audio.addEventListener('ended', ()=>{ btn.textContent='▶'; fill.style.width='0%'; });
+audio.addEventListener('timeupdate', ()=>{
+  if(!audio.duration) return;
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeEl.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration);
+});
+function seek(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+}
+</script>
+</body>
+</html>
